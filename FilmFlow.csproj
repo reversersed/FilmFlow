@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql" Version="7.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\background.jpg" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Password.png" />

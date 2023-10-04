@@ -7,4 +7,6 @@
     <sys:String x:Key="Username">Пользователь</sys:String>
     <sys:String x:Key="Password">Пароль</sys:String>
     <sys:String x:Key="LoginButton">Войти</sys:String>
+    <sys:String x:Key="ForgotPassword">Забыли пароль?</sys:String>
+    <sys:String x:Key="ForgotClickable">Сбросить</sys:String>
 </ResourceDictionary>
