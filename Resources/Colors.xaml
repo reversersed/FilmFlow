@@ -9,5 +9,8 @@
     <SolidColorBrush x:Key="MinimizeButtonColor">#7d1710</SolidColorBrush>
     <SolidColorBrush x:Key="CloseButtonColor">#570702</SolidColorBrush>
     <SolidColorBrush x:Key="HoverButtonBackgroundColor">#d1342a</SolidColorBrush>
+    <SolidColorBrush x:Key="LoginButtonBackground">#4b00bd</SolidColorBrush>
+    <!--1b0042-->
+    <SolidColorBrush x:Key="HoverLoginBackgroundColor">#6915e8</SolidColorBrush>
     <SolidColorBrush x:Key="TextColor" Color="LightGray"/>
 </ResourceDictionary> 
