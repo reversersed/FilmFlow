@@ -49,7 +49,7 @@ namespace FilmFlow
             }
             catch
             {
-                new XDocument(new XElement("config", new XElement("language", CultureInfo.CurrentCulture.Name))).Save("config.xml");
+                new XDocument(new XElement("config", new XElement("language", CultureInfo.CurrentCulture.Name), new XElement("rememberedPassword", "False"))).Save("config.xml");
                 config.Load("config.xml");
             }
             return config.DocumentElement?.SelectSingleNode("/config/language")?.InnerText;

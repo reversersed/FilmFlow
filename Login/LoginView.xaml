@@ -6,7 +6,7 @@
         xmlns:viewModel="clr-namespace:FilmFlow.Login"
         xmlns:customcontrols="clr-namespace:FilmFlow.CustomControls"
         mc:Ignorable="d"
-        Title="LoginView" Height="550" Width="800"
+        Title="LoginView" Height="560" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -190,9 +190,17 @@
                                                      Height="26"/>
 
 
+                    <CheckBox Content="{StaticResource RememberPassword}"
+                              HorizontalAlignment="Center"
+                              Margin="0,10,0,0"
+                              FontSize="{StaticResource Small}"
+                              FontWeight="Light"
+                              Foreground="LightGray"
+                              IsChecked="{Binding IsPasswordRemembered}">
+                    </CheckBox>
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#d90404"
-                               FontSize="{StaticResource Regular}"
+                               FontSize="{StaticResource Small}"
                                FontWeight="Normal"
                                FontFamily="{StaticResource DefaultFont}"
                                HorizontalAlignment="Center"
@@ -208,7 +216,7 @@
                             FontSize="{StaticResource Regular}"
                             FontFamily="{StaticResource DefaultFont}"
                             Cursor="Hand"
-                            Margin="0,25,0,0">
+                            Margin="0,5,0,0">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{StaticResource LoginButtonBackground}"/>
@@ -258,7 +266,7 @@
 
                     <StackPanel Orientation="Horizontal" 
                                 HorizontalAlignment="Center"
-                                Margin="0,20,0,0">
+                                Margin="0,10,0,0">
                         <TextBlock Text="{DynamicResource AskNewHere}"
                                    Foreground="DarkGray"
                                    FontSize="{StaticResource Small}"

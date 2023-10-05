@@ -12,7 +12,8 @@
     <sys:String x:Key="ForgotClickable">Reset</sys:String>
     <sys:String x:Key="ErrorLoginMessage">* Invalid username or password</sys:String>
     <sys:String x:Key="AskNewHere">Are you new here?</sys:String>
-    <sys:String x:Key="Registrate">Register me</sys:String>
-    <!--Registration Window-->
+    <sys:String x:Key="Registrate">Sign up</sys:String>
+    <sys:String x:Key="RememberPassword">Remember me</sys:String>
+    <!--Registration Window--> 
     <!--Main Application Window-->
 </ResourceDictionary>

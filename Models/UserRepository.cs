@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using DeviceId;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,27 @@ namespace FilmFlow.Models
                 validUser = command.ExecuteNonQuery() != -1;
             }
             return validUser;
+        }
+
+        public string? AuthenticateUser()
+        {
+            using (NpgsqlConnection connection = GetConnection())
+            using (NpgsqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+                command.CommandText = "select * from users where users.id = (select usermachines.userid from usermachines where machineid=@machineid) limit 1";
+                command.Parameters.AddWithValue("@machineid", MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(GetMachineId())));
+                command.ExecuteNonQuery();
+            }
+            return null;
+        }
+        void EnableAutoLogin(int userid)
+        {
+
+        }
+        private string GetMachineId()
+        {
+            return String.Empty;
         }
     }
 }

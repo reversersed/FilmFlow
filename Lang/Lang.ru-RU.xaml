@@ -13,6 +13,7 @@
     <sys:String x:Key="ErrorLoginMessage">* Вы ввели неправильные логин или пароль</sys:String>
     <sys:String x:Key="AskNewHere">Еще нет аккаунта?</sys:String>
     <sys:String x:Key="Registrate">Зарегистрироваться</sys:String>
+    <sys:String x:Key="RememberPassword">Запомнить пароль</sys:String>
     <!--Registration Window-->
     <!--Main Application Window-->
 </ResourceDictionary>
