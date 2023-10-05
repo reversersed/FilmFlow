@@ -1,19 +1,9 @@
 ﻿using FilmFlow.Login;
 using FilmFlow.Registration;
-using FilmFlow.ViewModels;
+using FilmFlow.MainWindow;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace FilmFlow
 {
@@ -24,7 +14,7 @@ namespace FilmFlow
     {
         LoginView loginView;
         RegistrationView registrationView;
-        MainWindow mainWindow;
+        MainWindow.MainWindow mainWindow;
         public void ApplicationStart(object sender, EventArgs e)
         {
 
@@ -48,7 +38,7 @@ namespace FilmFlow
 
         private void showMainWindow(object? obj)
         {
-            mainWindow = new MainWindow();
+            mainWindow = new MainWindow.MainWindow();
             mainWindow.Show();
             loginView.Close();
         }
