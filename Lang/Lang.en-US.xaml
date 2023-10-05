@@ -17,5 +17,7 @@
     <!--Registration Window-->
     <sys:String x:Key="RegText">REGISTRATION</sys:String>
     <sys:String x:Key="SignButton">Sign up</sys:String>
-    <!--Main Application Window-->
+    <sys:String x:Key="ConfirmPassword">Confirm password</sys:String>
+    <sys:String x:Key="Email">Email</sys:String>
+    <!--Main Application Window--> 
 </ResourceDictionary>

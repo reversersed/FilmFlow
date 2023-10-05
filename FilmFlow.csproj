@@ -17,6 +17,7 @@
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Password.png" />
     <None Remove="Images\PasswordConfirm.png" />
+    <None Remove="Images\RegBackground.jpg" />
     <None Remove="Images\User.png" />
   </ItemGroup>
 
@@ -34,10 +35,14 @@
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Password.png" />
     <Resource Include="Images\PasswordConfirm.png" />
+    <Resource Include="Images\RegBackground.jpg" />
     <Resource Include="Images\User.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CustomControls\ConfirmationBindablePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>

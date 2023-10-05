@@ -14,15 +14,18 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         Icon="/Images/Logo.png">
+    <Window.DataContext>
+        <viewModel:RegistrationViewModel/>
+    </Window.DataContext>
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="/Images/background.jpg"
-                    AlignmentX="Left"
-                    Stretch="None"/>
+            <ImageBrush ImageSource="/Images/RegBackground.jpg"
+                    AlignmentX="Center"
+                    Stretch="UniformToFill"/>
         </Border.Background>
         <Border CornerRadius="10"
         BorderThickness="5"
-        Opacity="0.9">
+        Opacity="0.96">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="{StaticResource BorderColor1}" Offset="0"/>
@@ -137,6 +140,8 @@
                             Orientation="Vertical"
                             Margin="0,15,0,0"
                             VerticalAlignment="Center">
+                    <Image Source="/Images/Logo.png"
+                        Width="100" Height="100" Stretch="Fill"/>
                     <TextBlock Text="{DynamicResource RegText}"
                            Foreground="White"
                            FontSize="{StaticResource Large}"
@@ -153,9 +158,8 @@
                            HorizontalAlignment="Left"
                            TextWrapping="Wrap"
                            TextAlignment="Center"
-                           Margin="0,15,0,5"/>
-                    <TextBox x:Name="tbUsername"
-                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                           Margin="0,40,0,5"/>
+                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="{StaticResource Regular}"
                          FontFamily="{StaticResource DefaultFont}"
                          FontWeight="Light"
@@ -183,19 +187,6 @@
                            HorizontalAlignment="Left"
                            TextWrapping="Wrap"
                            TextAlignment="Center"
-                           Margin="0,30,0,5"/>
-
-                    <customcontrols:BindablePassword Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                 Height="26"/>
-
-                    <TextBlock Text="{DynamicResource ConfirmPassword}"
-                           Foreground="White"
-                           FontSize="{StaticResource Regular}"
-                           FontWeight="Normal"
-                           FontFamily="{StaticResource DefaultFont}"
-                           HorizontalAlignment="Left"
-                           TextWrapping="Wrap"
-                           TextAlignment="Center"
                            Margin="0,15,0,5"/>
                     <TextBox Text="{Binding Passconf, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="{StaticResource Regular}"
@@ -210,13 +201,54 @@
                          Padding="25,0,0,0"
                          MaxLength="24">
                         <TextBox.Background>
-                            <ImageBrush ImageSource="/Images/User.png"
+                            <ImageBrush ImageSource="/Images/Password.png"
                                     Stretch="Uniform"
                                     AlignmentX="Left"
                                     />
                         </TextBox.Background>
                     </TextBox>
                     
+                    <TextBlock Text="{DynamicResource ConfirmPassword}"
+                           Foreground="White"
+                           FontSize="{StaticResource Regular}"
+                           FontWeight="Normal"
+                           FontFamily="{StaticResource DefaultFont}"
+                           HorizontalAlignment="Left"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,15,0,5"/>
+
+                    <customcontrols:ConfirmationBindablePassword Password="{Binding ConfirmPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Height="26"/>
+
+                    <TextBlock Text="{DynamicResource Email}"
+                           Foreground="White"
+                           FontSize="{StaticResource Regular}"
+                           FontWeight="Normal"
+                           FontFamily="{StaticResource DefaultFont}"
+                           HorizontalAlignment="Left"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,15,0,5"/>
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="{StaticResource Regular}"
+                         FontFamily="{StaticResource DefaultFont}"
+                         FontWeight="Light"
+                         Foreground="White"
+                         CaretBrush="LightGray"
+                         BorderBrush="DarkGray"
+                         BorderThickness="0,0,0,2"
+                         Height="26"
+                         VerticalContentAlignment="Center"
+                         Padding="25,0,0,0"
+                         MaxLength="24">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Images/Email.png"
+                                    Stretch="Uniform"
+                                    AlignmentX="Left"
+                                    />
+                        </TextBox.Background>
+                    </TextBox>
                     <TextBlock Text="{Binding ErrorMessage}"
                            Foreground="#d90404"
                            FontSize="{StaticResource Small}"
@@ -234,7 +266,7 @@
                         FontSize="{StaticResource Regular}"
                         FontFamily="{StaticResource DefaultFont}"
                         Cursor="Hand"
-                        Margin="0,5,0,0">
+                        Margin="0,30,0,0">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{StaticResource LoginButtonBackground}"/>
@@ -247,7 +279,7 @@
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="180" Height="35" CornerRadius="15" Background="{TemplateBinding Background}">
+                                <Border Width="200" Height="40" CornerRadius="15" Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>

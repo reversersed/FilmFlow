@@ -21,6 +21,7 @@ namespace FilmFlow
     /// </summary>
     public partial class App : Application
     {
+        LoginView loginView;
         public void ApplicationStart(object sender, EventArgs e)
         {
 
@@ -33,8 +34,8 @@ namespace FilmFlow
             languageDictionary.Source = new Uri("..\\Lang\\Lang."+FilmFlow.Properties.Settings.Default.Language+ ".xaml",UriKind.Relative);
 
             App.Current.Resources.MergedDictionaries.Add(languageDictionary);
-            
-            LoginView loginView = new LoginView();
+
+            loginView = new LoginView();
             LoginViewModel viewModel = loginView.DataContext as LoginViewModel;
             viewModel.showRegistrationWindow = ShowRegistration;
 
@@ -42,7 +43,7 @@ namespace FilmFlow
         }
         private void ShowRegistration(object? obj)
         {
-            throw new NotImplementedException();
+            loginView.
         }
     }
 }
