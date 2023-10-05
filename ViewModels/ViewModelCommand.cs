@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace FilmFlow.Login.ViewModels
+namespace FilmFlow.ViewModels
 {
     class ViewModelCommand : ICommand
     {
@@ -15,7 +15,7 @@ namespace FilmFlow.Login.ViewModels
         public event EventHandler? CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
-            remove {  CommandManager.RequerySuggested -= value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
         public ViewModelCommand(Action<object> execute, Predicate<object> canExecute)

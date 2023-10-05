@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <!--Login Window-->
     <sys:String x:Key="LoginText">АВТОРИЗАЦИЯ</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
     <sys:String x:Key="AppTagline">Для хорошего кино всегда найдется время</sys:String>
@@ -12,4 +13,6 @@
     <sys:String x:Key="ErrorLoginMessage">* Вы ввели неправильные логин или пароль</sys:String>
     <sys:String x:Key="AskNewHere">Еще нет аккаунта?</sys:String>
     <sys:String x:Key="Registrate">Зарегистрироваться</sys:String>
+    <!--Registration Window-->
+    <!--Main Application Window-->
 </ResourceDictionary>

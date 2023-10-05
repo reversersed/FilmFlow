@@ -1,5 +1,5 @@
 ﻿using FilmFlow.Login;
-using FilmFlow.Login.ViewModels;
+using FilmFlow.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

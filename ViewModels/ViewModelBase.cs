@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmFlow.Login.ViewModels
+namespace FilmFlow.ViewModels
 {
     public abstract class ViewModelBase : System.ComponentModel.INotifyPropertyChanged
     {

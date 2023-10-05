@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <!--Login Window-->
     <sys:String x:Key="LoginText">LOG IN</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
     <sys:String x:Key="AppTagline">Where the movie starts</sys:String>
@@ -12,4 +13,6 @@
     <sys:String x:Key="ErrorLoginMessage">* Invalid username or password</sys:String>
     <sys:String x:Key="AskNewHere">Are you new here?</sys:String>
     <sys:String x:Key="Registrate">Register me</sys:String>
+    <!--Registration Window-->
+    <!--Main Application Window-->
 </ResourceDictionary>

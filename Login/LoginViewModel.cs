@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Security.Principal;
 using System.Windows;
+using FilmFlow.ViewModels;
 
-namespace FilmFlow.Login.ViewModels
+namespace FilmFlow.Login
 {
     class LoginViewModel : ViewModelBase
     {
@@ -26,6 +27,8 @@ namespace FilmFlow.Login.ViewModels
         public ICommand LoginUser { get; }
         public ICommand RecoverPassword { get; }
         public ICommand ShowRegistration { get; }
+        public ICommand MinimizeApplication { get; }
+        public ICommand CloseApplication { get; }
 
         IUserRepository userRepository;
 
@@ -36,6 +39,12 @@ namespace FilmFlow.Login.ViewModels
             LoginUser = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLogin);
             RecoverPassword = new ViewModelCommand(RecoverPasswordCommand);
             ShowRegistration = new ViewModelCommand(ShowRegistrationCommand);
+            CloseApplication = new ViewModelCommand(CloseApplicationCommand);
+        }
+
+        private void CloseApplicationCommand(object obj)
+        {
+            Application.Current.Shutdown();
         }
 
         private void ShowRegistrationCommand(object obj)
