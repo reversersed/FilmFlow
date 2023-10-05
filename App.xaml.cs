@@ -25,8 +25,12 @@ namespace FilmFlow
         {
 
             ResourceDictionary languageDictionary = new ResourceDictionary();
-            string? languageName = getCurrentLanguage();
-            languageDictionary.Source = new Uri("..\\Lang\\Lang."+(languageName == null ? "en-US" : languageName).ToString()+ ".xaml",UriKind.Relative);
+            if (FilmFlow.Properties.Settings.Default.Language.Length < 2)
+            {
+                FilmFlow.Properties.Settings.Default.Language = CultureInfo.CurrentCulture.Name;
+                FilmFlow.Properties.Settings.Default.Save();
+            }
+            languageDictionary.Source = new Uri("..\\Lang\\Lang."+FilmFlow.Properties.Settings.Default.Language+ ".xaml",UriKind.Relative);
 
             App.Current.Resources.MergedDictionaries.Add(languageDictionary);
             
@@ -39,20 +43,6 @@ namespace FilmFlow
         private void ShowRegistration(object? obj)
         {
             throw new NotImplementedException();
-        }
-        private string? getCurrentLanguage()
-        {
-            var config = new XmlDocument();
-            try
-            {
-                config.Load("config.xml");
-            }
-            catch
-            {
-                new XDocument(new XElement("config", new XElement("language", CultureInfo.CurrentCulture.Name), new XElement("rememberedPassword", "False"))).Save("config.xml");
-                config.Load("config.xml");
-            }
-            return config.DocumentElement?.SelectSingleNode("/config/language")?.InnerText;
         }
     }
 }

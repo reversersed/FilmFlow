@@ -14,6 +14,8 @@
     <sys:String x:Key="AskNewHere">Are you new here?</sys:String>
     <sys:String x:Key="Registrate">Sign up</sys:String>
     <sys:String x:Key="RememberPassword">Remember me</sys:String>
-    <!--Registration Window--> 
+    <!--Registration Window-->
+    <sys:String x:Key="RegText">REGISTRATION</sys:String>
+    <sys:String x:Key="SignButton">Sign up</sys:String>
     <!--Main Application Window-->
 </ResourceDictionary>

@@ -10,8 +10,13 @@
 
   <ItemGroup>
     <None Remove="Images\background.jpg" />
+    <None Remove="Images\checkedCheckbox.png" />
+    <None Remove="Images\Email.png" />
+    <None Remove="Images\hoverCheckbox.png" />
+    <None Remove="Images\idleCheckbox.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Password.png" />
+    <None Remove="Images\PasswordConfirm.png" />
     <None Remove="Images\User.png" />
   </ItemGroup>
 
@@ -22,9 +27,29 @@
 
   <ItemGroup>
     <Resource Include="Images\background.jpg" />
+    <Resource Include="Images\checkedCheckbox.png" />
+    <Resource Include="Images\Email.png" />
+    <Resource Include="Images\hoverCheckbox.png" />
+    <Resource Include="Images\idleCheckbox.png" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Password.png" />
+    <Resource Include="Images\PasswordConfirm.png" />
     <Resource Include="Images\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

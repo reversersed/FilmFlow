@@ -27,7 +27,15 @@ namespace FilmFlow.Login
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(nameof(Password)); } }
         public string ErrorMessage { get { return _errorMessage; } set { _errorMessage = value; OnPropertyChanged(nameof(ErrorMessage)); } }
         public bool IsViewVisible { get { return _isViewVisible; } set { _isViewVisible = value; OnPropertyChanged(nameof(IsViewVisible)); } }
-        public bool IsPasswordRemembered { get { return _isPasswordRemembered; } set { _isPasswordRemembered = value; OnPropertyChanged(nameof(IsPasswordRemembered)); } }
+        public bool IsPasswordRemembered { get { return _isPasswordRemembered; } 
+            set 
+            { 
+                _isPasswordRemembered = value;
+                FilmFlow.Properties.Settings.Default.RememberPassword = value;
+                FilmFlow.Properties.Settings.Default.Save();
+                OnPropertyChanged(nameof(IsPasswordRemembered));
+            } 
+        }
 
         public ICommand LoginUser { get; }
         public ICommand RecoverPassword { get; }
@@ -40,17 +48,7 @@ namespace FilmFlow.Login
         public Action<object?> showRegistrationWindow;
         public LoginViewModel()
         {
-            try
-            {
-                var config = new XmlDocument();
-                config.Load("config.xml");
-                IsPasswordRemembered = config.DocumentElement.SelectSingleNode("/config/rememberedPassword").InnerText.Equals("True") ? true : false;
-            }
-            catch
-            {
-                IsPasswordRemembered = false;
-            }
-
+            IsPasswordRemembered = FilmFlow.Properties.Settings.Default.RememberPassword;
             userRepository = new UserRepository();
             LoginUser = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLogin);
             RecoverPassword = new ViewModelCommand(RecoverPasswordCommand);
@@ -92,7 +90,7 @@ namespace FilmFlow.Login
             bool isValidUser = userRepository.AuthenticateUser(Username, Password);
             if (isValidUser)
             {
-                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(1), null);
+                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
             }
             else

@@ -19,17 +19,25 @@ namespace FilmFlow.Models
 
         public bool AuthenticateUser(string username, string password)
         {
-            bool validUser = false;
-            using(NpgsqlConnection connection=GetConnection())
-            using(NpgsqlCommand command=connection.CreateCommand())
+            using (NpgsqlConnection connection = GetConnection())
+            using (NpgsqlCommand command = connection.CreateCommand())
             {
                 connection.Open();
-                command.CommandText = "select * from users where username=@username and password=@password limit 1";
+                command.CommandText = "select users.id from users where username=@username and password=@password limit 1";
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
-                validUser = command.ExecuteNonQuery() != -1;
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    if (!reader.HasRows)
+                        return false;
+                    if (FilmFlow.Properties.Settings.Default.RememberPassword)
+                    {
+                        FilmFlow.Properties.Settings.Default.UserId = reader.GetInt32(0);
+                        FilmFlow.Properties.Settings.Default.Save();
+                    }
+                }
             }
-            return validUser;
+            return true;
         }
 
         public string? AuthenticateUser()
@@ -38,19 +46,15 @@ namespace FilmFlow.Models
             using (NpgsqlCommand command = connection.CreateCommand())
             {
                 connection.Open();
-                command.CommandText = "select * from users where users.id = (select usermachines.userid from usermachines where machineid=@machineid) limit 1";
-                command.Parameters.AddWithValue("@machineid", MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(GetMachineId())));
-                command.ExecuteNonQuery();
+                command.CommandText = "select users.username from users where users.id = @userid limit 1";
+                command.Parameters.AddWithValue("@userid", FilmFlow.Properties.Settings.Default.UserId);
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    if (!reader.HasRows)
+                        return null;
+                    return reader.GetString(0);
+                }
             }
-            return null;
-        }
-        void EnableAutoLogin(int userid)
-        {
-
-        }
-        private string GetMachineId()
-        {
-            return String.Empty;
         }
     }
 }

@@ -11,7 +11,6 @@ namespace FilmFlow.Models
     public interface IUserRepository
     {
         bool AuthenticateUser(string username, string password);
-        void EnableAutoLogin(int userid);
         string AuthenticateUser();
         void Add(UserModel user);
 
