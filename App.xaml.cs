@@ -1,4 +1,5 @@
 ﻿using FilmFlow.Login;
+using FilmFlow.Login.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,6 +9,8 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Markup;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -28,7 +31,14 @@ namespace FilmFlow
             App.Current.Resources.MergedDictionaries.Add(languageDictionary);
             
             LoginView loginView = new LoginView();
+            LoginViewModel viewModel = loginView.DataContext as LoginViewModel;
+            viewModel.showRegistrationWindow = ShowRegistration;
+
             loginView.Show();
+        }
+        private void ShowRegistration(object? obj)
+        {
+            throw new NotImplementedException();
         }
         private string? getCurrentLanguage()
         {

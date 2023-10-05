@@ -9,4 +9,7 @@
     <sys:String x:Key="LoginButton">Log in</sys:String>
     <sys:String x:Key="ForgotPassword">Forgot password?</sys:String>
     <sys:String x:Key="ForgotClickable">Reset</sys:String>
+    <sys:String x:Key="ErrorLoginMessage">* Invalid username or password</sys:String>
+    <sys:String x:Key="AskNewHere">Are you new here?</sys:String>
+    <sys:String x:Key="Registrate">Register me</sys:String>
 </ResourceDictionary>

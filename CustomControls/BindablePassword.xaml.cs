@@ -21,10 +21,10 @@ namespace FilmFlow.CustomControls
     /// </summary>
     public partial class BindablePassword : UserControl
     {
-        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(SecureString), typeof(BindablePassword));
-        public SecureString Password
+        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(BindablePassword));
+        public string Password
         {
-            get { return (SecureString)GetValue(PasswordProperty); }
+            get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
         }
         public BindablePassword()
@@ -35,7 +35,7 @@ namespace FilmFlow.CustomControls
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = tbPasswordBox.SecurePassword;
+            Password = tbPasswordBox.Password;
         }
     }
 }

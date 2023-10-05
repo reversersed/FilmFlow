@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FilmFlow.Models
 {
-    public class UserModel
+    public interface IUserRepository
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
+        bool AuthenticateUser(string username, string password);
+        void Add(UserModel user);
 
-        
     }
 }

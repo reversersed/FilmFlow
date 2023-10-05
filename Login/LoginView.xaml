@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModel="clr-namespace:FilmFlow.Login.ViewModels" xmlns:customcontrols="clr-namespace:FilmFlow.CustomControls"
+        xmlns:viewModel="clr-namespace:FilmFlow.Login.ViewModels"
+        xmlns:customcontrols="clr-namespace:FilmFlow.CustomControls"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -124,7 +125,7 @@
                 <StackPanel Width="250" 
                             Grid.Row="1"
                             Orientation="Vertical"
-                            Margin="0,30,0,0">
+                            Margin="0,15,0,0">
                     <Image Source="/Images/Logo.png"
                             Width="100" Height="100" Stretch="Fill"/>
                     <TextBlock Text="{DynamicResource AppName}"
@@ -206,7 +207,6 @@
                             FontSize="{StaticResource Regular}"
                             FontFamily="{StaticResource DefaultFont}"
                             Cursor="Hand"
-                            Click="btnLogin_Click"
                             Margin="0,25,0,0">
                         <Button.Style>
                             <Style TargetType="Button">
@@ -248,7 +248,39 @@
                                    TextWrapping="Wrap"
                                    TextAlignment="Center"
                                    Margin="8,0,0,0"
-                                   Cursor="Hand"/>
+                                   Cursor="Hand">
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding RecoverPassword}" MouseAction="LeftClick"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Center"
+                                Margin="0,20,0,0">
+                        <TextBlock Text="{DynamicResource AskNewHere}"
+                                   Foreground="DarkGray"
+                                   FontSize="{StaticResource Small}"
+                                   FontWeight="Normal"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,0"/>
+                        <TextBlock Text="{DynamicResource Registrate}"
+                                   Foreground="LightGray"
+                                   FontSize="{StaticResource Small}"
+                                   FontWeight="Normal"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Margin="8,0,0,0"
+                                   Cursor="Hand">
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding ShowRegistration}" MouseAction="LeftClick"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Grid>
