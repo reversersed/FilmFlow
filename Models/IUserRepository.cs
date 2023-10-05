@@ -11,8 +11,10 @@ namespace FilmFlow.Models
     public interface IUserRepository
     {
         bool AuthenticateUser(string username, string password);
+        bool isUniqueUser(string username);
+        bool isUniqueEmail(string email);
         string AuthenticateUser();
-        void Add(UserModel user);
+        void createUser(string username, string password, string email);
 
     }
 }

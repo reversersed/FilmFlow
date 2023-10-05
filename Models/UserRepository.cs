@@ -12,11 +12,6 @@ namespace FilmFlow.Models
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void Add(UserModel user)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool AuthenticateUser(string username, string password)
         {
             using (NpgsqlConnection connection = GetConnection())
@@ -32,7 +27,8 @@ namespace FilmFlow.Models
                         return false;
                     if (FilmFlow.Properties.Settings.Default.RememberPassword)
                     {
-                        FilmFlow.Properties.Settings.Default.UserId = reader.GetInt32(0);
+                        reader.Read();
+                        FilmFlow.Properties.Settings.Default.UserId = (int)reader["Id"];
                         FilmFlow.Properties.Settings.Default.Save();
                     }
                 }
@@ -52,8 +48,55 @@ namespace FilmFlow.Models
                 {
                     if (!reader.HasRows)
                         return null;
-                    return reader.GetString(0);
+                    reader.Read();
+                    return reader["username"].ToString();
                 }
+            }
+        }
+        public bool isUniqueUser(string username)
+        {
+            using (NpgsqlConnection connection = GetConnection())
+            using (NpgsqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+                command.CommandText = "select users.id from users where users.username = @username limit 1";
+                command.Parameters.AddWithValue("@username", username);
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    if (!reader.HasRows)
+                        return true;
+                    return false;
+                }
+            }
+        }
+        public bool isUniqueEmail(string email)
+        {
+            using (NpgsqlConnection connection = GetConnection())
+            using (NpgsqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+                command.CommandText = "select users.id from users where users.email = @email limit 1";
+                command.Parameters.AddWithValue("@email", email);
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    if (!reader.HasRows)
+                        return true;
+                    return false;
+                }
+            }
+        }
+
+        public void createUser(string username, string password, string email)
+        {
+            using (NpgsqlConnection connection = GetConnection())
+            using (NpgsqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+                command.CommandText = "insert into users (username, password, email) values (@username, @password, @email)";
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
+                command.Parameters.AddWithValue("@email", email);
+                command.ExecuteNonQuery();
             }
         }
     }

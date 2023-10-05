@@ -1,4 +1,5 @@
 ﻿using FilmFlow.Login;
+using FilmFlow.Registration;
 using FilmFlow.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace FilmFlow
     public partial class App : Application
     {
         LoginView loginView;
+        RegistrationView registrationView;
+        MainWindow mainWindow;
         public void ApplicationStart(object sender, EventArgs e)
         {
 
@@ -31,19 +34,43 @@ namespace FilmFlow
                 FilmFlow.Properties.Settings.Default.Language = CultureInfo.CurrentCulture.Name;
                 FilmFlow.Properties.Settings.Default.Save();
             }
-            languageDictionary.Source = new Uri("..\\Lang\\Lang."+FilmFlow.Properties.Settings.Default.Language+ ".xaml",UriKind.Relative);
+            languageDictionary.Source = new Uri("..\\Lang\\Lang." + FilmFlow.Properties.Settings.Default.Language + ".xaml", UriKind.Relative);
 
             App.Current.Resources.MergedDictionaries.Add(languageDictionary);
 
             loginView = new LoginView();
             LoginViewModel viewModel = loginView.DataContext as LoginViewModel;
             viewModel.showRegistrationWindow = ShowRegistration;
-
-            loginView.Show();
+            viewModel.showAuthorizedWindow = showMainWindow;
+            if(viewModel.IsViewVisible)
+                loginView.Show();
         }
+
+        private void showMainWindow(object? obj)
+        {
+            mainWindow = new MainWindow();
+            mainWindow.Show();
+            loginView.Close();
+        }
+
         private void ShowRegistration(object? obj)
         {
-            loginView.
+            registrationView = new RegistrationView();
+            RegistrationViewModel viewModel = registrationView.DataContext as RegistrationViewModel;
+            viewModel.backToLoginWindow = ShowLoginWindow;
+            registrationView.Show();
+            loginView.Close();
+        }
+        private void ShowLoginWindow(object? obj)
+        {
+            loginView = new LoginView();
+            LoginViewModel viewModel = loginView.DataContext as LoginViewModel;
+            viewModel.showRegistrationWindow = ShowRegistration;
+            viewModel.showAuthorizedWindow = showMainWindow;
+            if (viewModel.IsViewVisible)
+                loginView.Show();
+
+            registrationView.Close();
         }
     }
 }

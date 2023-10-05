@@ -19,5 +19,15 @@
     <sys:String x:Key="SignButton">Sign up</sys:String>
     <sys:String x:Key="ConfirmPassword">Confirm password</sys:String>
     <sys:String x:Key="Email">Email</sys:String>
+    <sys:String x:Key="PasswordsNotEqual">* Passwords are not equal</sys:String>
+    <sys:String x:Key="NotValidEmail">* Specified email isn't exist</sys:String>
+    <sys:String x:Key="NotUniqueUser">* Specified username already used</sys:String>
+    <sys:String x:Key="NotUniqueEmail">* Specified email already used. Try recover your password</sys:String>
+    <sys:String x:Key="EmailCode">We sent a code to your email. Please, type it below</sys:String>
+    <sys:String x:Key="RegMistake">Made a mistake? You can</sys:String> 
+    <sys:String x:Key="RegReturn">return back</sys:String>
+    <sys:String x:Key="WrongEmailCode">Code is incorrect</sys:String>
+    <sys:String x:Key="ConfirmationSubject">Registration confirmation</sys:String>
+    <sys:String x:Key="ConfirmationMessage">Someone just specified this email addres to create account on FilmFlow portal.\n\nYour registration code is {0}\n\nIf you don't know what is this message about, just ignore it.</sys:String>
     <!--Main Application Window--> 
 </ResourceDictionary>

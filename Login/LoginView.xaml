@@ -16,7 +16,6 @@
         Icon="/Images/Logo.png">
 
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <Style TargetType="{x:Type CheckBox}" x:Key="rememberBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -45,10 +44,7 @@
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
-    <Window.Visibility>
-        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
-    </Window.Visibility>
-    
+
     <Border CornerRadius="12">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background.jpg"

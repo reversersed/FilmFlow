@@ -40,12 +40,23 @@ namespace FilmFlow.Login
         public ICommand LoginUser { get; }
         public ICommand RecoverPassword { get; }
         public ICommand ShowRegistration { get; }
-        public ICommand MinimizeApplication { get; }
         public ICommand CloseApplication { get; }
 
         IUserRepository userRepository;
 
         public Action<object?> showRegistrationWindow;
+        private Action<object?> _showAuthorizedWindow;
+        public Action<object?> showAuthorizedWindow { get { return _showAuthorizedWindow; } set { 
+                _showAuthorizedWindow = value;
+
+                if (IsPasswordRemembered && (Username = userRepository.AuthenticateUser()) != null)//Remembered Password
+                {
+                    System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                    IsViewVisible = false;
+                    showAuthorizedWindow?.Invoke(Username);
+                }
+            } 
+        }
         public LoginViewModel()
         {
             IsPasswordRemembered = FilmFlow.Properties.Settings.Default.RememberPassword;
@@ -54,15 +65,7 @@ namespace FilmFlow.Login
             RecoverPassword = new ViewModelCommand(RecoverPasswordCommand);
             ShowRegistration = new ViewModelCommand(ShowRegistrationCommand);
             CloseApplication = new ViewModelCommand(CloseApplicationCommand);
-
-            string? username = null;
-            if (IsPasswordRemembered && (username = userRepository.AuthenticateUser()) != null)//Remembered Password
-            {
-                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-                IsViewVisible = false;
-            }
         }
-
         private void CloseApplicationCommand(object obj)
         {
             Application.Current.Shutdown();
@@ -92,6 +95,7 @@ namespace FilmFlow.Login
             {
                 System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
+                showAuthorizedWindow?.Invoke(Username);
             }
             else
             {

@@ -5,7 +5,7 @@
     <sys:String x:Key="LoginText">АВТОРИЗАЦИЯ</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
     <sys:String x:Key="AppTagline">Для хорошего кино всегда найдется время</sys:String>
-    <sys:String x:Key="Username">Пользователь</sys:String>
+    <sys:String x:Key="Username">Имя пользователя</sys:String>
     <sys:String x:Key="Password">Пароль</sys:String>
     <sys:String x:Key="LoginButton">Войти</sys:String>
     <sys:String x:Key="ForgotPassword">Забыли пароль?</sys:String>
@@ -15,5 +15,19 @@
     <sys:String x:Key="Registrate">Зарегистрироваться</sys:String>
     <sys:String x:Key="RememberPassword">Запомнить пароль</sys:String>
     <!--Registration Window-->
+    <sys:String x:Key="RegText">РЕГИСТРАЦИЯ</sys:String>
+    <sys:String x:Key="SignButton">Зарегистрироваться</sys:String>
+    <sys:String x:Key="ConfirmPassword">Повторите пароль</sys:String>
+    <sys:String x:Key="Email">Почта</sys:String>
+    <sys:String x:Key="PasswordsNotEqual">* Пароли не совпадают</sys:String>
+    <sys:String x:Key="NotValidEmail">* Указанная почта не существует</sys:String>
+    <sys:String x:Key="NotUniqueUser">* Указанное имя пользователя уже используется</sys:String>
+    <sys:String x:Key="NotUniqueEmail">* Указанная почта уже используется. Попробуйте восстановить пароль.</sys:String>
+    <sys:String x:Key="EmailCode">Мы отправили код подтверждения на указанную почту. Впишите его в поле ниже</sys:String>
+    <sys:String x:Key="RegMistake">Указали неверные данные? Вы можете</sys:String>
+    <sys:String x:Key="RegReturn">вернуться назад</sys:String>
+    <sys:String x:Key="WrongEmailCode">Код неверный</sys:String>
+    <sys:String x:Key="ConfirmationSubject">Подтверждение регистрации</sys:String>
+    <sys:String x:Key="ConfirmationMessage">Кто-то указал данную почту при регистрации на портале FilmFlow.\n\nВаш код регистрации - {0}\n\nЕсли Вы получили данное письмо по ошибке, пожалуйста, проигнорируйте его.</sys:String>
     <!--Main Application Window-->
 </ResourceDictionary>
