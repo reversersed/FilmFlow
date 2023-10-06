@@ -6,6 +6,8 @@ using System.Net;
 using System.Security.Principal;
 using System.Windows;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace FilmFlow.Registration
 {
@@ -111,25 +113,42 @@ namespace FilmFlow.Registration
                 ErrorMessage = Application.Current.FindResource("NotUniqueEmail") as string;
                 return;
             }
-            createdEmailCode = new Random().Next(100000,1000000);
-            /*var smtpClient = new SmtpClient("smtp.freesmtpservers.com")
+            createdEmailCode = new Random().Next(100000, 1000000);
+            if(!sendEmail())
             {
-                Port = 25,
-                Credentials = new NetworkCredential("hedgehog", "password"),
-                EnableSsl = false,
-            };
-            MailMessage message = new MailMessage();
-            message.IsBodyHtml = false;
-            message.To.Add(new MailAddress(Email));
-            message.From = new MailAddress("FilmFlow@confirmation.com");
-            message.Subject = Application.Current.FindResource("ConfirmationSubject") as string;
-            message.Body = string.Format(Application.Current.FindResource("ConfirmationMessage") as string, createdEmailCode);
-            smtpClient.Send(message);*/
-            EmailCode = createdEmailCode.ToString();
+                ErrorMessage = Application.Current.FindResource("EmailNotRespond") as string;
+                return;
+            }
+            //EmailCode = createdEmailCode.ToString();
 
             ErrorMessage = null;
             EmailCodeVisibility = Visibility.Visible;
             InformationVisiblity = Visibility.Collapsed;
+        }
+        private bool sendEmail()
+        {
+            var smtpClient = new SmtpClient("smtp.yandex.ru")
+            {
+                UseDefaultCredentials = false,
+                Port = 587,
+                Credentials = new NetworkCredential("Regis.youtube@yandex.ru", "kjmtpynsqztvrgsh"),
+                EnableSsl = true,
+                Timeout = 1000,
+            };
+            MailMessage message = new MailMessage();
+            message.To.Add(new MailAddress(Email));
+            message.From = new MailAddress("Regis.youtube@yandex.ru");
+            message.Subject = Application.Current.FindResource("ConfirmationSubject") as string;
+            message.Body = string.Format(Application.Current.FindResource("ConfirmationMessage") as string, createdEmailCode);
+            try
+            {
+                smtpClient.Send(message);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
         private bool IsValidEmail(string email)
         {

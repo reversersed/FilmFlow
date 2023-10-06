@@ -27,7 +27,8 @@
     <sys:String x:Key="RegMistake">Made a mistake? You can</sys:String> 
     <sys:String x:Key="RegReturn">return back</sys:String>
     <sys:String x:Key="WrongEmailCode">Code is incorrect</sys:String>
-    <sys:String x:Key="ConfirmationSubject">Registration confirmation</sys:String>
-    <sys:String x:Key="ConfirmationMessage">Someone just specified this email addres to create account on FilmFlow portal.\n\nYour registration code is {0}\n\nIf you don't know what is this message about, just ignore it.</sys:String>
+    <sys:String x:Key="ConfirmationSubject">Registration confirmation</sys:String> 
+    <sys:String x:Key="ConfirmationMessage">Someone just specified this email addres to create account on FilmFlow portal. Your registration code is {0}. If you don't know what is this message about, just ignore it.</sys:String>
+    <sys:String x:Key="EmailNotRespond">* Mail server don't responding. Try again later</sys:String>
     <!--Main Application Window--> 
 </ResourceDictionary>

@@ -299,7 +299,7 @@
                     </StackPanel>
                     <StackPanel x:Name="spConfirmCode"
                                 HorizontalAlignment="Center"
-                                Width="240"
+                                Width="Auto"
                                 Margin="0,50,0,0"
                                 Visibility="{Binding EmailCodeVisibility}">
                         <TextBlock Text="{DynamicResource EmailCode}"
