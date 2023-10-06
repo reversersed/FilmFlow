@@ -1,12 +1,5 @@
-﻿using DeviceId;
-using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
+﻿using Npgsql;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FilmFlow.Models
 {
