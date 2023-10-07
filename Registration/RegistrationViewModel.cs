@@ -114,12 +114,12 @@ namespace FilmFlow.Registration
                 return;
             }
             createdEmailCode = new Random().Next(100000, 1000000);
-            if(!sendEmail())
+            /*if(!sendEmail())
             {
                 ErrorMessage = Application.Current.FindResource("EmailNotRespond") as string;
                 return;
-            }
-            //EmailCode = createdEmailCode.ToString();
+            }*/
+            EmailCode = createdEmailCode.ToString();
 
             ErrorMessage = null;
             EmailCodeVisibility = Visibility.Visible;
