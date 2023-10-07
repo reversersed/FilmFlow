@@ -36,10 +36,11 @@
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ListBoxPanel"
                     Width="Auto">
-                    <ListBox ItemsSource="{Binding Movies, Mode=OneWay}" 
+                    <ListBox ItemsSource="{Binding Movies}" 
                              Background="Transparent" 
                              BorderThickness="0"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             SelectedIndex="{Binding SelectedMovie}">
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="Template">
@@ -51,7 +52,7 @@
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <!--<Setter Property="Margin" Value="50"/>-->
+                                        <Setter Property="Margin" Value="50"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -68,7 +69,7 @@
                             </ControlTemplate>
                         </ListBox.Template>
                         <ListBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type model:MovieModel}">
+                            <DataTemplate>
                                 <Grid Margin="0,0,15,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="240"/>
@@ -86,13 +87,14 @@
                                                         Stretch="Uniform"/>
                                         </Border.Background>
                                     </Border>
-                                    <TextBlock Text="{Binding Name}"
-                                               FontSize="{StaticResource Regular}"
+                                    <TextBlock FontSize="{StaticResource Regular}"
                                                Foreground="{StaticResource TextColor}"
                                                Grid.Row="1"
                                                Margin="5,5,0,30"
                                                TextWrapping="Wrap"
-                                               MaxWidth="180"/>
+                                               MaxWidth="180">
+                                        <Run Text="{Binding Name}"/>
+                                    </TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
