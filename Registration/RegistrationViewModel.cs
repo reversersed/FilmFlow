@@ -3,11 +3,8 @@ using FilmFlow.ViewModels;
 using System;
 using System.Net.Mail;
 using System.Net;
-using System.Security.Principal;
 using System.Windows;
 using System.Windows.Input;
-using System.Threading.Tasks;
-using System.Net.Http;
 
 namespace FilmFlow.Registration
 {
