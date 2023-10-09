@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FilmFlow.MainWindow.MainWindowModel
+namespace FilmFlow.MainWindow.MainWindowViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
