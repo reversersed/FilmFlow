@@ -36,6 +36,21 @@
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ListBoxPanel"
                     Width="Auto">
+                    <ComboBox Width="Auto" 
+                              Height="26" 
+                              HorizontalAlignment="Right"
+                              ItemsSource="{Binding Genres}"
+                              SelectedValue="{Binding CurrentGenre}"
+                              VerticalContentAlignment="Center"
+                              Margin="15"/>
+                    <Button Content="{Binding CurrentLanguage, UpdateSourceTrigger=PropertyChanged}"
+                            Width="Auto"
+                            Height="Auto"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="15"
+                            Padding="5"
+                            Command="{Binding languageChanged}"/>
                     <ListBox ItemsSource="{Binding Movies}" 
                              Background="Transparent" 
                              BorderThickness="0"

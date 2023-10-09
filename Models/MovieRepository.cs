@@ -38,5 +38,42 @@ namespace FilmFlow.Models
                 }
             }
         }
+        public void LoadMoviesByGenre(string genre, ObservableCollection<MovieModel> Movies)
+        {
+            using (var connnection = GetConnection())
+            using (var command = connnection.CreateCommand())
+            {
+                connnection.Open();
+                command.CommandText = "select * from get_movie_by_genre(@genre)";
+                command.Parameters.AddWithValue("@genre",genre);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        MovieModel model = new MovieModel();
+                        model.Name = reader[(string)("mname." + Properties.Settings.Default.Language.ToString())].ToString();
+                        model.Cover = reader["moviecover"].ToString();
+                        Movies.Add(model);
+                    }
+                }
+            }
+        }
+        public void LoadGenres(ObservableCollection<string> Genres)
+        {
+            using (var connnection = GetConnection())
+            using (var command = connnection.CreateCommand())
+            {
+                connnection.Open();
+                command.CommandText = "select genrecollection.\"name." + Properties.Settings.Default.Language.ToString() + "\" from genrecollection";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string genre = reader[0].ToString();
+                        Genres.Add(genre);
+                    }
+                }
+            }
+        }
     }
 }
