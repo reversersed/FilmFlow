@@ -75,6 +75,11 @@
                                         <RowDefinition Height="240"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
+                                    <ToolTipService.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock>Tooltip</TextBlock>
+                                        </StackPanel>
+                                    </ToolTipService.ToolTip>
                                     <Image Source="{Binding Cover}" 
                                            Stretch="Uniform" 
                                            Grid.Row="0" 
