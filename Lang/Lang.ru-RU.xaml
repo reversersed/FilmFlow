@@ -29,5 +29,6 @@
     <sys:String x:Key="WrongEmailCode">Код неверный</sys:String>
     <sys:String x:Key="ConfirmationMessage">Кто-то указал данную почту при регистрации на портале FilmFlow. Ваш код регистрации - {0}. Если Вы получили данное письмо по ошибке, пожалуйста, проигнорируйте его.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Почтовый сервер не отвечает. Попробуйте позже</sys:String>
+    <sys:String x:Key="NotValidatedPassword">* Пароль должен состоять как минимум из 6 символов, содержать строчные и прописные буквы и иметь хотя бы одну цифру</sys:String>
     <!--Main Application Window-->
 </ResourceDictionary>

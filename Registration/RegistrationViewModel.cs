@@ -5,6 +5,8 @@ using System.Net.Mail;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 
 namespace FilmFlow.Registration
 {
@@ -12,6 +14,7 @@ namespace FilmFlow.Registration
     {
         private Visibility _emailCodeVisibility = Visibility.Collapsed;
         private Visibility _informationVisiblity = Visibility.Visible;
+        private Regex validateEnglish = new Regex("^[A-Za-z\\d*$@^&_-]+$");
         private string _username { get; set; }
         private string _password { get; set; }
         private string _confirmPassword { get; set; }
@@ -23,8 +26,20 @@ namespace FilmFlow.Registration
 
         public Visibility EmailCodeVisibility {  get { return _emailCodeVisibility; } set { _emailCodeVisibility = value; OnPropertyChanged(nameof(EmailCodeVisibility)); } }
         public Visibility InformationVisiblity { get { return _informationVisiblity; } set { _informationVisiblity = value; OnPropertyChanged(nameof(InformationVisiblity)); } }
-        public string Username { get { return _username; } set { _username = value; OnPropertyChanged(nameof(Username)); } }
-        public string Password { get { return _password; } set { _password = value; OnPropertyChanged(nameof(Password)); } }
+        public string Username { get { return _username; } set { 
+                if (value != null && value.Length > 0 && !validateEnglish.IsMatch(value)) 
+                    return;
+                _username = value; 
+                OnPropertyChanged(nameof(Username)); 
+            } 
+        }
+        public string Password { get { return _password; } set {
+                if (value != null && value.Length > 0 && !validateEnglish.IsMatch(value))
+                    return;
+                _password = value; 
+                OnPropertyChanged(nameof(Password)); 
+            } 
+        }
         public string ErrorMessage { get { return _errorMessage; } set { _errorMessage = value; OnPropertyChanged(nameof(ErrorMessage)); } }
         public string CodeErrorMessage { get { return _codeErrorMessage; } set { _codeErrorMessage = value; OnPropertyChanged(nameof(CodeErrorMessage)); } }
         public string ConfirmPassword { get { return _confirmPassword; } set { _confirmPassword = value; OnPropertyChanged(nameof(ConfirmPassword)); } }
@@ -84,13 +99,19 @@ namespace FilmFlow.Registration
         }
         private bool canExecuteSigning(object obj)
         {
-            if (EmailCodeVisibility == Visibility.Visible || string.IsNullOrEmpty(Username) || Username.Length < 4 || ConfirmPassword == null || ConfirmPassword.Length < 6 || Password == null || Password.Length < 6 || Email == null || Email.Length < 5)
+            if (EmailCodeVisibility == Visibility.Visible || string.IsNullOrEmpty(Username) || Username.Length < 2 || ConfirmPassword == null || ConfirmPassword.Length < 2 || Password == null || Password.Length < 6 || Email == null || Email.Length < 5)
                 return false;
             return true;
         }
         private void ExecuteSigning(object obj)
         {
-            if(!Password.Equals(ConfirmPassword))
+            Regex passwordValidation = new Regex("^(?=.*?[A-Z])(?=.*?[a-z]).{6,}$");
+            if(!passwordValidation.IsMatch(Password))
+            {
+                ErrorMessage = Application.Current.FindResource("NotValidatedPassword") as string;
+                return;
+            }
+            if (!Password.Equals(ConfirmPassword))
             {
                 ErrorMessage = Application.Current.FindResource("PasswordsNotEqual") as string;
                 return;
@@ -111,12 +132,12 @@ namespace FilmFlow.Registration
                 return;
             }
             createdEmailCode = new Random().Next(100000, 1000000);
-            /*if(!sendEmail())
+            if(!sendEmail())
             {
                 ErrorMessage = Application.Current.FindResource("EmailNotRespond") as string;
                 return;
-            }*/
-            EmailCode = createdEmailCode.ToString();
+            }
+            //EmailCode = createdEmailCode.ToString();
 
             ErrorMessage = null;
             EmailCodeVisibility = Visibility.Visible;
@@ -156,6 +177,7 @@ namespace FilmFlow.Registration
             if (!trimmedEmail.Contains("gmail") &&
                 !trimmedEmail.Contains("mail") &&
                 !trimmedEmail.Contains("yandex") &&
+                !trimmedEmail.Contains("ya.ru") &&
                 !trimmedEmail.Contains("yahoo") &&
                 !trimmedEmail.Contains("outlook"))
                 return false;
@@ -176,7 +198,7 @@ namespace FilmFlow.Registration
                 CodeErrorMessage = Application.Current.FindResource("WrongEmailCode") as string;
                 return;
             }
-            userRepository.createUser(Username, Password, Email);
+            userRepository.createUser(new Models.BaseTables.User() { Username = this.Username, Password = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(this.Password)), Email = this.Email });
             BackToLogin.Execute(Username);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using FilmFlow.Models.BaseTables;
+using System.Collections.ObjectModel;
 
 namespace FilmFlow.Models
 {

@@ -30,5 +30,6 @@
     <sys:String x:Key="ConfirmationSubject">Registration confirmation</sys:String> 
     <sys:String x:Key="ConfirmationMessage">Someone just specified this email addres to create account on FilmFlow portal. Your registration code is {0}. If you don't know what is this message about, just ignore it.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Mail server don't responding. Try again later</sys:String>
+    <sys:String x:Key="NotValidatedPassword">* Password has to be at least 6 characters in length, contain at least one uppercase and lowercase letter and one digit</sys:String>
     <!--Main Application Window--> 
 </ResourceDictionary>

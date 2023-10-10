@@ -4,6 +4,7 @@ using FilmFlow.MainWindow;
 using System;
 using System.Globalization;
 using System.Windows;
+using System.Security.Cryptography;
 
 namespace FilmFlow
 {
@@ -17,7 +18,6 @@ namespace FilmFlow
         MainWindow.MainWindow mainWindow;
         public void ApplicationStart(object sender, EventArgs e)
         {
-
             ResourceDictionary languageDictionary = new ResourceDictionary();
             if (FilmFlow.Properties.Settings.Default.Language.Length < 2)
             {

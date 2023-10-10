@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:FilmFlow.Login"
-        xmlns:customcontrols="clr-namespace:FilmFlow.CustomControls"
+        xmlns:customcontrols="clr-namespace:FilmFlow.CustomControls" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="LoginView" Height="560" Width="800"
         WindowStyle="None"
@@ -14,7 +15,11 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         Icon="/Images/Logo.png">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoginViewLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Resources>
         <Style TargetType="{x:Type CheckBox}" x:Key="rememberBox">
             <Setter Property="Template">

@@ -1,95 +1,72 @@
 ﻿using Npgsql;
+using System.Linq;
 using System.Security.Cryptography;
+using System;
+using FilmFlow.Models.BaseTables;
 
 namespace FilmFlow.Models
 {
-    public class UserRepository : RepositoryBase, IUserRepository
+    public class UserRepository : IUserRepository
     {
-        public bool AuthenticateUser(string username, string password)
+        public bool AuthenticateUser(string username, string password, bool createSession)
         {
-            using (NpgsqlConnection connection = GetConnection())
-            using (NpgsqlCommand command = connection.CreateCommand())
+            using (var db = new RepositoryBase())
             {
-                connection.Open();
-                command.CommandText = "select users.id from users where username=@username and password=@password limit 1";
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
-                using (NpgsqlDataReader reader = command.ExecuteReader())
+                var user = db.users.SingleOrDefault(u => u.Username.Equals(username) && u.Password.Equals(MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))));
+                if (user == default(User))
+                    return false;
+                if (createSession)
                 {
-                    if (!reader.HasRows)
-                        return false;
-                    if (FilmFlow.Properties.Settings.Default.RememberPassword)
-                    {
-                        reader.Read();
-                        FilmFlow.Properties.Settings.Default.UserId = (int)reader["Id"];
-                        FilmFlow.Properties.Settings.Default.Save();
-                    }
+                    FilmFlow.Properties.Settings.Default.userSessionKey = string.Concat(user.Email, user.Id.ToString(), username, GenerateToken());
+                    FilmFlow.Properties.Settings.Default.Save();
+                    db.sessions.Add(new Session() { SessionKey = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(string.Concat(FilmFlow.Properties.Settings.Default.appSessionKey, FilmFlow.Properties.Settings.Default.userSessionKey))), UserId = user.Id });
+                    db.SaveChanges();
                 }
+                return true;
             }
-            return true;
         }
-
+        private string GenerateToken()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, new Random().Next(16,25))
+                .Select(s => s[new Random().Next(s.Length)]).ToArray());
+        }
         public string? AuthenticateUser()
         {
-            using (NpgsqlConnection connection = GetConnection())
-            using (NpgsqlCommand command = connection.CreateCommand())
+            var sessionkey = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(string.Concat(FilmFlow.Properties.Settings.Default.appSessionKey, FilmFlow.Properties.Settings.Default.userSessionKey)));
+            using (RepositoryBase db  = new RepositoryBase())
             {
-                connection.Open();
-                command.CommandText = "select users.username from users where users.id = @userid limit 1";
-                command.Parameters.AddWithValue("@userid", FilmFlow.Properties.Settings.Default.UserId);
-                using (NpgsqlDataReader reader = command.ExecuteReader())
-                {
-                    if (!reader.HasRows)
-                        return null;
-                    reader.Read();
-                    return reader["username"].ToString();
-                }
+                var user = db.sessions.Where(s => s.SessionKey.Equals(sessionkey)).Join(db.users, outer => outer.UserId, inner => inner.Id, (session, user) => new { Session = session, User = user }).Select(i => i);
+                return user.Select(user => user.User.Username.ToString()).FirstOrDefault();
             }
         }
         public bool isUniqueUser(string username)
         {
-            using (NpgsqlConnection connection = GetConnection())
-            using (NpgsqlCommand command = connection.CreateCommand())
+            using(RepositoryBase db = new RepositoryBase())
             {
-                connection.Open();
-                command.CommandText = "select users.id from users where users.username = @username limit 1";
-                command.Parameters.AddWithValue("@username", username);
-                using (NpgsqlDataReader reader = command.ExecuteReader())
-                {
-                    if (!reader.HasRows)
-                        return true;
+                var users = db.users.ToList();
+                if (users.Select(i => i.Username.Equals(username)).Count() != 0)
                     return false;
-                }
+                return true;
             }
         }
         public bool isUniqueEmail(string email)
         {
-            using (NpgsqlConnection connection = GetConnection())
-            using (NpgsqlCommand command = connection.CreateCommand())
+            using (RepositoryBase db = new RepositoryBase())
             {
-                connection.Open();
-                command.CommandText = "select users.id from users where users.email = @email limit 1";
-                command.Parameters.AddWithValue("@email", email);
-                using (NpgsqlDataReader reader = command.ExecuteReader())
-                {
-                    if (!reader.HasRows)
-                        return true;
+                var users = db.users.ToList();
+                if (users.Select(i => i.Email.Equals(email)).Count() != 0)
                     return false;
-                }
+                return true;
             }
         }
 
-        public void createUser(string username, string password, string email)
+        public void createUser(User user)
         {
-            using (NpgsqlConnection connection = GetConnection())
-            using (NpgsqlCommand command = connection.CreateCommand())
+            using(RepositoryBase db = new RepositoryBase())
             {
-                connection.Open();
-                command.CommandText = "insert into users (username, password, email) values (@username, @password, @email)";
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
-                command.Parameters.AddWithValue("@email", email);
-                command.ExecuteNonQuery();
+                db.users.Add(user);
+                db.SaveChanges();
             }
         }
     }

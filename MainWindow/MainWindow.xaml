@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilmFlow.MainWindow"
-        xmlns:viewModel="clr-namespace:FilmFlow.MainWindow.MainWindowViewModel"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="FilmFlow" Height="600" Width="900"
         MinHeight="480" MinWidth="640"
@@ -12,7 +12,7 @@
         WindowStyle="SingleBorderWindow"
         Icon="/Images/Logo.png">
     <Window.DataContext>
-        <viewModel:MainWindowViewModel/>
+        <local:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
@@ -34,27 +34,18 @@
             </Border.Background>
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ListBoxPanel"
-                    Width="Auto">
-                    <ComboBox Width="Auto" 
-                              Height="26" 
-                              HorizontalAlignment="Right"
-                              ItemsSource="{Binding Genres}"
-                              SelectedValue="{Binding CurrentGenre}"
-                              VerticalContentAlignment="Center"
-                              Margin="15"/>
-                    <Button Content="{Binding CurrentLanguage, UpdateSourceTrigger=PropertyChanged}"
-                            Width="Auto"
-                            Height="Auto"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Margin="15"
-                            Padding="5"
-                            Command="{Binding languageChanged}"/>
+                    Width="Auto" Height="Auto">
                     <ListBox ItemsSource="{Binding Movies}" 
                              Background="Transparent" 
                              BorderThickness="0"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             SelectionMode="Single"
                              SelectedIndex="{Binding SelectedMovie}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction CommandParameter="{Binding SelectedMovie}" Command="{Binding MovieListSelected}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="Template">
@@ -64,11 +55,6 @@
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Margin" Value="50"/>
-                                    </Trigger>
-                                </Style.Triggers>
                             </Style>
                         </ListBox.Resources>
                         <ListBox.ItemsPanel>

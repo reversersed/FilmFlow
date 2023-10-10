@@ -25,18 +25,6 @@ namespace FilmFlow.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int UserId {
-            get {
-                return ((int)(this["UserId"]));
-            }
-            set {
-                this["UserId"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Language {
             get {
@@ -49,13 +37,22 @@ namespace FilmFlow.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool RememberPassword {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string userSessionKey {
             get {
-                return ((bool)(this["RememberPassword"]));
+                return ((string)(this["userSessionKey"]));
             }
             set {
-                this["RememberPassword"] = value;
+                this["userSessionKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6qeXfz;9~GS}.v9A^tw:Z^Y)r;b&5c>;F04N2_tSlbEV)![S2UB8\"l,,)KXb3g9")]
+        public string appSessionKey {
+            get {
+                return ((string)(this["appSessionKey"]));
             }
         }
     }
