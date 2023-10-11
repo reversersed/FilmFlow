@@ -39,6 +39,8 @@ namespace FilmFlow
         private void showMainWindow(object? obj)
         {
             mainWindow = new MainWindow.MainWindow();
+            MainWindowViewModel viewModel = mainWindow.DataContext as MainWindowViewModel;
+            viewModel.showStartWindow = () => { this.ShowLoginWindow(new object()); mainWindow.Close(); };
             mainWindow.Show();
             loginView.Close();
         }
@@ -60,7 +62,7 @@ namespace FilmFlow
             if (viewModel.IsViewVisible)
                 loginView.Show();
 
-            registrationView.Close();
+            registrationView?.Close();
         }
     }
 }

@@ -7,6 +7,14 @@
     <Color x:Key="MainBackgroundColor1">#2e0005</Color>
     <Color x:Key="MainBackgroundColor2">#26004d</Color>
 
+    <SolidColorBrush x:Key="navColor1">#5b00e6</SolidColorBrush>
+    <SolidColorBrush x:Key="navColor2">#bc00f5</SolidColorBrush>
+
+    <SolidColorBrush x:Key="MainBackColor">#26004d</SolidColorBrush>
+    <SolidColorBrush x:Key="activeNavColor">#3d0006</SolidColorBrush>
+    <SolidColorBrush x:Key="plainNavColor">#450007</SolidColorBrush>
+    <SolidColorBrush x:Key="PlainTextColor">#ab6df2</SolidColorBrush>
+    <SolidColorBrush x:Key="NavigationColor">#2e0005</SolidColorBrush>
     <SolidColorBrush x:Key="BackgroundColor">#1c0000</SolidColorBrush>
     <SolidColorBrush x:Key="MinimizeButtonColor">#7d1710</SolidColorBrush>
     <SolidColorBrush x:Key="CloseButtonColor">#570702</SolidColorBrush>

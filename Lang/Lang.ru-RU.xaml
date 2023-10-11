@@ -31,4 +31,8 @@
     <sys:String x:Key="EmailNotRespond">* Почтовый сервер не отвечает. Попробуйте позже</sys:String>
     <sys:String x:Key="NotValidatedPassword">* Пароль должен состоять как минимум из 6 символов, содержать строчные и прописные буквы и иметь хотя бы одну цифру</sys:String>
     <!--Main Application Window-->
+    <sys:String x:Key="Slogan">Вместе веселее</sys:String>
+    <sys:String x:Key="navMenu1">Главная</sys:String>
+    <sys:String x:Key="navMenu2">Избранное</sys:String>
+    <sys:String x:Key="logoutToolTip">Выйти из аккаунта</sys:String>
 </ResourceDictionary>

@@ -9,6 +9,7 @@ namespace FilmFlow.Models
         bool isUniqueEmail(string email);
         string AuthenticateUser();
         void createUser(User user);
-
+        void Logout(User user);
+        User LoadUserData(string username);
     }
 }

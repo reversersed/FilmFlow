@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="/Resources/Colors.xaml" />
                 <ResourceDictionary Source="/Resources/Fonts.xaml" />
                 <ResourceDictionary Source="/Lang/Lang.en-US.xaml" />
+                <ResourceDictionary Source="/CustomControls/ButtonNavStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

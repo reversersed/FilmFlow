@@ -69,5 +69,22 @@ namespace FilmFlow.Models
                 db.SaveChanges();
             }
         }
+
+        public void Logout(User user)
+        {
+            using(RepositoryBase db = new RepositoryBase())
+            {
+                db.sessions.Remove(db.sessions.Where(i => i.UserId == user.Id).Select(x => x).Single());
+                db.SaveChanges();
+            }
+        }
+
+        public User LoadUserData(string username)
+        {
+            using(RepositoryBase db = new RepositoryBase())
+            {
+                return db.users.Where(i => i.Username.Equals(username)).Select(i => i).Single();
+            }
+        }
     }
 }
