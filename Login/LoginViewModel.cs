@@ -13,12 +13,13 @@ using System.Globalization;
 using System.Xml.Linq;
 using System.Xml;
 using System.Text.RegularExpressions;
+using FilmFlow.Models.BaseTables;
 
 namespace FilmFlow.Login
 {
     class LoginViewModel : ViewModelBase
     {
-        private Regex validateEnglish = new Regex("^[A-Za-z\\d*$@^&_-]+$");
+        private Regex validateEnglish = new Regex("^[A-Za-z\\d*.$@^&_-]+$");
         private string _username { get; set; }
         private string _password { get; set; }
         private string _errorMessage { get; set; }
@@ -47,8 +48,8 @@ namespace FilmFlow.Login
         IUserRepository userRepository;
 
         public Action<object?> showRegistrationWindow;
-        private Action<object?> _showAuthorizedWindow;
-        public Action<object?> showAuthorizedWindow { get { return _showAuthorizedWindow; } set { _showAuthorizedWindow = value; } }
+        public Action<object?> showAuthorizedWindow;
+        public Action<object?> showPasswordRecover;
         public LoginViewModel()
         {
             userRepository = new UserRepository();
@@ -82,7 +83,7 @@ namespace FilmFlow.Login
 
         private void RecoverPasswordCommand(object obj)
         {
-            throw new NotImplementedException();
+            showPasswordRecover?.Invoke(obj);
         }
 
         private bool CanExecuteLogin(object obj)
@@ -94,13 +95,13 @@ namespace FilmFlow.Login
 
         private void ExecuteLoginCommand(object obj)
         {
-            bool isValidUser = userRepository.AuthenticateUser(Username, Password, IsPasswordRemembered);
-            if (isValidUser)
+            User User = userRepository.AuthenticateUser(Username, Password, IsPasswordRemembered);
+            if (User != default(User))
             {
-                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(User.Username), null);
                 IsViewVisible = false;
 
-                showAuthorizedWindow?.Invoke(Username);
+                showAuthorizedWindow?.Invoke(User.Username);
             }
             else
             {

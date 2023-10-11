@@ -5,7 +5,7 @@
     <sys:String x:Key="LoginText">LOG IN</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
     <sys:String x:Key="AppTagline">Where the movie starts</sys:String>
-    <sys:String x:Key="Username">Username</sys:String>
+    <sys:String x:Key="UsernameOrEmail">Username or email</sys:String>
     <sys:String x:Key="Password">Password</sys:String>
     <sys:String x:Key="LoginButton">Log in</sys:String>
     <sys:String x:Key="ForgotPassword">Forgot password?</sys:String>
@@ -15,6 +15,7 @@
     <sys:String x:Key="Registrate">Sign up</sys:String>
     <sys:String x:Key="RememberPassword">Remember me</sys:String>
     <!--Registration Window-->
+    <sys:String x:Key="Username">Username</sys:String>
     <sys:String x:Key="RegText">REGISTRATION</sys:String>
     <sys:String x:Key="SignButton">Sign up</sys:String>
     <sys:String x:Key="ConfirmPassword">Confirm password</sys:String>
@@ -31,8 +32,17 @@
     <sys:String x:Key="ConfirmationMessage">Someone just specified this email addres to create account on FilmFlow portal. Your registration code is {0}. If you don't know what is this message about, just ignore it.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Mail server don't responding. Try again later</sys:String>
     <sys:String x:Key="NotValidatedPassword">* Password has to be at least 6 characters in length, contain at least one uppercase and lowercase letter and one digit</sys:String>
+    <!--Reset Password Window-->
+    <sys:String x:Key="ResetTagline">PASSWORD RESET</sys:String>
+    <sys:String x:Key="SendEmailButton">Send code</sys:String>
+    <sys:String x:Key="ResetPasswordButton">Reset password</sys:String>
+    <sys:String x:Key="rpUserNotFound">* User does not exist</sys:String>
+    <sys:String x:Key="rpMessageTopic">Password reseting</sys:String> 
+    <sys:String x:Key="NewPassword">New password</sys:String>
+    <sys:String x:Key="rpMessageBody">Hello, {0}. Someone trying to reset your password on FilmFlow portal. Your code is {1}. If you didn't try to reset your password, please, ignore this email and do not tell this code to anyone.</sys:String>
+    <sys:String x:Key="passwordChanged">Password changed successfully. Now log into with your new password.</sys:String>
     <!--Main Application Window-->
-    <sys:String x:Key="Slogan">Let the show begin</sys:String>
+    <sys:String x:Key="Slogan">Let the show begin</sys:String> 
     <sys:String x:Key="navMenu1">Home</sys:String>
     <sys:String x:Key="navMenu2">Favourites</sys:String>
     <sys:String x:Key="logoutToolTip">Logout</sys:String>

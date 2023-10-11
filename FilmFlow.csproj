@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="CustomControls\DialogConfirmation.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\background.jpg" />
     <None Remove="Images\checkedCheckbox.png" />
     <None Remove="Images\Email.png" />
@@ -18,6 +22,7 @@
     <None Remove="Images\Password.png" />
     <None Remove="Images\PasswordConfirm.png" />
     <None Remove="Images\RegBackground.jpg" />
+    <None Remove="Images\ResetBackground.jpg" />
     <None Remove="Images\User.png" />
   </ItemGroup>
 
@@ -38,6 +43,7 @@
     <Resource Include="Images\Password.png" />
     <Resource Include="Images\PasswordConfirm.png" />
     <Resource Include="Images\RegBackground.jpg" />
+    <Resource Include="Images\ResetBackground.jpg" />
     <Resource Include="Images\User.png" />
   </ItemGroup>
 

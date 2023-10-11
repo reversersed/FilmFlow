@@ -5,7 +5,7 @@
     <sys:String x:Key="LoginText">АВТОРИЗАЦИЯ</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
     <sys:String x:Key="AppTagline">Для хорошего кино всегда найдется время</sys:String>
-    <sys:String x:Key="Username">Имя пользователя</sys:String>
+    <sys:String x:Key="UsernameOrEmail">Имя пользователя или почта</sys:String>
     <sys:String x:Key="Password">Пароль</sys:String>
     <sys:String x:Key="LoginButton">Войти</sys:String>
     <sys:String x:Key="ForgotPassword">Забыли пароль?</sys:String>
@@ -15,6 +15,7 @@
     <sys:String x:Key="Registrate">Зарегистрироваться</sys:String>
     <sys:String x:Key="RememberPassword">Запомнить пароль</sys:String>
     <!--Registration Window-->
+    <sys:String x:Key="Username">Имя пользователя</sys:String>
     <sys:String x:Key="RegText">РЕГИСТРАЦИЯ</sys:String>
     <sys:String x:Key="SignButton">Зарегистрироваться</sys:String>
     <sys:String x:Key="ConfirmPassword">Повторите пароль</sys:String>
@@ -23,13 +24,22 @@
     <sys:String x:Key="NotValidEmail">* Указанная почта не существует</sys:String>
     <sys:String x:Key="NotUniqueUser">* Указанное имя пользователя уже используется</sys:String>
     <sys:String x:Key="NotUniqueEmail">* Указанная почта уже используется. Попробуйте восстановить пароль.</sys:String>
-    <sys:String x:Key="EmailCode">Мы отправили код подтверждения на указанную почту. Впишите его в поле ниже</sys:String>
+    <sys:String x:Key="EmailCode">Мы отправили код подтверждения на почту. Впишите его в поле ниже</sys:String>
     <sys:String x:Key="RegMistake">Указали неверные данные? Вы можете</sys:String>
     <sys:String x:Key="RegReturn">вернуться назад</sys:String>
     <sys:String x:Key="WrongEmailCode">Код неверный</sys:String>
     <sys:String x:Key="ConfirmationMessage">Кто-то указал данную почту при регистрации на портале FilmFlow. Ваш код регистрации - {0}. Если Вы получили данное письмо по ошибке, пожалуйста, проигнорируйте его.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Почтовый сервер не отвечает. Попробуйте позже</sys:String>
     <sys:String x:Key="NotValidatedPassword">* Пароль должен состоять как минимум из 6 символов, содержать строчные и прописные буквы и иметь хотя бы одну цифру</sys:String>
+    <!--Reset Password Window-->
+    <sys:String x:Key="ResetTagline">СБРОС ПАРОЛЯ</sys:String>
+    <sys:String x:Key="SendEmailButton">Отправить код</sys:String>
+    <sys:String x:Key="ResetPasswordButton">Сбросить пароль</sys:String>
+    <sys:String x:Key="rpUserNotFound">* Пользователь не существует</sys:String>
+    <sys:String x:Key="rpMessageTopic">Сброс пароля</sys:String>
+    <sys:String x:Key="NewPassword">Новый пароль</sys:String>
+    <sys:String x:Key="rpMessageBody">Здравствуйте, {0}. Кто-то пытается изменить Ваш пароль на портале FilmFlow. Код для смены пароля - {1}. Если это были не Вы, пожалуйста, проигнорируйте данное сообщение и никому не сообщайте код из письма.</sys:String>
+    <sys:String x:Key="passwordChanged">Пароль успешно изменен. Теперь войдите в аккаунт, используя новые данные.</sys:String>
     <!--Main Application Window-->
     <sys:String x:Key="Slogan">Вместе веселее</sys:String>
     <sys:String x:Key="navMenu1">Главная</sys:String>

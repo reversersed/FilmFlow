@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Security.Cryptography;
+using FilmFlow.PasswordReset;
 
 namespace FilmFlow
 {
@@ -14,6 +15,7 @@ namespace FilmFlow
     public partial class App : Application
     {
         LoginView loginView;
+        ResetView resetView;
         RegistrationView registrationView;
         MainWindow.MainWindow mainWindow;
         public void ApplicationStart(object sender, EventArgs e)
@@ -28,12 +30,7 @@ namespace FilmFlow
 
             App.Current.Resources.MergedDictionaries.Add(languageDictionary);
 
-            loginView = new LoginView();
-            LoginViewModel viewModel = loginView.DataContext as LoginViewModel;
-            viewModel.showRegistrationWindow = ShowRegistration;
-            viewModel.showAuthorizedWindow = showMainWindow;
-            if(viewModel.IsViewVisible)
-                loginView.Show();
+            ShowLoginWindow(null);
         }
 
         private void showMainWindow(object? obj)
@@ -59,10 +56,21 @@ namespace FilmFlow
             LoginViewModel viewModel = loginView.DataContext as LoginViewModel;
             viewModel.showRegistrationWindow = ShowRegistration;
             viewModel.showAuthorizedWindow = showMainWindow;
+            viewModel.showPasswordRecover = showPasswordRecover;
             if (viewModel.IsViewVisible)
                 loginView.Show();
 
             registrationView?.Close();
+            resetView?.Close();
+        }
+
+        private void showPasswordRecover(object? obj)
+        {
+            resetView = new ResetView();
+            ResetViewModel viewModel = resetView.DataContext as ResetViewModel;
+            viewModel.BackToLoginAction = ShowLoginWindow;
+            resetView.Show();
+            loginView.Close();
         }
     }
 }
