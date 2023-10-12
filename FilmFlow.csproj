@@ -3,9 +3,19 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>annotations</Nullable>
+    <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>FilmFlow.App</StartupObject>
+    <UseWindowsForms>True</UseWindowsForms>
+    <ApplicationIcon>Images\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,12 +28,17 @@
     <None Remove="Images\Email.png" />
     <None Remove="Images\hoverCheckbox.png" />
     <None Remove="Images\idleCheckbox.png" />
+    <None Remove="Images\Logo.ico" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Password.png" />
     <None Remove="Images\PasswordConfirm.png" />
     <None Remove="Images\RegBackground.jpg" />
     <None Remove="Images\ResetBackground.jpg" />
     <None Remove="Images\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +54,7 @@
     <Resource Include="Images\Email.png" />
     <Resource Include="Images\hoverCheckbox.png" />
     <Resource Include="Images\idleCheckbox.png" />
+    <Resource Include="Images\Logo.ico" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Password.png" />
     <Resource Include="Images\PasswordConfirm.png" />
