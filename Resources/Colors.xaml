@@ -1,20 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:FilmFlow">
+    <!--General section-->
     <Color x:Key="BorderColor1">#540000</Color>
     <Color x:Key="BorderColor2">#911010</Color>
     <Color x:Key="BorderColor3">#651866</Color>
-    <Color x:Key="MainBackgroundColor1">#2e0005</Color>
-    <Color x:Key="MainBackgroundColor2">#26004d</Color>
-
-    <SolidColorBrush x:Key="navColor1">#5b00e6</SolidColorBrush>
-    <SolidColorBrush x:Key="navColor2">#bc00f5</SolidColorBrush>
-
-    <SolidColorBrush x:Key="MainBackColor">#26004d</SolidColorBrush>
-    <SolidColorBrush x:Key="activeNavColor">#3d0006</SolidColorBrush>
-    <SolidColorBrush x:Key="plainNavColor">#450007</SolidColorBrush>
-    <SolidColorBrush x:Key="PlainTextColor">#ab6df2</SolidColorBrush>
-    <SolidColorBrush x:Key="NavigationColor">#2e0005</SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="ScrollColor">#350087</SolidColorBrush>
+    <!--Login section-->
     <SolidColorBrush x:Key="BackgroundColor">#1c0000</SolidColorBrush>
     <SolidColorBrush x:Key="MinimizeButtonColor">#7d1710</SolidColorBrush>
     <SolidColorBrush x:Key="CloseButtonColor">#570702</SolidColorBrush>
@@ -22,6 +15,19 @@
     <SolidColorBrush x:Key="LoginButtonBackground">#4b00bd</SolidColorBrush>
     <SolidColorBrush x:Key="ErrorMessageColor">#d90404</SolidColorBrush>
     <SolidColorBrush x:Key="HoverLoginBackgroundColor">#6915e8</SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor" Color="LightGray"/>
-    <SolidColorBrush x:Key="ScrollColor">#7900c4</SolidColorBrush>
+    
+    <!--Main section-->
+    <SolidColorBrush x:Key="MainBackgroundColor">#1e1d21</SolidColorBrush>
+    <SolidColorBrush x:Key="ToolTipBackground">#352f40</SolidColorBrush>
+
+    <!--Nav section-->
+    <SolidColorBrush x:Key="NavigationColor">#3d364a</SolidColorBrush>
+    <SolidColorBrush x:Key="plainNavColor">#352f40</SolidColorBrush>
+    <SolidColorBrush x:Key="activeNavColor">#615675</SolidColorBrush>
+
+    <SolidColorBrush x:Key="PlainTextColor">#ab6df2</SolidColorBrush>
+    <SolidColorBrush x:Key="navColor1">#3c1180</SolidColorBrush>
+    <SolidColorBrush x:Key="navColor2">#bc00f5</SolidColorBrush>
+
+    
 </ResourceDictionary> 

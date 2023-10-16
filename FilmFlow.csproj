@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>disable</Nullable>
+    <Nullable>annotations</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>FilmFlow.App</StartupObject>
     <UseWindowsForms>True</UseWindowsForms>
@@ -30,6 +30,7 @@
     <None Remove="Images\idleCheckbox.png" />
     <None Remove="Images\Logo.ico" />
     <None Remove="Images\Logo.png" />
+    <None Remove="Images\Logout.png" />
     <None Remove="Images\Password.png" />
     <None Remove="Images\PasswordConfirm.png" />
     <None Remove="Images\RegBackground.jpg" />
@@ -56,6 +57,7 @@
     <Resource Include="Images\idleCheckbox.png" />
     <Resource Include="Images\Logo.ico" />
     <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\Logout.png" />
     <Resource Include="Images\Password.png" />
     <Resource Include="Images\PasswordConfirm.png" />
     <Resource Include="Images\RegBackground.jpg" />

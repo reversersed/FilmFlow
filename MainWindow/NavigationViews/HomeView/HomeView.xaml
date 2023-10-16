@@ -9,11 +9,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
+                <ResourceDictionary Source="/CustomControls/ToolTip.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
-                          VerticalScrollBarVisibility="Auto"
-                          Grid.Column="1">
+    <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
+                    VerticalScrollBarVisibility="Auto"
+                    Focusable="False"
+                    Grid.Column="1">
         <StackPanel x:Name="ListBoxPanel"
                     Width="Auto" Height="Auto">
             <ListBox ItemsSource="{Binding Movies}" 
@@ -51,16 +57,42 @@
                 </ListBox.Template>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,0,15,0">
+                        <Grid Margin="0,0,15,0" ToolTipService.BetweenShowDelay="1">
+                            <Grid.ToolTip>
+                                <Border Background="{StaticResource ToolTipBackground}"
+                                        CornerRadius="10"
+                                        Padding="0,10,0,5">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Foreground="{StaticResource TextColor}"
+                                                   FontSize="{StaticResource Regular}"
+                                                   FontFamily="{StaticResource DefaultFont}"
+                                                   Margin="15,0,0,0"
+                                                   HorizontalAlignment="Left"
+                                                   MaxWidth="250"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                        <StackPanel Orientation="Horizontal" Width="300" Margin="5">
+                                            <Image Source="{Binding Cover}"
+                                                    Stretch="Uniform"
+                                                    Width="150"
+                                                    Height="200"/>
+                                            <TextBlock FontFamily="{StaticResource DefaultFont}" 
+                                                       TextTrimming="CharacterEllipsis" 
+                                                       MaxHeight="200" 
+                                                       Text="{Binding Desription}" 
+                                                       TextWrapping="Wrap"
+                                                       FontSize="{StaticResource Small}"
+                                                       Foreground="{StaticResource TextColor}"
+                                                       MaxWidth="130"
+                                                       Margin="10,0,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </Grid.ToolTip>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="240"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <ToolTipService.ToolTip>
-                                <StackPanel>
-                                    <TextBlock>Tooltip</TextBlock>
-                                </StackPanel>
-                            </ToolTipService.ToolTip>
                             <Image Source="{Binding Cover}" 
                                            Stretch="Uniform" 
                                            Grid.Row="0" 

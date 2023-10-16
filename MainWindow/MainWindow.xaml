@@ -12,7 +12,7 @@
         MinHeight="320" MinWidth="450"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        WindowState="Maximized"
+        WindowState="Normal"
         Icon="/Images/Logo.png"
         Background="{StaticResource NavigationColor}">
     <Window.DataContext>
@@ -23,15 +23,8 @@
             <childView:HomeView/>
         </DataTemplate>
     </Window.Resources>
-
     <Border CornerRadius="0,0,4,4"
-        BorderThickness="6">
-        <Border.BorderBrush>
-            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                <GradientStop Color="{StaticResource BorderColor1}" Offset="0"/>
-                <GradientStop Color="{StaticResource BorderColor3}" Offset="0.2"/>
-            </LinearGradientBrush>
-        </Border.BorderBrush>
+        BorderThickness="0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="215"/>
@@ -41,13 +34,8 @@
             <!--Main section-->
             <Border CornerRadius="0" 
                     BorderThickness="0"
-                    Grid.Column="1">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                        <GradientStop Color="{StaticResource MainBackgroundColor1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource MainBackgroundColor2}" Offset="0.04"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+                    Grid.Column="1"
+                    Background="{StaticResource MainBackgroundColor}">
             </Border>
             <!--Navigation section-->
             <Border CornerRadius="0"
@@ -134,21 +122,30 @@
                             Height="30"
                             Width="30"
                             Margin="10,0,0,0"
-                            Command="{Binding LogoutButton}"
-                            ToolTip="{StaticResource logoutToolTip}">
+                            Command="{Binding LogoutButton}">
+                        <Button.ToolTip>
+                            <TextBlock Text="{StaticResource logoutToolTip}"
+                                           FontSize="{StaticResource Small}"
+                                           FontFamily="{StaticResource DefaultFont}"
+                                           Foreground="Black"/>
+                        </Button.ToolTip>
                         <ToolTipService.InitialShowDelay>1</ToolTipService.InitialShowDelay>
-                        <fa:IconImage Height="30" Width="30" Foreground="{StaticResource ScrollColor}" Icon="DoorClosed"/>
+                        <Image  Source="\Images\Logout.png"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Left"/>
                     </Button>
                 </StackPanel>
                 <StackPanel Grid.Row="2"
                             Grid.Column="0"
                             Orientation="Horizontal"
                             Margin="10,0,0,0">
-                <fa:IconImage Width="25"
-                              Height="25"
-                              HorizontalAlignment="Left"
-                              Foreground="{StaticResource TextColor}"
-                              Icon="User"/>
+                    <fa:IconImage
+                            Foreground="{StaticResource TextColor}"
+                            Icon="User"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Left"/>
                     <TextBlock Grid.Row="2"
                            Grid.Column="0"
                            VerticalAlignment="Center"
