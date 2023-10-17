@@ -4,6 +4,7 @@
     <!--General app-->
     <sys:String x:Key="Yes">Yes</sys:String>
     <sys:String x:Key="No">No</sys:String>
+    <sys:String x:Key="Save">Save</sys:String>
     <!--Login Window-->
     <sys:String x:Key="LoginText">LOG IN</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
@@ -45,9 +46,14 @@
     <sys:String x:Key="rpMessageBody">Hello, {0}. Someone trying to reset your password on FilmFlow portal. Your code is {1}. If you didn't try to reset your password, please, ignore this email and do not tell this code to anyone.</sys:String>
     <sys:String x:Key="passwordChanged">Password changed successfully. Now log into with your new password.</sys:String>
     <!--Main Application Window-->
-    <sys:String x:Key="Slogan">Let the show begin</sys:String> 
-    <sys:String x:Key="navMenu1">Home</sys:String>
-    <sys:String x:Key="navMenu2">Favourites</sys:String>
+    <sys:String x:Key="Slogan">Let the show begin</sys:String>
+    <sys:String x:Key="navMenuHome">Home</sys:String>
+    <sys:String x:Key="navMenuFavourites">Favourites</sys:String>
+    <sys:String x:Key="navMenuSettings">Settings</sys:String>
     <sys:String x:Key="LogoutTitle">Logout</sys:String>
     <sys:String x:Key="LogoutConfirmation">Are you sure you want to log out?</sys:String>
+    <!--Settings Window-->
+    <sys:String x:Key="SettingsTitile">S E T T I N G S</sys:String>
+    <sys:String x:Key="ApllyingAfterReboot">Settings will be applied after restart</sys:String>
+    <sys:String x:Key="Language">Language</sys:String>
 </ResourceDictionary> 

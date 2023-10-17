@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FilmFlow.MainWindow"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:childView="clr-namespace:FilmFlow.MainWindow.NavigationViews.HomeView"
+        xmlns:homeView="clr-namespace:FilmFlow.MainWindow.NavigationViews.HomeView"
+        xmlns:settingsView="clr-namespace:FilmFlow.MainWindow.NavigationViews.SettingsView"
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="600" Width="850"
@@ -21,8 +22,11 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type childView:HomeViewModel}">
-            <childView:HomeView/>
+        <DataTemplate DataType="{x:Type homeView:HomeViewModel}">
+            <homeView:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type settingsView:SettingsViewModel}">
+            <settingsView:SettingsView/>
         </DataTemplate>
     </Window.Resources>
     <Border CornerRadius="0,0,4,4"
@@ -34,7 +38,9 @@
             </Grid.ColumnDefinitions>
 
             <!--Modal PopUp for logout confirmation-->
-            <popupConfirm:Modal Panel.ZIndex="1" IsOpen="{Binding LogoutConfirmVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <popupConfirm:Modal Panel.ZIndex="1"
+                                IsOpen="{Binding LogoutConfirmVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Grid.ColumnSpan="2">
                 <StackPanel Width="250"
                             Height="150"
                             Orientation="Vertical"
@@ -179,23 +185,36 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <RadioButton Style="{StaticResource navButton}"
-                                     Tag="{StaticResource navColor1}"
+                                     Tag="{StaticResource navColorHome}"
                                      Grid.Row="0"
                                      Command="{Binding ShowHomeSection}"
                                      IsChecked="True">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="Home"/>
-                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenu1}"/>
+                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuHome}"/>
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource navButton}"
-                                     Tag="{StaticResource navColor2}"
+                                     Tag="{StaticResource navColorFavourites}"
                                      Grid.Row="1">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="Heart"/>
-                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenu2}"/>
+                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuFavourites}"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource navButton}"
+                                     Tag="{StaticResource navColorSettings}"
+                                     Grid.Row="2"
+                                     Command="{Binding ShowSettingsSection}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="Screwdriver"/>
+                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuSettings}"/>
                             </StackPanel>
                         </RadioButton>
                     </Grid>

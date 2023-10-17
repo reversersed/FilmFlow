@@ -1,4 +1,5 @@
 ﻿using FilmFlow.MainWindow.NavigationViews.HomeView;
+using FilmFlow.MainWindow.NavigationViews.SettingsView;
 using FilmFlow.Models;
 using FilmFlow.Models.BaseTables;
 using FilmFlow.ViewModels;
@@ -22,6 +23,7 @@ namespace FilmFlow.MainWindow
 
         //Child Views
         private ViewModelBase homeView;
+        private ViewModelBase settingsView;
 
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
@@ -29,6 +31,7 @@ namespace FilmFlow.MainWindow
         //Commands
         public ICommand LogoutButton { get; }
         public ICommand ShowHomeSection { get; }
+        public ICommand ShowSettingsSection { get; }
 
         //Repositories
         UserRepository UserRepository { get; set; }
@@ -42,15 +45,18 @@ namespace FilmFlow.MainWindow
         {
             LogoutButton = new ViewModelCommand(LogoutButtonCommand);
             ShowHomeSection = new ViewModelCommand(ShowHomeSectionCommand);
+            ShowSettingsSection = new ViewModelCommand(ShowSettingsSectionCommand);
 
             UserRepository = new UserRepository();
             User = UserRepository.LoadUserData(Thread.CurrentPrincipal.Identity.Name);
 
             homeView = new HomeViewModel();
+            settingsView = new SettingsViewModel();
             ChildContentView = homeView;
         }
 
         private void ShowHomeSectionCommand(object obj) => ChildContentView = homeView;
+        private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
 
         private void LogoutButtonCommand(object obj)
         {

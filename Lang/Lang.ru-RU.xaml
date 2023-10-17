@@ -4,6 +4,7 @@
     <!--General app-->
     <sys:String x:Key="Yes">Да</sys:String>
     <sys:String x:Key="No">Нет</sys:String>
+    <sys:String x:Key="Save">Сохранить</sys:String>
     <!--Login Window-->
     <sys:String x:Key="LoginText">АВТОРИЗАЦИЯ</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
@@ -45,8 +46,13 @@
     <sys:String x:Key="passwordChanged">Пароль успешно изменен. Теперь войдите в аккаунт, используя новые данные.</sys:String>
     <!--Main Application Window-->
     <sys:String x:Key="Slogan">Вместе веселее</sys:String>
-    <sys:String x:Key="navMenu1">Главная</sys:String>
-    <sys:String x:Key="navMenu2">Избранное</sys:String>
+    <sys:String x:Key="navMenuHome">Главная</sys:String>
+    <sys:String x:Key="navMenuFavourites">Избранное</sys:String>
+    <sys:String x:Key="navMenuSettings">Настройки</sys:String>
     <sys:String x:Key="LogoutTitle">Выход из аккаунта</sys:String>
     <sys:String x:Key="LogoutConfirmation">Вы уверены, что хотите выйти из аккаунта?</sys:String>
+    <!--Settings Window-->
+    <sys:String x:Key="SettingsTitile">Н А С Т Р О Й К И</sys:String>
+    <sys:String x:Key="ApllyingAfterReboot">Настройки будут применены после перезагрузки</sys:String>
+    <sys:String x:Key="Language">Язык</sys:String>
 </ResourceDictionary>

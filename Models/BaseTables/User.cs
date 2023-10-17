@@ -14,5 +14,7 @@ namespace FilmFlow.Models.BaseTables
         public byte[]? Password { get; set; }
         [Column("email")]
         public string Email { get; set; }
+        [Column("adminrole")]
+        public int Admin { get; set; }
     }
 }

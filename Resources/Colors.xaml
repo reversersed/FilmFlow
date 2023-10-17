@@ -30,8 +30,9 @@
     <SolidColorBrush x:Key="activeNavColor">#615675</SolidColorBrush>
 
     <SolidColorBrush x:Key="PlainTextColor">#ab6df2</SolidColorBrush>
-    <SolidColorBrush x:Key="navColor1">#3c1180</SolidColorBrush>
-    <SolidColorBrush x:Key="navColor2">#bc00f5</SolidColorBrush>
+    <SolidColorBrush x:Key="navColorHome">#3c1180</SolidColorBrush>
+    <SolidColorBrush x:Key="navColorFavourites">#bc00f5</SolidColorBrush>
+    <SolidColorBrush x:Key="navColorSettings">#1d0540</SolidColorBrush>
 
     
 </ResourceDictionary> 
