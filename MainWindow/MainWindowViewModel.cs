@@ -5,6 +5,8 @@ using FilmFlow.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,14 +18,14 @@ namespace FilmFlow.MainWindow
     {
         //Private properties
         private ViewModelBase _childContentView;
-        private bool _logoutConfirm {  get; set; }
+        private bool _logoutConfirmVisibility { get; set; } = false;
 
         //Child Views
         private ViewModelBase homeView;
 
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
-        public bool LogoutConfirm { get { return _logoutConfirm;  }  set { _logoutConfirm = value; OnPropertyChanged(nameof(LogoutConfirm)); } }
+        public bool LogoutConfirmVisibility { get { return _logoutConfirmVisibility;  }  set { _logoutConfirmVisibility = value; OnPropertyChanged(nameof(LogoutConfirmVisibility)); } }
         //Commands
         public ICommand LogoutButton { get; }
         public ICommand ShowHomeSection { get; }
@@ -48,15 +50,23 @@ namespace FilmFlow.MainWindow
             ChildContentView = homeView;
         }
 
-        private void ShowHomeSectionCommand(object obj)
-        {
-            ChildContentView = homeView;
-        }
+        private void ShowHomeSectionCommand(object obj) => ChildContentView = homeView;
 
         private void LogoutButtonCommand(object obj)
         {
-            UserRepository.Logout(User);
-            showStartWindow?.Invoke();
+            if (obj == null)//Button pressed first
+            {
+                LogoutConfirmVisibility = true;
+            }
+            else if (obj.Equals("returnBack"))//Action 'no' on confirmation window
+            {
+                LogoutConfirmVisibility = false;
+            }
+            else if (obj.Equals("logout"))//Action 'yes' on confirmation window
+            {
+                UserRepository.Logout(User);
+                showStartWindow?.Invoke();
+            }
         }
     }
 }

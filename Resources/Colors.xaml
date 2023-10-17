@@ -7,6 +7,10 @@
     <Color x:Key="BorderColor3">#651866</Color>
     <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="ScrollColor">#350087</SolidColorBrush>
+
+    <SolidColorBrush x:Key="DarkAccentColor">#350087</SolidColorBrush>
+    <SolidColorBrush x:Key="AccentColor">#4b00bd</SolidColorBrush>
+    <SolidColorBrush x:Key="LightAccentColor">#6915e8</SolidColorBrush>
     <!--Login section-->
     <SolidColorBrush x:Key="BackgroundColor">#1c0000</SolidColorBrush>
     <SolidColorBrush x:Key="MinimizeButtonColor">#7d1710</SolidColorBrush>

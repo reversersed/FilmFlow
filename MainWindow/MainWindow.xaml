@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:childView="clr-namespace:FilmFlow.MainWindow.NavigationViews.HomeView"
+        xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="600" Width="850"
         MinHeight="320" MinWidth="450"
@@ -15,6 +16,7 @@
         WindowState="Normal"
         Icon="/Images/Logo.png"
         Background="{StaticResource NavigationColor}">
+
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -31,6 +33,97 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!--Modal PopUp for logout confirmation-->
+            <popupConfirm:Modal Panel.ZIndex="1" IsOpen="{Binding LogoutConfirmVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <StackPanel Width="250"
+                            Height="150"
+                            Orientation="Vertical"
+                            Background="{StaticResource NavigationColor}">
+                    <TextBlock Text="{StaticResource LogoutTitle}"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"/>
+                    <TextBlock Text="{StaticResource LogoutConfirmation}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Margin="0,25,0,0"
+                               Width="200"
+                               TextWrapping="Wrap"
+                               Height="50"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="Normal"/>
+                    <DockPanel  Margin="0,10,0,0"
+                                Height="Auto"
+                                HorizontalAlignment="Center"
+                                Width="250">
+                        <Button BorderThickness="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{StaticResource Yes}"
+                                    Command="{Binding LogoutButton}"
+                                    CommandParameter="logout"
+                                    Foreground="{StaticResource TextColor}"
+                                    FontSize="{StaticResource Regular}"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    Cursor="Hand"
+                                    Margin="40,0,0,10">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                    <Border Width="60" Height="30" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="0">
+                                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Content="{StaticResource No}"
+                                    Command="{Binding LogoutButton}"
+                                    CommandParameter="returnBack"
+                                    Foreground="{StaticResource TextColor}"
+                                    FontSize="{StaticResource Regular}"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    Cursor="Hand"
+                                    Margin="0,0,40,10">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="60" Height="30" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="0">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </popupConfirm:Modal>
             <!--Main section-->
             <Border CornerRadius="0" 
                     BorderThickness="0"
@@ -61,7 +154,7 @@
                     <StackPanel Orientation="Vertical"
                                 VerticalAlignment="Center">
                         <TextBlock Text="{DynamicResource AppName}"
-                            Foreground="White"
+                            Foreground="{StaticResource TextColor}"
                             FontSize="{StaticResource Big}"
                             FontWeight="Medium"
                             FontFamily="{StaticResource DefaultFont}"
@@ -123,13 +216,6 @@
                             Width="30"
                             Margin="10,0,0,0"
                             Command="{Binding LogoutButton}">
-                        <Button.ToolTip>
-                            <TextBlock Text="{StaticResource logoutToolTip}"
-                                           FontSize="{StaticResource Small}"
-                                           FontFamily="{StaticResource DefaultFont}"
-                                           Foreground="Black"/>
-                        </Button.ToolTip>
-                        <ToolTipService.InitialShowDelay>1</ToolTipService.InitialShowDelay>
                         <Image  Source="\Images\Logout.png"
                             Width="25"
                             Height="25"

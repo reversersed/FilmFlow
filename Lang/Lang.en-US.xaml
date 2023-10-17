@@ -1,6 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <!--General app-->
+    <sys:String x:Key="Yes">Yes</sys:String>
+    <sys:String x:Key="No">No</sys:String>
     <!--Login Window-->
     <sys:String x:Key="LoginText">LOG IN</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
@@ -45,5 +48,6 @@
     <sys:String x:Key="Slogan">Let the show begin</sys:String> 
     <sys:String x:Key="navMenu1">Home</sys:String>
     <sys:String x:Key="navMenu2">Favourites</sys:String>
-    <sys:String x:Key="logoutToolTip">Logout</sys:String>
+    <sys:String x:Key="LogoutTitle">Logout</sys:String>
+    <sys:String x:Key="LogoutConfirmation">Are you sure you want to log out?</sys:String>
 </ResourceDictionary> 
