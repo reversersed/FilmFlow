@@ -149,13 +149,6 @@ namespace FilmFlow.Registration
 
             if (trimmedEmail.EndsWith("."))
                 return false;
-            if (!trimmedEmail.Contains("gmail") &&
-                !trimmedEmail.Contains("mail") &&
-                !trimmedEmail.Contains("yandex") &&
-                !trimmedEmail.Contains("ya.ru") &&
-                !trimmedEmail.Contains("yahoo") &&
-                !trimmedEmail.Contains("outlook"))
-                return false;
             try
             {
                 var addr = new System.Net.Mail.MailAddress(email);

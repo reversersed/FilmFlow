@@ -25,13 +25,12 @@
     <sys:String x:Key="ConfirmPassword">Confirm password</sys:String>
     <sys:String x:Key="Email">Email</sys:String>
     <sys:String x:Key="PasswordsNotEqual">* Passwords are not equal</sys:String>
-    <sys:String x:Key="NotValidEmail">* Specified email isn't exist</sys:String>
     <sys:String x:Key="NotUniqueUser">* Specified username already used</sys:String>
     <sys:String x:Key="NotUniqueEmail">* Specified email already used. Try recover your password</sys:String>
     <sys:String x:Key="EmailCode">We sent a code to your email. Please, type it below</sys:String>
     <sys:String x:Key="RegMistake">Made a mistake? You can</sys:String> 
     <sys:String x:Key="RegReturn">return back</sys:String>
-    <sys:String x:Key="WrongEmailCode">Code is incorrect</sys:String>
+    <sys:String x:Key="WrongEmailCode">* Code is incorrect</sys:String>
     <sys:String x:Key="ConfirmationSubject">Registration confirmation</sys:String> 
     <sys:String x:Key="ConfirmationMessage">Someone just specified this email addres to create account on FilmFlow portal. Your registration code is {0}. If you don't know what is this message about, just ignore it.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Mail server don't responding. Try again later</sys:String>
@@ -54,6 +53,7 @@
     <sys:String x:Key="LogoutConfirmation">Are you sure you want to log out?</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="SettingsTitile">S E T T I N G S</sys:String>
-    <sys:String x:Key="ApllyingAfterReboot">Settings will be applied after restart</sys:String>
+    <sys:String x:Key="ApllyingAfterReboot">Settings will be applied after restart.</sys:String>
+    <sys:String x:Key="RestartNow">Restart now?</sys:String>
     <sys:String x:Key="Language">Language</sys:String>
 </ResourceDictionary> 

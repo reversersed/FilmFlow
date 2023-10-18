@@ -43,7 +43,7 @@ namespace FilmFlow.Models
             using(RepositoryBase db = new RepositoryBase())
             {
                 var users = db.users.ToList();
-                if (users.Select(i => i.Username.Equals(username)).Count() != 0)
+                if (users.Where(i => i.Username.Equals(username)).Count() > 0)
                     return false;
                 return true;
             }
@@ -53,7 +53,7 @@ namespace FilmFlow.Models
             using (RepositoryBase db = new RepositoryBase())
             {
                 var users = db.users.ToList();
-                if (users.Select(i => i.Email.Equals(email)).Count() != 0)
+                if (users.Where(i => i.Email.Equals(email)).Count() != 0)
                     return false;
                 return true;
             }

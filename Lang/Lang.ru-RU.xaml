@@ -25,13 +25,12 @@
     <sys:String x:Key="ConfirmPassword">Повторите пароль</sys:String>
     <sys:String x:Key="Email">Почта</sys:String>
     <sys:String x:Key="PasswordsNotEqual">* Пароли не совпадают</sys:String>
-    <sys:String x:Key="NotValidEmail">* Указанная почта не существует</sys:String>
     <sys:String x:Key="NotUniqueUser">* Указанное имя пользователя уже используется</sys:String>
     <sys:String x:Key="NotUniqueEmail">* Указанная почта уже используется. Попробуйте восстановить пароль.</sys:String>
     <sys:String x:Key="EmailCode">Мы отправили код подтверждения на почту. Впишите его в поле ниже</sys:String>
     <sys:String x:Key="RegMistake">Указали неверные данные? Вы можете</sys:String>
     <sys:String x:Key="RegReturn">вернуться назад</sys:String>
-    <sys:String x:Key="WrongEmailCode">Код неверный</sys:String>
+    <sys:String x:Key="WrongEmailCode">* Код неверный</sys:String>
     <sys:String x:Key="ConfirmationMessage">Кто-то указал данную почту при регистрации на портале FilmFlow. Ваш код регистрации - {0}. Если Вы получили данное письмо по ошибке, пожалуйста, проигнорируйте его.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Почтовый сервер не отвечает. Попробуйте позже</sys:String>
     <sys:String x:Key="NotValidatedPassword">* Пароль должен состоять как минимум из 6 символов, содержать строчные и прописные буквы и иметь хотя бы одну цифру</sys:String>
@@ -53,6 +52,7 @@
     <sys:String x:Key="LogoutConfirmation">Вы уверены, что хотите выйти из аккаунта?</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="SettingsTitile">Н А С Т Р О Й К И</sys:String>
-    <sys:String x:Key="ApllyingAfterReboot">Настройки будут применены после перезагрузки</sys:String>
+    <sys:String x:Key="ApllyingAfterReboot">Настройки будут применены после перезагрузки.</sys:String>
+    <sys:String x:Key="RestartNow">Перезагрузить сейчас?</sys:String>
     <sys:String x:Key="Language">Язык</sys:String>
 </ResourceDictionary>

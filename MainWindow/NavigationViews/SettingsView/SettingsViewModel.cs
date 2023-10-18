@@ -13,7 +13,7 @@ namespace FilmFlow.MainWindow.NavigationViews.SettingsView
     public class SettingsViewModel : ViewModelBase
     {
         //Private properties
-        private Visibility _settingsApplyingTextConfirmation = Visibility.Hidden;
+        private Visibility _settingsApplyingTextConfirmation = Visibility.Collapsed;
         private string _currentSelectedLanguage;
 
         //Public properties
@@ -23,9 +23,12 @@ namespace FilmFlow.MainWindow.NavigationViews.SettingsView
 
         //Commands
         public ICommand ApplyChanges { get; }
+        public ICommand RestartApplication { get; }
         public SettingsViewModel()
         {
             ApplyChanges = new ViewModelCommand(ApplyChangesCommand);
+            RestartApplication = new ViewModelCommand(RestartApplicationCommand);
+
             switch(FilmFlow.Properties.Settings.Default.Language)
             {
                 case "ru-RU":
@@ -36,6 +39,13 @@ namespace FilmFlow.MainWindow.NavigationViews.SettingsView
                     break;
             }
         }
+
+        private void RestartApplicationCommand(object obj)
+        {
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
+        }
+
         private void ApplyChangesCommand(object obj)
         {
             //Language
