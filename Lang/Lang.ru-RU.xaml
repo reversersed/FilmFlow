@@ -8,7 +8,7 @@
     <!--Login Window-->
     <sys:String x:Key="LoginText">АВТОРИЗАЦИЯ</sys:String>
     <sys:String x:Key="AppName">F I L M F L O W</sys:String>
-    <sys:String x:Key="AppTagline">Для хорошего кино всегда найдется время</sys:String>
+    <sys:String x:Key="AppTagline">Смотри вместе с нами</sys:String>
     <sys:String x:Key="UsernameOrEmail">Имя пользователя или почта</sys:String>
     <sys:String x:Key="Password">Пароль</sys:String>
     <sys:String x:Key="LoginButton">Войти</sys:String>
