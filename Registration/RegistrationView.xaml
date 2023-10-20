@@ -158,7 +158,7 @@
                            FontWeight="Light"
                            FontFamily="{StaticResource DefaultFont}"
                            HorizontalAlignment="Center"
-                           Margin="0,5,0,0"/>
+                           Margin="0,0,0,5"/>
                     <StackPanel Visibility="{Binding InformationVisiblity}">
                         <TextBlock Text="{DynamicResource Username}"
                                Foreground="{StaticResource TextColor}"

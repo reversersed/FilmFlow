@@ -169,8 +169,8 @@
                                HorizontalAlignment="Center"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
-                               Margin="0,15,0,0"/>
-                    
+                               Margin="0,0,0,15"/>
+
                     <TextBlock Text="{DynamicResource UsernameOrEmail}"
                                Foreground="{StaticResource TextColor}"
                                FontSize="{StaticResource Regular}"
@@ -199,6 +199,9 @@
                                         AlignmentX="Left"
                                         />
                         </TextBox.Background>
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding LoginUser}" Key="Enter"/>
+                        </TextBox.InputBindings>
                     </TextBox>
 
                     <TextBlock Text="{DynamicResource Password}"
@@ -212,7 +215,12 @@
                                Margin="0,30,0,5"/>
 
                     <customcontrols:BindablePassword Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                     Height="26"/>
+                                                     Height="26">
+
+                        <customcontrols:BindablePassword.InputBindings>
+                            <KeyBinding Command="{Binding LoginUser}" Key="Enter"/>
+                        </customcontrols:BindablePassword.InputBindings>
+                    </customcontrols:BindablePassword>
 
 
                     <CheckBox Content="{StaticResource RememberPassword}"
