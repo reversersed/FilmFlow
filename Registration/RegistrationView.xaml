@@ -8,7 +8,7 @@
         xmlns:viewModel="clr-namespace:FilmFlow.Registration"
         xmlns:customcontrols="clr-namespace:FilmFlow.CustomControls"
         mc:Ignorable="d"
-        Title="Registration" Height="750" Width="800"
+        Title="Registration" Height="650" Width="700"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -141,7 +141,7 @@
                 <StackPanel Width="350" 
                             Grid.Row="1"
                             Orientation="Vertical"
-                            Margin="0,50,0,0"
+                            Margin="0,20,0,0"
                             VerticalAlignment="Top">
                     <Image Source="/Images/Logo.png"
                         Width="100" Height="100" Stretch="Fill"/>
