@@ -138,8 +138,11 @@
             <!--Main section-->
             <Border CornerRadius="0" 
                     BorderThickness="0"
+                    Focusable="False"
                     Grid.Column="1"
                     Background="{StaticResource MainBackgroundColor}">
+                <ContentControl Content="{Binding ChildContentView}"
+                            Margin="20,10,0,0"/>
             </Border>
             <!--Navigation section-->
             <Border CornerRadius="0"
@@ -271,10 +274,6 @@
                            Text="{Binding User.Username}"/>
                 </Grid>
             </Grid>
-            <!--Child Views-->
-            <ContentControl Content="{Binding ChildContentView}"
-                            Margin="20,10,0,0"
-                            Grid.Column="1"/>
         </Grid>
     </Border>
 </Window>
