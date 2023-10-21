@@ -9,9 +9,17 @@ namespace FilmFlow.Models
     public sealed class RepositoryBase : DbContext
     {
 #if LOCALHOST
-        private const string _connectionString = "Server=localhost; Username=postgres; Password=123; Database=FilmFlow;";
+        private readonly string _connectionString = string.Format("Server={0}; Username={1}; Password={2}; Database={3};",
+            FilmFlow.Properties.Settings.Default.localDbServer,
+            FilmFlow.Properties.Settings.Default.localDbUser,
+            FilmFlow.Properties.Settings.Default.localDbPassword,
+            FilmFlow.Properties.Settings.Default.localDbBase);
 #else
-        private const string _connectionString = "Server=bi0jwfmv9pdbuytvqaua-postgresql.services.clever-cloud.com; Username=ucc7pv5oypegng25lao6; Password=3aaUCiENjpcjZBGNSWsbSY7YhhAEsR; Database=bi0jwfmv9pdbuytvqaua;";
+        private readonly string _connectionString = string.Format("Server={0}; Username={1}; Password={2}; Database={3};",
+            FilmFlow.Properties.Settings.Default.hostedDbServer,
+            FilmFlow.Properties.Settings.Default.hostedDbUser,
+            FilmFlow.Properties.Settings.Default.hostedDbPassword,
+            FilmFlow.Properties.Settings.Default.hostedDbBase);
 #endif
         public DbSet<Cover> covers { get; set; }
         public DbSet<MovieUrl> movieurl { get; set; }

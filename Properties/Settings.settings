@@ -11,5 +11,41 @@
     <Setting Name="appSessionKey" Type="System.String" Scope="Application">
       <Value Profile="(Default)">6qeXfz;9~GS}.v9A^tw:Z^Y)r;b&amp;5c&gt;;F04N2_tSlbEV)![S2UB8"l,,)KXb3g9</Value>
     </Setting>
+    <Setting Name="localDbServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="localDbUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">postgres</Value>
+    </Setting>
+    <Setting Name="localDbPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">123</Value>
+    </Setting>
+    <Setting Name="localDbBase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FilmFlow</Value>
+    </Setting>
+    <Setting Name="hostedDbServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bi0jwfmv9pdbuytvqaua-postgresql.services.clever-cloud.com</Value>
+    </Setting>
+    <Setting Name="hostedDbUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ucc7pv5oypegng25lao6</Value>
+    </Setting>
+    <Setting Name="hostedDbPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3aaUCiENjpcjZBGNSWsbSY7YhhAEsR</Value>
+    </Setting>
+    <Setting Name="hostedDbBase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bi0jwfmv9pdbuytvqaua</Value>
+    </Setting>
+    <Setting Name="smtpServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.yandex.ru</Value>
+    </Setting>
+    <Setting Name="smtpUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Regis.youtube@yandex.ru</Value>
+    </Setting>
+    <Setting Name="smtpPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">kjmtpynsqztvrgsh</Value>
+    </Setting>
+    <Setting Name="smtpMailFrom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Regis.youtube@yandex.ru</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -55,5 +55,113 @@ namespace FilmFlow.Properties {
                 return ((string)(this["appSessionKey"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        public string localDbServer {
+            get {
+                return ((string)(this["localDbServer"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("postgres")]
+        public string localDbUser {
+            get {
+                return ((string)(this["localDbUser"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123")]
+        public string localDbPassword {
+            get {
+                return ((string)(this["localDbPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FilmFlow")]
+        public string localDbBase {
+            get {
+                return ((string)(this["localDbBase"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("bi0jwfmv9pdbuytvqaua-postgresql.services.clever-cloud.com")]
+        public string hostedDbServer {
+            get {
+                return ((string)(this["hostedDbServer"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ucc7pv5oypegng25lao6")]
+        public string hostedDbUser {
+            get {
+                return ((string)(this["hostedDbUser"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3aaUCiENjpcjZBGNSWsbSY7YhhAEsR")]
+        public string hostedDbPassword {
+            get {
+                return ((string)(this["hostedDbPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("bi0jwfmv9pdbuytvqaua")]
+        public string hostedDbBase {
+            get {
+                return ((string)(this["hostedDbBase"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.yandex.ru")]
+        public string smtpServer {
+            get {
+                return ((string)(this["smtpServer"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Regis.youtube@yandex.ru")]
+        public string smtpUser {
+            get {
+                return ((string)(this["smtpUser"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("kjmtpynsqztvrgsh")]
+        public string smtpPassword {
+            get {
+                return ((string)(this["smtpPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Regis.youtube@yandex.ru")]
+        public string smtpMailFrom {
+            get {
+                return ((string)(this["smtpMailFrom"]));
+            }
+        }
     }
 }
