@@ -76,7 +76,7 @@ namespace FilmFlow.PasswordReset
         //Actions
         public Action<object?> BackToLoginAction;
 
-        //Repositories
+        //Models
         private UserRepository user {  get; set; }
         private SmtpModel smtpModel;
 

@@ -25,6 +25,8 @@ namespace FilmFlow.MainWindow.NavigationViews.SettingsView
         //Commands
         public ICommand ApplyChanges { get; }
         public ICommand RestartApplication { get; }
+
+        //Methods
         public SettingsViewModel()
         {
             ApplyChanges = new ViewModelCommand(ApplyChangesCommand);

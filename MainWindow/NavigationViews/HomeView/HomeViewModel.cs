@@ -16,7 +16,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public ObservableCollection<MovieModel> Movies { get { return _movies; } set { _movies = value; OnPropertyChanged(nameof(Movies)); } }
         public int SelectedMovie { get { return _selectedMovie; } set { _selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); } }
 
-        //Repositories
+        //Models
         MovieRepository MovieRepository { get; set; }
 
         //Commands

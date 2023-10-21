@@ -10,8 +10,9 @@ using System.Security.Cryptography;
 
 namespace FilmFlow.Registration
 {
-    public class RegistrationViewModel : ViewModelBase
+    public sealed class RegistrationViewModel : ViewModelBase
     {
+        //Private properties
         private Visibility _emailCodeVisibility = Visibility.Collapsed;
         private Visibility _informationVisiblity = Visibility.Visible;
         private Regex validateEnglish = new Regex("^[A-Za-z\\d*$@^&_-]+$");
@@ -24,6 +25,7 @@ namespace FilmFlow.Registration
         private string _emailCode { get; set; }
         private int createdEmailCode { get; set; }
 
+        //Public properties
         public Visibility EmailCodeVisibility {  get { return _emailCodeVisibility; } set { _emailCodeVisibility = value; OnPropertyChanged(nameof(EmailCodeVisibility)); } }
         public Visibility InformationVisiblity { get { return _informationVisiblity; } set { _informationVisiblity = value; OnPropertyChanged(nameof(InformationVisiblity)); } }
         public string Username { get { return _username; } set { 
@@ -57,17 +59,22 @@ namespace FilmFlow.Registration
                 }
             } 
         }
-
+        
+        //Commands
         public ICommand executeSigning { get; }
         
         public ICommand BackToLogin { get; }
         public ICommand CloseApplication { get; }
         public ICommand ReturnToRegistration { get; }
 
+        //Actions
         public Action<object?> backToLoginWindow;
-        SmtpModel smtpModel;
 
+        //Models
+        SmtpModel smtpModel;
         UserRepository userRepository;
+
+        //Methods
         public RegistrationViewModel()
         {
             userRepository = new UserRepository();
@@ -137,7 +144,6 @@ namespace FilmFlow.Registration
                 ErrorMessage = Application.Current.FindResource("EmailNotRespond") as string;
                 return;
             }
-            //EmailCode = createdEmailCode.ToString();
 
             ErrorMessage = null;
             EmailCodeVisibility = Visibility.Visible;
@@ -166,7 +172,11 @@ namespace FilmFlow.Registration
                 CodeErrorMessage = Application.Current.FindResource("WrongEmailCode") as string;
                 return;
             }
-            userRepository.createUser(new Models.BaseTables.User() { Username = this.Username, Password = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(this.Password)), Email = this.Email });
+            userRepository.createUser(new Models.BaseTables.User() { 
+                Username = this.Username, 
+                Password = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(this.Password)), 
+                Email = this.Email 
+            });
             BackToLogin.Execute(Username);
         }
     }

@@ -19,6 +19,7 @@ namespace FilmFlow.Login
 {
     class LoginViewModel : ViewModelBase
     {
+        //Private properties
         private Regex validateEnglish = new Regex("^[A-Za-z\\d*.$@^&_-]+$");
         private string _username { get; set; }
         private string _password { get; set; }
@@ -26,6 +27,7 @@ namespace FilmFlow.Login
         private bool _isViewVisible = true;
         private bool _isPasswordRemembered = false;
 
+        //Public properties
         public string Username { get { return _username; } 
             set {
                 if (value != null && value.Length > 0 && !validateEnglish.IsMatch(value))
@@ -39,17 +41,22 @@ namespace FilmFlow.Login
         public bool IsViewVisible { get { return _isViewVisible; } set { _isViewVisible = value; OnPropertyChanged(nameof(IsViewVisible)); } }
         public bool IsPasswordRemembered { get { return _isPasswordRemembered; } set { _isPasswordRemembered = value; OnPropertyChanged(nameof(IsPasswordRemembered)); } }
 
+        //Commands
         public ICommand LoginUser { get; }
         public ICommand RecoverPassword { get; }
         public ICommand ShowRegistration { get; }
         public ICommand CloseApplication { get; }
         public ICommand LoginViewLoaded { get; }
 
-        IUserRepository userRepository;
-
+        //Actions
         public Action<object?> showRegistrationWindow;
         public Action<object?> showAuthorizedWindow;
         public Action<object?> showPasswordRecover;
+
+        //Models
+        IUserRepository userRepository;
+
+        //Methods
         public LoginViewModel()
         {
             userRepository = new UserRepository();
@@ -71,26 +78,13 @@ namespace FilmFlow.Login
             }
         }
 
-        private void CloseApplicationCommand(object obj)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void ShowRegistrationCommand(object obj)
-        {
-            showRegistrationWindow?.Invoke(obj);
-        }
-
-        private void RecoverPasswordCommand(object obj)
-        {
-            showPasswordRecover?.Invoke(obj);
-        }
+        private void CloseApplicationCommand(object obj) => Application.Current.Shutdown();
+        private void ShowRegistrationCommand(object obj) => showRegistrationWindow?.Invoke(obj);
+        private void RecoverPasswordCommand(object obj) => showPasswordRecover?.Invoke(obj);
 
         private bool CanExecuteLogin(object obj)
         {
-            if(string.IsNullOrEmpty(Username) || Username.Length < 4 || Password == null || Password.Length < 6) 
-                return false;
-            return true;
+            return !(string.IsNullOrEmpty(Username) || Username.Length < 4 || Password == null || Password.Length < 6);
         }
 
         private void ExecuteLoginCommand(object obj)

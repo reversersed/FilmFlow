@@ -28,12 +28,13 @@ namespace FilmFlow.MainWindow
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
         public bool LogoutConfirmVisibility { get { return _logoutConfirmVisibility;  }  set { _logoutConfirmVisibility = value; OnPropertyChanged(nameof(LogoutConfirmVisibility)); } }
+        
         //Commands
         public ICommand LogoutButton { get; }
         public ICommand ShowHomeSection { get; }
         public ICommand ShowSettingsSection { get; }
 
-        //Repositories
+        //Models
         UserRepository UserRepository { get; set; }
         public User User {  get; set; }
 
@@ -55,9 +56,11 @@ namespace FilmFlow.MainWindow
             ChildContentView = homeView;
         }
 
+        //Views changing
         private void ShowHomeSectionCommand(object obj) => ChildContentView = homeView;
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
 
+        //
         private void LogoutButtonCommand(object obj)
         {
             if (obj == null)//Button pressed first
