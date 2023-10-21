@@ -16,7 +16,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
+    <ScrollViewer   HorizontalScrollBarVisibility="Auto" 
                     VerticalScrollBarVisibility="Auto"
                     Focusable="False"
                     Grid.Column="1">
@@ -25,7 +25,6 @@
             <ListBox ItemsSource="{Binding Movies}" 
                              Background="Transparent" 
                              BorderThickness="0"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              SelectionMode="Single"
                              SelectedIndex="{Binding SelectedMovie}">
                 <i:Interaction.Triggers>
@@ -46,7 +45,7 @@
                 </ListBox.Resources>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" 
+                        <WrapPanel IsItemsHost="True"
                                            MaxWidth="{Binding ActualWidth, ElementName=ListBoxPanel}"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
@@ -62,7 +61,9 @@
                                 <Border Background="{StaticResource ToolTipBackground}"
                                         CornerRadius="10"
                                         Padding="0,10,0,5">
-                                    <StackPanel>
+                                    <StackPanel Orientation="Vertical"
+                                                x:Name="ToolTipPanel"
+                                                MaxWidth="300">
                                         <TextBlock Text="{Binding Name}"
                                                    Foreground="{StaticResource TextColor}"
                                                    FontSize="{StaticResource Regular}"
@@ -86,6 +87,34 @@
                                                        MaxWidth="130"
                                                        Margin="10,0,0,0"/>
                                         </StackPanel>
+                                        <ListView ItemsSource="{Binding Path=Genres}"
+                                                  Margin="5">
+                                            <ListView.Template>
+                                                <ControlTemplate>
+                                                    <ItemsPresenter/>
+                                                </ControlTemplate>
+                                            </ListView.Template>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border CornerRadius="10"
+                                                            Background="{StaticResource LightAccentColor}">
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   FontSize="{StaticResource Small}"
+                                                                   FontFamily="{StaticResource DefaultFont}"
+                                                                   Foreground="{StaticResource TextColor}"
+                                                                   TextWrapping="Wrap"
+                                                                   Padding="6,3,6,3"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel IsItemsHost="True" 
+                                                               Orientation="Horizontal"
+                                                               MaxWidth="{Binding ActualWidth, ElementName=ToolTipPanel}"/>
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                        </ListView>
                                     </StackPanel>
                                 </Border>
                             </Grid.ToolTip>

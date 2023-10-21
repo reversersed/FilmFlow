@@ -15,6 +15,5 @@ namespace FilmFlow.Models.BaseTables
         private int genreid { get; set; }
         [ForeignKey("genreid")]
         public GenreCollection Genre { get; set; }
-
     }
 }
