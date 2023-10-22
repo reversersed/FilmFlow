@@ -58,4 +58,7 @@
     <sys:String x:Key="Language">Language</sys:String>
     <!--Home Window-->
     <sys:String x:Key="Reviews">reviews</sys:String>
+    <sys:String x:Key="Filters">Filters</sys:String>
+    <sys:String x:Key="Genres">Genres</sys:String>
+    <sys:String x:Key="MovieNameSearch">Movie name...</sys:String>
 </ResourceDictionary> 

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:FilmFlow.MainWindow.NavigationViews.HomeView" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:customControl="clr-namespace:FilmFlow.CustomControls"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              d:DataContext="{d:DesignInstance Type=local:HomeViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -19,20 +20,333 @@
             <local:RatingConverter x:Key="RatingToBar"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Width="Auto" Height="Auto">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <!--Main view search-->
-        <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
+    <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
                         VerticalScrollBarVisibility="Auto"
-                        Grid.Row="3"
                         Focusable="False">
+        <Grid Width="Auto" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Name search-->
+            <StackPanel Grid.Row="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        Margin="5,0,0,0"
+                        MaxWidth="275">
+                <TextBox x:Name="MovieSearch" Height="30"
+                         Foreground="{StaticResource TextColor}"
+                         CaretBrush="{StaticResource LightTextColor}"
+                         FontFamily="{StaticResource DefaultFont}"
+                         FontSize="{StaticResource Regular}"
+                         Text="{Binding MovieSearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="32"
+                         TextAlignment="Left"
+                         Width="200"
+                         HorizontalAlignment="Stretch"
+                         VerticalContentAlignment="Center"
+                         Padding="5,0,5,0">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Border x:Name="border"
+                                                BorderBrush="{StaticResource LightAccentColor}"
+                                                BorderThickness="0,0,0,1">
+                                            <Grid>
+                                                <ScrollViewer x:Name="PART_ContentHost"
+                                                          Focusable="False"
+                                                          HorizontalScrollBarVisibility="Disabled"
+                                                          VerticalScrollBarVisibility="Disabled"/>
+                                                <TextBlock Text="{StaticResource MovieNameSearch}"
+                                                           x:Name="placeholderText"
+                                                           IsEnabled="False"
+                                                           Panel.ZIndex="-1"
+                                                           Foreground="{StaticResource DarkTextColor}"
+                                                           FontSize="{StaticResource Small}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           VerticalAlignment="Center"
+                                                           Visibility="Collapsed"
+                                                           Margin="5,0,0,0">
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsFocused" Value="True">
+                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button BorderThickness="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Grid.Row="2"
+                    Command="{Binding SearchByName}"
+                    Foreground="{StaticResource TextColor}"
+                    FontSize="{StaticResource Regular}"
+                    FontFamily="{StaticResource DefaultFont}"
+                    Cursor="Hand"
+                    Margin="5,0,0,0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Search"
+                                      Foreground="{StaticResource LightTextColor}"
+                                      Width="12"
+                                      Height="12"/>
+                        </StackPanel>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20"
+                                Height="20"
+                                CornerRadius="18"
+                                BorderBrush="{StaticResource LightTextColor}"
+                                BorderThickness="1"
+                                Background="Transparent">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button BorderThickness="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Grid.Row="2"
+                    Command="{Binding ClearNameSearch}"
+                    Foreground="{StaticResource TextColor}"
+                    FontSize="{StaticResource Regular}"
+                    FontFamily="{StaticResource DefaultFont}"
+                    Cursor="Hand"
+                    Margin="5,0,0,0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="X"
+                                      Foreground="{StaticResource LightTextColor}"
+                                      Width="12"
+                                      Height="12"/>
+                        </StackPanel>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20"
+                                Height="20"
+                                CornerRadius="18"
+                                BorderBrush="{StaticResource LightTextColor}"
+                                BorderThickness="1"
+                                Background="Transparent">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <!--Filters-->
+            <Button BorderThickness="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Grid.Row="2"
+                    Command="{Binding SwitchFilter}"
+                    Foreground="{StaticResource TextColor}"
+                    FontSize="{StaticResource Regular}"
+                    FontFamily="{StaticResource DefaultFont}"
+                    Cursor="Hand"
+                    Margin="0,0,15,0">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Filter"
+                                      Foreground="{StaticResource LightTextColor}"
+                                      Width="18"
+                                      Height="18"
+                                      Margin="0,0,10,0"/>
+                        <TextBlock Text="{StaticResource Filters}"
+                                   Foreground="{StaticResource LightTextColor}"
+                                   FontSize="{StaticResource Small}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="Auto"
+                                Height="30"
+                                CornerRadius="18"
+                                BorderBrush="{StaticResource LightTextColor}"
+                                BorderThickness="1"
+                                Padding="10,0,10,0"
+                                Background="Transparent">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Border Grid.Row="3"
+                    HorizontalAlignment="Right"
+                    Width="180"
+                    Height="Auto"
+                    Panel.ZIndex="2"
+                    Background="{StaticResource NavigationColor}"
+                    CornerRadius="10,0,0,10"
+                    Visibility="{Binding FilterVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="15"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Genres-->
+                        <TextBlock Text="{StaticResource Genres}"
+                                       Foreground="{StaticResource TextColor}"
+                                       FontSize="{StaticResource Regular}"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       TextAlignment="Center"/>
+                        <Button Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                Width="20"
+                                Command="{Binding CollapseGenreFilter}"
+                                Height="20"
+                                Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <fa:IconImage Icon="{Binding GenreFilterIcon}"
+                                          Foreground="{StaticResource TextColor}"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <StackPanel Visibility="{Binding GenreFilterVisibility}"
+                                    Grid.Row="1"
+                                    Grid.Column="1">
+                            <ListView ItemsSource="{Binding Genres}"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border>
+                                            <CheckBox Content="{Binding Name}"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Background="Transparent"
+                                                    IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.Template>
+                                    <ControlTemplate>
+                                        <ItemsPresenter/>
+                                    </ControlTemplate>
+                                </ListView.Template>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                        <!---->
+                    </Grid>
+                    <Button Grid.Row="2"
+                            HorizontalAlignment="Center"
+                            Width="60"
+                            Command="{Binding SearchByFilter}"
+                            Height="25"
+                            Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Width="Auto"
+                                    Height="25"
+                                    CornerRadius="12"
+                                    BorderBrush="{StaticResource LightTextColor}"
+                                    BorderThickness="1"
+                                    Padding="10,0,10,0"
+                                    Background="Transparent">
+                                    <TextBlock Text="Search"
+                                               FontSize="{StaticResource Small}"
+                                               FontFamily="{StaticResource DefaultFont}"
+                                               Foreground="{StaticResource TextColor}"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </Border>
+            <!--Main view search-->
             <StackPanel x:Name="ListBoxPanel"
+                        Grid.Row="3"
                     Width="Auto" Height="Auto">
                 <ListBox ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                              Background="Transparent" 
@@ -206,6 +520,6 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

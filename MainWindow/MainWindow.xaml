@@ -11,7 +11,7 @@
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="600" Width="850"
-        MinHeight="320" MinWidth="500"
+        MinHeight="240" MinWidth="620"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         WindowState="Normal"

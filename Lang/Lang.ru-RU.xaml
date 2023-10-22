@@ -57,4 +57,7 @@
     <sys:String x:Key="Language">Язык</sys:String>
     <!--Home Window-->
     <sys:String x:Key="Reviews">обзоров</sys:String>
+    <sys:String x:Key="Filters">Фильтры</sys:String>
+    <sys:String x:Key="Genres">Жанры</sys:String>
+    <sys:String x:Key="MovieNameSearch">Название фильма...</sys:String>
 </ResourceDictionary>
