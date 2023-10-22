@@ -1,5 +1,6 @@
 ﻿using FilmFlow.Models;
 using FilmFlow.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;

@@ -31,7 +31,8 @@ namespace FilmFlow.Models
                         Cover = movie.Cover.Url,
                         Desription = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.DescriptionRu : movie.DescriptionEn,
                         Price = movie.Price,
-                        Genres = new ObservableCollection<GenreModel>(genres)
+                        Genres = new ObservableCollection<GenreModel>(genres),
+                        Rating = movie.Rating
                     });
                 }
             }
