@@ -56,4 +56,6 @@
     <sys:String x:Key="ApllyingAfterReboot">Settings will be applied after restart.</sys:String>
     <sys:String x:Key="RestartNow">Restart now?</sys:String>
     <sys:String x:Key="Language">Language</sys:String>
+    <!--Home Window-->
+    <sys:String x:Key="Reviews">reviews</sys:String>
 </ResourceDictionary> 

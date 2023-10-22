@@ -26,13 +26,11 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Methods
         public HomeViewModel()
         {
-            Movies = new ObservableCollection<MovieModel>();
-
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
 
             MovieRepository = new MovieRepository();
 
-            MovieRepository.LoadMovies(Movies);
+            Movies = MovieRepository.LoadMovies();
         }
         private void MovieListSelectedCommand(object obj)
         {

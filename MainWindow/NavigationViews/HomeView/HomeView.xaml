@@ -19,54 +19,63 @@
             <local:RatingConverter x:Key="RatingToBar"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer   HorizontalScrollBarVisibility="Auto" 
-                    VerticalScrollBarVisibility="Auto"
-                    Focusable="False"
-                    Grid.Column="1">
-        <StackPanel x:Name="ListBoxPanel"
+    <Grid Width="Auto" Height="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--Main view search-->
+        <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
+                        VerticalScrollBarVisibility="Auto"
+                        Grid.Row="3"
+                        Focusable="False">
+            <StackPanel x:Name="ListBoxPanel"
                     Width="Auto" Height="Auto">
-            <ListBox ItemsSource="{Binding Movies}" 
+                <ListBox ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                              Background="Transparent" 
                              BorderThickness="0"
                              SelectionMode="Single"
                              SelectedIndex="{Binding SelectedMovie}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction CommandParameter="{Binding SelectedMovie}" Command="{Binding MovieListSelected}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <ListBox.Resources>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <ContentPresenter/>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListBox.Resources>
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True"
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction CommandParameter="{Binding SelectedMovie}" Command="{Binding MovieListSelected}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True"
                                            MaxWidth="{Binding ActualWidth, ElementName=ListBoxPanel}"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.Template>
-                    <ControlTemplate>
-                        <ItemsPresenter/>
-                    </ControlTemplate>
-                </ListBox.Template>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
-                            <Grid.ToolTip>
-                                <Border Background="{StaticResource ToolTipBackground}"
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter/>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
+                                <Grid.ToolTip>
+                                    <Border Background="{StaticResource ToolTipBackground}"
                                         CornerRadius="10"
                                         Padding="0,10,0,5">
-                                    <StackPanel Orientation="Vertical"
+                                        <StackPanel Orientation="Vertical"
                                                 MaxWidth="300">
-                                        <TextBlock Text="{Binding Name}"
+                                            <TextBlock Text="{Binding Name}"
                                                    Foreground="{StaticResource TextColor}"
                                                    FontSize="{StaticResource Regular}"
                                                    FontFamily="{StaticResource DefaultFont}"
@@ -74,12 +83,12 @@
                                                    HorizontalAlignment="Left"
                                                    MaxWidth="250"
                                                    TextTrimming="CharacterEllipsis"/>
-                                        <StackPanel Orientation="Horizontal" Width="300" Margin="5">
-                                            <Image Source="{Binding Cover}"
+                                            <StackPanel Orientation="Horizontal" Width="300" Margin="5">
+                                                <Image Source="{Binding Cover}"
                                                     Stretch="Uniform"
                                                     Width="150"
                                                     Height="200"/>
-                                            <TextBlock FontFamily="{StaticResource DefaultFont}" 
+                                                <TextBlock FontFamily="{StaticResource DefaultFont}" 
                                                        TextTrimming="CharacterEllipsis" 
                                                        MaxHeight="200" 
                                                        Text="{Binding Desription}" 
@@ -88,25 +97,27 @@
                                                        Foreground="{StaticResource TextColor}"
                                                        MaxWidth="130"
                                                        Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <Grid Margin="15,2,0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="15"/>
-                                                <ColumnDefinition Width="50"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid Grid.Column="0">
-                                                <ProgressBar Value="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
-                                                <StackPanel HorizontalAlignment="Left"
+                                            </StackPanel>
+                                            <Grid Margin="15,2,0,5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="15"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <ProgressBar Value="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
+                                                    <StackPanel HorizontalAlignment="Left"
                                                             Orientation="Horizontal">
-                                                    <customControl:StarShape/>
-                                                    <customControl:StarShape/>
-                                                    <customControl:StarShape/>
-                                                    <customControl:StarShape/>
-                                                    <customControl:StarShape/>
-                                                </StackPanel>
-                                            </Grid>
-                                            <TextBlock Text="{Binding Rating, StringFormat=F1}"
+                                                        <customControl:StarShape/>
+                                                        <customControl:StarShape/>
+                                                        <customControl:StarShape/>
+                                                        <customControl:StarShape/>
+                                                        <customControl:StarShape/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="{Binding Rating, StringFormat=F1}"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Left"
                                                        TextAlignment="Left"
@@ -115,68 +126,86 @@
                                                        FontSize="{StaticResource Regular}"
                                                        FontFamily="{StaticResource DefaultFont}"
                                                        Foreground="{StaticResource TextColor}"/>
-                                        </Grid>
-                                        <ListView ItemsSource="{Binding Path=Genres}"
+                                                <StackPanel Grid.Column="4"
+                                                        VerticalAlignment="Bottom"
+                                                        Margin="0,0,0,4"
+                                                        HorizontalAlignment="Left"
+                                                        Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding ReviewCount}"
+                                                           FontSize="{StaticResource Small}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           FontWeight="ExtraLight"
+                                                           Foreground="{StaticResource LightTextColor}"/>
+                                                    <TextBlock Text="{StaticResource Reviews}"
+                                                           FontSize="{StaticResource Small}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           FontWeight="ExtraLight"
+                                                           Margin="5,0,0,0"
+                                                           Foreground="{StaticResource LightTextColor}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <ListView ItemsSource="{Binding Path=Genres}"
                                                   Margin="5">
-                                            <ListView.Template>
-                                                <ControlTemplate>
-                                                    <ItemsPresenter/>
-                                                </ControlTemplate>
-                                            </ListView.Template>
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border CornerRadius="10"
+                                                <ListView.Template>
+                                                    <ControlTemplate>
+                                                        <ItemsPresenter/>
+                                                    </ControlTemplate>
+                                                </ListView.Template>
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border CornerRadius="10"
                                                             Background="{StaticResource LightAccentColor}">
-                                                        <TextBlock Text="{Binding Name}"
+                                                            <TextBlock Text="{Binding Name}"
                                                                    FontSize="{StaticResource Small}"
                                                                    FontFamily="{StaticResource DefaultFont}"
                                                                    Foreground="{StaticResource TextColor}"
                                                                    TextWrapping="Wrap"
                                                                    Padding="6,3,6,3"/>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                            <ListView.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel IsItemsHost="True" 
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel IsItemsHost="True" 
                                                                Orientation="Horizontal"
                                                                MaxWidth="300"/>
-                                                </ItemsPanelTemplate>
-                                            </ListView.ItemsPanel>
-                                        </ListView>
-                                    </StackPanel>
-                                </Border>
-                            </Grid.ToolTip>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="240"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            
-                            <Image Source="{Binding Cover}" 
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                            </ListView>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid.ToolTip>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="240"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Image Source="{Binding Cover}" 
                                            Stretch="Uniform" 
                                            Grid.Row="0"
                                            Visibility="Hidden"/>
-                            <Border CornerRadius="10" 
+                                <Border CornerRadius="10" 
                                             Grid.Row="0" 
                                             Width="Auto">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding Cover}" 
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding Cover}" 
                                                 Stretch="Uniform"/>
-                                </Border.Background>
-                            </Border>
-                            
-                            <TextBlock FontSize="{StaticResource Regular}"
+                                    </Border.Background>
+                                </Border>
+
+                                <TextBlock FontSize="{StaticResource Regular}"
                                                Foreground="{StaticResource TextColor}"
                                                Grid.Row="1"
                                                Margin="5,5,0,30"
                                                TextWrapping="Wrap"
                                                MaxWidth="180">
                                         <Run Text="{Binding Name}"/>
-                            </TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
-    </ScrollViewer>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

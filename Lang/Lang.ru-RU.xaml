@@ -55,4 +55,6 @@
     <sys:String x:Key="ApllyingAfterReboot">Настройки будут применены после перезагрузки.</sys:String>
     <sys:String x:Key="RestartNow">Перезагрузить сейчас?</sys:String>
     <sys:String x:Key="Language">Язык</sys:String>
+    <!--Home Window-->
+    <sys:String x:Key="Reviews">обзоров</sys:String>
 </ResourceDictionary>

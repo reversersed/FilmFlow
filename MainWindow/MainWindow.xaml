@@ -175,7 +175,7 @@
                             HorizontalAlignment="Left"
                             Margin="0,0,0,0"/>
                         <TextBlock Text="{DynamicResource Slogan}"
-                            Foreground="DarkGray"
+                            Foreground="{StaticResource DarkTextColor}"
                             FontSize="{StaticResource Small}"
                             FontWeight="Light"
                             FontFamily="{StaticResource DefaultFont}"

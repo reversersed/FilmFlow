@@ -274,7 +274,7 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,10,0,0">
                         <TextBlock Text="{DynamicResource ForgotPassword}"
-                                   Foreground="DarkGray"
+                                   Foreground="{StaticResource DarkTextColor}"
                                    FontSize="{StaticResource Small}"
                                    FontWeight="Normal"
                                    FontFamily="{StaticResource DefaultFont}"
@@ -283,7 +283,7 @@
                                    TextAlignment="Center"
                                    Margin="0,0,0,0"/>
                         <TextBlock Text="{DynamicResource ForgotClickable}"
-                                   Foreground="LightGray"
+                                   Foreground="{StaticResource LightTextColor}"
                                    FontSize="{StaticResource Small}"
                                    FontWeight="Normal"
                                    FontFamily="{StaticResource DefaultFont}"
@@ -302,7 +302,7 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,10,0,0">
                         <TextBlock Text="{DynamicResource AskNewHere}"
-                                   Foreground="DarkGray"
+                                   Foreground="{StaticResource DarkTextColor}"
                                    FontSize="{StaticResource Small}"
                                    FontWeight="Normal"
                                    FontFamily="{StaticResource DefaultFont}"
@@ -311,7 +311,7 @@
                                    TextAlignment="Center"
                                    Margin="0,0,0,0"/>
                         <TextBlock Text="{DynamicResource Registrate}"
-                                   Foreground="LightGray"
+                                   Foreground="{StaticResource LightTextColor}"
                                    FontSize="{StaticResource Small}"
                                    FontWeight="Normal"
                                    FontFamily="{StaticResource DefaultFont}"

@@ -17,6 +17,7 @@ namespace FilmFlow.Models
         public string? Desription { get; set; }
         public int Price { get; set; }
         public float Rating { get; set; }
+        public int ReviewCount { get; set; }
         public ObservableCollection<GenreModel> Genres { get; set; }
     }
 }

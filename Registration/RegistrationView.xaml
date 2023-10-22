@@ -340,7 +340,7 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,30,0,0">
                             <TextBlock Text="{DynamicResource RegMistake}"
-                                   Foreground="DarkGray"
+                                   Foreground="{StaticResource DarkTextColor}"
                                    FontSize="{StaticResource Small}"
                                    FontWeight="Normal"
                                    FontFamily="{StaticResource DefaultFont}"
@@ -349,7 +349,7 @@
                                    TextAlignment="Center"
                                    Margin="0,0,0,0"/>
                             <TextBlock Text="{DynamicResource RegReturn}"
-                                   Foreground="LightGray"
+                                   Foreground="{StaticResource LightTextColor}"
                                    FontSize="{StaticResource Small}"
                                    FontWeight="Normal"
                                    FontFamily="{StaticResource DefaultFont}"

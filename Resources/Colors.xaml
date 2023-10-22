@@ -6,6 +6,8 @@
     <Color x:Key="BorderColor2">#911010</Color>
     <Color x:Key="BorderColor3">#651866</Color>
     <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="LightTextColor">LightGray</SolidColorBrush>
+    <SolidColorBrush x:Key="DarkTextColor">DarkGray</SolidColorBrush>
     <SolidColorBrush x:Key="ScrollColor">#350087</SolidColorBrush>
 
     <SolidColorBrush x:Key="DarkAccentColor">#350087</SolidColorBrush>

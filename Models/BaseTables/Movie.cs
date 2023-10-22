@@ -34,7 +34,7 @@ namespace FilmFlow.Models.BaseTables
         public MovieUrl Url { get; set; }
         //Genres foreign key
         public ICollection<MovieGenre> Genre { get; set; } = new List<MovieGenre>();
-        [Column("Rating")]
+        [Column("rating")]
         public float Rating { get; set; }
     }
 }

@@ -28,6 +28,7 @@ namespace FilmFlow.Models
         public DbSet<Session> sessions { get; set; }
         public DbSet<MovieGenre> genres { get; set; }
         public DbSet<GenreCollection> genrecollection { get; set; }
+        public DbSet<Review> reviews { get; set; }
         public RepositoryBase()
         {
             Database.EnsureCreated();
