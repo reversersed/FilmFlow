@@ -3,7 +3,6 @@
 using Microsoft.EntityFrameworkCore;
 using FilmFlow.Models.BaseTables;
 
-
 namespace FilmFlow.Models
 {
     public sealed class RepositoryBase : DbContext
