@@ -22,7 +22,6 @@ namespace FilmFlow.MainWindow
         private bool _logoutConfirmVisibility { get; set; } = false;
 
         //Child Views
-        private ViewModelBase homeView;
         private ViewModelBase settingsView;
 
         //Public properties
@@ -51,13 +50,12 @@ namespace FilmFlow.MainWindow
             UserRepository = new UserRepository();
             User = UserRepository.LoadUserData(Thread.CurrentPrincipal.Identity.Name);
 
-            homeView = new HomeViewModel();
             settingsView = new SettingsViewModel();
-            ChildContentView = homeView;
+            ChildContentView = new HomeViewModel();
         }
 
         //Views changing
-        private void ShowHomeSectionCommand(object obj) => ChildContentView = homeView;
+        private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel();
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
 
         //

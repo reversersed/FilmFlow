@@ -59,7 +59,7 @@
                 </ListBox.Template>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,0,15,0" ToolTipService.BetweenShowDelay="1">
+                        <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
                             <Grid.ToolTip>
                                 <Border Background="{StaticResource ToolTipBackground}"
                                         CornerRadius="10"
@@ -151,9 +151,10 @@
                                 <RowDefinition Height="240"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
+                            
                             <Image Source="{Binding Cover}" 
                                            Stretch="Uniform" 
-                                           Grid.Row="0" 
+                                           Grid.Row="0"
                                            Visibility="Hidden"/>
                             <Border CornerRadius="10" 
                                             Grid.Row="0" 
@@ -163,6 +164,7 @@
                                                 Stretch="Uniform"/>
                                 </Border.Background>
                             </Border>
+                            
                             <TextBlock FontSize="{StaticResource Regular}"
                                                Foreground="{StaticResource TextColor}"
                                                Grid.Row="1"
