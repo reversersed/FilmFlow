@@ -1,9 +1,12 @@
 ﻿using FilmFlow.Models;
 using FilmFlow.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace FilmFlow.MainWindow.NavigationViews.HomeView
@@ -13,11 +16,12 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Private properties
         private ObservableCollection<MovieModel> _movies;
         private ObservableCollection<GenreModel> _genres;
+        private List<int> _filteredGenres = new List<int>();
         private string _movieSearchName;
         private string _genreFilterIcon = "CircleArrowDown";
         private int _selectedMovie = -1;
         private Visibility _filterVisibility = Visibility.Collapsed;
-        private Visibility _genreFilterVisibility = Visibility.Collapsed;
+        private Visibility _genreFilterVisibility = Visibility.Visible;
 
         //Public Properties
         public ObservableCollection<MovieModel> Movies { get { return _movies; } set { _movies = value; OnPropertyChanged(nameof(Movies)); } }
@@ -35,7 +39,8 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public ICommand MovieListSelected { get; }
         public ICommand SwitchFilter { get; }
         public ICommand CollapseGenreFilter { get; }
-        public ICommand GenreFilterChanged { get; }
+        public ICommand GenreFilterChecked { get; }
+        public ICommand GenreFilterUnchecked { get; }
         public ICommand SearchByName { get; }
         public ICommand SearchByFilter { get; }
         public ICommand ClearNameSearch { get; }
@@ -46,7 +51,8 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
             CollapseGenreFilter = new ViewModelCommand(CollapseGenreFilterCommand);
             SwitchFilter = new ViewModelCommand(SwitchFilterCommand);
-            GenreFilterChanged = new ViewModelCommand(GenreFilterChangedCommand);
+            GenreFilterChecked = new ViewModelCommand(GenreFilterCheckedCommand);
+            GenreFilterUnchecked = new ViewModelCommand(GenreFilterUncheckedCommand);
             SearchByName = new ViewModelCommand(SearchByNameCommand);
             SearchByFilter = new ViewModelCommand(SearchByFilterCommand);
             ClearNameSearch = new ViewModelCommand(ClearNameSearchCommand);
@@ -59,7 +65,10 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
 
         private void SearchByFilterCommand(object obj)
         {
-            
+            if(!_filteredGenres.Any())
+                Movies = MovieRepository.LoadMovies();
+            else
+                Movies = MovieRepository.LoadFilteredMovies(_filteredGenres);
         }
 
         private void ClearNameSearchCommand(object obj) { MovieSearchName = string.Empty; FilterMovieSearch(); }
@@ -68,16 +77,12 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             if (MovieSearchName == null || MovieSearchName.Length < 1)
                 Movies = MovieRepository.LoadMovies();
             else
-            {
                 Movies = MovieRepository.LoadFilteredMovies(MovieSearchName);
-            }
         }
         private void SearchByNameCommand(object obj) => FilterMovieSearch();
 
-        private void GenreFilterChangedCommand(object obj)
-        {
-            
-        }
+        private void GenreFilterCheckedCommand(object obj) => _filteredGenres.Add((int)obj);
+        private void GenreFilterUncheckedCommand(object obj) => _filteredGenres.Remove((int)obj);
 
         private void CollapseGenreFilterCommand(object obj)
         {

@@ -10,7 +10,7 @@
         xmlns:settingsView="clr-namespace:FilmFlow.MainWindow.NavigationViews.SettingsView"
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
-        Title="FilmFlow" Height="600" Width="850"
+        Title="FilmFlow" Height="700" Width="1050"
         MinHeight="240" MinWidth="620"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
