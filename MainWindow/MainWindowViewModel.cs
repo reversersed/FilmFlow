@@ -4,13 +4,7 @@ using FilmFlow.Models;
 using FilmFlow.Models.BaseTables;
 using FilmFlow.ViewModels;
 using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace FilmFlow.MainWindow

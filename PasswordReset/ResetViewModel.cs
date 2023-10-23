@@ -2,14 +2,10 @@
 using FilmFlow.Models.BaseTables;
 using FilmFlow.ViewModels;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FilmFlow.PasswordReset
 {

@@ -4,7 +4,6 @@ using FilmFlow.MainWindow;
 using System;
 using System.Globalization;
 using System.Windows;
-using System.Security.Cryptography;
 using FilmFlow.PasswordReset;
 
 namespace FilmFlow

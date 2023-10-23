@@ -1,11 +1,8 @@
 ﻿using FilmFlow.Models.BaseTables;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace FilmFlow.Models
 {

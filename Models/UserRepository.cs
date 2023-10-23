@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
 using System;
 using FilmFlow.Models.BaseTables;

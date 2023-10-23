@@ -1,12 +1,10 @@
 ﻿using FilmFlow.Models;
 using FilmFlow.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace FilmFlow.MainWindow.NavigationViews.HomeView
@@ -18,7 +16,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         private ObservableCollection<GenreModel> _genres;
         private List<int> _filteredGenres = new List<int>();
         private string _movieSearchName;
-        private string _genreFilterIcon = "CircleArrowDown";
+        private string _genreFilterIcon = "CircleArrowUp";
         private int _selectedMovie = -1;
         private Visibility _filterVisibility = Visibility.Collapsed;
         private Visibility _genreFilterVisibility = Visibility.Visible;

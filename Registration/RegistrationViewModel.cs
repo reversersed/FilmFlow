@@ -1,8 +1,6 @@
 ﻿using FilmFlow.Models;
 using FilmFlow.ViewModels;
 using System;
-using System.Net.Mail;
-using System.Net;
 using System.Windows;
 using System.Windows.Input;
 using System.Text.RegularExpressions;

@@ -1,17 +1,9 @@
 ﻿using FilmFlow.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Security.Principal;
 using System.Windows;
 using FilmFlow.ViewModels;
-using System.Globalization;
-using System.Xml.Linq;
-using System.Xml;
 using System.Text.RegularExpressions;
 using FilmFlow.Models.BaseTables;
 
