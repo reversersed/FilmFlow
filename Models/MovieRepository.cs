@@ -127,7 +127,31 @@ namespace FilmFlow.Models
             }
             return Movies;
         }
-
+        public ObservableCollection<MovieModel> LoadNewMovies()
+        {
+            ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
+            using (RepositoryBase db = new RepositoryBase())
+            {
+                foreach (Movie movie in db.movies
+                                            .Include(e => e.Cover)
+                                            .Include(e => e.Genre)
+                                                .ThenInclude(i => i.Genre)
+                                            .OrderByDescending(i => i.Year)
+                                                .ThenByDescending(i => i.Id)
+                                            .ToList())
+                {
+                    var genres = new ObservableCollection<GenreModel>();
+                    foreach (var genre in movie.Genre)
+                        genres.Add(new GenreModel
+                        {
+                            Id = genre.Genre.Id,
+                            Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? genre.Genre.NameRu : genre.Genre.NameEn
+                        });
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), genres));
+                }
+            }
+            return Movies;
+        }
         public ObservableCollection<MovieModel> LoadMoviesByGenre(GenreModel genreSearch)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();

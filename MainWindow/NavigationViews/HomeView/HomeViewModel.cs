@@ -14,12 +14,14 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Private properties
         private ObservableCollection<MovieModel> _movies;
         private ObservableCollection<MovieModel> _popularMovies;
+        private ObservableCollection<MovieModel> _newMovies;
         private ObservableCollection<GenreModel> _genres;
         private List<int> _filteredGenres = new List<int>();
         private string _movieSearchName;
         private string _genreFilterIcon = "CircleArrowUp";
         private int _selectedMovie = -1;
         private int _popularSelectedMovie = -1;
+        private int _newSelectedMovie = -1;
         private Visibility _filterVisibility = Visibility.Collapsed;
         private Visibility _genreFilterVisibility = Visibility.Visible;
         private GenreModel _popularGenreToday;
@@ -27,9 +29,11 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Public Properties
         public ObservableCollection<MovieModel> Movies { get { return _movies; } set { _movies = value; OnPropertyChanged(nameof(Movies)); } }
         public ObservableCollection<MovieModel> PopularMovies { get { return _popularMovies; } set { _popularMovies = value; OnPropertyChanged(nameof(PopularMovies)); } }
+        public ObservableCollection<MovieModel> NewMovies { get { return _newMovies; } set { _newMovies = value; OnPropertyChanged(nameof(NewMovies)); } }
         public ObservableCollection<GenreModel> Genres { get { return _genres; } set { _genres = value; OnPropertyChanged(nameof(Genres)); } }
         public int SelectedMovie { get { return _selectedMovie; } set { _selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); } }
         public int PopularSelectedMovie { get { return _popularSelectedMovie; } set { _popularSelectedMovie = value; OnPropertyChanged(nameof(PopularSelectedMovie)); } }
+        public int NewSelectedMovie { get { return _newSelectedMovie; } set { _newSelectedMovie = value; OnPropertyChanged(nameof(NewSelectedMovie)); } }
         public string MovieSearchName { get { return _movieSearchName; } set { _movieSearchName = value; OnPropertyChanged(nameof(MovieSearchName)); } }
         public string GenreFilterIcon { get { return _genreFilterIcon; } set { _genreFilterIcon = value; OnPropertyChanged(nameof(GenreFilterIcon)); } }
         public Visibility FilterVisibility { get { return _filterVisibility; } set { _filterVisibility = value; OnPropertyChanged(nameof(FilterVisibility)); } }
@@ -42,6 +46,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Commands
         public ICommand MovieListSelected { get; }
         public ICommand PopularMovieListSelected { get; }
+        public ICommand NewMovieListSelected { get; }
         public ICommand SwitchFilter { get; }
         public ICommand CollapseGenreFilter { get; }
         public ICommand GenreFilterChecked { get; }
@@ -55,6 +60,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         {
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
             PopularMovieListSelected = new ViewModelCommand(PopularMovieListSelectedCommand);
+            NewMovieListSelected = new ViewModelCommand(NewMovieListSelectedCommand);
             CollapseGenreFilter = new ViewModelCommand(CollapseGenreFilterCommand);
             SwitchFilter = new ViewModelCommand(SwitchFilterCommand);
             GenreFilterChecked = new ViewModelCommand(GenreFilterCheckedCommand);
@@ -69,6 +75,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             Genres = MovieRepository.LoadGenreCollection();
             PopularGenreToday = MovieRepository.GetPopularGenre();
             PopularMovies = MovieRepository.LoadMoviesByGenre(PopularGenreToday);
+            NewMovies = MovieRepository.LoadNewMovies();
         }
 
         private void SearchByFilterCommand(object obj)
@@ -110,6 +117,12 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             if ((int)obj < 0)
                 return;
             Debug.WriteLine(PopularMovies[(int)obj].Name);
+        }
+        private void NewMovieListSelectedCommand(object obj)
+        {
+            if ((int)obj < 0)
+                return;
+            Debug.WriteLine(NewMovies[(int)obj].Name);
         }
     }
 }

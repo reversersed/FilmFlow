@@ -61,4 +61,5 @@
     <sys:String x:Key="Genres">Жанры</sys:String>
     <sys:String x:Key="MovieNameSearch">Название фильма...</sys:String>
     <sys:String x:Key="PopularToday">Популярный жанр -</sys:String>
+    <sys:String x:Key="NewMovies">Новые фильмы</sys:String>
 </ResourceDictionary>
