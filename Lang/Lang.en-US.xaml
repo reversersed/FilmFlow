@@ -61,5 +61,5 @@
     <sys:String x:Key="Filters">Filters</sys:String>
     <sys:String x:Key="Genres">Genres</sys:String>
     <sys:String x:Key="MovieNameSearch">Movie name...</sys:String>
-    <sys:String x:Key="PopularToday">Popular today -</sys:String>
+    <sys:String x:Key="PopularToday">Popular genre -</sys:String>
 </ResourceDictionary> 
