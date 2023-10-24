@@ -5,6 +5,10 @@
     <Color x:Key="BorderColor1">#540000</Color>
     <Color x:Key="BorderColor2">#911010</Color>
     <Color x:Key="BorderColor3">#651866</Color>
+    <Color x:Key="DarkAccentColorKey">#350087</Color>
+    <Color x:Key="AccentColorKey">#4b00bd</Color>
+    <Color x:Key="LightAccentColorKey">#6915e8</Color>
+    
     <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="LightTextColor">LightGray</SolidColorBrush>
     <SolidColorBrush x:Key="DarkTextColor">DarkGray</SolidColorBrush>
