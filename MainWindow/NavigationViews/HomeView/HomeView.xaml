@@ -13,8 +13,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
                 <ResourceDictionary Source="/CustomControls/ToolTip.xaml"/>
+                <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
                 <ResourceDictionary Source="/CustomControls/ReviewsBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:RatingConverter x:Key="RatingToBar"/>
@@ -23,15 +23,17 @@
     <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
                     VerticalScrollBarVisibility="Auto"
                     Panel.ZIndex="1"
+                    Background="Transparent"
+                    PreviewMouseWheel="ScrollViewer_MouseWheel"
                     Focusable="False">
         <Grid Width="Auto" Height="Auto" Focusable="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition/>
+                <RowDefinition MinHeight="200"/>
             </Grid.RowDefinitions>
             <!--Popular today-->
             <Border Grid.Row="0" CornerRadius="15,15,0,0">
@@ -67,7 +69,6 @@
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                               Focusable="False"
                               Padding="0,0,0,15"
-                              PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
                               VerticalScrollBarVisibility="Disabled">
                     <ListBox ItemsSource="{Binding PopularMovies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Background="Transparent" 
@@ -245,7 +246,7 @@
                 </ScrollViewer>
             </StackPanel>
             <!--New movies-->
-            <Border Grid.Row="2" CornerRadius="15,15,0,0">
+            <Border Grid.Row="2" CornerRadius="15,15,0,0" Margin="0,5,0,0">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="{StaticResource LightAccentColorKey}" Offset=".2"/>
@@ -268,7 +269,6 @@
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                               Focusable="False"
                               Padding="0,0,0,15"
-                              PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
                               VerticalScrollBarVisibility="Disabled">
                     <ListBox ItemsSource="{Binding NewMovies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Background="Transparent" 

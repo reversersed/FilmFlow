@@ -12,13 +12,9 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             InitializeComponent();
         }
 
-        private void ScrollViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        private void ScrollViewer_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            ScrollViewer viewer = (ScrollViewer)sender;
-            if (e.Delta > 0)
-                viewer.LineLeft();
-            else
-                viewer.LineRight();
+            ((ScrollViewer)sender).ScrollToVerticalOffset(((ScrollViewer)sender).VerticalOffset - e.Delta*0.5);
             e.Handled = true;
         }
     }

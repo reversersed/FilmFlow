@@ -60,8 +60,7 @@
                             <Grid x:Name="Bg" SnapsToDevicePixels="true">
                                 <Track x:Name="PART_Track"
                                     IsEnabled="{TemplateBinding IsMouseOver}"
-                                    Height="6"
-                                       >
+                                    Height="6">
                                     <Track.DecreaseRepeatButton>
                                         <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageLeftCommand}"/>
                                     </Track.DecreaseRepeatButton>
@@ -113,7 +112,7 @@
                                    Maximum="{TemplateBinding ScrollableWidth}"
                                    Minimum="0" 
                                    Orientation="Horizontal"
-                                   Grid.Row="1" 
+                                   Grid.Row="1"
                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
                                    Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
                                    ViewportSize="{TemplateBinding ViewportWidth}"/>

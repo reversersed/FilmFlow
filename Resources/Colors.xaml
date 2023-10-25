@@ -39,6 +39,7 @@
     <SolidColorBrush x:Key="navColorHome">#3c1180</SolidColorBrush>
     <SolidColorBrush x:Key="navColorFavourites">#bc00f5</SolidColorBrush>
     <SolidColorBrush x:Key="navColorSettings">#1d0540</SolidColorBrush>
+    <SolidColorBrush x:Key="navColorAdmin">#0a1f40</SolidColorBrush>
 
     
 </ResourceDictionary> 

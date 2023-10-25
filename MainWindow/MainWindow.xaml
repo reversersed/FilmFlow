@@ -8,6 +8,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:homeView="clr-namespace:FilmFlow.MainWindow.NavigationViews.HomeView"
         xmlns:settingsView="clr-namespace:FilmFlow.MainWindow.NavigationViews.SettingsView"
+        xmlns:moderationView="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView"
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="700" Width="1050"
@@ -28,6 +29,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type settingsView:SettingsViewModel}">
                 <settingsView:SettingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type moderationView:ModerationViewModel}">
+                <moderationView:ModerationView/>
             </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
@@ -195,8 +199,6 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <RadioButton Style="{StaticResource navButton}"
                                      Tag="{StaticResource navColorHome}"
@@ -223,6 +225,16 @@
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="Screwdriver"/>
                                 <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuSettings}"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource navButton}"
+                                     Tag="{StaticResource navColorAdmin}"
+                                     Grid.Row="3"
+                                     Visibility="{Binding UserAccessVisibility}"
+                                     Command="{Binding ShowAdminSection}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="Edit"/>
+                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuAdmin}"/>
                             </StackPanel>
                         </RadioButton>
                     </Grid>

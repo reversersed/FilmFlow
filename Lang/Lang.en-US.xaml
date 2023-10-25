@@ -49,6 +49,7 @@
     <sys:String x:Key="navMenuHome">Home</sys:String>
     <sys:String x:Key="navMenuFavourites">Favourites</sys:String>
     <sys:String x:Key="navMenuSettings">Settings</sys:String>
+    <sys:String x:Key="navMenuAdmin">Moderation</sys:String>
     <sys:String x:Key="LogoutTitle">Logout</sys:String>
     <sys:String x:Key="LogoutConfirmation">Are you sure you want to log out?</sys:String>
     <!--Settings Window-->
