@@ -20,7 +20,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView
         private List<int> _selectedGenres = new List<int>();
         private Movie _addMovieModel = new Movie();
         private string _coverUrl;
-        private string _movieUrl;
+        private string _movieUrl = String.Empty;
         private string _error;
 
         //Public properties
