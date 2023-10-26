@@ -15,7 +15,7 @@ namespace FilmFlow.Models
 
         public GenreModel GetPopularGenre()
         {
-            using(RepositoryBase db = new RepositoryBase())
+            using(var db = new RepositoryBase())
             {
                 MovieGenre movieGenre = db.genres.Include(e => e.Genre).FirstOrDefault();
                 return new GenreModel()
@@ -29,7 +29,7 @@ namespace FilmFlow.Models
         public ObservableCollection<MovieModel> LoadFilteredMovies(string name)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
-            using (RepositoryBase db = new RepositoryBase())
+            using (var db = new RepositoryBase())
             {
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Cover)
@@ -57,7 +57,7 @@ namespace FilmFlow.Models
         public ObservableCollection<MovieModel> LoadFilteredMovies(List<int> genreIds)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
-            using (RepositoryBase db = new RepositoryBase())
+            using (var db = new RepositoryBase())
             {
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Cover)
@@ -90,7 +90,7 @@ namespace FilmFlow.Models
         public ObservableCollection<GenreModel> LoadGenreCollection()
         {
             ObservableCollection<GenreModel> Genres = new ObservableCollection<GenreModel>();
-            using(RepositoryBase db = new RepositoryBase())
+            using(var db = new RepositoryBase())
             {
                 foreach(var genre in db.genrecollection)
                 {
@@ -106,7 +106,7 @@ namespace FilmFlow.Models
         public ObservableCollection<MovieModel> LoadMovies()
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
-            using (RepositoryBase db = new RepositoryBase())
+            using (var db = new RepositoryBase())
             {
                 foreach(Movie movie in db.movies
                                             .Include(e => e.Cover)
@@ -130,7 +130,7 @@ namespace FilmFlow.Models
         public ObservableCollection<MovieModel> LoadNewMovies()
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
-            using (RepositoryBase db = new RepositoryBase())
+            using (var db = new RepositoryBase())
             {
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Cover)
@@ -155,7 +155,7 @@ namespace FilmFlow.Models
         public ObservableCollection<MovieModel> LoadMoviesByGenre(GenreModel genreSearch)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
-            using (RepositoryBase db = new RepositoryBase())
+            using (var db = new RepositoryBase())
             {
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Cover)
@@ -178,6 +178,17 @@ namespace FilmFlow.Models
                 }
             }
             return Movies;
+        }
+
+        public void AddMovie(Movie movie, string coverUrl, string movieUrl)
+        {
+            using(var db = new RepositoryBase())
+            {
+                movie.Cover = db.covers.Add(new Cover() { Url = coverUrl }).Entity;
+                movie.Url = db.movieurls.Add(new MovieUrl() { Url = movieUrl }).Entity;
+                db.movies.Add(movie);
+                db.SaveChanges();
+            }
         }
     }
 }

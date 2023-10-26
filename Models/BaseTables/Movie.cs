@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,8 +19,6 @@ namespace FilmFlow.Models.BaseTables
         public string? DescriptionRu { get; set; }
         [Column("description.en-US")]
         public string? DescriptionEn { get; set; }
-        [Column("price")]
-        public int Price { get; set; }
         [Column("year")]
         public int Year { get; set; }
         //Cover foreign key

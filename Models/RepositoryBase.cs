@@ -21,7 +21,7 @@ namespace FilmFlow.Models
             FilmFlow.Properties.Settings.Default.hostedDbBase);
 #endif
         public DbSet<Cover> covers { get; set; }
-        public DbSet<MovieUrl> movieurl { get; set; }
+        public DbSet<MovieUrl> movieurls { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Movie> movies { get; set; }
         public DbSet<Session> sessions { get; set; }

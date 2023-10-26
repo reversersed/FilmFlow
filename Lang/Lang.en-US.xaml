@@ -64,4 +64,23 @@
     <sys:String x:Key="MovieNameSearch">Movie name...</sys:String>
     <sys:String x:Key="PopularToday">Popular genre -</sys:String>
     <sys:String x:Key="NewMovies">New movies</sys:String>
+    <!--Moderation window-->
+    <sys:String x:Key="AddMovie">Add movie</sys:String>
+    <sys:String x:Key="EditMovie">Edit movie</sys:String>
+    <sys:String x:Key="MovieNameRu">Movie name (Russian)</sys:String>
+    <sys:String x:Key="MovieNameEn">Movie name (English)</sys:String>
+    <sys:String x:Key="MovieDescRu">Movie description (Russian)</sys:String>
+    <sys:String x:Key="MovieDescEn">Movie description (English)</sys:String>
+    <sys:String x:Key="MovieGenres">Genres</sys:String>
+    <sys:String x:Key="MovieYear">Release year</sys:String>
+    <sys:String x:Key="MovieCoverUrl">Link to movie cover</sys:String>
+    <sys:String x:Key="MovieVideoUrl">Link to video file</sys:String>
+    <sys:String x:Key="InsertMovieButton">Insert</sys:String>
+    <sys:String x:Key="SpecifyMovieName">* Specify movie names</sys:String>
+    <sys:String x:Key="SpecifyMovieDesc">* Specify movie descriptions</sys:String>
+    <sys:String x:Key="SpecifyMovieYear">* The year is incorrect</sys:String>
+    <sys:String x:Key="SpecifyMovieCover">* Specify link to movie cover</sys:String>
+    <sys:String x:Key="SpecifyMovieUrl">* Specify link to movie video file</sys:String>
+    <sys:String x:Key="SelectGenre">* You have to select at least one genre</sys:String>
+    <sys:String x:Key="MovieAdded">Movie added successfully</sys:String>
 </ResourceDictionary> 

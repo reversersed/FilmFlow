@@ -63,4 +63,23 @@
     <sys:String x:Key="MovieNameSearch">Название фильма...</sys:String>
     <sys:String x:Key="PopularToday">Популярный жанр -</sys:String>
     <sys:String x:Key="NewMovies">Новые фильмы</sys:String>
+    <!--Moderation window-->
+    <sys:String x:Key="AddMovie">Добавить фильм</sys:String>
+    <sys:String x:Key="EditMovie">Редактировать фильм</sys:String>
+    <sys:String x:Key="MovieNameRu">Название фильма (Русское)</sys:String>
+    <sys:String x:Key="MovieNameEn">Название фильма (Английское)</sys:String>
+    <sys:String x:Key="MovieDescRu">Описание фильма (Русское)</sys:String>
+    <sys:String x:Key="MovieDescEn">Описание фильма (Английское)</sys:String>
+    <sys:String x:Key="MovieYear">Год производства</sys:String>
+    <sys:String x:Key="MovieGenres">Жанры</sys:String>
+    <sys:String x:Key="MovieCoverUrl">Ссылка на обложку</sys:String>
+    <sys:String x:Key="MovieVideoUrl">Ссылка на видеофайл</sys:String>
+    <sys:String x:Key="InsertMovieButton">Сохранить</sys:String>
+    <sys:String x:Key="SpecifyMovieName">* Укажите названия фильма</sys:String>
+    <sys:String x:Key="SpecifyMovieDesc">* Укажите описания фильма</sys:String>
+    <sys:String x:Key="SpecifyMovieYear">* Укажите корректный год</sys:String>
+    <sys:String x:Key="SpecifyMovieCover">* Укажите ссылку на обложку</sys:String>
+    <sys:String x:Key="SpecifyMovieUrl">* Укажите ссылку на видеофайл</sys:String>
+    <sys:String x:Key="SelectGenre">* Выберите хотя бы один жанр</sys:String>
+    <sys:String x:Key="MovieAdded">Фильм успешно добавлен</sys:String>
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FilmFlow.Models.BaseTables;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Printing;
 
@@ -13,5 +14,6 @@ namespace FilmFlow.Models
         ObservableCollection<MovieModel> LoadMoviesByGenre(GenreModel genregenreSearch);
         ObservableCollection<GenreModel> LoadGenreCollection();
         GenreModel GetPopularGenre();
+        void AddMovie(Movie movie, string coverUrl, string movieUrl);
     }
 }

@@ -8,6 +8,7 @@
     <Color x:Key="DarkAccentColorKey">#350087</Color>
     <Color x:Key="AccentColorKey">#4b00bd</Color>
     <Color x:Key="LightAccentColorKey">#6915e8</Color>
+    <Color x:Key="LightTextColorKey">LightGray</Color>
     
     <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="LightTextColor">LightGray</SolidColorBrush>

@@ -12,7 +12,7 @@ namespace FilmFlow.Models.BaseTables
         [ForeignKey("movieid")]
         public Movie Movie { get; set; }
         [Column("genreid")]
-        private int genreid { get; set; }
+        public int genreid { get; set; }
         [ForeignKey("genreid")]
         public GenreCollection Genre { get; set; }
     }

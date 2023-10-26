@@ -9,9 +9,9 @@ namespace FilmFlow.Models
         public string Name { get; set; }
         public string Cover { get; set; }
         public string? Desription { get; set; }
-        public int Price { get; set; }
         public float Rating { get; set; }
         public int ReviewCount { get; set; }
+        public int Year { get; set; }
         public ObservableCollection<GenreModel> Genres { get; set; }
 
         public MovieModel()
@@ -24,9 +24,9 @@ namespace FilmFlow.Models
             Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.NameRu : movie.NameEn;
             Cover = movie.Cover.Url;
             Desription = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.DescriptionRu : movie.DescriptionEn;
-            Price = movie.Price;
             Genres = new ObservableCollection<GenreModel>(genres);
             Rating = movie.Rating;
+            Year = movie.Year;
             ReviewCount = reviewCount;
         }
     }

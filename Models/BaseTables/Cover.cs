@@ -10,6 +10,5 @@ namespace FilmFlow.Models.BaseTables
         public int Id { get; set; }
         [Column("url")]
         public string Url { get; set; }
-        public Movie Movie { get; set; }
     }
 }
