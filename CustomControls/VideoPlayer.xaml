@@ -7,16 +7,17 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              Name="PlayerControl"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <MediaElement   x:Name="VideoPlayerElement"
                         Grid.RowSpan="2"
                         Source="{Binding SourceUrl, ElementName=PlayerControl}"
                         Focusable="False"
+                        ScrubbingEnabled="True"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"/>
         <Grid Grid.Row="1" x:Name="RootGrid">
@@ -39,27 +40,39 @@
                 </Grid.Style>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.12*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="PlayButton"
                             Grid.Column="1"
-                            Foreground="{StaticResource LightAccentColor}"
                             BorderThickness="0">
                     <Button.Content>
                         <fa:IconImage x:Name="IconButtonPlay" Icon="Play" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
+                            <Setter Property="OverridesDefaultStyle" Value="True"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
                             <Setter Property="Background" Value="Transparent"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
-                                </Trigger>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
-                                </Trigger>
-                            </Style.Triggers>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border>
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </Button.Style>
                 </Button>
