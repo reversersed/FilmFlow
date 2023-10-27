@@ -565,7 +565,7 @@
                                  FontSize="{StaticResource Regular}"
                                  Text="{Binding MovieUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  TextAlignment="Left"
-                                 Width="480"
+                                 Width="960"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
@@ -618,8 +618,8 @@
                                                    Margin="0,15,0,0"
                                                    BorderBrush="{StaticResource LightAccentColor}"
                                                    BorderThickness="1"
-                                                   Width="480"
-                                                   Height="270"
+                                                   Width="960"
+                                                   Height="540"
                                                    HorizontalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>

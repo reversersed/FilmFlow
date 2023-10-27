@@ -2,16 +2,159 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FilmFlow.CustomControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              Name="PlayerControl"
-             d:DesignHeight="1080" d:DesignWidth="1920">
+             d:DesignHeight="540" d:DesignWidth="960">
+    <UserControl.Resources>
+        <Style x:Key="SliderButtonStyle"
+       TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels"
+          Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+            <Setter Property="IsTabStop"
+          Value="false" />
+            <Setter Property="Focusable"
+          Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderThumbStyle"
+       TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels"
+          Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+            <Setter Property="Height"
+          Value="14" />
+            <Setter Property="Width"
+          Value="14" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Ellipse x:Name="Ellipse" Fill="{StaticResource LightAccentColor}"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Fill" TargetName="Ellipse" Value="{StaticResource AccentColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Fill" TargetName="Ellipse" Value="{StaticResource DarkAccentColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="HorizontalSlider"
+                 TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"
+                     MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TickBar x:Name="TopTick"
+             SnapsToDevicePixels="True"
+             Placement="Top"
+             Height="5"
+             Visibility="Collapsed">
+                    <TickBar.Fill>
+                        <SolidColorBrush Color="{StaticResource AccentColorKey}" />
+                    </TickBar.Fill>
+                </TickBar>
+                <Border x:Name="TrackBackground"
+            Margin="0"
+            CornerRadius="2"
+            Height="5"
+            Grid.Row="1"
+            BorderThickness="1">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Color="{StaticResource LightAccentColorKey}"
+                            Offset="0.0" />
+                                    <GradientStop Color="{StaticResource DarkAccentColorKey}"
+                            Offset="1.0" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Color="{StaticResource LightAccentColorKey}"
+                            Offset="0.0" />
+                                    <GradientStop Color="{StaticResource DarkAccentColorKey}"
+                            Offset="1.0" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Track Grid.Row="1"
+           x:Name="PART_Track">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderButtonStyle}"
+                      Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumbStyle}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderButtonStyle}"
+                      Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <TickBar x:Name="BottomTick"
+             SnapsToDevicePixels="True"
+             Grid.Row="2"
+             Fill="{TemplateBinding Foreground}"
+             Placement="Bottom"
+             Height="4"
+             Visibility="Collapsed" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="TickPlacement"
+             Value="TopLeft">
+                    <Setter TargetName="TopTick"
+              Property="Visibility"
+              Value="Visible" />
+                </Trigger>
+                <Trigger Property="TickPlacement"
+             Value="BottomRight">
+                    <Setter TargetName="BottomTick"
+              Property="Visibility"
+              Value="Visible" />
+                </Trigger>
+                <Trigger Property="TickPlacement"
+             Value="Both">
+                    <Setter TargetName="TopTick"
+              Property="Visibility"
+              Value="Visible" />
+                    <Setter TargetName="BottomTick"
+              Property="Visibility"
+              Value="Visible" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
         <MediaElement   x:Name="VideoPlayerElement"
                         Grid.RowSpan="2"
@@ -19,6 +162,8 @@
                         Focusable="False"
                         ScrubbingEnabled="True"
                         HorizontalAlignment="Center"
+                        MouseLeftButtonDown="VideoPlayerElement_MouseLeftButtonDown"
+                        MouseWheel="VolumeSlider_MouseWheel"
                         VerticalAlignment="Center"/>
         <Grid Grid.Row="1" x:Name="RootGrid">
             <Grid.Background>
@@ -41,13 +186,18 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.02*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="PlayButton"
                             Grid.Column="1"
                             BorderThickness="0">
                     <Button.Content>
-                        <fa:IconImage x:Name="IconButtonPlay" Icon="Play" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                        <fa:IconImage x:Name="IconButtonPlay" Margin="8" Icon="Play" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -76,6 +226,76 @@
                         </Style>
                     </Button.Style>
                 </Button>
+                <Grid Grid.Column="3" x:Name="VolumeGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="volumeButton"
+                            Grid.Column="0" 
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            Click="volumeButton_Click"
+                            Margin="5">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <ContentPresenter/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                        <Button.Content>
+                            <fa:IconImage   x:Name="iconVolume"
+                                            Cursor="Hand">
+                            <fa:IconImage.Style>
+                                    <Style TargetType="{x:Type fa:IconImage}">
+                                        <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType=Button}}" Value="False">
+                                                <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
+                                            </DataTrigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </fa:IconImage.Style>
+                            </fa:IconImage>
+                        </Button.Content>
+                    </Button>
+                    <Slider x:Name="VolumeSlider"
+                            Grid.Column="1"
+                            IsMoveToPointEnabled="True"
+                            AllowDrop="True"
+                            DataContext="{Binding ElementName=VideoPlayerElement}"
+                            Template="{StaticResource HorizontalSlider}"
+                            MouseLeftButtonUp="VolumeSlider_ValueChanged"
+                            MouseWheel="VolumeSlider_MouseWheel"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"/>
+                </Grid>
+                <Slider x:Name="TimeSlider" 
+                        Grid.Column="5"
+                        IsMoveToPointEnabled="True"
+                        AllowDrop="True"
+                        DataContext="{Binding ElementName=VideoPlayerElement}"
+                        Template="{StaticResource HorizontalSlider}"
+                        MouseLeftButtonUp="TimeSlider_ValueChanged"
+                        MouseWheel="TimeSlider_MouseWheel"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch"/>
+                <TextBlock Grid.Column="6"
+                           Text="{Binding Path=ElapsedTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                           DataContext="{Binding ElementName=PlayerControl}"
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0"
+                           Foreground="{StaticResource LightTextColor}"
+                           FontSize="{StaticResource Small}"
+                           FontFamily="{StaticResource DefaultFont}"/>
             </Grid>
         </Grid>
     </Grid>
