@@ -1,0 +1,253 @@
+﻿<UserControl x:Class="FilmFlow.MainWindow.NavigationViews.MovieView.MovieView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FilmFlow.MainWindow.NavigationViews.MovieView"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:customControl="clr-namespace:FilmFlow.CustomControls"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:MovieViewModel}"
+             d:DesignHeight="1080" d:DesignWidth="1675">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
+                <ResourceDictionary Source="/CustomControls/ReviewsBar.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:RatingConverter x:Key="RatingToBar"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="0"
+                              MaxWidth="198"/>
+            <ColumnDefinition MaxWidth="1280"
+                              MinWidth="350"/>
+            <ColumnDefinition MinWidth="0"
+                              MaxWidth="198"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Background="{StaticResource MainBackgroundColor}"/>
+        <Border Grid.Column="2" Background="{StaticResource MainBackgroundColor}"/>
+
+        <Grid Grid.Column="1"
+              Background="{StaticResource ToolTipBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--Back action-->
+            <Button BorderThickness="0"
+                    Foreground="{StaticResource TextColor}"
+                    FontSize="{StaticResource Big}"
+                    FontFamily="{StaticResource DefaultFont}"
+                    Cursor="Hand"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="15,0,0,0"
+                    Command="{Binding BackToHome}">
+                <Button.Content>
+                    <fa:IconImage Icon="ArrowLeft"
+                                  Margin="4"
+                                  Foreground="{StaticResource TextColor}"/>
+                </Button.Content>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="25" Height="25" CornerRadius="18" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <!--Main section-->
+            <ScrollViewer Grid.Row="1"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <Grid Margin="15,0,15,15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MaxHeight="600"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto" MaxHeight="400"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!--About film-->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                CornerRadius="15">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding Path=Movie.Cover}"
+                                   Stretch="Uniform"/>
+                            </Border.Background>
+                            <Image Source="{Binding Path=Movie.Cover}"
+                                   Stretch="Uniform"
+                                   MaxWidth="300"
+                                   Visibility="Hidden"/>
+                        </Border>
+
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="{Binding Movie.Name}"
+                                       Foreground="{StaticResource TextColor}"
+                                       FontSize="{StaticResource Big}"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       FontWeight="DemiBold"/>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MaxWidth="250"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock  Grid.Row="0"
+                                            Grid.Column="0"
+                                            Text="{StaticResource ReleaseYear}"
+                                            HorizontalAlignment="Left"
+                                            Foreground="{StaticResource LightTextColor}"
+                                            FontSize="{StaticResource Regular}"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontWeight="Normal"/>
+                                <TextBlock  Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding Movie.Year}"
+                                            HorizontalAlignment="Left"
+                                            Foreground="{StaticResource TextColor}"
+                                            FontSize="{StaticResource Regular}"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontWeight="Normal"/>
+
+                                <TextBlock  Grid.Row="2"
+                                            Grid.Column="0"
+                                            Text="{StaticResource Genres}"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Bottom"
+                                            Foreground="{StaticResource LightTextColor}"
+                                            FontSize="{StaticResource Regular}"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontWeight="Normal"/>
+                                <TextBlock  Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding GenreString, Mode=OneWay}"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Bottom"
+                                            Foreground="{StaticResource TextColor}"
+                                            FontSize="{StaticResource Regular}"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontWeight="Normal"/>
+                                
+                                <TextBlock  Grid.Row="3"
+                                            Grid.Column="0"
+                                            Text="{StaticResource Rating}"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Bottom"
+                                            Foreground="{StaticResource LightTextColor}"
+                                            FontSize="{StaticResource Regular}"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontWeight="Normal"/>
+                                <Grid   Grid.Row="3"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <ProgressBar Value="{Binding Path=Movie.Rating, Converter={StaticResource RatingToBar}}"/>
+                                        <StackPanel HorizontalAlignment="Left"
+                                                            Orientation="Horizontal">
+                                            <customControl:StarShape/>
+                                            <customControl:StarShape/>
+                                            <customControl:StarShape/>
+                                            <customControl:StarShape/>
+                                            <customControl:StarShape/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock  Text="{Binding Movie.Rating, StringFormat=F1}"
+                                                VerticalAlignment="Bottom"
+                                                HorizontalAlignment="Left"
+                                                TextAlignment="Left"
+                                                Grid.Column="2"
+                                                FontWeight="DemiBold"
+                                                FontSize="{StaticResource Regular}"
+                                                FontFamily="{StaticResource DefaultFont}"
+                                                Foreground="{StaticResource TextColor}"/>
+                                    <StackPanel Grid.Column="4"
+                                                VerticalAlignment="Bottom"
+                                                Margin="0,0,0,2"
+                                                HorizontalAlignment="Left"
+                                                Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Movie.ReviewCount}"
+                                                           FontSize="{StaticResource Small}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           FontWeight="ExtraLight"
+                                                           Foreground="{StaticResource LightTextColor}"/>
+                                        <TextBlock Text="{StaticResource Reviews}"
+                                                           FontSize="{StaticResource Small}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           FontWeight="ExtraLight"
+                                                           Margin="5,0,0,0"
+                                                           Foreground="{StaticResource LightTextColor}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <TextBlock  Grid.Row="1"
+                                Text="{StaticResource Description}"
+                                Foreground="{StaticResource TextColor}"
+                                FontSize="{StaticResource Regular}"
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Bottom"
+                                Margin="15,0,0,10"
+                                FontFamily="{StaticResource DefaultFont}"
+                                FontWeight="DemiBold"/>
+                    <Border Grid.Row="2"
+                            BorderThickness="2"
+                            BorderBrush="{StaticResource LightAccentColor}"
+                            CornerRadius="15"
+                            MaxWidth="600"
+                            Padding="10,5,10,5"
+                            HorizontalAlignment="Left">
+                        <TextBlock  Text="{Binding Movie.Desription}"
+                                    Foreground="{StaticResource TextColor}"
+                                    FontSize="{StaticResource Regular}"
+                                    TextWrapping="Wrap"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    FontWeight="Light"/>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

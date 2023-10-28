@@ -9,6 +9,7 @@
         xmlns:homeView="clr-namespace:FilmFlow.MainWindow.NavigationViews.HomeView"
         xmlns:settingsView="clr-namespace:FilmFlow.MainWindow.NavigationViews.SettingsView"
         xmlns:moderationView="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView"
+        xmlns:movieView="clr-namespace:FilmFlow.MainWindow.NavigationViews.MovieView"
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="700" Width="1050"
@@ -32,6 +33,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type moderationView:ModerationViewModel}">
                 <moderationView:ModerationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type movieView:MovieViewModel}">
+                <movieView:MovieView/>
             </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
@@ -146,7 +150,7 @@
                     Grid.Column="1"
                     Background="{StaticResource MainBackgroundColor}">
                 <ContentControl Content="{Binding ChildContentView}"
-                            Margin="20,10,0,0"/>
+                            Margin="20,0,0,0"/>
             </Border>
             <!--Navigation section-->
             <Border CornerRadius="0"

@@ -1,5 +1,6 @@
 ﻿using FilmFlow.Models;
 using FilmFlow.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -55,8 +56,11 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public ICommand SearchByFilter { get; }
         public ICommand ClearNameSearch { get; }
 
+        //Action
+        public Action<int> openMovieCommand;
+
         //Methods
-        public HomeViewModel()
+        public HomeViewModel(Action<int> openMovieCommand)
         {
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
             PopularMovieListSelected = new ViewModelCommand(PopularMovieListSelectedCommand);
@@ -76,6 +80,8 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             PopularGenreToday = MovieRepository.GetPopularGenre();
             PopularMovies = MovieRepository.LoadMoviesByGenre(PopularGenreToday);
             NewMovies = MovieRepository.LoadNewMovies();
+
+            this.openMovieCommand = openMovieCommand;
         }
 
         private void SearchByFilterCommand(object obj)
@@ -110,19 +116,19 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         {
             if ((int)obj < 0)
                 return;
-            Debug.WriteLine(Movies[(int)obj].Name);
+            openMovieCommand?.Invoke(Movies[(int)obj].Id);
         }
         private void PopularMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            Debug.WriteLine(PopularMovies[(int)obj].Name);
+            openMovieCommand?.Invoke(PopularMovies[(int)obj].Id);
         }
         private void NewMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            Debug.WriteLine(NewMovies[(int)obj].Name);
+            openMovieCommand?.Invoke(NewMovies[(int)obj].Id);
         }
     }
 }

@@ -8,6 +8,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using FilmFlow.MainWindow.NavigationViews.MovieView;
 
 namespace FilmFlow.MainWindow
 {
@@ -21,6 +22,7 @@ namespace FilmFlow.MainWindow
         //Child Views
         private ViewModelBase settingsView;
         private ViewModelBase moderationView;
+        private ViewModelBase movieView;
 
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
@@ -56,15 +58,16 @@ namespace FilmFlow.MainWindow
             settingsView = new SettingsViewModel();
             moderationView = new ModerationViewModel();
 
-            ChildContentView = new HomeViewModel();
+            ChildContentView = new HomeViewModel(ShowMovieSection);
         }
 
         //Views changing
-        private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel();
+        private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel(ShowMovieSection);
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
         private void ShowAdminSectionCommand(object obj) => ChildContentView = moderationView;
 
         //
+        private void ShowMovieSection(int movieId) => ChildContentView = new MovieViewModel(movieId, new ViewModelCommand(ShowHomeSectionCommand));
         private void LogoutButtonCommand(object obj)
         {
             if (obj == null)//Button pressed first

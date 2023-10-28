@@ -190,5 +190,26 @@ namespace FilmFlow.Models
                 db.SaveChanges();
             }
         }
+
+        public MovieModel LoadMovieById(int id)
+        {
+            using (var db = new RepositoryBase())
+            {
+                Movie movie = db.movies.Include(e => e.Cover)
+                                            .Include(e => e.Genre)
+                                                .ThenInclude(i => i.Genre)
+                                            .ToList()
+                                            .Where(i => i.Id == id)
+                                            .FirstOrDefault();
+                var genres = new ObservableCollection<GenreModel>();
+                foreach (var genre in movie.Genre)
+                    genres.Add(new GenreModel
+                    {
+                        Id = genre.Genre.Id,
+                        Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? genre.Genre.NameRu : genre.Genre.NameEn
+                    });
+                return new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), genres);
+            }
+        }
     }
 }

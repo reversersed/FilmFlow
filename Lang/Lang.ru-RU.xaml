@@ -31,6 +31,7 @@
     <sys:String x:Key="RegMistake">Указали неверные данные? Вы можете</sys:String>
     <sys:String x:Key="RegReturn">вернуться назад</sys:String>
     <sys:String x:Key="WrongEmailCode">* Код неверный</sys:String>
+    <sys:String x:Key="ConfirmationSubject">Подтверждение регистрации</sys:String>
     <sys:String x:Key="ConfirmationMessage">Кто-то указал данную почту при регистрации на портале FilmFlow. Ваш код регистрации - {0}. Если Вы получили данное письмо по ошибке, пожалуйста, проигнорируйте его.</sys:String>
     <sys:String x:Key="EmailNotRespond">* Почтовый сервер не отвечает. Попробуйте позже</sys:String>
     <sys:String x:Key="NotValidatedPassword">* Пароль должен состоять как минимум из 6 символов, содержать строчные и прописные буквы и иметь хотя бы одну цифру</sys:String>
@@ -82,4 +83,8 @@
     <sys:String x:Key="SpecifyMovieUrl">* Укажите ссылку на видеофайл</sys:String>
     <sys:String x:Key="SelectGenre">* Выберите хотя бы один жанр</sys:String>
     <sys:String x:Key="MovieAdded">Фильм успешно добавлен</sys:String>
+    <!--Movie window-->
+    <sys:String x:Key="Description">Описание</sys:String>
+    <sys:String x:Key="ReleaseYear">Год производства</sys:String>
+    <sys:String x:Key="Rating">Оценка</sys:String>
 </ResourceDictionary>
