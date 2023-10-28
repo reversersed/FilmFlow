@@ -1,8 +1,6 @@
 ﻿using FilmFlow.Models;
 using FilmFlow.Models.BaseTables;
 using FilmFlow.ViewModels;
-using FlyleafLib;
-using FlyleafLib.MediaPlayer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
