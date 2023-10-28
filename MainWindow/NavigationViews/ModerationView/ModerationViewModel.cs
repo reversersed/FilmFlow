@@ -38,7 +38,14 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView
                 }
             } }
         public string CoverUrl { get { return _coverUrl; } set { _coverUrl = value; OnPropertyChanged(nameof(CoverUrl)); } }
-        public string MovieUrl { get { return _movieUrl; } set { _movieUrl = value; OnPropertyChanged(nameof(MovieUrl)); } }
+        public string MovieUrl { get { return _movieUrl; } set
+            {
+                _movieUrl = value;
+                Uri url;
+                if(Uri.TryCreate(value, UriKind.Absolute, out url))
+                    OnPropertyChanged(nameof(MovieUrl));
+            } 
+        }
         public string Error { get { return _error; } set { _error = value; OnPropertyChanged(nameof(Error)); } }
         public ObservableCollection<GenreModel> Genres { get { return _genres; } set { _genres = value; OnPropertyChanged(nameof(Genres)); } }
 

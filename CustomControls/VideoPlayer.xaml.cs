@@ -44,7 +44,7 @@ namespace FilmFlow.CustomControls
 
         private void VideoPlayerElement_MediaFailed(object? sender, ExceptionRoutedEventArgs e)
         {
-            videoTimer.Stop();
+            videoTimer?.Stop();
             ElapsedTime = "00:00:00/00:00:00";
             iconVolume.Icon = FontAwesome.Sharp.IconChar.VolumeMute;
             VolumeSlider.Value = 0;
