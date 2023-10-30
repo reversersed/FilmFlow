@@ -565,6 +565,7 @@
                                  Text="{Binding MovieUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  TextAlignment="Left"
                                  Width="960"
+                                 Margin="0,0,0,15"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
@@ -614,7 +615,6 @@
                             </TextBox.Style>
                         </TextBox>
                         <customControl:VideoPlayer SourceUrl="{Binding MovieUrl}"
-                                                   Margin="0,15,0,0"
                                                    BorderBrush="{StaticResource LightAccentColor}"
                                                    BorderThickness="1"
                                                    Width="960"

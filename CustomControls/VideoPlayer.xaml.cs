@@ -30,6 +30,8 @@ namespace FilmFlow.CustomControls
         private Uri fullscreen_source = new Uri("https://www.google.com");
         private Grid fullscreen_grid;
         private Size originalPlayerSize;
+
+        private System.Windows.Forms.Timer mouseIdling = new System.Windows.Forms.Timer();
         public VideoPlayer()
         {
             InitializeComponent();
@@ -58,6 +60,20 @@ namespace FilmFlow.CustomControls
             SetEnabledStateToControls(false);
             VideoPlayerElement.MediaOpened += VideoPlayerElement_MediaOpened;
             VideoPlayerElement.MediaFailed += VideoPlayerElement_MediaFailed;
+            VideoPlayerElement.MediaEnded += VideoPlayerElement_MediaEnded;
+            mouseIdling.Tick += new EventHandler(
+                (object s, EventArgs e) => 
+                {
+                    this.PlayerControl.Cursor = Cursors.None;
+                });
+            mouseIdling.Interval = 3000;
+        }
+
+        private void VideoPlayerElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (fullscreen != null)
+                EnableFullscreen();
+            PlayCommand(sender, e);
         }
 
         private void FullscreenCommand(object sender, RoutedEventArgs e) => EnableFullscreen();
@@ -138,7 +154,9 @@ namespace FilmFlow.CustomControls
                 fullscreen.Content = fullscreen_grid;
                 fullscreen_grid.Children.Add(this);
                 this.VideoPlayerElement.Source = fullscreen_source;
+                this.BorderThickness = new Thickness(0);
                 //check grid margin or position and do mouse waiting hide
+
                 originalPlayerSize.Width = this.Width;
                 originalPlayerSize.Height = this.Height;
 
@@ -148,6 +166,7 @@ namespace FilmFlow.CustomControls
                 fullscreen.WindowStyle = WindowStyle.None;
                 fullscreen.WindowState = WindowState.Maximized;
                 fullscreen.ResizeMode = ResizeMode.NoResize;
+                fullscreen.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0,0,0));
                 fullscreen.Topmost = true;
 
                 fullscreen.Show();
@@ -170,6 +189,7 @@ namespace FilmFlow.CustomControls
 
                 this.Width = originalPlayerSize.Width;
                 this.Height = originalPlayerSize.Height;
+                this.BorderThickness = new Thickness(1);
 
                 FullscreenIcon.Icon = FontAwesome.Sharp.IconChar.Expand;
             }
@@ -223,5 +243,25 @@ namespace FilmFlow.CustomControls
         }
 
         private void VideoPlayerElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => PlayCommand(sender, null);
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.PlayerControl.Cursor = Cursors.Arrow;
+            if (mouseIdling.Enabled)
+                mouseIdling.Stop();
+            mouseIdling.Start();
+        }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!mouseIdling.Enabled)
+                mouseIdling.Start();
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if(mouseIdling.Enabled)
+                mouseIdling.Stop();
+        }
     }
 }

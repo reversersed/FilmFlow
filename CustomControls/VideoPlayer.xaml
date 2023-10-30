@@ -7,7 +7,10 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              Name="PlayerControl"
-             d:DesignHeight="540" d:DesignWidth="960">
+             d:DesignHeight="540" d:DesignWidth="960"
+             MouseMove="UserControl_MouseMove"
+             MouseEnter="UserControl_MouseEnter"
+             MouseLeave="UserControl_MouseLeave">
     <UserControl.Resources>
         <Style x:Key="SliderButtonStyle"
        TargetType="{x:Type RepeatButton}">
@@ -154,7 +157,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.15*" MaxHeight="40"/>
         </Grid.RowDefinitions>
         <MediaElement   x:Name="VideoPlayerElement"
                         Grid.RowSpan="2"
@@ -208,15 +211,15 @@
                     <Style TargetType="Grid">
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding ElementName=RootGrid, Path=IsMouseOver}" Value="False"/>
-                                    <Condition Binding="{Binding ElementName=PlayButton, Path=IsEnabled}" Value="False"/>
-                                </MultiDataTrigger.Conditions>
-                                <MultiDataTrigger.Setters>
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </MultiDataTrigger.Setters>
-                            </MultiDataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RootGrid, Path=IsMouseOver}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PlayButton, Path=IsEnabled}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PlayerControl, Path=Cursor}" Value="None">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Grid.Style>
@@ -236,7 +239,7 @@
                         Visibility="Collapsed"
                         BorderThickness="0">
                     <Button.Content>
-                        <fa:IconImage Margin="8" Icon="Pause" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                        <fa:IconImage Margin="10" Icon="Pause" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -274,8 +277,9 @@
                             Grid.Column="0" 
                             Background="Transparent" 
                             BorderThickness="0"
-                            Click="volumeButton_Click"
-                            Margin="5">
+                            MaxHeight="35"
+                            MaxWidth="35"
+                            Click="volumeButton_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Template">
@@ -289,7 +293,8 @@
                         </Button.Style>
                         <Button.Content>
                             <fa:IconImage   x:Name="iconVolume"
-                                            Cursor="Hand">
+                                            Cursor="Hand"
+                                            Margin="4">
                             <fa:IconImage.Style>
                                     <Style TargetType="{x:Type fa:IconImage}">
                                         <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
