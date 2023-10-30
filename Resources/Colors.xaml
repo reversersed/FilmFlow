@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:FilmFlow">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--General section-->
     <Color x:Key="BorderColor1">#540000</Color>
     <Color x:Key="BorderColor2">#911010</Color>
@@ -18,6 +17,7 @@
     <SolidColorBrush x:Key="DarkAccentColor">#350087</SolidColorBrush>
     <SolidColorBrush x:Key="AccentColor">#4b00bd</SolidColorBrush>
     <SolidColorBrush x:Key="LightAccentColor">#6915e8</SolidColorBrush>
+    
     <!--Login section-->
     <SolidColorBrush x:Key="BackgroundColor">#1c0000</SolidColorBrush>
     <SolidColorBrush x:Key="MinimizeButtonColor">#7d1710</SolidColorBrush>
@@ -41,6 +41,4 @@
     <SolidColorBrush x:Key="navColorFavourites">#bc00f5</SolidColorBrush>
     <SolidColorBrush x:Key="navColorSettings">#1d0540</SolidColorBrush>
     <SolidColorBrush x:Key="navColorAdmin">#0a1f40</SolidColorBrush>
-
-    
 </ResourceDictionary> 

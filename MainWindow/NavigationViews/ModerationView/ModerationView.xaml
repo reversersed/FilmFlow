@@ -614,12 +614,14 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <customControl:VideoPlayer SourceUrl="{Binding MovieUrl}"
-                                                   BorderBrush="{StaticResource LightAccentColor}"
-                                                   BorderThickness="1"
-                                                   Width="960"
-                                                   Height="540"
-                                                   HorizontalAlignment="Center"/>
+                        <Grid>
+                            <customControl:VideoPlayer SourceUrl="{Binding MovieUrl}"
+                                                       BorderBrush="{StaticResource LightAccentColor}"
+                                                       BorderThickness="1"
+                                                       Width="960"
+                                                       Height="540"
+                                                       HorizontalAlignment="Center"/>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="2"

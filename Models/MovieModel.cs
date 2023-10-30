@@ -13,6 +13,7 @@ namespace FilmFlow.Models
         public int ReviewCount { get; set; }
         public int Year { get; set; }
         public ObservableCollection<GenreModel> Genres { get; set; }
+        public string Url {  get; set; }
 
         public MovieModel()
         {
@@ -27,6 +28,7 @@ namespace FilmFlow.Models
             Genres = new ObservableCollection<GenreModel>(genres);
             Rating = movie.Rating;
             Year = movie.Year;
+            Url = movie.Url.Url;
             ReviewCount = reviewCount;
         }
     }

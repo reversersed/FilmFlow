@@ -164,7 +164,6 @@
                         ScrubbingEnabled="True"
                         HorizontalAlignment="Center"
                         MouseLeftButtonDown="VideoPlayerElement_MouseLeftButtonDown"
-                        MouseWheel="VolumeSlider_MouseWheel"
                         VerticalAlignment="Center"/>
         <Button x:Name="PlayButton"
                 Grid.RowSpan="2"

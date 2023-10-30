@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="/CustomControls/ReviewsBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:RatingConverter x:Key="RatingToBar"/>
+            <local:PlayerHeightConverter x:Key="PlayerHeightConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -24,7 +25,7 @@
                               Width="0.01*"
                               MaxWidth="198"/>
             <ColumnDefinition MaxWidth="1280"
-                              MinWidth="500"/>
+                              MinWidth="350"/>
             <ColumnDefinition MinWidth="0"
                               Width="0.01*"
                               MaxWidth="198"/>
@@ -43,6 +44,7 @@
                     <RowDefinition Height="Auto" MaxHeight="600"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="Auto" MaxHeight="400"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!--About film-->
@@ -67,8 +69,8 @@
 
                     <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="14*"/>
-                            <ColumnDefinition Width="1221*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -219,6 +221,16 @@
                                     FontFamily="{StaticResource DefaultFont}"
                                     FontWeight="Light"/>
                 </Border>
+                <Grid Grid.Row="3"
+                      Margin="30,20,30,0"
+                      Width="Auto"
+                      Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource PlayerHeightConverter}}">
+                    <customControl:VideoPlayer  BorderBrush="{StaticResource DarkAccentColor}"
+                                                BorderThickness="1"
+                                                SourceUrl="{Binding Movie.Url}"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"/>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>

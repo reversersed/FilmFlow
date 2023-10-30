@@ -26,7 +26,7 @@ namespace FilmFlow.CustomControls
         private DispatcherTimer videoTimer;
 
         private Window fullscreen;
-        private StackPanel fullscreen_parent;
+        private Grid fullscreen_parent;
         private Uri fullscreen_source = new Uri("https://www.google.com");
         private Grid fullscreen_grid;
         private Size originalPlayerSize;
@@ -73,6 +73,8 @@ namespace FilmFlow.CustomControls
         {
             if (fullscreen != null)
                 EnableFullscreen();
+            TimeSlider.Value = 0;
+            VideoPlayerElement.Position = TimeSpan.FromSeconds(TimeSlider.Value);
             PlayCommand(sender, e);
         }
 
@@ -93,8 +95,7 @@ namespace FilmFlow.CustomControls
         private void VideoPlayerElement_MediaOpened(object sender, RoutedEventArgs e)
         {
             TimeSlider.Maximum = VideoPlayerElement.NaturalDuration.TimeSpan.TotalSeconds;
-            VolumeSlider.Maximum = 1;
-            VolumeSlider.Value = VideoPlayerElement.Volume;
+            VideoPlayerElement.Volume = VolumeSlider.Value = VolumeSlider.Maximum = 1;
             VolumeChange(VideoPlayerElement.Volume);
             videoTimer = new DispatcherTimer();
             videoTimer.Interval = TimeSpan.FromSeconds(1);
@@ -146,7 +147,7 @@ namespace FilmFlow.CustomControls
         {
             if (fullscreen == null)
             {
-                fullscreen_parent = (this.Parent as StackPanel);
+                fullscreen_parent = (this.Parent as Grid);
                 fullscreen_parent.Children.Remove(this);
 
                 fullscreen = new Window();
@@ -155,7 +156,6 @@ namespace FilmFlow.CustomControls
                 fullscreen_grid.Children.Add(this);
                 this.VideoPlayerElement.Source = fullscreen_source;
                 this.BorderThickness = new Thickness(0);
-                //check grid margin or position and do mouse waiting hide
 
                 originalPlayerSize.Width = this.Width;
                 originalPlayerSize.Height = this.Height;

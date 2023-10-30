@@ -35,6 +35,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Cover)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
                                             .Where(i => EF.Functions.Like(i.NameEn.ToLower(), string.Format("%{0}%",name.ToLower())) || 
                                                         EF.Functions.Like(i.NameRu.ToLower(), string.Format("%{0}%", name.ToLower())))
                                             .Select(i=>i)
@@ -63,6 +64,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Cover)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
                                             .Select(i => i)
                                             .ToList()
                                             .Where(i => genreIds.Intersect(
@@ -112,6 +114,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Cover)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
                                             .OrderBy(i => i.Rating)
                                             .ToList()) 
                 {
@@ -136,6 +139,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Cover)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
                                             .OrderByDescending(i => i.Year)
                                                 .ThenByDescending(i => i.Id)
                                             .ToList())
@@ -161,6 +165,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Cover)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
                                             .Select(i => i)
                                             .ToList()
                                             .Where(i => i.Genre.Select(i => i.Genre.Id).ToList().Contains(genreSearch.Id))
@@ -198,6 +203,7 @@ namespace FilmFlow.Models
                 Movie movie = db.movies.Include(e => e.Cover)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
                                             .ToList()
                                             .Where(i => i.Id == id)
                                             .FirstOrDefault();
