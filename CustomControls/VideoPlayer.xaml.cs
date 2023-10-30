@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace FilmFlow.CustomControls
@@ -86,6 +87,10 @@ namespace FilmFlow.CustomControls
             VolumeSlider.IsEnabled = enabled;
             volumeButton.IsEnabled = enabled;
         }
+        Window fullscreen;
+        StackPanel parent;
+        Uri source_;
+        Grid grid;
         private void PlayCommand(object sender, RoutedEventArgs e)
         {
             if (!VideoPlayerElement.HasVideo)
@@ -95,13 +100,29 @@ namespace FilmFlow.CustomControls
                 IconButtonPlay.Icon = FontAwesome.Sharp.IconChar.Pause;
                 VideoPlayerElement.Play();
 
-                //(this.Parent as StackPanel).Children.Remove(this);
-                //fullscreen = new Window();
-                //fullscreen.Content = this;
-                //fullscreen.WindowStyle = WindowStyle.None;
-                //fullscreen.WindowState = WindowState.Maximized;
-                //fullscreen.ResizeMode = ResizeMode.NoResize;
-                //fullscreen.Show();
+                if(fullscreen == null)
+                {
+                    parent = (this.Parent as StackPanel);
+                    source_ = this.VideoPlayerElement.Source;
+                    parent.Children.Remove(this);
+                    fullscreen = new Window();
+                    grid = new Grid();
+                    fullscreen.Content = grid;
+                    grid.Children.Add(this);
+                    this.VideoPlayerElement.Source = source_;
+                    fullscreen.WindowStyle = WindowStyle.None;
+                    fullscreen.WindowState = WindowState.Maximized;
+                    fullscreen.ResizeMode = ResizeMode.NoResize;
+                    fullscreen.Show();
+                }
+                else
+                {
+                    grid.Children.Remove(this);
+                    fullscreen.Close();
+                    fullscreen = null;
+                    parent.Children.Add(this);
+
+                }
             }
             else
             {

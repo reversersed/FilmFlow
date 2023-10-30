@@ -159,7 +159,6 @@
         <MediaElement   x:Name="VideoPlayerElement"
                         Grid.RowSpan="2"
                         Source="{Binding SourceUrl, ElementName=PlayerControl}"
-                        Focusable="False"
                         ScrubbingEnabled="True"
                         HorizontalAlignment="Center"
                         MouseLeftButtonDown="VideoPlayerElement_MouseLeftButtonDown"
