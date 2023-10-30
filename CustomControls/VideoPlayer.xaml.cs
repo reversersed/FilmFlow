@@ -24,11 +24,26 @@ namespace FilmFlow.CustomControls
 
         private double savedVolume;
         private DispatcherTimer videoTimer;
-        //private Window fullscreen;
+
+        private Window fullscreen;
+        private StackPanel fullscreen_parent;
+        private Uri fullscreen_source = new Uri("https://www.google.com");
+        private Grid fullscreen_grid;
+        private Size originalPlayerSize;
         public VideoPlayer()
         {
             InitializeComponent();
             loadVideo = new Action(() => { 
+                if(SourceUrl != null && !SourceUrl.Equals(fullscreen_source.OriginalString))
+                {
+                    Uri newSource;
+                    if(Uri.TryCreate(SourceUrl, UriKind.Absolute, out newSource))
+                    {
+                        fullscreen_source = newSource;
+                        this.VideoPlayerElement.Source = fullscreen_source;
+                    }
+                }
+
                 VideoPlayerElement.Play();
                 VideoPlayerElement.Pause();
             });
@@ -36,6 +51,8 @@ namespace FilmFlow.CustomControls
             VideoPlayerElement.LoadedBehavior = MediaState.Manual;
             VideoPlayerElement.UnloadedBehavior = MediaState.Manual;
             PlayButton.Click += PlayCommand;
+            PauseButton.Click += PlayCommand;
+            FullscreenButton.Click += FullscreenCommand;
             ElapsedTime = "00:00:00/00:00:00";
             iconVolume.Icon = FontAwesome.Sharp.IconChar.VolumeMute;
             SetEnabledStateToControls(false);
@@ -43,13 +60,17 @@ namespace FilmFlow.CustomControls
             VideoPlayerElement.MediaFailed += VideoPlayerElement_MediaFailed;
         }
 
+        private void FullscreenCommand(object sender, RoutedEventArgs e) => EnableFullscreen();
+
         private void VideoPlayerElement_MediaFailed(object? sender, ExceptionRoutedEventArgs e)
         {
             videoTimer?.Stop();
             ElapsedTime = "00:00:00/00:00:00";
             iconVolume.Icon = FontAwesome.Sharp.IconChar.VolumeMute;
             VolumeSlider.Value = 0;
-            IconButtonPlay.Icon = FontAwesome.Sharp.IconChar.Play;
+            TimeSlider.Value = 0;
+            PauseButton.Visibility = Visibility.Collapsed;
+            PlayButton.Visibility = Visibility.Visible;
             SetEnabledStateToControls(false);
         }
 
@@ -83,53 +104,82 @@ namespace FilmFlow.CustomControls
         private void SetEnabledStateToControls(bool enabled)
         {
             PlayButton.IsEnabled = enabled;
+            PauseButton.IsEnabled = enabled;
             TimeSlider.IsEnabled = enabled;
             VolumeSlider.IsEnabled = enabled;
             volumeButton.IsEnabled = enabled;
         }
-        Window fullscreen;
-        StackPanel parent;
-        Uri source_;
-        Grid grid;
         private void PlayCommand(object sender, RoutedEventArgs e)
         {
             if (!VideoPlayerElement.HasVideo)
                 return;
-            if(IconButtonPlay.Icon == FontAwesome.Sharp.IconChar.Play)
+            if(PlayButton.Visibility == Visibility.Visible)
             {
-                IconButtonPlay.Icon = FontAwesome.Sharp.IconChar.Pause;
+                PlayButton.Visibility = Visibility.Collapsed;
+                PauseButton.Visibility = Visibility.Visible;
                 VideoPlayerElement.Play();
-
-                if(fullscreen == null)
-                {
-                    parent = (this.Parent as StackPanel);
-                    source_ = this.VideoPlayerElement.Source;
-                    parent.Children.Remove(this);
-                    fullscreen = new Window();
-                    //fullscreen.Deactivated - Switching to another window. Close the fullscreen
-                    grid = new Grid();
-                    fullscreen.Content = grid;
-                    grid.Children.Add(this);
-                    this.VideoPlayerElement.Source = source_;
-                    fullscreen.WindowStyle = WindowStyle.None;
-                    fullscreen.WindowState = WindowState.Maximized;
-                    fullscreen.ResizeMode = ResizeMode.NoResize;
-                    fullscreen.Show();
-                }
-                else
-                {
-                    grid.Children.Remove(this);
-                    fullscreen.Close();
-                    fullscreen = null;
-                    parent.Children.Add(this);
-
-                }
             }
             else
             {
-                IconButtonPlay.Icon = FontAwesome.Sharp.IconChar.Play;
+                PauseButton.Visibility = Visibility.Collapsed;
+                PlayButton.Visibility = Visibility.Visible;
                 VideoPlayerElement.Pause();
             }
+        }
+        private void EnableFullscreen()
+        {
+            if (fullscreen == null)
+            {
+                fullscreen_parent = (this.Parent as StackPanel);
+                fullscreen_parent.Children.Remove(this);
+
+                fullscreen = new Window();
+                fullscreen_grid = new Grid();
+                fullscreen.Content = fullscreen_grid;
+                fullscreen_grid.Children.Add(this);
+                this.VideoPlayerElement.Source = fullscreen_source;
+                //check grid margin or position and do mouse waiting hide
+                originalPlayerSize.Width = this.Width;
+                originalPlayerSize.Height = this.Height;
+
+                this.Width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+                this.Height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+
+                fullscreen.WindowStyle = WindowStyle.None;
+                fullscreen.WindowState = WindowState.Maximized;
+                fullscreen.ResizeMode = ResizeMode.NoResize;
+                fullscreen.Topmost = true;
+
+                fullscreen.Show();
+                fullscreen.Deactivated += DeactivateFullscreen;
+                fullscreen.LostFocus += DeactivateFullscreen;
+
+                FullscreenIcon.Icon = FontAwesome.Sharp.IconChar.Minimize;
+            }
+            else
+            {
+                fullscreen_grid.Children.Remove(this);
+
+                fullscreen.Deactivated -= DeactivateFullscreen;
+                fullscreen.LostFocus -= DeactivateFullscreen;
+
+                fullscreen.Close();
+                fullscreen = null;
+
+                fullscreen_parent.Children.Add(this);
+
+                this.Width = originalPlayerSize.Width;
+                this.Height = originalPlayerSize.Height;
+
+                FullscreenIcon.Icon = FontAwesome.Sharp.IconChar.Expand;
+            }
+            if(PlayButton.Visibility != Visibility.Visible)
+                this.VideoPlayerElement.Play();
+        }
+        private void DeactivateFullscreen(object? sender, EventArgs e)
+        {
+            if (fullscreen != null)
+                EnableFullscreen();
         }
 
         private void TimeSlider_ValueChanged(object sender, MouseButtonEventArgs e)

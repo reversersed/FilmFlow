@@ -22,7 +22,6 @@ namespace FilmFlow.MainWindow
         //Child Views
         private ViewModelBase settingsView;
         private ViewModelBase moderationView;
-        private ViewModelBase movieView;
 
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }

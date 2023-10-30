@@ -158,12 +158,44 @@
         </Grid.RowDefinitions>
         <MediaElement   x:Name="VideoPlayerElement"
                         Grid.RowSpan="2"
-                        Source="{Binding SourceUrl, ElementName=PlayerControl}"
                         ScrubbingEnabled="True"
                         HorizontalAlignment="Center"
                         MouseLeftButtonDown="VideoPlayerElement_MouseLeftButtonDown"
                         MouseWheel="VolumeSlider_MouseWheel"
                         VerticalAlignment="Center"/>
+        <Button x:Name="PlayButton"
+                Grid.RowSpan="2"
+                BorderThickness="0">
+            <Button.Content>
+                <fa:IconImage Height="150" Width="150" Icon="Play" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            </Button.Content>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
+                    <Setter Property="Background" Value="#99000000"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
         <Grid Grid.Row="1" x:Name="RootGrid">
             <Grid.Background>
                 <SolidColorBrush Color="Red" Opacity="0.0"/>
@@ -176,9 +208,15 @@
                     <Style TargetType="Grid">
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=RootGrid, Path=IsMouseOver}" Value="False">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=RootGrid, Path=IsMouseOver}" Value="False"/>
+                                    <Condition Binding="{Binding ElementName=PlayButton, Path=IsEnabled}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Grid.Style>
@@ -190,13 +228,15 @@
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="PlayButton"
-                            Grid.Column="1"
-                            BorderThickness="0">
+                <Button x:Name="PauseButton"
+                        Grid.Column="1"
+                        Visibility="Collapsed"
+                        BorderThickness="0">
                     <Button.Content>
-                        <fa:IconImage x:Name="IconButtonPlay" Margin="8" Icon="Play" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                        <fa:IconImage Margin="8" Icon="Pause" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -297,6 +337,39 @@
                            Foreground="{StaticResource LightTextColor}"
                            FontSize="{StaticResource Small}"
                            FontFamily="{StaticResource DefaultFont}"/>
+                <Button x:Name="FullscreenButton"
+                            Grid.Column="7"
+                            BorderThickness="0">
+                    <Button.Content>
+                        <fa:IconImage Margin="8" x:Name="FullscreenIcon" Icon="Expand" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="OverridesDefaultStyle" Value="True"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border>
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
         </Grid>
     </Grid>
