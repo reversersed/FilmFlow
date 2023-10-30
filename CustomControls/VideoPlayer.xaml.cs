@@ -106,6 +106,7 @@ namespace FilmFlow.CustomControls
                     source_ = this.VideoPlayerElement.Source;
                     parent.Children.Remove(this);
                     fullscreen = new Window();
+                    //fullscreen.Deactivated - Switching to another window. Close the fullscreen
                     grid = new Grid();
                     fullscreen.Content = grid;
                     grid.Children.Add(this);
