@@ -94,42 +94,6 @@ namespace FilmFlow.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("bi0jwfmv9pdbuytvqaua-postgresql.services.clever-cloud.com")]
-        public string hostedDbServer {
-            get {
-                return ((string)(this["hostedDbServer"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ucc7pv5oypegng25lao6")]
-        public string hostedDbUser {
-            get {
-                return ((string)(this["hostedDbUser"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3aaUCiENjpcjZBGNSWsbSY7YhhAEsR")]
-        public string hostedDbPassword {
-            get {
-                return ((string)(this["hostedDbPassword"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("bi0jwfmv9pdbuytvqaua")]
-        public string hostedDbBase {
-            get {
-                return ((string)(this["hostedDbBase"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("smtp.yandex.ru")]
         public string smtpServer {
             get {

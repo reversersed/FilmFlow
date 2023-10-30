@@ -23,18 +23,6 @@
     <Setting Name="localDbBase" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FilmFlow</Value>
     </Setting>
-    <Setting Name="hostedDbServer" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">bi0jwfmv9pdbuytvqaua-postgresql.services.clever-cloud.com</Value>
-    </Setting>
-    <Setting Name="hostedDbUser" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ucc7pv5oypegng25lao6</Value>
-    </Setting>
-    <Setting Name="hostedDbPassword" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">3aaUCiENjpcjZBGNSWsbSY7YhhAEsR</Value>
-    </Setting>
-    <Setting Name="hostedDbBase" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">bi0jwfmv9pdbuytvqaua</Value>
-    </Setting>
     <Setting Name="smtpServer" Type="System.String" Scope="Application">
       <Value Profile="(Default)">smtp.yandex.ru</Value>
     </Setting>
