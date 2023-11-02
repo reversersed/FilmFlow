@@ -172,8 +172,11 @@ namespace FilmFlow.CustomControls
                 fullscreen.Show();
                 fullscreen.Deactivated += DeactivateFullscreen;
                 fullscreen.LostFocus += DeactivateFullscreen;
+                fullscreen.KeyDown += FullScreen_KeyDown;
 
                 FullscreenIcon.Icon = FontAwesome.Sharp.IconChar.Minimize;
+
+                fullscreen.Focus();
             }
             else
             {
@@ -181,6 +184,7 @@ namespace FilmFlow.CustomControls
 
                 fullscreen.Deactivated -= DeactivateFullscreen;
                 fullscreen.LostFocus -= DeactivateFullscreen;
+                fullscreen.KeyDown -= FullScreen_KeyDown;
 
                 fullscreen.Close();
                 fullscreen = null;
@@ -256,12 +260,26 @@ namespace FilmFlow.CustomControls
         {
             if (!mouseIdling.Enabled)
                 mouseIdling.Start();
+            this.PlayerControl.Cursor = Cursors.Arrow;
         }
 
         private void UserControl_MouseLeave(object sender, MouseEventArgs e)
         {
             if(mouseIdling.Enabled)
                 mouseIdling.Stop();
+            this.PlayerControl.Cursor = Cursors.Arrow;
+        }
+
+        private void FullScreen_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Escape)
+                DeactivateFullscreen(sender, new EventArgs());
+            if(e.Key == Key.F11)
+                EnableFullscreen();
+            if(e.Key == Key.Space)
+                PlayCommand(sender, null);
+            if(e.Key == Key.M)
+                volumeButton_Click(sender, e);
         }
     }
 }
