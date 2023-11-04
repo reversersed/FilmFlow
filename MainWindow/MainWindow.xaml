@@ -20,9 +20,6 @@
         Icon="/Images/Logo.png"
         Background="{StaticResource NavigationColor}">
 
-    <Window.DataContext>
-        <local:MainWindowViewModel/>
-    </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type homeView:HomeViewModel}">

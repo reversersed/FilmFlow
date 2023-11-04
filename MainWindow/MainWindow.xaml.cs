@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FilmFlow.Models;
+using System.Windows;
 
 namespace FilmFlow.MainWindow
 {
@@ -7,9 +8,10 @@ namespace FilmFlow.MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IUserRepository userRepository)
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel(userRepository);
         }
     }
 }
