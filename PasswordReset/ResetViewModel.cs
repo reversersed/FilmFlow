@@ -74,7 +74,6 @@ namespace FilmFlow.PasswordReset
 
         //Models
         private UserRepository user {  get; set; }
-        private SmtpModel smtpModel;
 
         //Methods
         public ResetViewModel()
@@ -84,7 +83,6 @@ namespace FilmFlow.PasswordReset
             ResetButton = new ViewModelCommand(ResetButtonCommand);
 
             user = new UserRepository();
-            smtpModel = new SmtpModel();
         }
 
         private async void ResetButtonCommand(object obj)
@@ -122,7 +120,7 @@ namespace FilmFlow.PasswordReset
                     return;
                 }
                 createdEmailCode = new Random().Next(100000, 1000000);
-                if (!smtpModel.sendEmail(loadedUser.Email, Application.Current.FindResource("rpMessageTopic") as string, string.Format(Application.Current.FindResource("rpMessageBody") as string,loadedUser.Username,createdEmailCode)))
+                if (!SmtpModel.sendEmail(loadedUser.Email, Application.Current.FindResource("rpMessageTopic") as string, string.Format(Application.Current.FindResource("rpMessageBody") as string,loadedUser.Username,createdEmailCode)))
                 {
                     ErrorMessage = Application.Current.FindResource("EmailNotRespond") as string;
                     return;

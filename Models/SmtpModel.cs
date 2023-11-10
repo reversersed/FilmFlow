@@ -3,9 +3,9 @@ using System.Net;
 
 namespace FilmFlow.Models
 {
-    public class SmtpModel
+    public static class SmtpModel
     {
-        public bool sendEmail(string email, string topic, string body)
+        public static bool sendEmail(string email, string topic, string body)
         {
             var smtpClient = new SmtpClient(FilmFlow.Properties.Settings.Default.smtpServer)
             {

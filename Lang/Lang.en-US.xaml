@@ -87,4 +87,5 @@
     <sys:String x:Key="Description">Description</sys:String>
     <sys:String x:Key="ReleaseYear">Release year</sys:String>
     <sys:String x:Key="Rating">Rating</sys:String>
+    <sys:String x:Key="Review">Review</sys:String>
 </ResourceDictionary> 

@@ -69,14 +69,12 @@ namespace FilmFlow.Registration
         public Action<object?> backToLoginWindow;
 
         //Models
-        SmtpModel smtpModel;
         UserRepository userRepository;
 
         //Methods
         public RegistrationViewModel()
         {
             userRepository = new UserRepository();
-            smtpModel = new SmtpModel();
             executeSigning = new ViewModelCommand(ExecuteSigning, canExecuteSigning);
             BackToLogin = new ViewModelCommand(BackToLoginCommand);
             CloseApplication = new ViewModelCommand(CloseApplicationCommand);
@@ -137,7 +135,7 @@ namespace FilmFlow.Registration
                 return;
             }
             createdEmailCode = new Random().Next(100000, 1000000);
-            if(!smtpModel.sendEmail(Email, Application.Current.FindResource("ConfirmationSubject") as string, string.Format(Application.Current.FindResource("ConfirmationMessage") as string, createdEmailCode)))
+            if(!SmtpModel.sendEmail(Email, Application.Current.FindResource("ConfirmationSubject") as string, string.Format(Application.Current.FindResource("ConfirmationMessage") as string, createdEmailCode)))
             {
                 ErrorMessage = Application.Current.FindResource("EmailNotRespond") as string;
                 return;

@@ -151,7 +151,7 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Bottom">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="125"/>
                                     <ColumnDefinition Width="15"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="10"/>
@@ -230,6 +230,97 @@
                                                 SourceUrl="{Binding Movie.Url}"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Stretch"/>
+                </Grid>
+                <Grid Grid.Row="4"
+                      Margin="20,30,20,0"
+                      Height="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/> <!--Writing-->
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid   Grid.Row="0"
+                                VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{StaticResource Review}"
+                                       Foreground="{StaticResource TextColor}"
+                                       FontSize="{StaticResource Big}"
+                                       FontWeight="DemiBold"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Bottom"
+                                       FontFamily="{StaticResource DefaultFont}"/>
+                            <Grid   Grid.Column="2"
+                                    VerticalAlignment="Center">
+                                <ProgressBar MouseMove="BarMoved"
+                                             MouseLeave="BarLeaved"
+                                             MouseDown="BarClicked"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"
+                                             Value="{Binding RatingValue, Converter={StaticResource RatingToBar}}">
+                                    <ProgressBar.Style>
+                                        <Style TargetType="{x:Type ProgressBar}">
+                                            <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="25"/>
+                                            <Setter Property="Width" Value="125"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                                                        <Grid Name="TemplateRoot" SnapsToDevicePixels="true">
+                                                            <Border 
+                                                                Name="PART_Track"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}" />
+                                                            <Border 
+                                                                Name="PART_Indicator"
+                                                                Background="{TemplateBinding Foreground}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                HorizontalAlignment="Left" />
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ProgressBar.Style>
+                                </ProgressBar>
+                                <StackPanel HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Orientation="Horizontal">
+                                    <customControl:StarShape/>
+                                    <customControl:StarShape/>
+                                    <customControl:StarShape/>
+                                    <customControl:StarShape/>
+                                    <customControl:StarShape/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock  Grid.Column="4"
+                                        Text="{Binding RatingValue, StringFormat=F1}"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Regular}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        VerticalAlignment="Bottom"
+                                        FontWeight="DemiBold"/>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </ScrollViewer>

@@ -25,5 +25,7 @@ namespace FilmFlow.Models.BaseTables
         public string ReviewText { get; set; }
         [Column("rating")]
         public float Rating { get; set; }
+        [Column("written")]
+        public DateTime WriteDate { get; set; }
     }
 }
