@@ -217,5 +217,19 @@ namespace FilmFlow.Models
                 return new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), genres);
             }
         }
+
+        public Movie GetNotModel(int id)
+        {
+            using (var db = new RepositoryBase())
+            {
+                return db.movies.Include(e => e.Cover)
+                                            .Include(e => e.Genre)
+                                                .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
+                                            .ToList()
+                                            .Where(i => i.Id == id)
+                                            .FirstOrDefault();
+            }
+        }
     }
 }

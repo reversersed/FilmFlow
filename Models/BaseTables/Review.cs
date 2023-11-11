@@ -11,7 +11,6 @@ namespace FilmFlow.Models.BaseTables
     public class Review
     {
         [Key]
-        [Column("id")]
         public int Id { get; set; }
         [Column("movie")]
         public int MovieId { get; set; }

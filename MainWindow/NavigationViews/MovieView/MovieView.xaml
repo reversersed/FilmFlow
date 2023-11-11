@@ -8,7 +8,7 @@
              xmlns:customControl="clr-namespace:FilmFlow.CustomControls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:MovieViewModel}"
-             d:DesignHeight="1080" d:DesignWidth="1675">
+             d:DesignHeight="1500" d:DesignWidth="1675">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -320,6 +320,93 @@
                                         VerticalAlignment="Bottom"
                                         FontWeight="DemiBold"/>
                         </Grid>
+                        <TextBox    Grid.Row="1"
+                                    Margin="0,10,0,0"
+                                    Foreground="{StaticResource TextColor}"
+                                    Height="200"
+                                    Width="600"
+                                    CaretBrush="{StaticResource LightTextColor}"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    FontSize="{StaticResource Regular}"
+                                    Text="{Binding ReviewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left"
+                                    VerticalContentAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    TextWrapping="Wrap"
+                                    AcceptsReturn="True"
+                                    AcceptsTab="True"
+                                    Padding="8">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                <Border x:Name="border"
+                                                        CornerRadius="2"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="1,1,1,1">
+                                                    <Grid>
+                                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                              Focusable="False"
+                                                              HorizontalScrollBarVisibility="Disabled"
+                                                              VerticalScrollBarVisibility="Auto"/>
+                                                    </Grid>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsFocused" Value="True">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <Button Grid.Row="2"
+                                Content="{StaticResource SendReview}"
+                                FontFamily="{StaticResource DefaultFont}"
+                                FontSize="{StaticResource Small}"
+                                Width="Auto"
+                                Command="{Binding SendReview}"
+                                HorizontalAlignment="Left"
+                                Cursor="Hand"
+                                Margin="5,10,0,0">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Style.Setters>
+                                        <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Padding="20,5,20,5"
+                                                            x:Name="buttonBorder"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="2"
+                                                            CornerRadius="15">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style.Setters>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="BorderBrush" Value="{StaticResource DarkAccentColor}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource LightTextColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>
