@@ -75,7 +75,9 @@
             <Grid Margin="0,0,20,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
@@ -86,8 +88,6 @@
                       Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="150"/>
                         <RowDefinition Height="150"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -152,66 +152,7 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
-                    <TextBox Height="30"
-                         Grid.Row="1"
-                         Grid.Column="0"
-                         Foreground="{StaticResource TextColor}"
-                         CaretBrush="{StaticResource LightTextColor}"
-                         FontFamily="{StaticResource DefaultFont}"
-                         FontSize="{StaticResource Regular}"
-                         Text="{Binding AddMovieModel.NameEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         MaxLength="128"
-                         TextAlignment="Left"
-                         Width="250"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Center"
-                         VerticalContentAlignment="Center"
-                         Padding="5,0,5,0">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type TextBox}">
-                                            <Border x:Name="border"
-                                                    BorderBrush="{StaticResource LightAccentColor}"
-                                                    BorderThickness="0,0,0,1">
-                                                <Grid>
-                                                    <ScrollViewer x:Name="PART_ContentHost"
-                                                              Focusable="False"
-                                                              HorizontalScrollBarVisibility="Disabled"
-                                                              VerticalScrollBarVisibility="Disabled"/>
-                                                    <TextBlock Text="{StaticResource MovieNameEn}"
-                                                               x:Name="placeholderText"
-                                                               IsEnabled="False"
-                                                               Panel.ZIndex="-1"
-                                                               Foreground="{StaticResource DarkTextColor}"
-                                                               FontSize="{StaticResource Small}"
-                                                               FontFamily="{StaticResource DefaultFont}"
-                                                               VerticalAlignment="Center"
-                                                               Visibility="Collapsed"
-                                                               Margin="5,0,0,0">
-                                                    </TextBlock>
-                                                </Grid>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsFocused" Value="True">
-                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                                </Trigger>
-                                                <Trigger Property="Text" Value="">
-                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                    <StackPanel Grid.Row="2">
+                    <StackPanel Grid.Row="1">
                         <TextBlock Margin="0,5,0,5"
                                    Text="{StaticResource MovieDescRu}"
                                    Foreground="{StaticResource TextColor}"
@@ -263,59 +204,7 @@
                             </TextBox.Style>
                         </TextBox>
                     </StackPanel>
-                    <StackPanel Grid.Row="3">
-                        <TextBlock Margin="0,10,0,5"
-                                   Text="{StaticResource MovieDescEn}"
-                                   Foreground="{StaticResource TextColor}"
-                                   FontFamily="{StaticResource DefaultFont}"
-                                   FontSize="{StaticResource Regular}"
-                                   FontWeight="DemiBold"/>
-                        <TextBox    Foreground="{StaticResource TextColor}"
-                                    Height="115"
-                                    Width="250"
-                                    CaretBrush="{StaticResource LightTextColor}"
-                                    FontFamily="{StaticResource DefaultFont}"
-                                    FontSize="{StaticResource Regular}"
-                                    Text="{Binding AddMovieModel.DescriptionEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    TextAlignment="Left"
-                                    VerticalContentAlignment="Top"
-                                    TextWrapping="Wrap"
-                                    AcceptsReturn="True"
-                                    AcceptsTab="True"
-                                    SpellCheck.IsEnabled="True"
-                                    Padding="5">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type TextBox}">
-                                                <Border x:Name="border"
-                                                    BorderBrush="{StaticResource LightAccentColor}"
-                                                    BorderThickness="1,1,1,1">
-                                                    <Grid>
-                                                        <ScrollViewer x:Name="PART_ContentHost"
-                                                              Focusable="False"
-                                                              HorizontalScrollBarVisibility="Disabled"
-                                                              VerticalScrollBarVisibility="Auto"/>
-                                                    </Grid>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsFocused" Value="True">
-                                                        <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                    </StackPanel>
-                    <StackPanel Grid.Row="4"
+                    <StackPanel Grid.Row="3"
                                 Grid.Column="0"
                                 Height="Auto">
                         <TextBlock Margin="0,10,0,5"
@@ -368,7 +257,7 @@
                             </TextBox.Style>
                         </TextBox>
                     </StackPanel>
-                    <StackPanel Grid.Row="5"
+                    <StackPanel Grid.Row="4"
                                 Grid.Column="0"
                                 Orientation="Vertical">
                         <TextBlock Margin="0,15,0,5"
@@ -472,7 +361,125 @@
                         </ListView>
                     </StackPanel>
                 </Grid>
-                <StackPanel Grid.Column="1"
+                <Grid Grid.Column="2"
+                      Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Height="30"
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Foreground="{StaticResource TextColor}"
+                         CaretBrush="{StaticResource LightTextColor}"
+                         FontFamily="{StaticResource DefaultFont}"
+                         FontSize="{StaticResource Regular}"
+                         Text="{Binding AddMovieModel.NameEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="128"
+                         TextAlignment="Left"
+                         Width="250"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                    BorderBrush="{StaticResource LightAccentColor}"
+                                                    BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                              Focusable="False"
+                                                              HorizontalScrollBarVisibility="Disabled"
+                                                              VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource MovieNameEn}"
+                                                               x:Name="placeholderText"
+                                                               IsEnabled="False"
+                                                               Panel.ZIndex="-1"
+                                                               Foreground="{StaticResource DarkTextColor}"
+                                                               FontSize="{StaticResource Small}"
+                                                               FontFamily="{StaticResource DefaultFont}"
+                                                               VerticalAlignment="Center"
+                                                               Visibility="Collapsed"
+                                                               Margin="5,0,0,0">
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Margin="0,5,0,5"
+                                   Text="{StaticResource MovieDescEn}"
+                                   Foreground="{StaticResource TextColor}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   FontSize="{StaticResource Regular}"
+                                   FontWeight="DemiBold"/>
+                        <TextBox    Foreground="{StaticResource TextColor}"
+                                    Height="115"
+                                    Width="250"
+                                    CaretBrush="{StaticResource LightTextColor}"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    FontSize="{StaticResource Regular}"
+                                    Text="{Binding AddMovieModel.DescriptionEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left"
+                                    VerticalContentAlignment="Top"
+                                    TextWrapping="Wrap"
+                                    AcceptsReturn="True"
+                                    AcceptsTab="True"
+                                    SpellCheck.IsEnabled="True"
+                                    Padding="5">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                <Border x:Name="border"
+                                                    BorderBrush="{StaticResource LightAccentColor}"
+                                                    BorderThickness="1,1,1,1">
+                                                    <Grid>
+                                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                              Focusable="False"
+                                                              HorizontalScrollBarVisibility="Disabled"
+                                                              VerticalScrollBarVisibility="Auto"/>
+                                                    </Grid>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsFocused" Value="True">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Column="3"
                            Grid.Row="1"
                            Margin="10,10,0,0"
                            Height="Auto"
@@ -564,7 +571,7 @@
                                  FontSize="{StaticResource Regular}"
                                  Text="{Binding MovieUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  TextAlignment="Left"
-                                 Width="960"
+                                 Width="800"
                                  Margin="0,0,0,15"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
@@ -618,14 +625,14 @@
                             <customControl:VideoPlayer SourceUrl="{Binding MovieUrl}"
                                                        BorderBrush="{StaticResource LightAccentColor}"
                                                        BorderThickness="1"
-                                                       Width="960"
-                                                       Height="540"
+                                                       Width="800"
+                                                       Height="450"
                                                        HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="2"
-                            Grid.ColumnSpan="2"
+                            Grid.ColumnSpan="4"
                             Width="Auto"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top">
