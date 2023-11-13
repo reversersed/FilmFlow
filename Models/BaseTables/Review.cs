@@ -11,14 +11,15 @@ namespace FilmFlow.Models.BaseTables
     public class Review
     {
         [Key]
+        [Column("id")]
         public int Id { get; set; }
         [Column("movie")]
         public int MovieId { get; set; }
-        [ForeignKey("movie")]
+        [ForeignKey("MovieId")]
         public Movie Movie { get; set; }
         [Column("user")]
         public int UserId { get; set; }
-        [ForeignKey("user")]
+        [ForeignKey("UserId")]
         public User User { get; set; }
         [Column("text")]
         public string ReviewText { get; set; }

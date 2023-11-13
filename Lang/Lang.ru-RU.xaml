@@ -89,4 +89,5 @@
     <sys:String x:Key="Rating">Оценка</sys:String>
     <sys:String x:Key="Review">Отзыв о фильме</sys:String>
     <sys:String x:Key="SendReview">Отправить</sys:String>
+    <sys:String x:Key="ReviewList">Обзоры на фильм</sys:String>
 </ResourceDictionary>

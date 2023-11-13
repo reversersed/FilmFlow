@@ -64,9 +64,9 @@ namespace FilmFlow.MainWindow
         private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel(ShowMovieSection);
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
         private void ShowAdminSectionCommand(object obj) => ChildContentView = moderationView;
-
+        private void ShowMovieSection(int movieId) => ChildContentView = new MovieViewModel(movieId, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(RestartMovieSection));
+        private void RestartMovieSection(object obj) => ChildContentView = new MovieViewModel((int)obj, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(RestartMovieSection));
         //
-        private void ShowMovieSection(int movieId) => ChildContentView = new MovieViewModel(movieId, new ViewModelCommand(ShowHomeSectionCommand));
         private void LogoutButtonCommand(object obj)
         {
             if (obj == null)//Button pressed first

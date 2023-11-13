@@ -15,7 +15,6 @@ namespace FilmFlow.Models
         ObservableCollection<GenreModel> LoadGenreCollection();
         GenreModel GetPopularGenre();
         MovieModel LoadMovieById(int id);
-        Movie GetNotModel(int id);
         void AddMovie(Movie movie, string coverUrl, string movieUrl);
     }
 }
