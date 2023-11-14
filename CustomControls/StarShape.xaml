@@ -27,7 +27,7 @@
                                                 <LineSegment Point="0,10"/>
                                                 <LineSegment Point="8,16"/>
                                                 <LineSegment Point="5,25"/>
-                                                <LineSegment Point="13,19"/>
+                                                <LineSegment Point="12.5,19"/>
                                                 <LineSegment Point="21,25"/>
                                                 <LineSegment Point="18,16"/>
                                                 <LineSegment Point="25,10"/>
@@ -56,7 +56,7 @@
                                         <LineSegment Point="0,10"/>
                                         <LineSegment Point="8,16"/>
                                         <LineSegment Point="5,25"/>
-                                        <LineSegment Point="13,19"/>
+                                        <LineSegment Point="12.5,19"/>
                                         <LineSegment Point="21,25"/>
                                         <LineSegment Point="18,16"/>
                                         <LineSegment Point="25,10"/>
