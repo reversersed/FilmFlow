@@ -90,4 +90,7 @@
     <sys:String x:Key="Review">Отзыв о фильме</sys:String>
     <sys:String x:Key="SendReview">Отправить</sys:String>
     <sys:String x:Key="ReviewList">Обзоры на фильм</sys:String>
+    <sys:String x:Key="SecondAgo">секунд назад</sys:String>
+    <sys:String x:Key="MinuteAgo">минут назад</sys:String>
+    <sys:String x:Key="TodayAt">Сегодня в</sys:String>
 </ResourceDictionary>

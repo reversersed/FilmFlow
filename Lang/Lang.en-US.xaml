@@ -90,4 +90,7 @@
     <sys:String x:Key="Review">Review</sys:String>
     <sys:String x:Key="SendReview">Send</sys:String>
     <sys:String x:Key="ReviewList">Movie reviews</sys:String>
+    <sys:String x:Key="SecondAgo">seconds ago</sys:String>
+    <sys:String x:Key="MinuteAgo">minutes ago</sys:String>
+    <sys:String x:Key="TodayAt">Today at</sys:String>
 </ResourceDictionary> 
