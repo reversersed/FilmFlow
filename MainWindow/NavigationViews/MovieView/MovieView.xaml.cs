@@ -24,21 +24,5 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         {
             InitializeComponent();
         }
-
-        private void BarMoved(object sender, MouseEventArgs e)
-        {
-            (this.DataContext as MovieViewModel)?.MouseRatingMoved.Invoke(null, (float)((e.GetPosition(sender as ProgressBar).X/(sender as ProgressBar).Width)*5));
-        }
-
-        private void BarLeaved(object sender, MouseEventArgs e)
-        {
-            (this.DataContext as MovieViewModel)?.RatingChanged.Invoke(null, false);
-        }
-
-        private void BarClicked(object sender, MouseButtonEventArgs e)
-        {
-            if(e.LeftButton == MouseButtonState.Pressed)
-                (this.DataContext as MovieViewModel)?.RatingChanged.Invoke(null, true);
-        }
     }
 }

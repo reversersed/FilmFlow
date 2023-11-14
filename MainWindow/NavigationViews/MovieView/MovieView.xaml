@@ -37,7 +37,7 @@
         <!--Main section-->
         <ScrollViewer   Grid.Column="1"
                         Focusable="False"
-                        Background="{StaticResource ToolTipBackground}"
+                        Background="{StaticResource SecondaryBackgroundColor}"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
             <Grid Margin="15,10,15,15">
@@ -158,17 +158,9 @@
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <ProgressBar Value="{Binding Path=Movie.Rating, Converter={StaticResource RatingToBar}, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <StackPanel HorizontalAlignment="Left"
-                                                            Orientation="Horizontal">
-                                        <customControl:StarShape/>
-                                        <customControl:StarShape/>
-                                        <customControl:StarShape/>
-                                        <customControl:StarShape/>
-                                        <customControl:StarShape/>
-                                    </StackPanel>
-                                </Grid>
+                                <customControl:RatingBarControl Grid.Column="0"
+                                                                Rating="{Binding Movie.Rating, Converter={StaticResource RatingToBar}}"/>
+
                                 <TextBlock  Text="{Binding Movie.Rating, StringFormat=F1, UpdateSourceTrigger=PropertyChanged}"
                                                 VerticalAlignment="Bottom"
                                                 HorizontalAlignment="Left"
@@ -262,58 +254,10 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Bottom"
                                        FontFamily="{StaticResource DefaultFont}"/>
-                            <Grid   Grid.Column="2"
-                                    VerticalAlignment="Center">
-                                <ProgressBar MouseMove="BarMoved"
-                                             MouseLeave="BarLeaved"
-                                             MouseDown="BarClicked"
-                                             HorizontalAlignment="Stretch"
-                                             VerticalAlignment="Stretch"
-                                             Value="{Binding RatingValue, Converter={StaticResource RatingToBar}}">
-                                    <ProgressBar.Style>
-                                        <Style TargetType="{x:Type ProgressBar}">
-                                            <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
-                                            <Setter Property="Background" Value="Transparent"/>
-                                            <Setter Property="Height" Value="25"/>
-                                            <Setter Property="Width" Value="125"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                        <Grid Name="TemplateRoot" SnapsToDevicePixels="true">
-                                                            <Border 
-                                                                Name="PART_Track"
-                                                                Background="{TemplateBinding Background}"
-                                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                                BorderThickness="{TemplateBinding BorderThickness}" />
-                                                            <Border 
-                                                                Name="PART_Indicator"
-                                                                Background="{TemplateBinding Foreground}" 
-                                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                                HorizontalAlignment="Left" />
-                                                        </Grid>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ProgressBar.Style>
-                                </ProgressBar>
-                                <StackPanel HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Stretch"
-                                            Orientation="Horizontal">
-                                    <customControl:StarShape/>
-                                    <customControl:StarShape/>
-                                    <customControl:StarShape/>
-                                    <customControl:StarShape/>
-                                    <customControl:StarShape/>
-                                </StackPanel>
-                            </Grid>
+                            <customControl:RatingBarControl Grid.Column="2"
+                                                            Rating="{Binding RatingValue, Converter={StaticResource RatingToBar}}"
+                                                            OnMouseStateEvent="{Binding RatingChanged}"
+                                                            OnMouseMoveEvent="{Binding MouseRatingMoved}"/>
                             <TextBlock  Grid.Column="4"
                                         Text="{Binding RatingValue, StringFormat=F1}"
                                         Foreground="{StaticResource TextColor}"
@@ -464,6 +408,16 @@
                                                            Margin="0,5,0,0"
                                                            FontWeight="Light"/>
                                                 </StackPanel>
+                                                <customControl:RatingBarControl Rating="{Binding Rating, Converter={StaticResource RatingToBar}}"
+                                                                                Margin="0,0,10,0"
+                                                                                VerticalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding Rating, StringFormat=F1}"
+                                                            Foreground="{StaticResource LightTextColor}"
+                                                            VerticalAlignment="Center"
+                                                            Padding="0,5,0,0"
+                                                            FontSize="{StaticResource Regular}"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            FontWeight="Light"/>
                                             </StackPanel>
                                             <TextBlock Grid.Row="1"
                                                        TextWrapping="Wrap"

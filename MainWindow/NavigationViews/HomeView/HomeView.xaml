@@ -108,7 +108,7 @@
                             <DataTemplate>
                                 <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
                                     <Grid.ToolTip>
-                                        <Border Background="{StaticResource ToolTipBackground}"
+                                        <Border Background="{StaticResource SecondaryBackgroundColor}"
                                             CornerRadius="10"
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
@@ -144,17 +144,8 @@
                                                         <ColumnDefinition Width="10"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Grid Grid.Column="0">
-                                                        <ProgressBar Value="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
-                                                        <StackPanel HorizontalAlignment="Left"
-                                                                Orientation="Horizontal">
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                        </StackPanel>
-                                                    </Grid>
+                                                    <customControl:RatingBarControl Grid.Column="0"
+                                                                                    Rating="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
                                                     <TextBlock Text="{Binding Rating, StringFormat=F1}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Left"
@@ -308,7 +299,7 @@
                             <DataTemplate>
                                 <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
                                     <Grid.ToolTip>
-                                        <Border Background="{StaticResource ToolTipBackground}"
+                                        <Border Background="{StaticResource SecondaryBackgroundColor}"
                                             CornerRadius="10"
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
@@ -344,17 +335,8 @@
                                                         <ColumnDefinition Width="10"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Grid Grid.Column="0">
-                                                        <ProgressBar Value="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
-                                                        <StackPanel HorizontalAlignment="Left"
-                                                                Orientation="Horizontal">
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                            <customControl:StarShape/>
-                                                        </StackPanel>
-                                                    </Grid>
+                                                    <customControl:RatingBarControl Grid.Column="0"
+                                                                                    Rating="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
                                                     <TextBlock Text="{Binding Rating, StringFormat=F1}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Left"
@@ -865,7 +847,7 @@
                         <DataTemplate>
                             <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
                                 <Grid.ToolTip>
-                                    <Border Background="{StaticResource ToolTipBackground}"
+                                    <Border Background="{StaticResource SecondaryBackgroundColor}"
                                         CornerRadius="10"
                                         Padding="0,10,0,5">
                                         <StackPanel Orientation="Vertical"
@@ -901,17 +883,8 @@
                                                     <ColumnDefinition Width="10"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0">
-                                                    <ProgressBar Value="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
-                                                    <StackPanel HorizontalAlignment="Left"
-                                                            Orientation="Horizontal">
-                                                        <customControl:StarShape/>
-                                                        <customControl:StarShape/>
-                                                        <customControl:StarShape/>
-                                                        <customControl:StarShape/>
-                                                        <customControl:StarShape/>
-                                                    </StackPanel>
-                                                </Grid>
+                                                <customControl:RatingBarControl Grid.Column="0"
+                                                                                Rating="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
                                                 <TextBlock Text="{Binding Rating, StringFormat=F1}"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Left"

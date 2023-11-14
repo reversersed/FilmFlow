@@ -29,7 +29,7 @@
     
     <!--Main section-->
     <SolidColorBrush x:Key="MainBackgroundColor">#1e1d21</SolidColorBrush>
-    <SolidColorBrush x:Key="ToolTipBackground">#352f40</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryBackgroundColor">#352f40</SolidColorBrush>
 
     <!--Nav section-->
     <SolidColorBrush x:Key="NavigationColor">#3d364a</SolidColorBrush>

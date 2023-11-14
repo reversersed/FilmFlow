@@ -22,8 +22,6 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         public string GenreString { get { return _genreString; } set { _genreString = value; OnPropertyChanged(nameof(GenreString)); } }
         public float RatingValue { get { return _ratingValue; } set { _ratingValue = value; OnPropertyChanged(nameof(RatingValue)); } }
         public string ReviewText { get { return _reviewText; } set { _reviewText = value; OnPropertyChanged(nameof(ReviewText)); } }
-        public EventHandler<float> MouseRatingMoved { get; set; }
-        public EventHandler<bool> RatingChanged { get; set; }
         public ObservableCollection<Review> Reviews { get { return _reviews; } set { _reviews = value; OnPropertyChanged(nameof(Reviews)); } }
             
         //Models
@@ -37,15 +35,18 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         public ICommand BackToHome { get; }
         public ICommand ReloadPage { get; }
         public ICommand SendReview { get; }
+        public ICommand RatingChanged { get; }
+        public ICommand MouseRatingMoved { get; }
 
         //Methods
-        private void RatingMouse(object? sender, float rating)
+        private void RatingMouse(object arg)
         {
+            float rating = (float)arg;
             RatingValue = (float)(rating < 0.5 ? 0.5 : rating < 1.0 ? 1.0 : rating < 1.5 ? 1.5 : rating < 2.0 ? 2.0 : rating < 2.5 ? 2.5 : rating < 3.0 ? 3.0 : rating < 3.5 ? 3.5 : rating < 4.0 ? 4.0 : rating < 4.5 ? 4.5 : 5.0);
         }
-        private void RatingChangedHandler(object? sender, bool chaned)
+        private void RatingChangedHandler(object changed)
         {
-            if (chaned)
+            if ((bool)changed)
                 CurrentRating = RatingValue;
             else
                 RatingValue = CurrentRating;
@@ -64,8 +65,8 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             Movie = MovieRepository.LoadMovieById(movieId);
             for (int i = 0; i < Movie.Genres.Count; i++)
                 GenreString += (i == 0 ? Movie.Genres[i].Name : Movie.Genres[i].Name.ToLower()) + (i != Movie.Genres.Count - 1 ? ", " : string.Empty);
-            MouseRatingMoved += RatingMouse;
-            RatingChanged += RatingChangedHandler;
+            MouseRatingMoved = new ViewModelCommand(RatingMouse);
+            RatingChanged = new ViewModelCommand(RatingChangedHandler);
 
             Reviews = ReviewRepository.LoadReviews(movieId);
         }
