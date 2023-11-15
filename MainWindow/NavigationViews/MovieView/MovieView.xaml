@@ -468,6 +468,7 @@
                                     <Setter Property="Background" Value="Transparent"/>
                                     <Setter Property="BorderThickness" Value="0"/>
                                     <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
@@ -478,7 +479,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
+                                            <Setter Property="Visibility" Value="Hidden"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
@@ -492,19 +493,45 @@
                                     <Setter Property="FontWeight" Value="Light"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <Button Margin="0,0,15,0">
+                            <Button Margin="0,0,15,0"
+                                    Command="{Binding ReviewPrevPage}"
+                                    CommandParameter="10">
                                 <Button.Content>
                                     <fa:IconImage Icon="AnglesLeft"
                                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                                 </Button.Content>
                             </Button>
-                            <Button>
+                            <Button Command="{Binding ReviewPrevPage}"
+                                    CommandParameter="1">
                                 <Button.Content>
                                     <fa:IconImage Icon="AngleLeft"
                                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                                 </Button.Content>
                             </Button>
-                            <TextBlock Text="1" Margin="10,0,0,0"/>
+                            <TextBlock Text="{Binding CurrentPage}"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="{StaticResource of}"
+                                       Margin="5,0,5,0"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding TotalPage}"
+                                       Margin="0,0,10,0"
+                                       VerticalAlignment="Center"/>
+                            <Button Command="{Binding ReviewNextPage}" 
+                                    CommandParameter="1">
+                                <Button.Content>
+                                    <fa:IconImage Icon="AngleRight"
+                                                  Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Margin="15,0,0,0" 
+                                    Command="{Binding ReviewNextPage}" 
+                                    CommandParameter="10">
+                                <Button.Content>
+                                    <fa:IconImage Icon="AnglesRight"
+                                                  Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                </Button.Content>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </Grid>

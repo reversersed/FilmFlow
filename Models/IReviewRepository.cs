@@ -11,6 +11,7 @@ namespace FilmFlow.Models
     interface IReviewRepository
     {
         void AddReview(float rating, string text, int movieid, int userid);
+        int CountReviews(int movieid);
         ObservableCollection<Review> LoadReviews(int movie, int offset = 0, int limit = 10);
     }
 }

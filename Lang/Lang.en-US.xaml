@@ -93,4 +93,5 @@
     <sys:String x:Key="SecondAgo">seconds ago</sys:String>
     <sys:String x:Key="MinuteAgo">minutes ago</sys:String>
     <sys:String x:Key="TodayAt">Today at</sys:String>
+    <sys:String x:Key="of">of</sys:String>
 </ResourceDictionary> 

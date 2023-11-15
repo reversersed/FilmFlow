@@ -17,16 +17,28 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         private float CurrentRating { get; set; }
         private string _reviewText { get; set; }
         private ObservableCollection<Review> _reviews { get; set; } = new ObservableCollection<Review>();
-        private int _currentPage { get; set; }
+        private int _currentPage { get; set; } = 1;
         private int _totalPages { get; set; }
+        private const int _reviewPerPage = 3;
 
         //Public properties
         public string GenreString { get { return _genreString; } set { _genreString = value; OnPropertyChanged(nameof(GenreString)); } }
         public float RatingValue { get { return _ratingValue; } set { _ratingValue = value; OnPropertyChanged(nameof(RatingValue)); } }
         public string ReviewText { get { return _reviewText; } set { _reviewText = value; OnPropertyChanged(nameof(ReviewText)); } }
         public ObservableCollection<Review> Reviews { get { return _reviews; } set { _reviews = value; OnPropertyChanged(nameof(Reviews)); } }
-        public int CurrentPage { get { return _currentPage; } set { _currentPage = value; OnPropertyChanged(nameof(CurrentPage)); } }
         public int TotalPage { get { return _totalPages; } set { _totalPages = value; OnPropertyChanged(nameof(TotalPage)); } }
+        public int CurrentPage { get { return _currentPage; } 
+            set 
+            {
+                if (value < 1)
+                    _currentPage = 1;
+                else if (value > TotalPage)
+                    _currentPage = TotalPage;
+                else
+                    _currentPage = value; 
+                OnPropertyChanged(nameof(CurrentPage)); 
+            } 
+        }
             
         //Models
         private IMovieRepository MovieRepository { get; set; }
@@ -41,6 +53,8 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         public ICommand SendReview { get; }
         public ICommand RatingChanged { get; }
         public ICommand MouseRatingMoved { get; }
+        public ICommand ReviewNextPage { get; }
+        public ICommand ReviewPrevPage { get; }
 
         //Methods
         private void RatingMouse(object arg)
@@ -60,6 +74,8 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             BackToHome = BackAction;
             ReloadPage = RestartAction;
             SendReview = new ViewModelCommand(SendReviewCommand, x => CurrentRating > 0 && ReviewText?.Length > 20);
+            ReviewNextPage = new ViewModelCommand(ReviewNextPageCommand, x => CurrentPage < TotalPage);
+            ReviewPrevPage = new ViewModelCommand(ReviewPrevPageCommand, x => CurrentPage > 1);
 
             MovieRepository = new MovieRepository();
             userRepository = new UserRepository();
@@ -72,8 +88,27 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             MouseRatingMoved = new ViewModelCommand(RatingMouse);
             RatingChanged = new ViewModelCommand(RatingChangedHandler);
 
-            Reviews = ReviewRepository.LoadReviews(movieId);
+            Reviews = ReviewRepository.LoadReviews(movieId, (CurrentPage-1)*_reviewPerPage, _reviewPerPage);
+            int totalReviews = ReviewRepository.CountReviews(movieId);
+            TotalPage = totalReviews / _reviewPerPage + (totalReviews % _reviewPerPage > 0 || totalReviews == 0 ? 1 : 0);
         }
+
+        private void ReviewPrevPageCommand(object obj)
+        {
+            int pageoffset = 1;
+            CurrentPage -= Int32.TryParse((string)obj, out pageoffset) ? pageoffset : 1;
+
+            Reviews = ReviewRepository.LoadReviews(Movie.Id, (CurrentPage - 1) * _reviewPerPage, _reviewPerPage);
+        }
+
+        private void ReviewNextPageCommand(object obj)
+        {
+            int pageoffset = 1;
+            CurrentPage += Int32.TryParse((string)obj, out pageoffset) ? pageoffset : 1;
+
+            Reviews = ReviewRepository.LoadReviews(Movie.Id, (CurrentPage - 1) * _reviewPerPage, _reviewPerPage);
+        }
+
         private void SendReviewCommand(object var)
         {
             ReviewRepository.AddReview(CurrentRating, ReviewText, Movie.Id, Account.Id);

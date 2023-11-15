@@ -30,6 +30,16 @@ namespace FilmFlow.Models
             }
         }
 
+        public int CountReviews(int movieid)
+        {
+            using(RepositoryBase db = new())
+            {
+                return db.reviews   .Include(e => e.Movie)
+                                    .ToList()
+                                    .Count(i => i.Movie.Id == movieid);
+            }
+        }
+
         public ObservableCollection<Review> LoadReviews(int movie, int offset = 0, int limit = 10)
         {
             var reviews = new ObservableCollection<Review>();
