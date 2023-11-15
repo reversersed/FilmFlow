@@ -8,10 +8,10 @@ namespace FilmFlow.MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(IUserRepository userRepository)
+        public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel(userRepository);
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }

@@ -795,7 +795,7 @@
                                     BorderThickness="1"
                                     Padding="10,0,10,0"
                                     Background="Transparent">
-                                    <TextBlock Text="Search"
+                                    <TextBlock Text="{StaticResource Search}"
                                                FontSize="{StaticResource Small}"
                                                FontFamily="{StaticResource DefaultFont}"
                                                Foreground="{StaticResource TextColor}"

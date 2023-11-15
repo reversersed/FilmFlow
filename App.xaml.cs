@@ -4,8 +4,6 @@ using FilmFlow.MainWindow;
 using System;
 using System.Globalization;
 using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using FilmFlow.PasswordReset;
 
 namespace FilmFlow
@@ -19,18 +17,7 @@ namespace FilmFlow
         ResetView resetView;
         RegistrationView registrationView;
         MainWindow.MainWindow mainWindow;
-        IHost? ApplicationHost;
-        public App()
-        {
-            ApplicationHost = Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddSingleton<FilmFlow.MainWindow.MainWindow>();
-                    services.AddSingleton<FilmFlow.Models.IUserRepository, FilmFlow.Models.UserRepository>();
-                })
-                .Build();
-        }
-        public async void ApplicationStart(object sender, EventArgs e)
+        public void ApplicationStart(object sender, EventArgs e)
         {
             ResourceDictionary languageDictionary = new ResourceDictionary();
             if (FilmFlow.Properties.Settings.Default.Language.Length < 2)
@@ -42,18 +29,11 @@ namespace FilmFlow
 
             App.Current.Resources.MergedDictionaries.Add(languageDictionary);
 
-            await ApplicationHost!.StartAsync();
-
             ShowLoginWindow(null);
-        }
-        protected override async void OnExit(ExitEventArgs e)
-        {
-            await ApplicationHost!.StopAsync();
-            base.OnExit(e);
         }
         private void showMainWindow(object? obj)
         {
-            mainWindow = ApplicationHost.Services.GetRequiredService<FilmFlow.MainWindow.MainWindow>();
+            mainWindow = new MainWindow.MainWindow();
             MainWindowViewModel viewModel = mainWindow.DataContext as MainWindowViewModel;
             viewModel.showStartWindow = () => { this.ShowLoginWindow(new object()); mainWindow.Close(); };
             mainWindow.Show();

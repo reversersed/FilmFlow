@@ -19,7 +19,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         private ObservableCollection<Review> _reviews { get; set; } = new ObservableCollection<Review>();
         private int _currentPage { get; set; } = 1;
         private int _totalPages { get; set; }
-        private const int _reviewPerPage = 3;
+        private const int _reviewPerPage = 10;
 
         //Public properties
         public string GenreString { get { return _genreString; } set { _genreString = value; OnPropertyChanged(nameof(GenreString)); } }
@@ -35,7 +35,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
                 else if (value > TotalPage)
                     _currentPage = TotalPage;
                 else
-                    _currentPage = value; 
+                    _currentPage = value;
                 OnPropertyChanged(nameof(CurrentPage)); 
             } 
         }
@@ -53,8 +53,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         public ICommand SendReview { get; }
         public ICommand RatingChanged { get; }
         public ICommand MouseRatingMoved { get; }
-        public ICommand ReviewNextPage { get; }
-        public ICommand ReviewPrevPage { get; }
+        public ICommand SetReviewPage { get; }
 
         //Methods
         private void RatingMouse(object arg)
@@ -74,8 +73,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             BackToHome = BackAction;
             ReloadPage = RestartAction;
             SendReview = new ViewModelCommand(SendReviewCommand, x => CurrentRating > 0 && ReviewText?.Length > 20);
-            ReviewNextPage = new ViewModelCommand(ReviewNextPageCommand, x => CurrentPage < TotalPage);
-            ReviewPrevPage = new ViewModelCommand(ReviewPrevPageCommand, x => CurrentPage > 1);
+            SetReviewPage = new ViewModelCommand(ReviewPage);
 
             MovieRepository = new MovieRepository();
             userRepository = new UserRepository();
@@ -93,18 +91,12 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             TotalPage = totalReviews / _reviewPerPage + (totalReviews % _reviewPerPage > 0 || totalReviews == 0 ? 1 : 0);
         }
 
-        private void ReviewPrevPageCommand(object obj)
+        private void ReviewPage(object obj)
         {
-            int pageoffset = 1;
-            CurrentPage -= Int32.TryParse((string)obj, out pageoffset) ? pageoffset : 1;
-
-            Reviews = ReviewRepository.LoadReviews(Movie.Id, (CurrentPage - 1) * _reviewPerPage, _reviewPerPage);
-        }
-
-        private void ReviewNextPageCommand(object obj)
-        {
-            int pageoffset = 1;
-            CurrentPage += Int32.TryParse((string)obj, out pageoffset) ? pageoffset : 1;
+            if(obj.GetType().Equals(typeof(int)))
+                CurrentPage = (int) obj;
+            else
+                CurrentPage = Int32.Parse((string)obj);
 
             Reviews = ReviewRepository.LoadReviews(Movie.Id, (CurrentPage - 1) * _reviewPerPage, _reviewPerPage);
         }

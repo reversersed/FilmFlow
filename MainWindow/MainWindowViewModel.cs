@@ -42,14 +42,14 @@ namespace FilmFlow.MainWindow
         public Action showStartWindow { get; set; }
 
         //Methods
-        public MainWindowViewModel(IUserRepository userRepository)
+        public MainWindowViewModel()
         {
             LogoutButton = new ViewModelCommand(LogoutButtonCommand);
             ShowHomeSection = new ViewModelCommand(ShowHomeSectionCommand);
             ShowSettingsSection = new ViewModelCommand(ShowSettingsSectionCommand);
             ShowAdminSection = new ViewModelCommand(ShowAdminSectionCommand);
 
-            UserRepository = userRepository;
+            UserRepository = new UserRepository();
             User = UserRepository.LoadUserData(Thread.CurrentPrincipal.Identity.Name);
 
             UserAccessVisibility = User.Admin > 0 ? Visibility.Visible : Visibility.Collapsed;

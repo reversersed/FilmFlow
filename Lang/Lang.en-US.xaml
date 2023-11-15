@@ -64,6 +64,7 @@
     <sys:String x:Key="MovieNameSearch">Movie name...</sys:String>
     <sys:String x:Key="PopularToday">Popular genre -</sys:String>
     <sys:String x:Key="NewMovies">New movies</sys:String>
+    <sys:String x:Key="Search">Search</sys:String>
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Add movie</sys:String>
     <sys:String x:Key="EditMovie">Edit movie</sys:String>
@@ -93,5 +94,5 @@
     <sys:String x:Key="SecondAgo">seconds ago</sys:String>
     <sys:String x:Key="MinuteAgo">minutes ago</sys:String>
     <sys:String x:Key="TodayAt">Today at</sys:String>
-    <sys:String x:Key="of">of</sys:String>
+    <sys:String x:Key="NoReviews">There are no reviews yet...</sys:String>
 </ResourceDictionary> 

@@ -64,6 +64,7 @@
     <sys:String x:Key="MovieNameSearch">Название фильма...</sys:String>
     <sys:String x:Key="PopularToday">Популярный жанр -</sys:String>
     <sys:String x:Key="NewMovies">Новые фильмы</sys:String>
+    <sys:String x:Key="Search">Поиск</sys:String>
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Добавить фильм</sys:String>
     <sys:String x:Key="EditMovie">Редактировать фильм</sys:String>
@@ -93,5 +94,5 @@
     <sys:String x:Key="SecondAgo">секунд назад</sys:String>
     <sys:String x:Key="MinuteAgo">минут назад</sys:String>
     <sys:String x:Key="TodayAt">Сегодня в</sys:String>
-    <sys:String x:Key="of">из</sys:String>
+    <sys:String x:Key="NoReviews">Отзывов пока нет...</sys:String>
 </ResourceDictionary>
