@@ -17,12 +17,16 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         private float CurrentRating { get; set; }
         private string _reviewText { get; set; }
         private ObservableCollection<Review> _reviews { get; set; } = new ObservableCollection<Review>();
+        private int _currentPage { get; set; }
+        private int _totalPages { get; set; }
 
         //Public properties
         public string GenreString { get { return _genreString; } set { _genreString = value; OnPropertyChanged(nameof(GenreString)); } }
         public float RatingValue { get { return _ratingValue; } set { _ratingValue = value; OnPropertyChanged(nameof(RatingValue)); } }
         public string ReviewText { get { return _reviewText; } set { _reviewText = value; OnPropertyChanged(nameof(ReviewText)); } }
         public ObservableCollection<Review> Reviews { get { return _reviews; } set { _reviews = value; OnPropertyChanged(nameof(Reviews)); } }
+        public int CurrentPage { get { return _currentPage; } set { _currentPage = value; OnPropertyChanged(nameof(CurrentPage)); } }
+        public int TotalPage { get { return _totalPages; } set { _totalPages = value; OnPropertyChanged(nameof(TotalPage)); } }
             
         //Models
         private IMovieRepository MovieRepository { get; set; }
