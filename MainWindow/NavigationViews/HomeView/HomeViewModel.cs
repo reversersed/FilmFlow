@@ -15,6 +15,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Private properties
         private ObservableCollection<MovieModel> _movies;
         private ObservableCollection<MovieModel> _popularMovies;
+        private ObservableCollection<MovieModel> _mostRatedMovies;
         private ObservableCollection<MovieModel> _newMovies;
         private ObservableCollection<GenreModel> _genres;
         private List<int> _filteredGenres = new List<int>();
@@ -22,24 +23,25 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         private string _genreFilterIcon = "CircleArrowUp";
         private int _selectedMovie = -1;
         private int _popularSelectedMovie = -1;
+        private int _mostRatedSelectedMovie = -1;
         private int _newSelectedMovie = -1;
         private Visibility _filterVisibility = Visibility.Collapsed;
         private Visibility _genreFilterVisibility = Visibility.Visible;
-        private GenreModel _popularGenreToday;
 
         //Public Properties
         public ObservableCollection<MovieModel> Movies { get { return _movies; } set { _movies = value; OnPropertyChanged(nameof(Movies)); } }
         public ObservableCollection<MovieModel> PopularMovies { get { return _popularMovies; } set { _popularMovies = value; OnPropertyChanged(nameof(PopularMovies)); } }
+        public ObservableCollection<MovieModel> MostRatedMovies { get { return _mostRatedMovies; } set { _mostRatedMovies = value; OnPropertyChanged(nameof(MostRatedMovies)); } }
         public ObservableCollection<MovieModel> NewMovies { get { return _newMovies; } set { _newMovies = value; OnPropertyChanged(nameof(NewMovies)); } }
         public ObservableCollection<GenreModel> Genres { get { return _genres; } set { _genres = value; OnPropertyChanged(nameof(Genres)); } }
         public int SelectedMovie { get { return _selectedMovie; } set { _selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); } }
         public int PopularSelectedMovie { get { return _popularSelectedMovie; } set { _popularSelectedMovie = value; OnPropertyChanged(nameof(PopularSelectedMovie)); } }
+        public int MostRatedSelectedMovie { get { return _mostRatedSelectedMovie; } set { _mostRatedSelectedMovie = value; OnPropertyChanged(nameof(MostRatedSelectedMovie)); } }
         public int NewSelectedMovie { get { return _newSelectedMovie; } set { _newSelectedMovie = value; OnPropertyChanged(nameof(NewSelectedMovie)); } }
         public string MovieSearchName { get { return _movieSearchName; } set { _movieSearchName = value; OnPropertyChanged(nameof(MovieSearchName)); } }
         public string GenreFilterIcon { get { return _genreFilterIcon; } set { _genreFilterIcon = value; OnPropertyChanged(nameof(GenreFilterIcon)); } }
         public Visibility FilterVisibility { get { return _filterVisibility; } set { _filterVisibility = value; OnPropertyChanged(nameof(FilterVisibility)); } }
         public Visibility GenreFilterVisibility { get { return _genreFilterVisibility; } set { _genreFilterVisibility = value; OnPropertyChanged(nameof(GenreFilterVisibility)); } }
-        public GenreModel PopularGenreToday { get { return _popularGenreToday; } set { _popularGenreToday = value; OnPropertyChanged(nameof(PopularGenreToday)); } }
 
         //Models
         MovieRepository MovieRepository { get; set; }
@@ -47,6 +49,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         //Commands
         public ICommand MovieListSelected { get; }
         public ICommand PopularMovieListSelected { get; }
+        public ICommand MostRatedMovieListSelected { get; }
         public ICommand NewMovieListSelected { get; }
         public ICommand SwitchFilter { get; }
         public ICommand CollapseGenreFilter { get; }
@@ -64,6 +67,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         {
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
             PopularMovieListSelected = new ViewModelCommand(PopularMovieListSelectedCommand);
+            MostRatedMovieListSelected = new ViewModelCommand(MostRatedMovieListSelectedCommand);
             NewMovieListSelected = new ViewModelCommand(NewMovieListSelectedCommand);
             CollapseGenreFilter = new ViewModelCommand(CollapseGenreFilterCommand);
             SwitchFilter = new ViewModelCommand(SwitchFilterCommand);
@@ -77,8 +81,8 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
 
             Movies = MovieRepository.LoadMovies();
             Genres = MovieRepository.LoadGenreCollection();
-            PopularGenreToday = MovieRepository.GetPopularGenre();
-            PopularMovies = MovieRepository.LoadMoviesByGenre(PopularGenreToday);
+            PopularMovies = MovieRepository.GetPopularMovies();
+            MostRatedMovies = MovieRepository.GetMostRated();
             NewMovies = MovieRepository.LoadNewMovies();
 
             this.openMovieCommand = openMovieCommand;
@@ -123,6 +127,12 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             if ((int)obj < 0)
                 return;
             openMovieCommand?.Invoke(PopularMovies[(int)obj].Id);
+        }
+        private void MostRatedMovieListSelectedCommand(object obj)
+        {
+            if ((int)obj < 0)
+                return;
+            openMovieCommand?.Invoke(MostRatedMovies[(int)obj].Id);
         }
         private void NewMovieListSelectedCommand(object obj)
         {

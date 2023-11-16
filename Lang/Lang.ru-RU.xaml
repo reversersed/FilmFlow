@@ -62,7 +62,8 @@
     <sys:String x:Key="Filters">Фильтры</sys:String>
     <sys:String x:Key="Genres">Жанры</sys:String>
     <sys:String x:Key="MovieNameSearch">Название фильма...</sys:String>
-    <sys:String x:Key="PopularToday">Популярный жанр -</sys:String>
+    <sys:String x:Key="MostDiscussing">Самое обсуждаемое</sys:String>
+    <sys:String x:Key="MostPopularMovies">С лучшей оценкой</sys:String>
     <sys:String x:Key="NewMovies">Новые фильмы</sys:String>
     <sys:String x:Key="Search">Поиск</sys:String>
     <!--Moderation window-->

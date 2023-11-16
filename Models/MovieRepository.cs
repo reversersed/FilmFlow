@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace FilmFlow.Models
 {
@@ -13,17 +14,59 @@ namespace FilmFlow.Models
 
         }
 
-        public GenreModel GetPopularGenre()
+        public ObservableCollection<MovieModel> GetPopularMovies()
         {
-            using(var db = new RepositoryBase())
+            ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
+            using (var db = new RepositoryBase())
             {
-                MovieGenre movieGenre = db.genres.Include(e => e.Genre).FirstOrDefault();
-                return new GenreModel()
+                foreach (Movie movie in db.movies
+                                            .Include(e => e.Cover)
+                                            .Include(e => e.Genre)
+                                                .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
+                                            .Select(i => i)
+                                            .OrderByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Count())
+                                            .Take(30)
+                                            .ToList())
                 {
-                    Id = movieGenre.Genre.Id,
-                    Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movieGenre.Genre.NameRu : movieGenre.Genre.NameEn
-                };
+                    var genres = new ObservableCollection<GenreModel>();
+                    foreach (var genre in movie.Genre)
+                        genres.Add(new GenreModel
+                        {
+                            Id = genre.Genre.Id,
+                            Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? genre.Genre.NameRu : genre.Genre.NameEn
+                        });
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), genres));
+                }
             }
+            return Movies;
+        }        public ObservableCollection<MovieModel> GetMostRated()
+        {
+            ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
+            using (var db = new RepositoryBase())
+            {
+                foreach (Movie movie in db.movies
+                                            .Include(e => e.Cover)
+                                            .Include(e => e.Genre)
+                                                .ThenInclude(i => i.Genre)
+                                            .Include(e => e.Url)
+                                            .Select(i => i)
+                                            .OrderByDescending(i => i.Rating)
+                                            .ThenByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Count())
+                                            .Take(30)
+                                            .ToList())
+                {
+                    var genres = new ObservableCollection<GenreModel>();
+                    foreach (var genre in movie.Genre)
+                        genres.Add(new GenreModel
+                        {
+                            Id = genre.Genre.Id,
+                            Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? genre.Genre.NameRu : genre.Genre.NameEn
+                        });
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), genres));
+                }
+            }
+            return Movies;
         }
 
         public ObservableCollection<MovieModel> LoadFilteredMovies(string name)

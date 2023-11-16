@@ -13,7 +13,8 @@ namespace FilmFlow.Models
         ObservableCollection<MovieModel> LoadFilteredMovies(List<int> genreIds);
         ObservableCollection<MovieModel> LoadMoviesByGenre(GenreModel genregenreSearch);
         ObservableCollection<GenreModel> LoadGenreCollection();
-        GenreModel GetPopularGenre();
+        ObservableCollection<MovieModel> GetPopularMovies();
+        ObservableCollection<MovieModel> GetMostRated();
         MovieModel LoadMovieById(int id);
         void AddMovie(Movie movie, string coverUrl, string movieUrl);
     }
