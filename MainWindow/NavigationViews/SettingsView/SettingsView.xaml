@@ -63,9 +63,7 @@
                               Margin="0,0,0,0"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               SelectedValue="{Binding CurrentSelectedLanguage}"
-                              ItemsSource="{Binding LanguageList}">
-
-                </ComboBox>
+                              ItemsSource="{Binding LanguageList}"/>
             </Grid>
         </ScrollViewer>
         <TextBlock Grid.Row="0"

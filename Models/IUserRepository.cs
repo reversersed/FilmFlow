@@ -13,5 +13,6 @@ namespace FilmFlow.Models
         User LoadUserData(string username);
         User GetByEmailOrUsername(string value);
         void ChangePassword(string username, string password);
+        void BanUser(int userId);
     }
 }

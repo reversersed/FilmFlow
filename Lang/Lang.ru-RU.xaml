@@ -95,4 +95,18 @@
     <sys:String x:Key="MinuteAgo">минут назад</sys:String>
     <sys:String x:Key="TodayAt">Сегодня в</sys:String>
     <sys:String x:Key="NoReviews">Отзывов пока нет...</sys:String>
+    <sys:String x:Key="Default">По умолчанию</sys:String>
+    <sys:String x:Key="RatingDesc">Сначала положительные</sys:String>
+    <sys:String x:Key="RatingAsc">Сначала отрицательные</sys:String>
+    <sys:String x:Key="DateDesc">Сначала новые</sys:String>
+    <sys:String x:Key="DateAsc">Сначала старые</sys:String>
+    <sys:String x:Key="ClearReviews">Очистить отзывы</sys:String>
+    <sys:String x:Key="Confirmation">Подтверждение</sys:String>
+    <sys:String x:Key="Cancel">Отменить</sys:String>
+    <sys:String x:Key="ClearReviewsConfirmation">Вы уверены, что хотите удалить все отзывы фильма? Это действие так же сбросит его рейтинг.</sys:String>
+    <sys:String x:Key="BanUserConfirmation">Вы хотите удалить все отзывы, написанные данным пользователем? После блокировки пользователь сможет продолжать пользоваться сервисом, но не сможет оставлять отзывы к фильмам.</sys:String>
+    <sys:String x:Key="DeleteReviewConfirmation">Вы уверены, что хотите удалить данный отызв? Это действие отразится на общем рейтинге фильма.</sys:String>
+    <sys:String x:Key="NotReviewAllowed">Ваш аккаунт заблокирован администрацией. Вам запрещено отправлять отзывы.</sys:String>
+    <sys:String x:Key="DeleteReview">Удалить отзыв</sys:String>
+    <sys:String x:Key="BanUser">Заблокировать пользователя</sys:String>
 </ResourceDictionary>

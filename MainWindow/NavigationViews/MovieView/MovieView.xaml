@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FilmFlow.MainWindow.NavigationViews.MovieView"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:customControl="clr-namespace:FilmFlow.CustomControls"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:MovieViewModel}"
              d:DesignHeight="1500" d:DesignWidth="1675">
@@ -14,6 +14,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
+                <ResourceDictionary Source="/CustomControls/ComboBox.xaml"/>
                 <ResourceDictionary Source="/CustomControls/ReviewsBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:RatingConverter x:Key="RatingToBar"/>
@@ -37,6 +38,135 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Background="{StaticResource MainBackgroundColor}"/>
         <Border Grid.Column="2" Background="{StaticResource MainBackgroundColor}"/>
+
+
+        <!--Modal PopUp for logout confirmation-->
+        <popupConfirm:Modal Panel.ZIndex="1"
+                            IsOpen="{Binding ConfirmationVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Grid.ColumnSpan="3">
+            <StackPanel Width="300"
+                        Height="200"
+                        Orientation="Vertical"
+                        Background="{StaticResource NavigationColor}">
+                <TextBlock Text="{StaticResource Confirmation}"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"/>
+                <TextBlock Text="{Binding ConfirmationText}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Margin="0,25,0,0"
+                               Width="280"
+                               TextWrapping="Wrap"
+                               Height="100"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Small}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="Normal"/>
+                <StackPanel Margin="0,10,0,0"
+                            Height="Auto"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Width="Auto">
+                    <Button BorderThickness="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{StaticResource Yes}"
+                            Command="{Binding ConfirmationCommand}"
+                            CommandParameter="yes"
+                            Foreground="{StaticResource TextColor}"
+                            FontSize="{StaticResource Regular}"
+                            FontFamily="{StaticResource DefaultFont}"
+                            Cursor="Hand"
+                            Margin="0,0,10,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" Padding="10,5,10,5" Background="{TemplateBinding Background}" BorderThickness="0">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button BorderThickness="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{StaticResource No}"
+                            Command="{Binding ConfirmationCommand}"
+                            CommandParameter="no"
+                            Foreground="{StaticResource TextColor}"
+                            FontSize="{StaticResource Regular}"
+                            FontFamily="{StaticResource DefaultFont}"
+                            Cursor="Hand"
+                            Margin="10,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" Padding="10,5,10,5" Background="{TemplateBinding Background}" BorderThickness="0">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button BorderThickness="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{StaticResource Cancel}"
+                            Command="{Binding ConfirmationCommand}"
+                            CommandParameter="cancel"
+                            Foreground="{StaticResource TextColor}"
+                            FontSize="{StaticResource Regular}"
+                            FontFamily="{StaticResource DefaultFont}"
+                            Cursor="Hand"
+                            Margin="20,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding IsBanConfirmationOpened}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" Padding="10,5,10,5" Background="{TemplateBinding Background}" BorderThickness="0">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </popupConfirm:Modal>
 
         <!--Main section-->
         <ScrollViewer   Grid.Column="1"
@@ -236,7 +366,36 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="{StaticResource NotReviewAllowed}"
+                               FontSize="{StaticResource Big}"
+                               FontWeight="DemiBold"
+                               TextAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontFamily="{StaticResource DefaultFont}"
+                               Foreground="{StaticResource LightTextColor}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Account.Banned}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <Grid Grid.Row="0">
+                        <Grid.Style>
+                            <Style TargetType="{x:Type Grid}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Account.Banned}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -368,13 +527,83 @@
                             <RowDefinition/>
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0"
-                                   HorizontalAlignment="Left"
-                                   Foreground="{StaticResource TextColor}"
-                                   FontFamily="{StaticResource DefaultFont}"
-                                   FontSize="{StaticResource Big}"
-                                   FontWeight="DemiBold"
-                                   Text="{StaticResource ReviewList}"/>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Grid.Row="0">
+                            <TextBlock Foreground="{StaticResource TextColor}"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       FontSize="{StaticResource Big}"
+                                       FontWeight="DemiBold"
+                                        VerticalAlignment="Center"
+                                       Text="{StaticResource ReviewList}"/>
+                            <ComboBox   Height="30"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Left"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Width="220"
+                                        Margin="20,0,0,0"
+                                        SelectedValuePath="Key"
+                                        DisplayMemberPath="Value"
+                                        SelectedValue="{Binding CurrentFilter}"
+                                        ItemsSource="{Binding ReviewFilters}">
+                                <ComboBox.Style>
+                                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource ComboBoxFlatStyle}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Reviews.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                            <Button>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Margin" Value="20,0,0,0"/>
+                                        <Setter Property="Content" Value="{StaticResource ClearReviews}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+                                        <Setter Property="FontSize" Value="{StaticResource Regular}"/>
+                                        <Setter Property="FontWeight" Value="Light"/>
+                                        <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Padding" Value="10,0,10,0"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                        <Setter Property="Command" Value="{Binding ClearReviews}"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Background="{TemplateBinding Background}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            CornerRadius="15">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                                                          HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding Account.Admin}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+
                         <TextBlock  Grid.Row="1"
                                     Text="{StaticResource NoReviews}"
                                     Foreground="{StaticResource LightTextColor}"
@@ -423,6 +652,7 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition/>
+                                                <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                             <StackPanel Orientation="Horizontal"
                                                         Margin="0,0,0,10"
@@ -458,6 +688,109 @@
                                                        Foreground="{StaticResource TextColor}"
                                                        FontFamily="{StaticResource DefaultFont}"
                                                        FontSize="{StaticResource Regular}"/>
+                                            <StackPanel Orientation="Horizontal"
+                                                        Grid.Row="2"
+                                                        Margin="0,10,0,0">
+                                                <StackPanel.Style>
+                                                    <Style TargetType="{x:Type StackPanel}">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding DataContext.Account.Admin, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Value="0">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </StackPanel.Style>
+                                                <Button>
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                            <Setter Property="Margin" Value="0,0,0,0"/>
+                                                            <Setter Property="Content" Value="{StaticResource DeleteReview}"/>
+                                                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                                            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+                                                            <Setter Property="FontSize" Value="{StaticResource Small}"/>
+                                                            <Setter Property="FontWeight" Value="Light"/>
+                                                            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                            <Setter Property="Padding" Value="10,0,10,0"/>
+                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                            <Setter Property="Command" Value="{Binding DataContext.DeleteReview, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+                                                            <Setter Property="CommandParameter" Value="{Binding Id}"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                                Background="{TemplateBinding Background}"
+                                                                                Padding="{TemplateBinding Padding}"
+                                                                                CornerRadius="10">
+                                                                            <ContentPresenter VerticalAlignment="Center"
+                                                                          HorizontalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsEnabled" Value="False">
+                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+                                                <Button>
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Setter Property="Margin" Value="20,0,0,0"/>
+                                                            <Setter Property="Content" Value="{StaticResource BanUser}"/>
+                                                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                                            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+                                                            <Setter Property="FontSize" Value="{StaticResource Small}"/>
+                                                            <Setter Property="FontWeight" Value="Light"/>
+                                                            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                            <Setter Property="Padding" Value="10,0,10,0"/>
+                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                            <Setter Property="Command" Value="{Binding DataContext.BanUser, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+                                                            <Setter Property="CommandParameter" Value="{Binding User.Id}"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                                Background="{TemplateBinding Background}"
+                                                                                Padding="{TemplateBinding Padding}"
+                                                                                CornerRadius="10">
+                                                                            <ContentPresenter VerticalAlignment="Center"
+                                                                          HorizontalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsEnabled" Value="False">
+                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                </Trigger>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding User.Banned}" Value="False"/>
+                                                                        <Condition Binding="{Binding User.Admin}" Value="0"/>
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+                                            </StackPanel>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>

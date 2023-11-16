@@ -63,7 +63,8 @@ namespace FilmFlow.Login
         {
             if((Username = userRepository.AuthenticateUser()) != null)
             {
-                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                FilmFlow.Properties.Settings.Default.CurrentUser = Username;
+                FilmFlow.Properties.Settings.Default.Save();
                 IsViewVisible = false;
 
                 showAuthorizedWindow?.Invoke(Username);
@@ -84,7 +85,8 @@ namespace FilmFlow.Login
             User User = userRepository.AuthenticateUser(Username, Password, IsPasswordRemembered);
             if (User != default(User))
             {
-                System.Threading.Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(User.Username), null);
+                FilmFlow.Properties.Settings.Default.CurrentUser = User.Username;
+                FilmFlow.Properties.Settings.Default.Save();
                 IsViewVisible = false;
 
                 showAuthorizedWindow?.Invoke(User.Username);

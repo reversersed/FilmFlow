@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Forms;
 
 namespace FilmFlow.Models.BaseTables
 {
@@ -16,5 +17,7 @@ namespace FilmFlow.Models.BaseTables
         public string Email { get; set; }
         [Column("adminrole")]
         public int Admin { get; set; }
+        [Column("banned")]
+        public bool Banned {  get; set; }
     }
 }

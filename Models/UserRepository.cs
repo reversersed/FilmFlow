@@ -105,5 +105,15 @@ namespace FilmFlow.Models
                 db.SaveChanges();
             }
         }
+
+        public void BanUser(int userId)
+        {
+            using (RepositoryBase db = new())
+            {
+                User contextUser = db.users.First(i => i.Id == userId);
+                contextUser.Banned = true;
+                db.SaveChanges();
+            }
+        }
     }
 }

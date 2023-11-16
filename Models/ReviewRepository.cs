@@ -40,24 +40,94 @@ namespace FilmFlow.Models
             }
         }
 
-        public ObservableCollection<Review> LoadReviews(int movie, int offset = 0, int limit = 10)
+        public ObservableCollection<Review> LoadReviews(int movie, int offset = 0, int limit = 10, ReviewFilter filter = ReviewFilter.Default)
         {
-            var reviews = new ObservableCollection<Review>();
             using(RepositoryBase db = new())
             {
-                foreach(Review review in db.reviews
+                switch(filter)
+                {
+                    case ReviewFilter.Default:
+                        return new ObservableCollection<Review>(db.reviews
                                             .Include(e => e.Movie)
                                             .Include(e => e.User)
                                             .ToList()
                                             .Where(i => i.Movie.Id == movie)
+                                            .OrderByDescending(i => i.ReviewText.Length)
+                                            .ThenByDescending(i => i.Rating)
                                             .Skip(offset)
                                             .Take(limit)
-                                            .ToList())
-                {
-                    reviews.Add(review);
-                }
+                                            .ToList());
+                    case ReviewFilter.RatingDesc:
+                        return new ObservableCollection<Review>(db.reviews
+                                            .Include(e => e.Movie)
+                                            .Include(e => e.User)
+                                            .ToList()
+                                            .Where(i => i.Movie.Id == movie)
+                                            .OrderByDescending(i => i.Rating)
+                                            .Skip(offset)
+                                            .Take(limit)
+                                            .ToList());
+                    case ReviewFilter.RatingAsc:
+                        return new ObservableCollection<Review>(db.reviews
+                                            .Include(e => e.Movie)
+                                            .Include(e => e.User)
+                                            .ToList()
+                                            .Where(i => i.Movie.Id == movie)
+                                            .OrderBy(i => i.Rating)
+                                            .Skip(offset)
+                                            .Take(limit)
+                                            .ToList());
+                    case ReviewFilter.DateDesc:
+                        return new ObservableCollection<Review>(db.reviews
+                                            .Include(e => e.Movie)
+                                            .Include(e => e.User)
+                                            .ToList()
+                                            .Where(i => i.Movie.Id == movie)
+                                            .OrderByDescending(i => i.WriteDate)
+                                            .Skip(offset)
+                                            .Take(limit)
+                                            .ToList());
+                    case ReviewFilter.DateAsc:
+                        return new ObservableCollection<Review>(db.reviews
+                                            .Include(e => e.Movie)
+                                            .Include(e => e.User)
+                                            .ToList()
+                                            .Where(i => i.Movie.Id == movie)
+                                            .OrderBy(i => i.WriteDate)
+                                            .Skip(offset)
+                                            .Take(limit)
+                                            .ToList());
+                    default:
+                        return default;
+                }    
             }
-            return reviews;
+        }
+
+        public void DeleteMovieReviews(int movieid)
+        {
+            using(RepositoryBase db = new())
+            {
+                db.reviews.RemoveRange(db.reviews.Include(i => i.Movie).Where(i => i.Movie.Id == movieid).ToList());
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteReview(int entityId)
+        {
+            using (RepositoryBase db = new())
+            {
+                db.reviews.Remove(db.reviews.First(i => i.Id == entityId));
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteUsersReview(int userId)
+        {
+            using (RepositoryBase db = new())
+            {
+                db.reviews.RemoveRange(db.reviews.Include(i => i.User).Where(i => i.User.Id == userId).ToList());
+                db.SaveChanges();
+            }
         }
     }
 }

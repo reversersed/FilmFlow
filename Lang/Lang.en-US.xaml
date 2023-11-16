@@ -95,4 +95,18 @@
     <sys:String x:Key="MinuteAgo">minutes ago</sys:String>
     <sys:String x:Key="TodayAt">Today at</sys:String>
     <sys:String x:Key="NoReviews">There are no reviews yet...</sys:String>
+    <sys:String x:Key="Default">Default</sys:String>
+    <sys:String x:Key="RatingDesc">Positive first</sys:String>
+    <sys:String x:Key="RatingAsc">Negative first</sys:String>
+    <sys:String x:Key="DateDesc">New first</sys:String>
+    <sys:String x:Key="DateAsc">Old first</sys:String>
+    <sys:String x:Key="ClearReviews">Clear reviews</sys:String>
+    <sys:String x:Key="Confirmation">Confirmation</sys:String>
+    <sys:String x:Key="Cancel">Cancel</sys:String>
+    <sys:String x:Key="ClearReviewsConfirmation">Are you sure you want to clear this movie's reviews? This action will also reset movie's rating.</sys:String>
+    <sys:String x:Key="BanUserConfirmation">Do you want to delete all user's reviews? User will be able to keep using FilmFlow, but won't be able to write reviews.</sys:String>
+    <sys:String x:Key="DeleteReviewConfirmation">Are you sure you want to delete this review? This action will affect the movie's rating.</sys:String>
+    <sys:String x:Key="NotReviewAllowed">You are banned by administration. You are not allowed to write reviews.</sys:String>
+    <sys:String x:Key="DeleteReview">Delete review</sys:String>
+    <sys:String x:Key="BanUser">Ban user</sys:String>
 </ResourceDictionary> 

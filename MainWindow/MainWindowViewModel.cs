@@ -50,7 +50,7 @@ namespace FilmFlow.MainWindow
             ShowAdminSection = new ViewModelCommand(ShowAdminSectionCommand);
 
             UserRepository = new UserRepository();
-            User = UserRepository.LoadUserData(Thread.CurrentPrincipal.Identity.Name);
+            User = UserRepository.LoadUserData(FilmFlow.Properties.Settings.Default.CurrentUser);
 
             UserAccessVisibility = User.Admin > 0 ? Visibility.Visible : Visibility.Collapsed;
 
