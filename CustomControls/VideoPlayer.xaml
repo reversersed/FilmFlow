@@ -325,7 +325,8 @@
                             Cursor="Hand"
                             DataContext="{Binding ElementName=VideoPlayerElement}"
                             Template="{StaticResource HorizontalSlider}"
-                            MouseLeftButtonUp="VolumeSlider_ValueChanged"
+                            MouseLeftButtonDown="VolumeSlider_ValueChanged"
+                            Thumb.DragCompleted="VolumeSlider_DragCompleted"
                             MouseWheel="VolumeSlider_MouseWheel"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Stretch"/>

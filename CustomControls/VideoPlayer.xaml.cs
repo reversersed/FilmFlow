@@ -114,7 +114,7 @@ namespace FilmFlow.CustomControls
             }
             if (VideoPlayerElement.NaturalDuration.TimeSpan.TotalSeconds > 0 && VideoPlayerElement.Position.TotalSeconds > 0)
                 TimeSlider.Value = VideoPlayerElement.Position.TotalSeconds;
-            VolumeSlider.Value = VideoPlayerElement.Volume;
+            VideoPlayerElement.Volume = VolumeSlider.Value;
             ElapsedTime = string.Format("{0}/{1}", VideoPlayerElement.Position.ToString(@"hh\:mm\:ss"), VideoPlayerElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
         }
 
@@ -281,5 +281,7 @@ namespace FilmFlow.CustomControls
             if(e.Key == Key.M)
                 volumeButton_Click(sender, e);
         }
+
+        private void VolumeSlider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) => VolumeChange(((Slider)sender).Value);
     }
 }
