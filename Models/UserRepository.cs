@@ -16,7 +16,8 @@ namespace FilmFlow.Models
                 {
                     FilmFlow.Properties.Settings.Default.userSessionKey = string.Concat(user.Email, user.Id.ToString(), user.Username, GenerateToken());
                     FilmFlow.Properties.Settings.Default.Save();
-                    db.sessions.Add(new Session() { SessionKey = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(string.Concat(FilmFlow.Properties.Settings.Default.appSessionKey, FilmFlow.Properties.Settings.Default.userSessionKey))), UserId = user.Id });
+                    user.Session = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(string.Concat(FilmFlow.Properties.Settings.Default.appSessionKey, FilmFlow.Properties.Settings.Default.userSessionKey)));
+                    db.users.Update(user);
                     db.SaveChanges();
                 }
                 return user;
@@ -33,8 +34,7 @@ namespace FilmFlow.Models
             var sessionkey = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(string.Concat(FilmFlow.Properties.Settings.Default.appSessionKey, FilmFlow.Properties.Settings.Default.userSessionKey)));
             using (RepositoryBase db  = new RepositoryBase())
             {
-                var user = db.sessions.Where(s => s.SessionKey.Equals(sessionkey)).Join(db.users, outer => outer.UserId, inner => inner.Id, (session, user) => new { Session = session, User = user }).Select(i => i);
-                return user.Select(user => user.User.Username.ToString()).FirstOrDefault();
+                return db.users.Where(s => s.Session.Equals(sessionkey)).Select(user => user.Username).FirstOrDefault();
             }
         }
         public bool isUniqueUser(string username)
@@ -71,12 +71,9 @@ namespace FilmFlow.Models
         {
             using(RepositoryBase db = new RepositoryBase())
             {
-                var userSession = db.sessions.Where(i => i.UserId == user.Id).Select(x => x).FirstOrDefault();
-                if (userSession != default(Session))
-                {
-                    db.sessions.Remove(userSession);
-                    db.SaveChanges();
-                }
+                user.Session = null;
+                db.users.Update(user);
+                db.SaveChanges();
             }
         }
 

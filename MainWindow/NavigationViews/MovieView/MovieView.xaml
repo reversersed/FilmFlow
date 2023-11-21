@@ -221,7 +221,7 @@
                                        FontFamily="{StaticResource DefaultFont}"
                                        FontWeight="DemiBold" Grid.ColumnSpan="2"/>
 
-                        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,40,0,0" Grid.RowSpan="2">
+                        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0" Grid.RowSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition MaxWidth="250"
                                                       MinWidth="150"/>
@@ -229,7 +229,20 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition/>
                                 <RowDefinition Height="15"/>
@@ -252,28 +265,645 @@
                                             FontFamily="{StaticResource DefaultFont}"
                                             FontWeight="Normal"/>
 
+                            <TextBlock  Grid.Row="1"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Country}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CountryString}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding CountryString, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CountryString}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            
                             <TextBlock  Grid.Row="2"
-                                            Grid.Column="0"
-                                            Text="{StaticResource Genres}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Bottom"
-                                            Foreground="{StaticResource LightTextColor}"
-                                            FontSize="{StaticResource Small}"
-                                            FontFamily="{StaticResource DefaultFont}"
-                                            FontWeight="Normal"/>
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Genres}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal"/>
                             <TextBlock  Grid.Row="2"
-                                            Grid.Column="1"
-                                            Text="{Binding GenreString, Mode=OneWay}"
-                                            TextWrapping="Wrap"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Bottom"
-                                            Foreground="{StaticResource TextColor}"
-                                            FontSize="{StaticResource Small}"
-                                            FontFamily="{StaticResource DefaultFont}"
-                                            FontWeight="Normal"/>
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding GenreString, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal"/>
 
                             <TextBlock  Grid.Row="3"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Tagline}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Tagline}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Tagline}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="3"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Tagline, Mode=OneWay, StringFormat='{}«{0}»'}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Tagline}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Tagline}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="4"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Director}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Director}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Director}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="4"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Director, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Director}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Director}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="5"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Screenwriter}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Screenwriter}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Screenwriter}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="5"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Screenwriter, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Screenwriter}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Screenwriter}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="6"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Producer}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Producer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Producer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="6"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Producer, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Producer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Producer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="7"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Videographer}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Videographer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Videographer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="7"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Videographer, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Videographer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Videographer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="8"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Composer}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Composer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Composer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="8"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Composer, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Composer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Composer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="9"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Drawer}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Drawer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Drawer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="9"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Drawer, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Drawer}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Drawer}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="10"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Montage}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Montage}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Montage}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="10"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Montage, Mode=OneWay}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Montage}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Montage}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="11"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Budget}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Budget}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Budget}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="11"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Budget, Mode=OneWay, StringFormat='{}{0:C0}'}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Budget}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Budget}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="12"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Collected}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Collected}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Collected}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="12"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Collected, Mode=OneWay, StringFormat='{}{0:C0}'}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Collected}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Collected}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="13"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Premier}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Premier}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="13"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Premier, Mode=OneWay, StringFormat=dd.MM.yyyy}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Premier}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <TextBlock  Grid.Row="14"
+                                        Grid.Column="0"
+                                        Margin="0,2,0,0"
+                                        Text="{StaticResource Age}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource LightTextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Age}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Age}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock  Grid.Row="14"
+                                        Grid.Column="1"
+                                        Margin="0,2,0,0"
+                                        Text="{Binding Movie.Age, Mode=OneWay, StringFormat='{}{0}+'}"
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="{StaticResource TextColor}"
+                                        FontSize="{StaticResource Small}"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontWeight="Normal">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Movie.Age}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Movie.Age}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            
+                            <TextBlock  Grid.Row="15"
                                             Grid.Column="0"
+                                            Margin="0,2,0,0"
                                             Text="{StaticResource Rating}"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Bottom"
@@ -281,8 +911,9 @@
                                             FontSize="{StaticResource Small}"
                                             FontFamily="{StaticResource DefaultFont}"
                                             FontWeight="Normal"/>
-                            <Grid   Grid.Row="3"
+                            <Grid   Grid.Row="15"
                                         Grid.Column="1"
+                                        Margin="0,2,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Bottom">
                                 <Grid.ColumnDefinitions>

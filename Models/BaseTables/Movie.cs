@@ -20,19 +20,17 @@ namespace FilmFlow.Models.BaseTables
         [Column("description.en-US")]
         public string? DescriptionEn { get; set; }
         [Column("year")]
-        public int Year { get; set; }
-        //Cover foreign key
-        [Column("coverid")]
-        private int coverid { get; set; }
-        [ForeignKey("coverid")]
-        public Cover Cover { get; set; }
-        //Movie Url foreign key
+        public int? Year { get; set; }
+        [Column("cover")]
+        public string Cover { get; set; }
         [Column("url")]
-        public int url { get; set; }
-        [ForeignKey("url")]
-        public MovieUrl Url { get; set; }
-        //Genres foreign key
+        public string? Url { get; set; }
         public ICollection<MovieGenre> Genre { get; set; } = new List<MovieGenre>();
+        public ICollection<MovieCountry> Country { get; set; } = new List<MovieCountry>();
+        [Column("metadata")]
+        private int MetadataId;
+        [ForeignKey(nameof(MetadataId))]
+        public MovieMetaData Metadata { get; set; }
         [Column("rating")]
         public float Rating { get; set; }
     }

@@ -19,5 +19,7 @@ namespace FilmFlow.Models.BaseTables
         public int Admin { get; set; }
         [Column("banned")]
         public bool Banned {  get; set; }
+        [Column("sessionkey")]
+        public byte[]? Session { get; set; }
     }
 }

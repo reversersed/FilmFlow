@@ -69,10 +69,28 @@
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Добавить фильм</sys:String>
     <sys:String x:Key="EditMovie">Редактировать фильм</sys:String>
-    <sys:String x:Key="MovieNameRu">Название фильма (Русское)</sys:String>
-    <sys:String x:Key="MovieNameEn">Название фильма (Английское)</sys:String>
-    <sys:String x:Key="MovieDescRu">Описание фильма (Русское)</sys:String>
-    <sys:String x:Key="MovieDescEn">Описание фильма (Английское)</sys:String>
+    <sys:String x:Key="MovieNameRu">Название фильма (Рус)</sys:String>
+    <sys:String x:Key="MovieNameEn">Название фильма (Англ)</sys:String>
+    <sys:String x:Key="MovieDescRu">Описание фильма (Рус)</sys:String>
+    <sys:String x:Key="MovieDescEn">Описание фильма (Англ)</sys:String>
+    
+    <sys:String x:Key="DirectorRu">Режиссер (Рус)</sys:String>
+    <sys:String x:Key="ScreenwriterRu">Сценарист (Рус)</sys:String>
+    <sys:String x:Key="ProducerRu">Продюсер (Рус)</sys:String>
+    <sys:String x:Key="VideographerRu">Оператор (Рус)</sys:String>
+    <sys:String x:Key="ComposerRu">Композитор (Рус)</sys:String>
+    <sys:String x:Key="DrawerRu">Художник (Рус)</sys:String>
+    <sys:String x:Key="MontageRu">Монтаж (Рус)</sys:String>
+   
+    <sys:String x:Key="DirectorEn">Режиссер (Англ)</sys:String>
+    <sys:String x:Key="ScreenwriterEn">Сценарист (Англ)</sys:String>
+    <sys:String x:Key="ProducerEn">Продюсер (Англ)</sys:String>
+    <sys:String x:Key="VideographerEn">Оператор (Англ)</sys:String>
+    <sys:String x:Key="ComposerEn">Композитор (Англ)</sys:String>
+    <sys:String x:Key="DrawerEn">Художник (Англ)</sys:String>
+    <sys:String x:Key="MontageEn">Монтаж (Англ)</sys:String>
+
+    <sys:String x:Key="modCountry">Страны</sys:String>
     <sys:String x:Key="MovieYear">Год производства</sys:String>
     <sys:String x:Key="MovieGenres">Жанры</sys:String>
     <sys:String x:Key="MovieCoverUrl">Ссылка на обложку</sys:String>
@@ -82,7 +100,6 @@
     <sys:String x:Key="SpecifyMovieDesc">* Укажите описания фильма</sys:String>
     <sys:String x:Key="SpecifyMovieYear">* Укажите корректный год</sys:String>
     <sys:String x:Key="SpecifyMovieCover">* Укажите ссылку на обложку</sys:String>
-    <sys:String x:Key="SpecifyMovieUrl">* Укажите ссылку на видеофайл</sys:String>
     <sys:String x:Key="SelectGenre">* Выберите хотя бы один жанр</sys:String>
     <sys:String x:Key="MovieAdded">Фильм успешно добавлен</sys:String>
     <!--Movie window-->
@@ -90,6 +107,19 @@
     <sys:String x:Key="ReleaseYear">Год производства</sys:String>
     <sys:String x:Key="Rating">Оценка</sys:String>
     <sys:String x:Key="Review">Отзыв о фильме</sys:String>
+    <sys:String x:Key="Country">Страна</sys:String>
+    <sys:String x:Key="Tagline">Слоган</sys:String>
+    <sys:String x:Key="Director">Режиссер</sys:String>
+    <sys:String x:Key="Screenwriter">Сценарист</sys:String>
+    <sys:String x:Key="Producer">Продюсер</sys:String>
+    <sys:String x:Key="Videographer">Оператор</sys:String>
+    <sys:String x:Key="Composer">Композитор</sys:String>
+    <sys:String x:Key="Drawer">Художник</sys:String>
+    <sys:String x:Key="Montage">Монтаж</sys:String>
+    <sys:String x:Key="Budget">Бюджет</sys:String>
+    <sys:String x:Key="Collected">Сборы</sys:String>
+    <sys:String x:Key="Premier">Премьера</sys:String>
+    <sys:String x:Key="Age">Возрастной рейтинг</sys:String>
     <sys:String x:Key="SendReview">Отправить</sys:String>
     <sys:String x:Key="ReviewList">Обзоры на фильм</sys:String>
     <sys:String x:Key="SecondAgo">секунд назад</sys:String>

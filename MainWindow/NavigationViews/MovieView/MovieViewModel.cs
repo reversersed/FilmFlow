@@ -16,6 +16,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
     {
         //Private properties
         private string _genreString { get; set; } = string.Empty;
+        private string? _countryString { get; set; } = null;
         private float _ratingValue { get; set; }
         private float CurrentRating { get; set; }
         private string _reviewText { get; set; }
@@ -38,6 +39,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
 
         //Public properties
         public string GenreString { get { return _genreString; } set { _genreString = value; OnPropertyChanged(nameof(GenreString)); } }
+        public string? CountryString { get { return _countryString; } set { _countryString = value; OnPropertyChanged(nameof(CountryString)); } }
         public float RatingValue { get { return _ratingValue; } set { _ratingValue = value; OnPropertyChanged(nameof(RatingValue)); } }
         public string ReviewText { get { return _reviewText; } set { _reviewText = value; OnPropertyChanged(nameof(ReviewText)); } }
         public ObservableCollection<Review> Reviews { get { return _reviews; } set { _reviews = value; OnPropertyChanged(nameof(Reviews)); } }
@@ -112,6 +114,13 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             Movie = MovieRepository.LoadMovieById(movieId);
             for (int i = 0; i < Movie.Genres.Count; i++)
                 GenreString += (i == 0 ? Movie.Genres[i].Name : Movie.Genres[i].Name.ToLower()) + (i != Movie.Genres.Count - 1 ? ", " : string.Empty);
+            if (Movie.Countries.Count == 0)
+                CountryString = null;
+            else
+            {
+                for (int i = 0; i < Movie.Countries.Count; i++)
+                    CountryString += Movie.Countries[i].Name + (i != Movie.Countries.Count - 1 ? ", " : string.Empty);
+            }
             MouseRatingMoved = new ViewModelCommand(RatingMouse);
             RatingChanged = new ViewModelCommand(RatingChangedHandler);
 

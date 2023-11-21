@@ -10,14 +10,14 @@ namespace FilmFlow.Models
             FilmFlow.Properties.Settings.Default.localDbUser,
             FilmFlow.Properties.Settings.Default.localDbPassword,
             FilmFlow.Properties.Settings.Default.localDbBase);
-        public DbSet<Cover> covers { get; set; }
-        public DbSet<MovieUrl> movieurls { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Movie> movies { get; set; }
-        public DbSet<Session> sessions { get; set; }
         public DbSet<MovieGenre> genres { get; set; }
         public DbSet<GenreCollection> genrecollection { get; set; }
         public DbSet<Review> reviews { get; set; }
+        public DbSet<CountryCollection> countries { get; set; }
+        public DbSet<MovieCountry> movie_countries { get; set; }
+        public DbSet<MovieMetaData> movie_metadata { get; set; }
         public RepositoryBase()
         {
             Database.EnsureCreated();
