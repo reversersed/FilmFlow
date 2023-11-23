@@ -20,9 +20,11 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
         private List<int> _selectedGenres = new List<int>();
         private ObservableCollection<CountryModel> _selectedCountries = new ObservableCollection<CountryModel>();
         private ObservableCollection<CountryModel> _showedCountries = new ObservableCollection<CountryModel>();
-        private Movie _addMovieModel = new Movie() { Metadata = new MovieMetaData() };
+        private Movie _addMovieModel = new Movie();
         private string _error;
         private string _countrySearch = string.Empty;
+        private bool _isHasPremier = false;
+        private DateTime _pickerDate = DateTime.UtcNow;
 
         //Public properties
         public Movie AddMovieModel { get { return _addMovieModel; } set { _addMovieModel = value; OnPropertyChanged(nameof(AddMovieModel)); } }
@@ -45,14 +47,15 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
                 }
             }
         }
+        public DateTime PickerDate { get { return _pickerDate; } set { _pickerDate = value; AddMovieModel.Premier = value.ToUniversalTime(); OnPropertyChanged(nameof(PickerDate)); } }
         public string MovieBudget
         {
-            get { return _addMovieModel.Metadata.Budget == null ? string.Empty : _addMovieModel.Metadata.Budget.ToString(); }
+            get { return _addMovieModel.Budget == null ? string.Empty : _addMovieModel.Budget.ToString(); }
             set
             {
                 if (value == null || value.Length < 1)
                 {
-                    _addMovieModel.Metadata.Budget = null;
+                    _addMovieModel.Budget = null;
                     OnPropertyChanged(nameof(MovieBudget));
                     return;
                 }
@@ -61,19 +64,19 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
                 {
                     if (budget < 0)
                         return;
-                    _addMovieModel.Metadata.Budget = budget;
+                    _addMovieModel.Budget = budget;
                     OnPropertyChanged(nameof(MovieBudget));
                 }
             }
         }
         public string MovieCollected
         {
-            get { return _addMovieModel.Metadata.Collected == null ? string.Empty : _addMovieModel.Metadata.Collected.ToString(); }
+            get { return _addMovieModel.Collected == null ? string.Empty : _addMovieModel.Collected.ToString(); }
             set
             {
                 if (value == null || value.Length < 1)
                 {
-                    _addMovieModel.Metadata.Collected = null;
+                    _addMovieModel.Collected = null;
                     OnPropertyChanged(nameof(MovieCollected));
                     return;
                 }
@@ -82,19 +85,19 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
                 {
                     if (collected < 0)
                         return;
-                    _addMovieModel.Metadata.Collected = collected;
+                    _addMovieModel.Collected = collected;
                     OnPropertyChanged(nameof(MovieCollected));
                 }
             }
         }
         public string MovieAgeLimit
         {
-            get { return _addMovieModel.Metadata.Age == null ? string.Empty : _addMovieModel.Metadata.Age.ToString(); }
+            get { return _addMovieModel.Age == null ? string.Empty : _addMovieModel.Age.ToString(); }
             set
             {
                 if (value == null || value.Length < 1)
                 {
-                    _addMovieModel.Metadata.Age = null;
+                    _addMovieModel.Age = null;
                     OnPropertyChanged(nameof(MovieAgeLimit));
                     return;
                 }
@@ -103,11 +106,19 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
                 {
                     if (age < 0 || age > 21)
                         return;
-                    _addMovieModel.Metadata.Age = age;
+                    _addMovieModel.Age = age;
                     OnPropertyChanged(nameof(MovieAgeLimit));
                 }
             }
         }
+        public bool IsHasPremier { get { return _isHasPremier; } set {
+                if (value == false)
+                    AddMovieModel.Premier = null;
+                else
+                    AddMovieModel.Premier = PickerDate.ToUniversalTime();
+                _isHasPremier = value;
+                OnPropertyChanged(nameof(IsHasPremier)); 
+            } }
         public string CountrySearch { get { return _countrySearch; } set { _countrySearch = value; SortCountries(); OnPropertyChanged(nameof(CountrySearch)); } }
         public string MovieUrl
         {
@@ -218,11 +229,16 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
             foreach (CountryModel i in SelectedCountries)
                 AddMovieModel.Country.Add(new MovieCountry() { CountryId = i.Id });
             movieRepository.AddMovie(AddMovieModel);
-            AddMovieModel = new Movie() { Metadata = new MovieMetaData() };
+            AddMovieModel = new Movie();
             MovieYear = null;
             Genres = movieRepository.LoadGenreCollection();
             SelectedCountries = new ObservableCollection<CountryModel>();
             CountrySearch = string.Empty;
+            MovieBudget = null;
+            MovieCollected = null;
+            IsHasPremier = false;
+            MovieAgeLimit = null;
+            PickerDate = DateTime.Now;
             SortCountries();
             Error = Application.Current.FindResource("MovieAdded") as string;
         }

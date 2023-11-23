@@ -22,7 +22,6 @@ namespace FilmFlow.Models
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
@@ -42,7 +41,6 @@ namespace FilmFlow.Models
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
@@ -65,7 +63,6 @@ namespace FilmFlow.Models
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Where(i => EF.Functions.Like(i.NameEn.ToLower(), string.Format("%{0}%",name.ToLower())) || 
@@ -88,7 +85,6 @@ namespace FilmFlow.Models
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
@@ -132,7 +128,6 @@ namespace FilmFlow.Models
                 foreach(Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .OrderBy(i => i.Rating)
@@ -151,7 +146,6 @@ namespace FilmFlow.Models
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .OrderByDescending(i => i.Year)
@@ -171,7 +165,6 @@ namespace FilmFlow.Models
                 foreach (Movie movie in db.movies
                                             .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                            .Include(e => e.Metadata)
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
@@ -200,7 +193,6 @@ namespace FilmFlow.Models
                 Movie movie = db.movies
                                         .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)
-                                        .Include(e => e.Metadata)
                                         .Include(e => e.Genre)
                                             .ThenInclude(i => i.Genre)
                                         .ToList()

@@ -74,6 +74,7 @@
     <sys:String x:Key="MovieDescRu">Movie description (Rus)</sys:String>
     <sys:String x:Key="MovieDescEn">Movie description (Eng)</sys:String>
 
+    <sys:String x:Key="TaglineRu">Tagline (Rus)</sys:String>
     <sys:String x:Key="DirectorRu">Director (Rus)</sys:String>
     <sys:String x:Key="ScreenwriterRu">Screenwriter (Rus)</sys:String>
     <sys:String x:Key="ProducerRu">Producer (Rus)</sys:String>
@@ -82,6 +83,7 @@
     <sys:String x:Key="DrawerRu">Drawer (Rus)</sys:String>
     <sys:String x:Key="MontageRu">Montage (Rus)</sys:String>
 
+    <sys:String x:Key="TaglineEn">Tagline (Eng)</sys:String>
     <sys:String x:Key="DirectorEn">Director (Eng)</sys:String>
     <sys:String x:Key="ScreenwriterEn">Screenwriter (Eng)</sys:String>
     <sys:String x:Key="ProducerEn">Producer (Eng)</sys:String>
@@ -94,6 +96,7 @@
     <sys:String x:Key="MovieGenres">Genres</sys:String>
     <sys:String x:Key="MovieYear">Release year</sys:String>
     <sys:String x:Key="MovieCoverUrl">Link to movie cover</sys:String>
+    <sys:String x:Key="MovieVideoUrl">Link to movie video</sys:String>
     <sys:String x:Key="InsertMovieButton">Insert</sys:String>
     <sys:String x:Key="SpecifyMovieName">* Specify movie names</sys:String>
     <sys:String x:Key="SpecifyMovieDesc">* Specify movie descriptions</sys:String>

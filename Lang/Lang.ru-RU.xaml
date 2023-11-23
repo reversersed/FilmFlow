@@ -73,7 +73,8 @@
     <sys:String x:Key="MovieNameEn">Название фильма (Англ)</sys:String>
     <sys:String x:Key="MovieDescRu">Описание фильма (Рус)</sys:String>
     <sys:String x:Key="MovieDescEn">Описание фильма (Англ)</sys:String>
-    
+
+    <sys:String x:Key="TaglineRu">Слоган (Рус)</sys:String>
     <sys:String x:Key="DirectorRu">Режиссер (Рус)</sys:String>
     <sys:String x:Key="ScreenwriterRu">Сценарист (Рус)</sys:String>
     <sys:String x:Key="ProducerRu">Продюсер (Рус)</sys:String>
@@ -81,7 +82,8 @@
     <sys:String x:Key="ComposerRu">Композитор (Рус)</sys:String>
     <sys:String x:Key="DrawerRu">Художник (Рус)</sys:String>
     <sys:String x:Key="MontageRu">Монтаж (Рус)</sys:String>
-   
+
+    <sys:String x:Key="TaglineEn">Слоган (Англ)</sys:String>
     <sys:String x:Key="DirectorEn">Режиссер (Англ)</sys:String>
     <sys:String x:Key="ScreenwriterEn">Сценарист (Англ)</sys:String>
     <sys:String x:Key="ProducerEn">Продюсер (Англ)</sys:String>

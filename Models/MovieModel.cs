@@ -60,18 +60,18 @@ namespace FilmFlow.Models
             Year = movie.Year;
             Url = movie.Url;
             ReviewCount = reviewCount;
-            Tagline = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.TaglineRu : movie.Metadata.TaglineEn;
-            Director = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.DirectorRu : movie.Metadata.DirectorEn;
-            Screenwriter = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.ScreenwriterRu : movie.Metadata.ScreenwriterEn;
-            Producer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.ProducerRu : movie.Metadata.ProducerEn;
-            Videographer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.VideographerRu : movie.Metadata.VideographerEn;
-            Composer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.ComposerRu : movie.Metadata.ComposerEn;
-            Drawer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.DrawerRu : movie.Metadata.DrawerEn;
-            Montage = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.Metadata.MontageRu : movie.Metadata.MontageEn;
-            Budget = movie.Metadata.Budget;
-            Collected = movie.Metadata.Collected;
-            Premier = movie.Metadata.Premier == null || movie.Metadata.Premier.Value.Year < 1000 ? null : movie.Metadata.Premier;
-            Age = movie.Metadata.Age;
+            Tagline = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.TaglineRu : movie.TaglineEn;
+            Director = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.DirectorRu : movie.DirectorEn;
+            Screenwriter = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.ScreenwriterRu : movie.ScreenwriterEn;
+            Producer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.ProducerRu : movie.ProducerEn;
+            Videographer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.VideographerRu : movie.VideographerEn;
+            Composer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.ComposerRu : movie.ComposerEn;
+            Drawer = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.DrawerRu : movie.DrawerEn;
+            Montage = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.MontageRu : movie.MontageEn;
+            Budget = movie.Budget;
+            Collected = movie.Collected;
+            Premier = movie.Premier == null || movie.Premier.Value.Year < 1000 ? null : movie.Premier;
+            Age = movie.Age;
         }
     }
 }

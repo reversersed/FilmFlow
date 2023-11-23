@@ -17,7 +17,6 @@ namespace FilmFlow.Models
         public DbSet<Review> reviews { get; set; }
         public DbSet<CountryCollection> countries { get; set; }
         public DbSet<MovieCountry> movie_countries { get; set; }
-        public DbSet<MovieMetaData> movie_metadata { get; set; }
         public RepositoryBase()
         {
             Database.EnsureCreated();

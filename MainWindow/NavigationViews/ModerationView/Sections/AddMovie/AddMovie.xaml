@@ -179,7 +179,7 @@
                              CaretBrush="{StaticResource LightTextColor}"
                              FontFamily="{StaticResource DefaultFont}"
                              FontSize="{StaticResource Regular}"
-                             Text="{Binding AddMovieModel.Metadata.DirectorRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding AddMovieModel.DirectorRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              MaxLength="128"
                              TextAlignment="Left"
                              Width="250"
@@ -202,6 +202,433 @@
                                                                   HorizontalScrollBarVisibility="Disabled"
                                                                   VerticalScrollBarVisibility="Disabled"/>
                                                     <TextBlock Text="{StaticResource DirectorRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="3"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.ScreenwriterRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource ScreenwriterRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="4"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.ProducerRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource ProducerRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="5"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.VideographerRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource VideographerRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="6"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.ComposerRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource ComposerRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="7"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.DrawerRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource DrawerRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="8"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.MontageRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource MontageRu}"
+                                                                   x:Name="placeholderText"
+                                                                    IsEnabled="False"
+                                                                    Panel.ZIndex="-1"
+                                                                    Foreground="{StaticResource DarkTextColor}"
+                                                                    FontSize="{StaticResource Small}"
+                                                                    FontFamily="{StaticResource DefaultFont}"
+                                                                    VerticalAlignment="Center"
+                                                                    Visibility="Collapsed"
+                                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="9"
+                                Margin="0,10,0,0"
+                                Grid.Column="0"
+                                Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.TaglineRu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource TaglineRu}"
                                                                    x:Name="placeholderText"
                                                                     IsEnabled="False"
                                                                     Panel.ZIndex="-1"
@@ -585,6 +1012,15 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBox Height="30"
                          Grid.Row="0"
@@ -705,8 +1141,615 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="2"
+                Margin="0,10,0,0"
+                Grid.Column="0"
+                Height="Auto">
+                    <TextBox Height="30"
+             Foreground="{StaticResource TextColor}"
+             CaretBrush="{StaticResource LightTextColor}"
+             FontFamily="{StaticResource DefaultFont}"
+             FontSize="{StaticResource Regular}"
+             Text="{Binding AddMovieModel.DirectorEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             MaxLength="128"
+             TextAlignment="Left"
+             Width="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             VerticalContentAlignment="Center"
+             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                        BorderBrush="{StaticResource LightAccentColor}"
+                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource DirectorEn}"
+                                                   x:Name="placeholderText"
+                                                    IsEnabled="False"
+                                                    Panel.ZIndex="-1"
+                                                    Foreground="{StaticResource DarkTextColor}"
+                                                    FontSize="{StaticResource Small}"
+                                                    FontFamily="{StaticResource DefaultFont}"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="3"
+                Margin="0,10,0,0"
+                Grid.Column="0"
+                Height="Auto">
+                    <TextBox Height="30"
+             Foreground="{StaticResource TextColor}"
+             CaretBrush="{StaticResource LightTextColor}"
+             FontFamily="{StaticResource DefaultFont}"
+             FontSize="{StaticResource Regular}"
+             Text="{Binding AddMovieModel.ScreenwriterEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             MaxLength="128"
+             TextAlignment="Left"
+             Width="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             VerticalContentAlignment="Center"
+             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                        BorderBrush="{StaticResource LightAccentColor}"
+                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource ScreenwriterEn}"
+                                                   x:Name="placeholderText"
+                                                    IsEnabled="False"
+                                                    Panel.ZIndex="-1"
+                                                    Foreground="{StaticResource DarkTextColor}"
+                                                    FontSize="{StaticResource Small}"
+                                                    FontFamily="{StaticResource DefaultFont}"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="4"
+                Margin="0,10,0,0"
+                Grid.Column="0"
+                Height="Auto">
+                    <TextBox Height="30"
+             Foreground="{StaticResource TextColor}"
+             CaretBrush="{StaticResource LightTextColor}"
+             FontFamily="{StaticResource DefaultFont}"
+             FontSize="{StaticResource Regular}"
+             Text="{Binding AddMovieModel.ProducerEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             MaxLength="128"
+             TextAlignment="Left"
+             Width="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             VerticalContentAlignment="Center"
+             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                        BorderBrush="{StaticResource LightAccentColor}"
+                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource ProducerEn}"
+                                                   x:Name="placeholderText"
+                                                    IsEnabled="False"
+                                                    Panel.ZIndex="-1"
+                                                    Foreground="{StaticResource DarkTextColor}"
+                                                    FontSize="{StaticResource Small}"
+                                                    FontFamily="{StaticResource DefaultFont}"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="5"
+                Margin="0,10,0,0"
+                Grid.Column="0"
+                Height="Auto">
+                    <TextBox Height="30"
+             Foreground="{StaticResource TextColor}"
+             CaretBrush="{StaticResource LightTextColor}"
+             FontFamily="{StaticResource DefaultFont}"
+             FontSize="{StaticResource Regular}"
+             Text="{Binding AddMovieModel.VideographerEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             MaxLength="128"
+             TextAlignment="Left"
+             Width="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             VerticalContentAlignment="Center"
+             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                        BorderBrush="{StaticResource LightAccentColor}"
+                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource VideographerEn}"
+                                                   x:Name="placeholderText"
+                                                    IsEnabled="False"
+                                                    Panel.ZIndex="-1"
+                                                    Foreground="{StaticResource DarkTextColor}"
+                                                    FontSize="{StaticResource Small}"
+                                                    FontFamily="{StaticResource DefaultFont}"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="6"
+                Margin="0,10,0,0"
+                Grid.Column="0"
+                Height="Auto">
+                    <TextBox Height="30"
+             Foreground="{StaticResource TextColor}"
+             CaretBrush="{StaticResource LightTextColor}"
+             FontFamily="{StaticResource DefaultFont}"
+             FontSize="{StaticResource Regular}"
+             Text="{Binding AddMovieModel.ComposerEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             MaxLength="128"
+             TextAlignment="Left"
+             Width="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             VerticalContentAlignment="Center"
+             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                        BorderBrush="{StaticResource LightAccentColor}"
+                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource ComposerEn}"
+                                                   x:Name="placeholderText"
+                                                    IsEnabled="False"
+                                                    Panel.ZIndex="-1"
+                                                    Foreground="{StaticResource DarkTextColor}"
+                                                    FontSize="{StaticResource Small}"
+                                                    FontFamily="{StaticResource DefaultFont}"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="7"
+                Margin="0,10,0,0"
+                Grid.Column="0"
+                Height="Auto">
+                    <TextBox Height="30"
+             Foreground="{StaticResource TextColor}"
+             CaretBrush="{StaticResource LightTextColor}"
+             FontFamily="{StaticResource DefaultFont}"
+             FontSize="{StaticResource Regular}"
+             Text="{Binding AddMovieModel.DrawerEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             MaxLength="128"
+             TextAlignment="Left"
+             Width="250"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             VerticalContentAlignment="Center"
+             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                        BorderBrush="{StaticResource LightAccentColor}"
+                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource DrawerEn}"
+                                                   x:Name="placeholderText"
+                                                    IsEnabled="False"
+                                                    Panel.ZIndex="-1"
+                                                    Foreground="{StaticResource DarkTextColor}"
+                                                    FontSize="{StaticResource Small}"
+                                                    FontFamily="{StaticResource DefaultFont}"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="8"
+                            Margin="0,10,0,0"
+                            Grid.Column="0"
+                            Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.MontageEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                    BorderBrush="{StaticResource LightAccentColor}"
+                                                    BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource MontageEn}"
+                                                               x:Name="placeholderText"
+                                                                IsEnabled="False"
+                                                                Panel.ZIndex="-1"
+                                                                Foreground="{StaticResource DarkTextColor}"
+                                                                FontSize="{StaticResource Small}"
+                                                                FontFamily="{StaticResource DefaultFont}"
+                                                                VerticalAlignment="Center"
+                                                                Visibility="Collapsed"
+                                                                Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="9"
+                            Margin="0,10,0,0"
+                            Grid.Column="0"
+                            Height="Auto">
+                    <TextBox Height="30"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource LightTextColor}"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             Text="{Binding AddMovieModel.TaglineEn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="128"
+                             TextAlignment="Left"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                    BorderBrush="{StaticResource LightAccentColor}"
+                                                    BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                  Focusable="False"
+                                                                  HorizontalScrollBarVisibility="Disabled"
+                                                                  VerticalScrollBarVisibility="Disabled"/>
+                                                    <TextBlock Text="{StaticResource TaglineEn}"
+                                                               x:Name="placeholderText"
+                                                                IsEnabled="False"
+                                                                Panel.ZIndex="-1"
+                                                                Foreground="{StaticResource DarkTextColor}"
+                                                                FontSize="{StaticResource Small}"
+                                                                FontFamily="{StaticResource DefaultFont}"
+                                                                VerticalAlignment="Center"
+                                                                Visibility="Collapsed"
+                                                                Margin="10,0,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Visibility" TargetName="placeholderText" Value="Visible"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="10"
                                 Margin="0,10,0,5">
-                    <TextBlock Margin="0,0,0,5"
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,0,0,5">
+                        <CheckBox HorizontalAlignment="Center"
+                                  x:Name="PremierBox"
+                                  Margin="0,10,0,0"
+                                  FontSize="{StaticResource Small}"
+                                  FontWeight="Light"
+                                  IsChecked="{Binding IsHasPremier}">
+                            <CheckBox.Content>
+                                <TextBlock Text="{StaticResource Premier}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   FontSize="{StaticResource Regular}"
+                                   FontWeight="DemiBold">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsHasPremier}" Value="false">
+                                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </CheckBox.Content>
+                            <CheckBox.Style>
+                                <Style TargetType="{x:Type CheckBox}">
+                                    <Setter Property="Foreground" Value="{StaticResource LightAccentColor}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type CheckBox}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Border BorderBrush="{StaticResource LightAccentColor}"
+                                                            BorderThickness="2"
+                                                            Background="Transparent"
+                                                            Margin="0,0,10,0"
+                                                            Padding="2"
+                                                            CornerRadius="5">
+                                                        <Grid>
+                                                            <fa:IconImage Icon="Check"
+                                                                          Foreground="{TemplateBinding Foreground}"
+                                                                          Width="22"
+                                                                          Height="22">
+
+                                                                <fa:IconImage.Style>
+                                                                    <Style TargetType="{x:Type fa:IconImage}">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True"/>
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </MultiDataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </fa:IconImage.Style>
+                                                            </fa:IconImage>
+                                                            <fa:IconImage Icon="Check"
+                                                                          Width="22"
+                                                                          Height="22">
+                                                                <fa:IconImage.Foreground>
+                                                                    <SolidColorBrush Color="{StaticResource LightAccentColorKey}" Opacity="0.6"/>
+                                                                </fa:IconImage.Foreground>
+                                                                <fa:IconImage.Style>
+                                                                    <Style TargetType="{x:Type fa:IconImage}">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="False"/>
+                                                                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True"/>
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </MultiDataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </fa:IconImage.Style>
+                                                            </fa:IconImage>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ContentPresenter VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <ControlTemplate.Triggers>
+                                                    <MultiTrigger>
+                                                        <MultiTrigger.Conditions>
+                                                            <Condition Property="IsMouseOver" Value="True"/>
+                                                            <Condition Property="IsChecked" Value="False"/>
+                                                        </MultiTrigger.Conditions>
+                                                        <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                                                    </MultiTrigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="{x:Type StackPanel}">
+                                <Setter Property="Margin" Value="0,10,0,0"/>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DataContext.IsHasPremier, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <DatePicker IsTodayHighlighted="True"
+                                    SelectedDate="{Binding PickerDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            
+                        </DatePicker>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="11"
+                                Margin="0,10,0,5">
+                    <TextBlock Margin="10,0,0,5"
                                    Text="{StaticResource modCountry}"
                                    Foreground="{StaticResource TextColor}"
                                    FontFamily="{StaticResource DefaultFont}"
