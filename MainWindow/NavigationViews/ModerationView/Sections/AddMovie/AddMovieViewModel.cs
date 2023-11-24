@@ -24,7 +24,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
         private string _error;
         private string _countrySearch = string.Empty;
         private bool _isHasPremier = false;
-        private DateTime _pickerDate = DateTime.UtcNow;
+        private string _pickerDate = string.Empty;
 
         //Public properties
         public Movie AddMovieModel { get { return _addMovieModel; } set { _addMovieModel = value; OnPropertyChanged(nameof(AddMovieModel)); } }
@@ -47,7 +47,29 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
                 }
             }
         }
-        public DateTime PickerDate { get { return _pickerDate; } set { _pickerDate = value; AddMovieModel.Premier = value.ToUniversalTime(); OnPropertyChanged(nameof(PickerDate)); } }
+        public string PickerDate { get { return _pickerDate; } set {
+                int date;
+                string trimDate = value.Replace(".","");
+               if ((trimDate != null && trimDate.Length > 0) && (!Int32.TryParse(trimDate, out date) || date < 0))
+                    return;
+                AddMovieModel.Premier = null;
+                if(trimDate.Length == 8)
+                {
+                    DateTime correctDate;
+                    if (!DateTime.TryParse(value, out correctDate) || correctDate.Year < 1800 || correctDate.Year > DateTime.UtcNow.Year+1)
+                        return;
+                    AddMovieModel.Premier = correctDate.ToUniversalTime();
+                    _pickerDate = trimDate.Insert(4, ".").Insert(2, ".");
+                }
+                else if (trimDate.Length > 4)
+                    _pickerDate = trimDate.Insert(4, ".").Insert(2, ".");
+                else if (trimDate.Length > 2)
+                    _pickerDate = trimDate.Insert(2, ".");
+                else
+                    _pickerDate = trimDate;
+                OnPropertyChanged(nameof(PickerDate)); 
+            } 
+        }
         public string MovieBudget
         {
             get { return _addMovieModel.Budget == null ? string.Empty : _addMovieModel.Budget.ToString(); }
@@ -112,12 +134,18 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
             }
         }
         public bool IsHasPremier { get { return _isHasPremier; } set {
+                _isHasPremier = value;
+                OnPropertyChanged(nameof(IsHasPremier));
+
                 if (value == false)
                     AddMovieModel.Premier = null;
                 else
-                    AddMovieModel.Premier = PickerDate.ToUniversalTime();
-                _isHasPremier = value;
-                OnPropertyChanged(nameof(IsHasPremier)); 
+                {
+                    DateTime date;
+                    if (!DateTime.TryParse(PickerDate, out date) || date.Year < 1800 || date.Year > DateTime.UtcNow.Year + 1)
+                        return;
+                    AddMovieModel.Premier = date.ToUniversalTime();
+                }
             } }
         public string CountrySearch { get { return _countrySearch; } set { _countrySearch = value; SortCountries(); OnPropertyChanged(nameof(CountrySearch)); } }
         public string MovieUrl
@@ -238,7 +266,8 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
             MovieCollected = null;
             IsHasPremier = false;
             MovieAgeLimit = null;
-            PickerDate = DateTime.Now;
+            PickerDate = string.Empty;
+            MovieUrl = string.Empty;
             SortCountries();
             Error = Application.Current.FindResource("MovieAdded") as string;
         }

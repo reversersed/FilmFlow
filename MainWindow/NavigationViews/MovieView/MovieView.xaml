@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:FilmFlow.MainWindow.NavigationViews.MovieView"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:customControl="clr-namespace:FilmFlow.CustomControls"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:MovieViewModel}"
              d:DesignHeight="1500" d:DesignWidth="1675">
@@ -21,7 +22,7 @@
             <local:PlayerHeightConverter x:Key="PlayerHeightConverter"/>
             <local:DateReviewConverter x:Key="DateReviewConverter"/>
             <local:ReducePageConverter x:Key="PageConverter"/>
-            <local:EqialityConverter x:Key="Equality"/>
+            <local:EqualityConverter x:Key="Equality"/>
             <local:MoreThanConverter x:Key="MoreThan"/>
         </ResourceDictionary>
     </UserControl.Resources>

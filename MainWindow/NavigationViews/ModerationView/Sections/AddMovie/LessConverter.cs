@@ -6,15 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace FilmFlow.MainWindow.NavigationViews.MovieView
+namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
 {
-    class EqialityConverter : IMultiValueConverter
+    public class LessConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values == null)
                 return false;
-            return values?.All(x => x.ToString().Equals(values[0].ToString()));
+            return (int)values[0] < (int)values[1];
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
