@@ -62,7 +62,9 @@
     <sys:String x:Key="Filters">Фильтры</sys:String>
     <sys:String x:Key="Genres">Жанры</sys:String>
     <sys:String x:Key="MovieNameSearch">Название фильма...</sys:String>
-    <sys:String x:Key="MostDiscussing">Самое обсуждаемое</sys:String>
+    <sys:String x:Key="MostDiscussingYear">Тренды года</sys:String>
+    <sys:String x:Key="MostDiscussingMonth">Тренды месяца</sys:String>
+    <sys:String x:Key="MostDiscussingDay">Интересно сегодня</sys:String>
     <sys:String x:Key="MostPopularMovies">С лучшей оценкой</sys:String>
     <sys:String x:Key="NewMovies">Новые фильмы</sys:String>
     <sys:String x:Key="Search">Поиск</sys:String>
@@ -142,4 +144,5 @@
     <sys:String x:Key="NotReviewAllowed">Ваш аккаунт заблокирован администрацией. Вам запрещено отправлять отзывы.</sys:String>
     <sys:String x:Key="DeleteReview">Удалить отзыв</sys:String>
     <sys:String x:Key="BanUser">Заблокировать пользователя</sys:String>
+    <sys:String x:Key="NotSubscribed">Ваша подписка не позволяет просматривать данный фильм</sys:String>
 </ResourceDictionary>

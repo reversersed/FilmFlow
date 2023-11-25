@@ -36,6 +36,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         private string _confirmText { get; set; } = string.Empty;
         private bool _isBanConfirmationOpened { get; set; } = false;
         private int ConfirmationTag {  get; set; }
+        private bool _isSubscribed { get; set; } = false;
 
         //Public properties
         public string GenreString { get { return _genreString; } set { _genreString = value; OnPropertyChanged(nameof(GenreString)); } }
@@ -44,6 +45,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         public string ReviewText { get { return _reviewText; } set { _reviewText = value; OnPropertyChanged(nameof(ReviewText)); } }
         public ObservableCollection<Review> Reviews { get { return _reviews; } set { _reviews = value; OnPropertyChanged(nameof(Reviews)); } }
         public int TotalPage { get { return _totalPages; } set { _totalPages = value; OnPropertyChanged(nameof(TotalPage)); } }
+        public bool IsSubscribed { get { return _isSubscribed; } set { _isSubscribed = value; OnPropertyChanged(nameof(IsSubscribed)); } }
         public int CurrentPage { get { return _currentPage; } 
             set 
             {
@@ -112,6 +114,19 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
 
             Account = userRepository.LoadUserData(FilmFlow.Properties.Settings.Default.CurrentUser);
             Movie = MovieRepository.LoadMovieById(movieId);
+            if(Account.Subscription == null)
+                IsSubscribed = false;
+            else
+            {
+                foreach(SubscriptionGenre i in Account.Subscription.SubGenre)
+                {
+                    if(Movie.Genres.Where(x=>x.Id == i.Id).Any())
+                    {
+                        IsSubscribed = true;
+                        break;
+                    }
+                }
+            }
             for (int i = 0; i < Movie.Genres.Count; i++)
                 GenreString += (i == 0 ? Movie.Genres[i].Name : Movie.Genres[i].Name.ToLower()) + (i != Movie.Genres.Count - 1 ? ", " : string.Empty);
             if (Movie.Countries.Count == 0)

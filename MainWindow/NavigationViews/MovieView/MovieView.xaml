@@ -986,6 +986,7 @@
                       Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource PlayerHeightConverter}}">
                     <customControl:VideoPlayer  BorderBrush="{StaticResource DarkAccentColor}"
                                                 BorderThickness="1"
+                                                Subscribed="{Binding IsSubscribed}"
                                                 SourceUrl="{Binding Movie.Url}"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Stretch"/>
@@ -1004,6 +1005,7 @@
                                FontWeight="DemiBold"
                                TextAlignment="Center"
                                HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
                                FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource LightTextColor}">
                         <TextBlock.Style>
@@ -1023,6 +1025,9 @@
                                 <Setter Property="Visibility" Value="Visible"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Account.Banned}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSubscribed}" Value="False">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>

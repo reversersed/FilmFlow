@@ -21,5 +21,9 @@ namespace FilmFlow.Models.BaseTables
         public bool Banned {  get; set; }
         [Column("sessionkey")]
         public byte[]? Session { get; set; }
+        [Column("subscription")]
+        public int? SubscriptionId { get; set; }
+        [ForeignKey(nameof(SubscriptionId))]
+        public Subscription? Subscription { get; set; } = null;
     }
 }

@@ -15,12 +15,14 @@ namespace FilmFlow.CustomControls
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("SourceUrl", typeof(string), typeof(VideoPlayer),
             new PropertyMetadata(new PropertyChangedCallback(OnValueChanged)));
         public static readonly DependencyProperty elapsedProperty = DependencyProperty.Register("ElapsedTime", typeof(string), typeof(VideoPlayer));
+        public static readonly DependencyProperty subscribedProperty = DependencyProperty.Register("Subscribed", typeof(bool), typeof(VideoPlayer), new PropertyMetadata(true));
 
         static Action loadVideo;
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => loadVideo?.Invoke();
         public string SourceUrl { get { return (string)GetValue(SourceProperty); } 
             set { SetValue(SourceProperty, value);  } }
         public string ElapsedTime { get { return (string)GetValue(elapsedProperty); } set { SetValue(elapsedProperty, value); } }
+        public bool Subscribed { get { return (bool)GetValue(subscribedProperty); } set { SetValue(subscribedProperty, value); } }
 
         private double savedVolume;
         private DispatcherTimer videoTimer;
@@ -102,7 +104,7 @@ namespace FilmFlow.CustomControls
             videoTimer.Tick += VideoTimer_Tick;
             videoTimer.Start();
             ElapsedTime = string.Format("{0}/{1}", VideoPlayerElement.Position.ToString(@"hh\:mm\:ss"), VideoPlayerElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
-            SetEnabledStateToControls(true);
+            SetEnabledStateToControls(Subscribed);
         }
 
         private void VideoTimer_Tick(object? sender, EventArgs e)
@@ -120,6 +122,7 @@ namespace FilmFlow.CustomControls
 
         private void SetEnabledStateToControls(bool enabled)
         {
+            NotSubscribed.Visibility = Subscribed ? Visibility.Collapsed : Visibility.Visible;
             PlayButton.IsEnabled = enabled;
             PauseButton.IsEnabled = enabled;
             TimeSlider.IsEnabled = enabled;

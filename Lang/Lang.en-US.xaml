@@ -62,7 +62,9 @@
     <sys:String x:Key="Filters">Filters</sys:String>
     <sys:String x:Key="Genres">Genres</sys:String>
     <sys:String x:Key="MovieNameSearch">Movie name...</sys:String>
-    <sys:String x:Key="MostDiscussing">Most discussing</sys:String>
+    <sys:String x:Key="MostDiscussingYear">Trending this year</sys:String>
+    <sys:String x:Key="MostDiscussingMonth">Trending this month</sys:String>
+    <sys:String x:Key="MostDiscussingDay">Interesting today</sys:String>
     <sys:String x:Key="MostPopularMovies">Best rating</sys:String>
     <sys:String x:Key="NewMovies">New movies</sys:String>
     <sys:String x:Key="Search">Search</sys:String>
@@ -143,4 +145,5 @@
     <sys:String x:Key="NotReviewAllowed">You are banned by administration. You are not allowed to write reviews.</sys:String>
     <sys:String x:Key="DeleteReview">Delete review</sys:String>
     <sys:String x:Key="BanUser">Ban user</sys:String>
+    <sys:String x:Key="NotSubscribed">You can not play this movie due to your subscription</sys:String>
 </ResourceDictionary> 

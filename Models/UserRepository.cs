@@ -2,6 +2,8 @@
 using System.Security.Cryptography;
 using System;
 using FilmFlow.Models.BaseTables;
+using Microsoft.EntityFrameworkCore;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace FilmFlow.Models
 {
@@ -12,6 +14,11 @@ namespace FilmFlow.Models
             using (var db = new RepositoryBase())
             {
                 var user = db.users.SingleOrDefault(u => (u.Username.Equals(username) || u.Email.Equals(username)) && u.Password.Equals(MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))));
+                if(user.SubscriptionId != null)
+                    user = db.users
+                    .Include(e => e.Subscription)
+                        .ThenInclude(e => e.SubGenre)
+                    .SingleOrDefault(u => (u.Username.Equals(username) || u.Email.Equals(username)) && u.Password.Equals(MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))));
                 if (user != default(User) && createSession)
                 {
                     FilmFlow.Properties.Settings.Default.userSessionKey = string.Concat(user.Email, user.Id.ToString(), user.Username, GenerateToken());
@@ -81,7 +88,14 @@ namespace FilmFlow.Models
         {
             using(RepositoryBase db = new RepositoryBase())
             {
-                return db.users.Where(i => i.Username.Equals(username)).Select(i => i).Single();
+                var user = db.users.FirstOrDefault(i => i.Username.Equals(username));
+                if(user.SubscriptionId == null) 
+                    return user;
+                return db.users
+                            .Where(i => i.Username.Equals(username))
+                            .Include(e => e.Subscription)
+                                .ThenInclude(e => e.SubGenre)
+                            .Select(i => i).Single();
             }
         }
 
@@ -89,7 +103,18 @@ namespace FilmFlow.Models
         {
             using(RepositoryBase db = new RepositoryBase())
             {
-                return (User)db.users.Where(i => i.Username.Equals(value) || i.Email.Equals(value)).Select(i => i).SingleOrDefault();
+                var user = (User)db.users
+                                .Where(i => i.Username.Equals(value) || i.Email.Equals(value))
+                                .Select(i => i)
+                                .SingleOrDefault();
+                if (user.SubscriptionId == null)
+                    return user;
+                return (User)db.users
+                                .Where(i => i.Username.Equals(value) || i.Email.Equals(value))
+                                .Include(e => e.Subscription)
+                                    .ThenInclude(e => e.SubGenre)
+                                .Select(i => i)
+                                .SingleOrDefault();
             }
         }
 
@@ -97,7 +122,10 @@ namespace FilmFlow.Models
         {
             using(RepositoryBase db = new RepositoryBase())
             {
-                User userToChange = db.users.Where(i => i.Username.Equals(username)).Select(i => i).Single();
+                User userToChange = db.users
+                                    .Where(i => i.Username.Equals(username))
+                                    .Select(i => i)
+                                    .Single();
                 userToChange.Password = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 db.SaveChanges();
             }

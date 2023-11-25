@@ -34,6 +34,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition MinHeight="200"/>
             </Grid.RowDefinitions>
@@ -48,7 +52,7 @@
                 </Border.Background>
                 <StackPanel Orientation="Horizontal"
                             Margin="20,0,0,0">
-                    <TextBlock Text="{StaticResource MostDiscussing}"
+                    <TextBlock Text="{StaticResource MostDiscussingYear}"
                                Foreground="{StaticResource TextColor}"
                                FontSize="{StaticResource Regular}"
                                FontFamily="{StaticResource DefaultFont}"
@@ -64,16 +68,400 @@
                               Focusable="False"
                               Padding="0,0,0,15"
                               VerticalScrollBarVisibility="Disabled">
-                    <ListBox ItemsSource="{Binding PopularMovies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    <ListBox ItemsSource="{Binding PopularMoviesYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Background="Transparent" 
                                  BorderThickness="0"
                                  SelectionMode="Single"
                                  ScrollViewer.CanContentScroll="False"
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 SelectedIndex="{Binding PopularSelectedMovie}">
+                                 SelectedIndex="{Binding PopularYearSelectedMovie}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction CommandParameter="{Binding PopularSelectedMovie}" Command="{Binding PopularMovieListSelected}"/>
+                                <i:InvokeCommandAction CommandParameter="{Binding PopularYearSelectedMovie}" Command="{Binding PopularYearMovieListSelected}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <ContentPresenter/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            IsItemsHost="True"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
+                                    <Grid.ToolTip>
+                                        <Border Background="{StaticResource SecondaryBackgroundColor}"
+                                            CornerRadius="10"
+                                            Padding="0,10,0,5">
+                                            <StackPanel Orientation="Vertical"
+                                                    MaxWidth="300">
+                                                <TextBlock Text="{Binding Name}"
+                                                       Foreground="{StaticResource TextColor}"
+                                                       FontSize="{StaticResource Regular}"
+                                                       FontFamily="{StaticResource DefaultFont}"
+                                                       Margin="15,0,0,0"
+                                                       HorizontalAlignment="Left"
+                                                       MaxWidth="250"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal" Width="300" Margin="5">
+                                                    <Image Source="{Binding Cover}"
+                                                        Stretch="Uniform"
+                                                        Width="150"
+                                                        Height="200"/>
+                                                    <TextBlock FontFamily="{StaticResource DefaultFont}" 
+                                                           TextTrimming="CharacterEllipsis" 
+                                                           MaxHeight="200" 
+                                                           Text="{Binding Desription}" 
+                                                           TextWrapping="Wrap"
+                                                           FontSize="{StaticResource Small}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           MaxWidth="130"
+                                                           Margin="10,0,0,0"/>
+                                                </StackPanel>
+                                                <Grid Margin="15,2,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="15"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="10"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <customControl:RatingBarControl Grid.Column="0"
+                                                                                    Rating="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
+                                                    <TextBlock Text="{Binding Rating, StringFormat=F1}"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Left"
+                                                           TextAlignment="Left"
+                                                           Grid.Column="2"
+                                                           FontWeight="DemiBold"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Foreground="{StaticResource TextColor}"/>
+                                                    <StackPanel Grid.Column="4"
+                                                            VerticalAlignment="Bottom"
+                                                            Margin="0,0,0,4"
+                                                            HorizontalAlignment="Left"
+                                                            Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding ReviewCount}"
+                                                               FontSize="{StaticResource Small}"
+                                                               FontFamily="{StaticResource DefaultFont}"
+                                                               FontWeight="ExtraLight"
+                                                               Foreground="{StaticResource LightTextColor}"/>
+                                                        <TextBlock Text="{StaticResource Reviews}"
+                                                               FontSize="{StaticResource Small}"
+                                                               FontFamily="{StaticResource DefaultFont}"
+                                                               FontWeight="ExtraLight"
+                                                               Margin="5,0,0,0"
+                                                               Foreground="{StaticResource LightTextColor}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <ListView ItemsSource="{Binding Path=Genres}"
+                                                      Margin="5">
+                                                    <ListView.Template>
+                                                        <ControlTemplate>
+                                                            <ItemsPresenter/>
+                                                        </ControlTemplate>
+                                                    </ListView.Template>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border CornerRadius="10"
+                                                                Background="{StaticResource LightAccentColor}">
+                                                                <TextBlock Text="{Binding Name}"
+                                                                       FontSize="{StaticResource Small}"
+                                                                       FontFamily="{StaticResource DefaultFont}"
+                                                                       Foreground="{StaticResource TextColor}"
+                                                                       TextWrapping="Wrap"
+                                                                       Padding="6,3,6,3"/>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                    <ListView.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel IsItemsHost="True" 
+                                                                   Orientation="Horizontal"
+                                                                   MaxWidth="300"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListView.ItemsPanel>
+                                                </ListView>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid.ToolTip>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="240"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding Cover}" 
+                                               Stretch="Uniform" 
+                                               Grid.Row="0"
+                                               Visibility="Hidden"/>
+                                    <Border CornerRadius="10" 
+                                                Grid.Row="0" 
+                                                Width="Auto">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Cover}" 
+                                                    Stretch="Uniform"/>
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock FontSize="{StaticResource Small}"
+                                                   Foreground="{StaticResource TextColor}"
+                                                   Grid.Row="1"
+                                                   Margin="5,5,0,0"
+                                                   TextWrapping="Wrap"
+                                                   MaxWidth="180">
+                                            <Run Text="{Binding Name}"/>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </StackPanel>
+            <Border Grid.Row="2" CornerRadius="15,15,0,0">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource LightAccentColorKey}" Offset=".2"/>
+                        <GradientStop Color="{StaticResource AccentColorKey}" Offset=".6"/>
+                        <GradientStop Color="{StaticResource LightAccentColorKey}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20,0,0,0">
+                    <TextBlock Text="{StaticResource MostDiscussingMonth}"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               TextAlignment="Left"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            <StackPanel Grid.Row="3"
+                        Margin="0,10,0,0"
+                        Width="Auto" Height="Auto">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              Focusable="False"
+                              Padding="0,0,0,15"
+                              VerticalScrollBarVisibility="Disabled">
+                    <ListBox ItemsSource="{Binding PopularMoviesMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Background="Transparent" 
+                                 BorderThickness="0"
+                                 SelectionMode="Single"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 SelectedIndex="{Binding PopularMonthSelectedMovie}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction CommandParameter="{Binding PopularMonthSelectedMovie}" Command="{Binding PopularMonthMovieListSelected}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <ContentPresenter/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            IsItemsHost="True"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,15,0" ToolTipService.InitialShowDelay="500">
+                                    <Grid.ToolTip>
+                                        <Border Background="{StaticResource SecondaryBackgroundColor}"
+                                            CornerRadius="10"
+                                            Padding="0,10,0,5">
+                                            <StackPanel Orientation="Vertical"
+                                                    MaxWidth="300">
+                                                <TextBlock Text="{Binding Name}"
+                                                       Foreground="{StaticResource TextColor}"
+                                                       FontSize="{StaticResource Regular}"
+                                                       FontFamily="{StaticResource DefaultFont}"
+                                                       Margin="15,0,0,0"
+                                                       HorizontalAlignment="Left"
+                                                       MaxWidth="250"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal" Width="300" Margin="5">
+                                                    <Image Source="{Binding Cover}"
+                                                        Stretch="Uniform"
+                                                        Width="150"
+                                                        Height="200"/>
+                                                    <TextBlock FontFamily="{StaticResource DefaultFont}" 
+                                                           TextTrimming="CharacterEllipsis" 
+                                                           MaxHeight="200" 
+                                                           Text="{Binding Desription}" 
+                                                           TextWrapping="Wrap"
+                                                           FontSize="{StaticResource Small}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           MaxWidth="130"
+                                                           Margin="10,0,0,0"/>
+                                                </StackPanel>
+                                                <Grid Margin="15,2,0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="15"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="10"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <customControl:RatingBarControl Grid.Column="0"
+                                                                                    Rating="{Binding Path=Rating, Converter={StaticResource RatingToBar}}"/>
+                                                    <TextBlock Text="{Binding Rating, StringFormat=F1}"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Left"
+                                                           TextAlignment="Left"
+                                                           Grid.Column="2"
+                                                           FontWeight="DemiBold"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Foreground="{StaticResource TextColor}"/>
+                                                    <StackPanel Grid.Column="4"
+                                                            VerticalAlignment="Bottom"
+                                                            Margin="0,0,0,4"
+                                                            HorizontalAlignment="Left"
+                                                            Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding ReviewCount}"
+                                                               FontSize="{StaticResource Small}"
+                                                               FontFamily="{StaticResource DefaultFont}"
+                                                               FontWeight="ExtraLight"
+                                                               Foreground="{StaticResource LightTextColor}"/>
+                                                        <TextBlock Text="{StaticResource Reviews}"
+                                                               FontSize="{StaticResource Small}"
+                                                               FontFamily="{StaticResource DefaultFont}"
+                                                               FontWeight="ExtraLight"
+                                                               Margin="5,0,0,0"
+                                                               Foreground="{StaticResource LightTextColor}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <ListView ItemsSource="{Binding Path=Genres}"
+                                                      Margin="5">
+                                                    <ListView.Template>
+                                                        <ControlTemplate>
+                                                            <ItemsPresenter/>
+                                                        </ControlTemplate>
+                                                    </ListView.Template>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border CornerRadius="10"
+                                                                Background="{StaticResource LightAccentColor}">
+                                                                <TextBlock Text="{Binding Name}"
+                                                                       FontSize="{StaticResource Small}"
+                                                                       FontFamily="{StaticResource DefaultFont}"
+                                                                       Foreground="{StaticResource TextColor}"
+                                                                       TextWrapping="Wrap"
+                                                                       Padding="6,3,6,3"/>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                    <ListView.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel IsItemsHost="True" 
+                                                                   Orientation="Horizontal"
+                                                                   MaxWidth="300"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListView.ItemsPanel>
+                                                </ListView>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid.ToolTip>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="240"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding Cover}" 
+                                               Stretch="Uniform" 
+                                               Grid.Row="0"
+                                               Visibility="Hidden"/>
+                                    <Border CornerRadius="10" 
+                                                Grid.Row="0" 
+                                                Width="Auto">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Cover}" 
+                                                    Stretch="Uniform"/>
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock FontSize="{StaticResource Small}"
+                                                   Foreground="{StaticResource TextColor}"
+                                                   Grid.Row="1"
+                                                   Margin="5,5,0,0"
+                                                   TextWrapping="Wrap"
+                                                   MaxWidth="180">
+                                            <Run Text="{Binding Name}"/>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </StackPanel>
+            <Border Grid.Row="4" CornerRadius="15,15,0,0">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource LightAccentColorKey}" Offset=".2"/>
+                        <GradientStop Color="{StaticResource AccentColorKey}" Offset=".6"/>
+                        <GradientStop Color="{StaticResource LightAccentColorKey}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20,0,0,0">
+                    <TextBlock Text="{StaticResource MostDiscussingDay}"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               TextAlignment="Left"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            <StackPanel Grid.Row="5"
+                        Margin="0,10,0,0"
+                        Width="Auto" Height="Auto">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              Focusable="False"
+                              Padding="0,0,0,15"
+                              VerticalScrollBarVisibility="Disabled">
+                    <ListBox ItemsSource="{Binding PopularMoviesDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Background="Transparent" 
+                                 BorderThickness="0"
+                                 SelectionMode="Single"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 SelectedIndex="{Binding PopularDaySelectedMovie}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction CommandParameter="{Binding PopularDaySelectedMovie}" Command="{Binding PopularDayMovieListSelected}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListBox.Resources>
@@ -231,7 +619,7 @@
                 </ScrollViewer>
             </StackPanel>
             <!--New movies-->
-            <Border Grid.Row="2" CornerRadius="15,15,0,0" Margin="0,5,0,0">
+            <Border Grid.Row="6" CornerRadius="15,15,0,0" Margin="0,5,0,0">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="{StaticResource LightAccentColorKey}" Offset=".2"/>
@@ -248,7 +636,7 @@
                            Margin="20,0,0,0"
                            VerticalAlignment="Center"/>
             </Border>
-            <StackPanel Grid.Row="3"
+            <StackPanel Grid.Row="7"
                         Margin="0,10,0,0"
                         Width="Auto" Height="Auto">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
@@ -422,7 +810,7 @@
                 </ScrollViewer>
             </StackPanel>
             <!--Most popular-->
-            <Border Grid.Row="4" CornerRadius="15,15,0,0">
+            <Border Grid.Row="8" CornerRadius="15,15,0,0">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="{StaticResource LightAccentColorKey}" Offset=".2"/>
@@ -441,7 +829,7 @@
                                VerticalAlignment="Center"/>
                 </StackPanel>
             </Border>
-            <StackPanel Grid.Row="5"
+            <StackPanel Grid.Row="9"
                         Margin="0,10,0,0"
                         Width="Auto" Height="Auto">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
@@ -615,7 +1003,7 @@
                 </ScrollViewer>
             </StackPanel>
             <!--Name search-->
-            <StackPanel Grid.Row="6"
+            <StackPanel Grid.Row="10"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Orientation="Horizontal"
@@ -757,7 +1145,7 @@
             <Button BorderThickness="0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Grid.Row="6"
+                    Grid.Row="10"
                     Command="{Binding SwitchFilter}"
                     Foreground="{StaticResource TextColor}"
                     FontSize="{StaticResource Regular}"
@@ -799,7 +1187,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Border Grid.Row="7"
+            <Border Grid.Row="11"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Height="Auto"
@@ -996,7 +1384,7 @@
             </Border>
             <!--Main view search-->
             <StackPanel x:Name="ListBoxPanel"
-                        Grid.Row="7"
+                        Grid.Row="11"
                     Width="Auto" Height="Auto">
                 <ListBox ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                              Background="Transparent" 

@@ -13,7 +13,7 @@ namespace FilmFlow.Models
         ObservableCollection<MovieModel> LoadFilteredMovies(List<int> genreIds);
         ObservableCollection<MovieModel> LoadMoviesByGenre(GenreModel genregenreSearch);
         ObservableCollection<GenreModel> LoadGenreCollection();
-        ObservableCollection<MovieModel> GetPopularMovies();
+        ObservableCollection<MovieModel> GetPopularMovies(int days);
         ObservableCollection<MovieModel> GetMostRated();
         ObservableCollection<CountryModel> GetCountries();
         MovieModel LoadMovieById(int id);

@@ -2413,12 +2413,12 @@
                         </TextBox.Style>
                     </TextBox>
                     <Grid>
-                        <customControl:VideoPlayer SourceUrl="{Binding MovieUrl}"
-                                                       BorderBrush="{StaticResource LightAccentColor}"
-                                                       BorderThickness="1"
-                                                       Width="800"
-                                                       Height="450"
-                                                       HorizontalAlignment="Center"/>
+                        <customControl:VideoPlayer  SourceUrl="{Binding MovieUrl}"
+                                                    BorderBrush="{StaticResource LightAccentColor}"
+                                                    BorderThickness="1"
+                                                    Width="800"
+                                                    Height="450"
+                                                    HorizontalAlignment="Center"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>

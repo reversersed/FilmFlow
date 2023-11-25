@@ -14,7 +14,9 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
     {
         //Private properties
         private ObservableCollection<MovieModel> _movies;
-        private ObservableCollection<MovieModel> _popularMovies;
+        private ObservableCollection<MovieModel> _popularMoviesYear;
+        private ObservableCollection<MovieModel> _popularMoviesMonth;
+        private ObservableCollection<MovieModel> _popularMoviesDay;
         private ObservableCollection<MovieModel> _mostRatedMovies;
         private ObservableCollection<MovieModel> _newMovies;
         private ObservableCollection<GenreModel> _genres;
@@ -22,7 +24,9 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         private string _movieSearchName;
         private string _genreFilterIcon = "CircleArrowUp";
         private int _selectedMovie = -1;
-        private int _popularSelectedMovie = -1;
+        private int _popularYearSelectedMovie = -1;
+        private int _popularMonthSelectedMovie = -1;
+        private int _popularDaySelectedMovie = -1;
         private int _mostRatedSelectedMovie = -1;
         private int _newSelectedMovie = -1;
         private Visibility _filterVisibility = Visibility.Collapsed;
@@ -30,12 +34,16 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
 
         //Public Properties
         public ObservableCollection<MovieModel> Movies { get { return _movies; } set { _movies = value; OnPropertyChanged(nameof(Movies)); } }
-        public ObservableCollection<MovieModel> PopularMovies { get { return _popularMovies; } set { _popularMovies = value; OnPropertyChanged(nameof(PopularMovies)); } }
+        public ObservableCollection<MovieModel> PopularMoviesYear { get { return _popularMoviesYear; } set { _popularMoviesYear = value; OnPropertyChanged(nameof(PopularMoviesYear)); } }
+        public ObservableCollection<MovieModel> PopularMoviesMonth { get { return _popularMoviesMonth; } set { _popularMoviesMonth = value; OnPropertyChanged(nameof(PopularMoviesMonth)); } }
+        public ObservableCollection<MovieModel> PopularMoviesDay { get { return _popularMoviesDay; } set { _popularMoviesDay = value; OnPropertyChanged(nameof(PopularMoviesDay)); } }
         public ObservableCollection<MovieModel> MostRatedMovies { get { return _mostRatedMovies; } set { _mostRatedMovies = value; OnPropertyChanged(nameof(MostRatedMovies)); } }
         public ObservableCollection<MovieModel> NewMovies { get { return _newMovies; } set { _newMovies = value; OnPropertyChanged(nameof(NewMovies)); } }
         public ObservableCollection<GenreModel> Genres { get { return _genres; } set { _genres = value; OnPropertyChanged(nameof(Genres)); } }
         public int SelectedMovie { get { return _selectedMovie; } set { _selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); } }
-        public int PopularSelectedMovie { get { return _popularSelectedMovie; } set { _popularSelectedMovie = value; OnPropertyChanged(nameof(PopularSelectedMovie)); } }
+        public int PopularYearSelectedMovie { get { return _popularYearSelectedMovie; } set { _popularYearSelectedMovie = value; OnPropertyChanged(nameof(PopularYearSelectedMovie)); } }
+        public int PopularMonthSelectedMovie { get { return _popularMonthSelectedMovie; } set { _popularMonthSelectedMovie = value; OnPropertyChanged(nameof(PopularMonthSelectedMovie)); } }
+        public int PopularDaySelectedMovie { get { return _popularDaySelectedMovie; } set { _popularDaySelectedMovie = value; OnPropertyChanged(nameof(PopularDaySelectedMovie)); } }
         public int MostRatedSelectedMovie { get { return _mostRatedSelectedMovie; } set { _mostRatedSelectedMovie = value; OnPropertyChanged(nameof(MostRatedSelectedMovie)); } }
         public int NewSelectedMovie { get { return _newSelectedMovie; } set { _newSelectedMovie = value; OnPropertyChanged(nameof(NewSelectedMovie)); } }
         public string MovieSearchName { get { return _movieSearchName; } set { _movieSearchName = value; OnPropertyChanged(nameof(MovieSearchName)); } }
@@ -48,7 +56,9 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
 
         //Commands
         public ICommand MovieListSelected { get; }
-        public ICommand PopularMovieListSelected { get; }
+        public ICommand PopularYearMovieListSelected { get; }
+        public ICommand PopularMonthMovieListSelected { get; }
+        public ICommand PopularDayMovieListSelected { get; }
         public ICommand MostRatedMovieListSelected { get; }
         public ICommand NewMovieListSelected { get; }
         public ICommand SwitchFilter { get; }
@@ -66,7 +76,9 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public HomeViewModel(Action<int> openMovieCommand)
         {
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
-            PopularMovieListSelected = new ViewModelCommand(PopularMovieListSelectedCommand);
+            PopularYearMovieListSelected = new ViewModelCommand(PopularYearMovieListSelectedCommand);
+            PopularMonthMovieListSelected = new ViewModelCommand(PopularMonthMovieListSelectedCommand);
+            PopularDayMovieListSelected = new ViewModelCommand(PopularDayMovieListSelectedCommand);
             MostRatedMovieListSelected = new ViewModelCommand(MostRatedMovieListSelectedCommand);
             NewMovieListSelected = new ViewModelCommand(NewMovieListSelectedCommand);
             CollapseGenreFilter = new ViewModelCommand(CollapseGenreFilterCommand);
@@ -81,7 +93,9 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
 
             Movies = MovieRepository.LoadMovies();
             Genres = MovieRepository.LoadGenreCollection();
-            PopularMovies = MovieRepository.GetPopularMovies();
+            PopularMoviesYear = MovieRepository.GetPopularMovies(365);
+            PopularMoviesMonth = MovieRepository.GetPopularMovies(31);
+            PopularMoviesDay = MovieRepository.GetPopularMovies(1);
             MostRatedMovies = MovieRepository.GetMostRated();
             NewMovies = MovieRepository.LoadNewMovies();
 
@@ -122,11 +136,23 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
                 return;
             openMovieCommand?.Invoke(Movies[(int)obj].Id);
         }
-        private void PopularMovieListSelectedCommand(object obj)
+        private void PopularYearMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(PopularMovies[(int)obj].Id);
+            openMovieCommand?.Invoke(PopularMoviesYear[(int)obj].Id);
+        }
+        private void PopularMonthMovieListSelectedCommand(object obj)
+        {
+            if ((int)obj < 0)
+                return;
+            openMovieCommand?.Invoke(PopularMoviesMonth[(int)obj].Id);
+        }
+        private void PopularDayMovieListSelectedCommand(object obj)
+        {
+            if ((int)obj < 0)
+                return;
+            openMovieCommand?.Invoke(PopularMoviesDay[(int)obj].Id);
         }
         private void MostRatedMovieListSelectedCommand(object obj)
         {

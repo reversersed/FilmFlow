@@ -1,5 +1,6 @@
 ﻿using FilmFlow.Models.BaseTables;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace FilmFlow.Models
 
         }
 
-        public ObservableCollection<MovieModel> GetPopularMovies()
+        public ObservableCollection<MovieModel> GetPopularMovies(int days)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
             using (var db = new RepositoryBase())
@@ -25,7 +26,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
-                                            .OrderByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Count())
+                                            .OrderByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Where(i => (i.WriteDate.ToUniversalTime()-DateTime.UtcNow.ToUniversalTime()).Days < days).Count())
                                             .Take(30)
                                             .ToList())
                 {
@@ -33,7 +34,8 @@ namespace FilmFlow.Models
                 }
             }
             return Movies;
-        }        public ObservableCollection<MovieModel> GetMostRated()
+        }        
+        public ObservableCollection<MovieModel> GetMostRated()
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
             using (var db = new RepositoryBase())

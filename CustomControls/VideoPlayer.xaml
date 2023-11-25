@@ -165,6 +165,19 @@
                         HorizontalAlignment="Center"
                         MouseLeftButtonDown="VideoPlayerElement_MouseLeftButtonDown"
                         VerticalAlignment="Center"/>
+        <TextBlock Text="{StaticResource NotSubscribed}"
+                   x:Name="NotSubscribed"
+                   MaxWidth="400"
+                   FontSize="{StaticResource Large}"
+                   TextWrapping="Wrap"
+                   FontFamily="{StaticResource DefaultFont}"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource DarkTextColor}"
+                   Grid.RowSpan="2"
+                   TextAlignment="Center"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Panel.ZIndex="2"/>
         <Button x:Name="PlayButton"
                 Grid.RowSpan="2"
                 BorderThickness="0">
@@ -218,6 +231,9 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ElementName=PlayerControl, Path=Cursor}" Value="None">
                                 <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PlayerControl, Path=Subscribed}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
