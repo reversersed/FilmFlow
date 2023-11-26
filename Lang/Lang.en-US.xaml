@@ -146,4 +146,5 @@
     <sys:String x:Key="DeleteReview">Delete review</sys:String>
     <sys:String x:Key="BanUser">Ban user</sys:String>
     <sys:String x:Key="NotSubscribed">You can not play this movie due to your subscription</sys:String>
+    <sys:String x:Key="VideoLoadingError">An error occured while loading the movie</sys:String>
 </ResourceDictionary> 

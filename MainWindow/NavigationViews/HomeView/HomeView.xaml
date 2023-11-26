@@ -404,7 +404,7 @@
                                                Grid.Row="0"
                                                Visibility="Hidden"/>
                                     <Border CornerRadius="10" 
-                                                Grid.Row="0" 
+                                                Grid.Row="0"
                                                 Width="Auto">
                                         <Border.Background>
                                             <ImageBrush ImageSource="{Binding Cover}" 

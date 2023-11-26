@@ -145,4 +145,5 @@
     <sys:String x:Key="DeleteReview">Удалить отзыв</sys:String>
     <sys:String x:Key="BanUser">Заблокировать пользователя</sys:String>
     <sys:String x:Key="NotSubscribed">Ваша подписка не позволяет просматривать данный фильм</sys:String>
+    <sys:String x:Key="VideoLoadingError">Во время загрузки видеофайла произошла ошибка</sys:String>
 </ResourceDictionary>

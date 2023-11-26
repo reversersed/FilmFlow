@@ -46,6 +46,8 @@ namespace FilmFlow.CustomControls
                         fullscreen_source = newSource;
                         this.VideoPlayerElement.Source = fullscreen_source;
                     }
+                    else
+                        VideoNotLoaded.Visibility = Visibility.Visible;
                 }
 
                 VideoPlayerElement.Play();
@@ -96,6 +98,7 @@ namespace FilmFlow.CustomControls
 
         private void VideoPlayerElement_MediaOpened(object sender, RoutedEventArgs e)
         {
+            VideoNotLoaded.Visibility = Visibility.Collapsed;
             TimeSlider.Maximum = VideoPlayerElement.NaturalDuration.TimeSpan.TotalSeconds;
             VideoPlayerElement.Volume = VolumeSlider.Value = VolumeSlider.Maximum = 1;
             VolumeChange(VideoPlayerElement.Volume);
