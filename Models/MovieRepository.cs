@@ -27,6 +27,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
+                                            .Where(i => db.reviews.Where(x => x.MovieId == i.Id).Where(x => (DateTime.UtcNow.ToUniversalTime() - x.WriteDate.ToUniversalTime()).Days < days).Any())
                                             .OrderByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Where(i => (DateTime.UtcNow.ToUniversalTime()-i.WriteDate.ToUniversalTime()).Days < days).Count())
                                             .Take(30)
                                             .ToList())
