@@ -216,6 +216,11 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
         private void GenreUncheckedCommand(object obj) => _selectedGenres.Remove((int)obj);
         private void InsertMovieCommand(object obj)
         {
+            if(IsHasPremier && (AddMovieModel.Premier == null || PickerDate.Length < 10))
+            {
+                Error = Application.Current.FindResource("WrongPremierDate") as string;
+                return;
+            }
             if (AddMovieModel.NameEn == null ||
                 AddMovieModel.NameEn.Length < 1 ||
                 AddMovieModel.NameRu == null ||

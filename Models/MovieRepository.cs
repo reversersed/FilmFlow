@@ -27,7 +27,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
-                                            .OrderByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Where(i => (i.WriteDate.ToUniversalTime()-DateTime.UtcNow.ToUniversalTime()).Days < days).Count())
+                                            .OrderByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Where(i => (DateTime.UtcNow.ToUniversalTime()-i.WriteDate.ToUniversalTime()).Days < days).Count())
                                             .Take(30)
                                             .ToList())
                 {
@@ -193,6 +193,14 @@ namespace FilmFlow.Models
         {
             using (var db = new RepositoryBase())
             {
+                /*
+                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                for(int i = 0; i < 100; i ++)
+                    db.reviews.Add(new Review() { MovieId = id, Rating = (float)(Random.Shared.NextDouble()), UserId = 1, WriteDate = new DateTime(2023,03,16).ToUniversalTime(), ReviewText = new string(Enumerable.Repeat(chars, Random.Shared.Next(20, 80))
+                    .Select(s => s[Random.Shared.Next(s.Length)]).ToArray()) });
+                db.SaveChanges();
+                */
+
                 Movie movie = db.movies
                                         .Include(e => e.Country)
                                                 .ThenInclude(e => e.Country)

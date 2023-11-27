@@ -105,6 +105,7 @@
     <sys:String x:Key="SpecifyMovieYear">* Укажите корректный год</sys:String>
     <sys:String x:Key="SpecifyMovieCover">* Укажите ссылку на обложку</sys:String>
     <sys:String x:Key="SelectGenre">* Выберите хотя бы один жанр</sys:String>
+    <sys:String x:Key="WrongPremierDate">* Укажите дату премьеры или отключите её</sys:String>
     <sys:String x:Key="MovieAdded">Фильм успешно добавлен</sys:String>
     <!--Movie window-->
     <sys:String x:Key="Description">Описание</sys:String>
