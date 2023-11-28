@@ -124,7 +124,7 @@ namespace FilmFlow.Models
             return Genres;
         }
 
-        public ObservableCollection<MovieModel> LoadMovies()
+        public ObservableCollection<MovieModel> LoadMovies(int limit)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
             using (var db = new RepositoryBase())
@@ -135,6 +135,7 @@ namespace FilmFlow.Models
                                             .Include(e => e.Genre)
                                                 .ThenInclude(i => i.Genre)
                                             .OrderBy(i => i.Rating)
+                                            .Take(limit)
                                             .ToList()) 
                 {
                     Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
@@ -229,6 +230,14 @@ namespace FilmFlow.Models
                 }
             }
             return Countries;
+        }
+
+        public int GetCount()
+        {
+            using (var db = new RepositoryBase())
+            {
+                return db.movies.Count();
+            }
         }
     }
 }

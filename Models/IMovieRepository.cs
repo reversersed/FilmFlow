@@ -7,7 +7,7 @@ namespace FilmFlow.Models
 {
     interface IMovieRepository
     {
-        ObservableCollection<MovieModel> LoadMovies();
+        ObservableCollection<MovieModel> LoadMovies(int limit);
         ObservableCollection<MovieModel> LoadNewMovies();
         ObservableCollection<MovieModel> LoadFilteredMovies(string name);
         ObservableCollection<MovieModel> LoadFilteredMovies(List<int> genreIds);
@@ -16,6 +16,7 @@ namespace FilmFlow.Models
         ObservableCollection<MovieModel> GetPopularMovies(int days);
         ObservableCollection<MovieModel> GetMostRated();
         ObservableCollection<CountryModel> GetCountries();
+        int GetCount();
         MovieModel LoadMovieById(int id);
         void AddMovie(Movie movie);
     }

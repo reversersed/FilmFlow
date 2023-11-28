@@ -1,4 +1,5 @@
 ﻿using FilmFlow.Models;
+using FilmFlow.Models.BaseTables;
 using FilmFlow.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,10 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         private int _newSelectedMovie = -1;
         private Visibility _filterVisibility = Visibility.Collapsed;
         private Visibility _genreFilterVisibility = Visibility.Visible;
+        private const int MovieLoadingPerScroll = 50;
+        private int CurrentMovieCount = 100;
+        private int MovieCount;
+        private double CurrentWindowHeight;
 
         //Public Properties
         public ObservableCollection<MovieModel> Movies { get { return _movies; } set { _movies = value; OnPropertyChanged(nameof(Movies)); } }
@@ -68,9 +73,12 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public ICommand SearchByName { get; }
         public ICommand SearchByFilter { get; }
         public ICommand ClearNameSearch { get; }
+        public ICommand LoadingByScroll { get; }
+        public ICommand ScrollHeightChanged { get; }
 
         //Action
         public Action<int> openMovieCommand;
+        private Action<object> CurrentLoadingCommand;
 
         //Methods
         public HomeViewModel(Action<int> openMovieCommand)
@@ -88,38 +96,58 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
             SearchByName = new ViewModelCommand(SearchByNameCommand);
             SearchByFilter = new ViewModelCommand(SearchByFilterCommand);
             ClearNameSearch = new ViewModelCommand(ClearNameSearchCommand);
+            LoadingByScroll = new ViewModelCommand(LoadingMovieByScroll);
+            ScrollHeightChanged = new ViewModelCommand(OnScrollHeightChanged);
 
             MovieRepository = new MovieRepository();
 
-            Movies = MovieRepository.LoadMovies();
+            Movies = MovieRepository.LoadMovies(CurrentMovieCount);
             Genres = MovieRepository.LoadGenreCollection();
             PopularMoviesYear = MovieRepository.GetPopularMovies(365);
             PopularMoviesMonth = MovieRepository.GetPopularMovies(31);
             PopularMoviesDay = MovieRepository.GetPopularMovies(1);
             MostRatedMovies = MovieRepository.GetMostRated();
             NewMovies = MovieRepository.LoadNewMovies();
+            MovieCount = MovieRepository.GetCount();
+
+            CurrentLoadingCommand = SearchByFilterCommand;
 
             this.openMovieCommand = openMovieCommand;
+        }
+        private void OnScrollHeightChanged(object obj)
+        {
+            if(CurrentWindowHeight != (double)obj)
+                CurrentWindowHeight = (double)obj;
+        }
+        private void LoadingMovieByScroll(object obj)
+        {
+            if(((double)obj/CurrentWindowHeight) > 0.8 && Movies.Count < MovieCount)
+            {
+                CurrentMovieCount += MovieLoadingPerScroll;
+
+                Movies = MovieRepository.LoadMovies(CurrentMovieCount);
+                CurrentLoadingCommand?.Invoke(null);
+            }
         }
 
         private void SearchByFilterCommand(object obj)
         {
             if(!_filteredGenres.Any())
-                Movies = MovieRepository.LoadMovies();
+                Movies = MovieRepository.LoadMovies(CurrentMovieCount);
             else
                 Movies = MovieRepository.LoadFilteredMovies(_filteredGenres);
+            CurrentLoadingCommand = SearchByFilterCommand;
         }
 
-        private void ClearNameSearchCommand(object obj) { MovieSearchName = string.Empty; FilterMovieSearch(); }
-        private void FilterMovieSearch()
+        private void SearchByNameCommand(object obj)
         {
             if (MovieSearchName == null || MovieSearchName.Length < 1)
-                Movies = MovieRepository.LoadMovies();
+                Movies = MovieRepository.LoadMovies(CurrentMovieCount);
             else
                 Movies = MovieRepository.LoadFilteredMovies(MovieSearchName);
+            CurrentLoadingCommand = SearchByNameCommand;
         }
-        private void SearchByNameCommand(object obj) => FilterMovieSearch();
-
+        private void ClearNameSearchCommand(object obj) { MovieSearchName = string.Empty; SearchByNameCommand(null); }
         private void GenreFilterCheckedCommand(object obj) => _filteredGenres.Add((int)obj);
         private void GenreFilterUncheckedCommand(object obj) => _filteredGenres.Remove((int)obj);
 

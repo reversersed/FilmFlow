@@ -25,7 +25,14 @@
                     Panel.ZIndex="1"
                     Background="Transparent"
                     PreviewMouseWheel="ScrollViewer_MouseWheel"
+                    x:Name="MainScroll"
                     Focusable="False">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="ScrollChanged">
+                <i:InvokeCommandAction Command="{Binding ScrollHeightChanged}" CommandParameter="{Binding ElementName=MainScroll, Path=ScrollableHeight}"/>
+                <i:InvokeCommandAction Command="{Binding LoadingByScroll}" CommandParameter="{Binding ElementName=MainScroll, Path=VerticalOffset}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Grid Width="Auto" Height="Auto" Focusable="False">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -102,6 +109,8 @@
                         </i:Interaction.Triggers>
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -314,6 +323,8 @@
                         </i:Interaction.Triggers>
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -526,6 +537,8 @@
                         </i:Interaction.Triggers>
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -717,6 +730,8 @@
                         </i:Interaction.Triggers>
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -910,6 +925,8 @@
                         </i:Interaction.Triggers>
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -1321,10 +1338,10 @@
                                             <CheckBox Content="{Binding Name}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="Checked">
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.GenreFilterChecked, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding Id}"/>
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.GenreFilterChecked, RelativeSource={RelativeSource AncestorType=StackPanel}}" CommandParameter="{Binding Id}"/>
                                                     </i:EventTrigger>
                                                     <i:EventTrigger EventName="Unchecked">
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.GenreFilterUnchecked, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding Id}"/>
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.GenreFilterUnchecked, RelativeSource={RelativeSource AncestorType=StackPanel}}" CommandParameter="{Binding Id}"/>
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                                 <CheckBox.Style>
@@ -1446,11 +1463,12 @@
             <StackPanel x:Name="ListBoxPanel"
                         Grid.Row="11"
                     Width="Auto" Height="Auto">
-                <ListBox ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="Transparent" 
-                             BorderThickness="0"
-                             SelectionMode="Single"
-                             SelectedIndex="{Binding SelectedMovie}">
+                <ListBox    ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            SelectionMode="Single"
+                            HorizontalContentAlignment="Center"
+                            SelectedIndex="{Binding SelectedMovie}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction CommandParameter="{Binding SelectedMovie}" Command="{Binding MovieListSelected}"/>
@@ -1458,6 +1476,8 @@
                     </i:Interaction.Triggers>
                     <ListBox.Resources>
                         <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="VerticalContentAlignment" Value="Top"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
