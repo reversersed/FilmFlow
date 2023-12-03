@@ -11,11 +11,6 @@ namespace FilmFlow.Models
 {
     public class MovieRepository : IMovieRepository
     {
-        public MovieRepository() 
-        {
-
-        }
-
         public ObservableCollection<MovieModel> GetPopularMovies(int days)
         {
             ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
@@ -49,7 +44,7 @@ namespace FilmFlow.Models
                                                 .ThenInclude(i => i.Genre)
                                             .Select(i => i)
                                             .OrderByDescending(i => i.Rating)
-                                            .ThenByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Count())
+                                                .ThenByDescending(x => db.reviews.Include(f => f.Movie).Where(i => i.Movie.Id == x.Id).Count())
                                             .Take(30)
                                             .ToList())
                 {

@@ -16,15 +16,18 @@ namespace FilmFlow.MainWindow.NavigationViews.FavouriteView
         //Private properties
         private User user;
         private ObservableCollection<MovieModel> _movieList;
+        private int _selectedMovie = -1;
 
         //Public properties
         public ObservableCollection<MovieModel> MovieList { get { return _movieList; } set { _movieList = value; OnPropertyChanged(nameof(MovieList)); } }
+        public int SelectedMovie { get { return _selectedMovie; } set { _selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); } }
 
         //Repository
         MovieRepository movieRepository;
 
         //Commands
-        private ICommand ShowMovie;
+        private ICommand ShowMovie { get; }
+        public ICommand OnMovieSelected { get { return new ViewModelCommand(x => ShowMovie?.Execute(MovieList[(int)x].Id)); } }
 
         //Actions
 

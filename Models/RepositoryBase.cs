@@ -10,6 +10,7 @@ namespace FilmFlow.Models
             FilmFlow.Properties.Settings.Default.localDbUser,
             FilmFlow.Properties.Settings.Default.localDbPassword,
             FilmFlow.Properties.Settings.Default.localDbBase);
+
         public DbSet<User> users { get; set; }
         public DbSet<Movie> movies { get; set; }
         public DbSet<MovieGenre> genres { get; set; }
@@ -18,6 +19,7 @@ namespace FilmFlow.Models
         public DbSet<CountryCollection> countries { get; set; }
         public DbSet<MovieCountry> movie_countries { get; set; }
         public DbSet<Favourite> favourite { get; set; }
+
         public RepositoryBase()
         {
             Database.EnsureCreated();

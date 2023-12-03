@@ -18,7 +18,7 @@
                 <ResourceDictionary Source="/CustomControls/ReviewsBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:RatingConverter x:Key="RatingToBar"/>
-            <local:FavouriteToiconFont x:Key="FavToFont"/>
+            <local:FavouriteToIconFont x:Key="FavToFont"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
@@ -1478,7 +1478,7 @@
             <!--Main view search-->
             <StackPanel x:Name="ListBoxPanel"
                         Grid.Row="11"
-                    Width="Auto" Height="Auto">
+                        Width="Auto" Height="Auto">
                 <ListBox    ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             Background="Transparent" 
                             BorderThickness="0"

@@ -147,4 +147,6 @@
     <sys:String x:Key="BanUser">Заблокировать пользователя</sys:String>
     <sys:String x:Key="NotSubscribed">Ваша подписка не позволяет просматривать данный фильм</sys:String>
     <sys:String x:Key="VideoLoadingError">Во время загрузки видеофайла произошла ошибка</sys:String>
+    <!--Favourites-->
+    <sys:String x:Key="Favourites">И З Б Р А Н Н О Е</sys:String>
 </ResourceDictionary>

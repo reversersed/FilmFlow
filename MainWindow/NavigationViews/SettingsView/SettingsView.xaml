@@ -72,6 +72,7 @@
                    TextAlignment="Center"
                    VerticalAlignment="Center"
                    Margin="0,10,0,10"
+                    FontWeight="Regular"
                    FontSize="{StaticResource Large}"
                    FontFamily="{StaticResource DefaultFont}"/>
         <StackPanel Grid.Row="2"

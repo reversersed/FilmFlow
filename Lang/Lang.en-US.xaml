@@ -148,4 +148,6 @@
     <sys:String x:Key="BanUser">Ban user</sys:String>
     <sys:String x:Key="NotSubscribed">You can not play this movie due to your subscription</sys:String>
     <sys:String x:Key="VideoLoadingError">An error occured while loading the movie</sys:String>
+    <!--Favourites-->
+    <sys:String x:Key="Favourites">F A V O U R I T E S</sys:String>
 </ResourceDictionary> 

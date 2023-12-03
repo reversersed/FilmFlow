@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace FilmFlow.MainWindow.NavigationViews.HomeView
+namespace FilmFlow.MainWindow.NavigationViews.FavouriteView
 {
     [ValueConversion(typeof(bool), typeof(IconFont))]
     public class FavouriteToIconFont : IValueConverter
