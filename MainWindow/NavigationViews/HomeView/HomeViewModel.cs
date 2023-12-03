@@ -75,13 +75,13 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public ICommand ClearNameSearch { get; }
         public ICommand LoadingByScroll { get; }
         public ICommand ScrollHeightChanged { get; }
+        public ICommand openMovieCommand { get; }
 
         //Action
-        public Action<int> openMovieCommand;
         private Action<object> CurrentLoadingCommand;
 
         //Methods
-        public HomeViewModel(Action<int> openMovieCommand)
+        public HomeViewModel(ICommand openMovieCommand)
         {
             MovieListSelected = new ViewModelCommand(MovieListSelectedCommand);
             PopularYearMovieListSelected = new ViewModelCommand(PopularYearMovieListSelectedCommand);
@@ -162,37 +162,37 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(Movies[(int)obj].Id);
+            openMovieCommand?.Execute(Movies[(int)obj].Id);
         }
         private void PopularYearMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(PopularMoviesYear[(int)obj].Id);
+            openMovieCommand?.Execute(PopularMoviesYear[(int)obj].Id);
         }
         private void PopularMonthMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(PopularMoviesMonth[(int)obj].Id);
+            openMovieCommand?.Execute(PopularMoviesMonth[(int)obj].Id);
         }
         private void PopularDayMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(PopularMoviesDay[(int)obj].Id);
+            openMovieCommand?.Execute(PopularMoviesDay[(int)obj].Id);
         }
         private void MostRatedMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(MostRatedMovies[(int)obj].Id);
+            openMovieCommand?.Execute(MostRatedMovies[(int)obj].Id);
         }
         private void NewMovieListSelectedCommand(object obj)
         {
             if ((int)obj < 0)
                 return;
-            openMovieCommand?.Invoke(NewMovies[(int)obj].Id);
+            openMovieCommand?.Execute(NewMovies[(int)obj].Id);
         }
     }
 }

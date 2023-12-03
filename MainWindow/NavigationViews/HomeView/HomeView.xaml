@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="/CustomControls/ReviewsBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:RatingConverter x:Key="RatingToBar"/>
+            <local:FavouriteToiconFont x:Key="FavToFont"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer   HorizontalScrollBarVisibility="Disabled" 
@@ -140,14 +141,17 @@
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
                                                     MaxWidth="300">
-                                                <TextBlock Text="{Binding Name}"
-                                                       Foreground="{StaticResource TextColor}"
-                                                       FontSize="{StaticResource Regular}"
-                                                       FontFamily="{StaticResource DefaultFont}"
-                                                       Margin="15,0,0,0"
-                                                       HorizontalAlignment="Left"
-                                                       MaxWidth="250"
-                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Margin="15,0,0,0"
+                                                           HorizontalAlignment="Left"
+                                                           Width="250"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                                    <fa:IconImage Icon="Heart" IconFont="{Binding IsInFavourite, Converter={StaticResource FavToFont}}" Width="20" Height="20" Foreground="{StaticResource LightAccentColor}"/>
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Width="300" Margin="5">
                                                     <Image Source="{Binding Cover}"
                                                         Stretch="Uniform"
@@ -354,14 +358,17 @@
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
                                                     MaxWidth="300">
-                                                <TextBlock Text="{Binding Name}"
-                                                       Foreground="{StaticResource TextColor}"
-                                                       FontSize="{StaticResource Regular}"
-                                                       FontFamily="{StaticResource DefaultFont}"
-                                                       Margin="15,0,0,0"
-                                                       HorizontalAlignment="Left"
-                                                       MaxWidth="250"
-                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Margin="15,0,0,0"
+                                                           HorizontalAlignment="Left"
+                                                           Width="250"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                                    <fa:IconImage Icon="Heart" IconFont="{Binding IsInFavourite, Converter={StaticResource FavToFont}}" Width="20" Height="20" Foreground="{StaticResource LightAccentColor}"/>
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Width="300" Margin="5">
                                                     <Image Source="{Binding Cover}"
                                                         Stretch="Uniform"
@@ -568,14 +575,17 @@
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
                                                     MaxWidth="300">
-                                                <TextBlock Text="{Binding Name}"
-                                                       Foreground="{StaticResource TextColor}"
-                                                       FontSize="{StaticResource Regular}"
-                                                       FontFamily="{StaticResource DefaultFont}"
-                                                       Margin="15,0,0,0"
-                                                       HorizontalAlignment="Left"
-                                                       MaxWidth="250"
-                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Margin="15,0,0,0"
+                                                           HorizontalAlignment="Left"
+                                                           Width="250"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                                    <fa:IconImage Icon="Heart" IconFont="{Binding IsInFavourite, Converter={StaticResource FavToFont}}" Width="20" Height="20" Foreground="{StaticResource LightAccentColor}"/>
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Width="300" Margin="5">
                                                     <Image Source="{Binding Cover}"
                                                         Stretch="Uniform"
@@ -761,14 +771,17 @@
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
                                                     MaxWidth="300">
-                                                <TextBlock Text="{Binding Name}"
-                                                       Foreground="{StaticResource TextColor}"
-                                                       FontSize="{StaticResource Regular}"
-                                                       FontFamily="{StaticResource DefaultFont}"
-                                                       Margin="15,0,0,0"
-                                                       HorizontalAlignment="Left"
-                                                       MaxWidth="250"
-                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Margin="15,0,0,0"
+                                                           HorizontalAlignment="Left"
+                                                           Width="250"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                                    <fa:IconImage Icon="Heart" IconFont="{Binding IsInFavourite, Converter={StaticResource FavToFont}}" Width="20" Height="20" Foreground="{StaticResource LightAccentColor}"/>
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Width="300" Margin="5">
                                                     <Image Source="{Binding Cover}"
                                                         Stretch="Uniform"
@@ -956,14 +969,17 @@
                                             Padding="0,10,0,5">
                                             <StackPanel Orientation="Vertical"
                                                     MaxWidth="300">
-                                                <TextBlock Text="{Binding Name}"
-                                                       Foreground="{StaticResource TextColor}"
-                                                       FontSize="{StaticResource Regular}"
-                                                       FontFamily="{StaticResource DefaultFont}"
-                                                       Margin="15,0,0,0"
-                                                       HorizontalAlignment="Left"
-                                                       MaxWidth="250"
-                                                       TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Margin="15,0,0,0"
+                                                           HorizontalAlignment="Left"
+                                                           Width="250"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                                    <fa:IconImage Icon="Heart" IconFont="{Binding IsInFavourite, Converter={StaticResource FavToFont}}" Width="20" Height="20" Foreground="{StaticResource LightAccentColor}"/>
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Width="300" Margin="5">
                                                     <Image Source="{Binding Cover}"
                                                         Stretch="Uniform"
@@ -1507,14 +1523,17 @@
                                         Padding="0,10,0,5">
                                         <StackPanel Orientation="Vertical"
                                                 MaxWidth="300">
-                                            <TextBlock Text="{Binding Name}"
-                                                   Foreground="{StaticResource TextColor}"
-                                                   FontSize="{StaticResource Regular}"
-                                                   FontFamily="{StaticResource DefaultFont}"
-                                                   Margin="15,0,0,0"
-                                                   HorizontalAlignment="Left"
-                                                   MaxWidth="250"
-                                                   TextTrimming="CharacterEllipsis"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextColor}"
+                                                           FontSize="{StaticResource Regular}"
+                                                           FontFamily="{StaticResource DefaultFont}"
+                                                           Margin="15,0,0,0"
+                                                           HorizontalAlignment="Left"
+                                                           Width="250"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                                <fa:IconImage Icon="Heart" IconFont="{Binding IsInFavourite, Converter={StaticResource FavToFont}}" Width="20" Height="20" Foreground="{StaticResource LightAccentColor}"/>
+                                            </StackPanel>
                                             <StackPanel Orientation="Horizontal" Width="300" Margin="5">
                                                 <Image Source="{Binding Cover}"
                                                     Stretch="Uniform"

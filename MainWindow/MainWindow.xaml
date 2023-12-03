@@ -10,6 +10,7 @@
         xmlns:settingsView="clr-namespace:FilmFlow.MainWindow.NavigationViews.SettingsView"
         xmlns:moderationView="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView"
         xmlns:movieView="clr-namespace:FilmFlow.MainWindow.NavigationViews.MovieView"
+        xmlns:favouriteView="clr-namespace:FilmFlow.MainWindow.NavigationViews.FavouriteView"
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="700" Width="1050"
@@ -33,6 +34,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type movieView:MovieViewModel}">
                 <movieView:MovieView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type favouriteView:FavouriteViewModel}">
+                <favouriteView:FavouriteView/>
             </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
@@ -213,7 +217,8 @@
                         </RadioButton>
                         <RadioButton Style="{StaticResource navButton}"
                                      Tag="{StaticResource navColorFavourites}"
-                                     Grid.Row="1">
+                                     Grid.Row="1"
+                                     Command="{Binding ShowFavouriteSection}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="Heart"/>
                                 <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuFavourites}"/>

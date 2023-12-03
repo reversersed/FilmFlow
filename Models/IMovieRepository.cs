@@ -16,6 +16,9 @@ namespace FilmFlow.Models
         ObservableCollection<MovieModel> GetPopularMovies(int days);
         ObservableCollection<MovieModel> GetMostRated();
         ObservableCollection<CountryModel> GetCountries();
+        ObservableCollection<MovieModel> GetFavouriteList(int user);
+        bool IsInFavourite(int movie);
+        void ChangeFavouriteState(int movie, int user);
         int GetCount();
         MovieModel LoadMovieById(int id);
         void AddMovie(Movie movie);

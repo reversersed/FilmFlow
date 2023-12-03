@@ -81,6 +81,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
         public ICommand ClearReviews { get; }
         public ICommand DeleteReview { get; }
         public ICommand BanUser { get; }
+        public ICommand FavouriteState { get; }
         private ICommand _confirmCmd { get; set; }
         public ICommand ConfirmationCommand { get { return _confirmCmd; } private set { _confirmCmd = value; OnPropertyChanged(nameof(ConfirmationCommand)); } }
 
@@ -138,6 +139,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             }
             MouseRatingMoved = new ViewModelCommand(RatingMouse);
             RatingChanged = new ViewModelCommand(RatingChangedHandler);
+            FavouriteState = new ViewModelCommand(x => { MovieRepository.ChangeFavouriteState(Movie.Id, Account.Id); Movie.IsInFavourite = MovieRepository.IsInFavourite(Movie.Id); } );
 
             Reviews = ReviewRepository.LoadReviews(movieId, (CurrentPage-1)*_reviewPerPage, _reviewPerPage);
             int totalReviews = ReviewRepository.CountReviews(movieId);

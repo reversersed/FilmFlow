@@ -28,11 +28,12 @@ namespace FilmFlow.Models
         public int? Collected { get; set; }
         public DateTime? Premier { get; set; }
         public int? Age { get; set; }
+        public bool IsInFavourite { get; set; }
         public MovieModel()
         {
             
         }
-        public MovieModel(Movie movie, int reviewCount)
+        public MovieModel(Movie movie, int reviewCount, bool IsInFavourite)
         {
             Id = movie.Id;
             Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? movie.NameRu : movie.NameEn;
@@ -72,6 +73,7 @@ namespace FilmFlow.Models
             Collected = movie.Collected;
             Premier = movie.Premier == null || movie.Premier.Value.Year < 1000 ? null : movie.Premier;
             Age = movie.Age;
+            this.IsInFavourite = IsInFavourite;
         }
     }
 }

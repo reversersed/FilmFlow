@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using FilmFlow.MainWindow.NavigationViews.MovieView;
+using FilmFlow.MainWindow.NavigationViews.FavouriteView;
 
 namespace FilmFlow.MainWindow
 {
@@ -33,6 +34,7 @@ namespace FilmFlow.MainWindow
         public ICommand ShowHomeSection { get; }
         public ICommand ShowSettingsSection { get; }
         public ICommand ShowAdminSection { get; }
+        public ICommand ShowFavouriteSection { get; }
 
         //Models
         IUserRepository UserRepository { get; set; }
@@ -48,6 +50,7 @@ namespace FilmFlow.MainWindow
             ShowHomeSection = new ViewModelCommand(ShowHomeSectionCommand);
             ShowSettingsSection = new ViewModelCommand(ShowSettingsSectionCommand);
             ShowAdminSection = new ViewModelCommand(ShowAdminSectionCommand);
+            ShowFavouriteSection = new ViewModelCommand(ShowFavouriteSectionCommand);
 
             UserRepository = new UserRepository();
             User = UserRepository.LoadUserData(FilmFlow.Properties.Settings.Default.CurrentUser);
@@ -57,15 +60,15 @@ namespace FilmFlow.MainWindow
             settingsView = new SettingsViewModel();
             moderationView = new ModerationViewModel();
 
-            ChildContentView = new HomeViewModel(ShowMovieSection);
+            ChildContentView = new HomeViewModel(new ViewModelCommand(ShowMovieSection));
         }
 
         //Views changing
-        private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel(ShowMovieSection);
+        private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel(new ViewModelCommand(ShowMovieSection));
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
         private void ShowAdminSectionCommand(object obj) => ChildContentView = moderationView;
-        private void ShowMovieSection(int movieId) => ChildContentView = new MovieViewModel(movieId, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(RestartMovieSection));
-        private void RestartMovieSection(object obj) => ChildContentView = new MovieViewModel((int)obj, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(RestartMovieSection));
+        private void ShowFavouriteSectionCommand(object obj) => ChildContentView = new FavouriteViewModel(User, new ViewModelCommand(ShowMovieSection));
+        private void ShowMovieSection(object movieId) => ChildContentView = new MovieViewModel((int)movieId, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(ShowMovieSection));
         //
         private void LogoutButtonCommand(object obj)
         {

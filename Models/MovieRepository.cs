@@ -32,7 +32,7 @@ namespace FilmFlow.Models
                                             .Take(30)
                                             .ToList())
                 {
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
                 }
             }
             return Movies;
@@ -53,7 +53,7 @@ namespace FilmFlow.Models
                                             .Take(30)
                                             .ToList())
                 {
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
                 }
             }
             return Movies;
@@ -75,7 +75,7 @@ namespace FilmFlow.Models
                                             .OrderBy(x => x.Rating)
                                             .ToList())
                 {
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
                 }
             }
             return Movies;
@@ -102,7 +102,7 @@ namespace FilmFlow.Models
                                             .OrderBy(x => x.Rating)
                                             .ToList())
                 {
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
                 }
             }
             return Movies;
@@ -138,7 +138,7 @@ namespace FilmFlow.Models
                                             .Take(limit)
                                             .ToList()) 
                 {
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
                 }
             }
             return Movies;
@@ -157,7 +157,7 @@ namespace FilmFlow.Models
                                                 .ThenByDescending(i => i.Id)
                                             .ToList())
                 {
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
                 }
             }
             return Movies;
@@ -177,7 +177,7 @@ namespace FilmFlow.Models
                                             .Where(i => i.Genre.Select(i => i.Genre.Id).ToList().Contains(genreSearch.Id))
                                             .OrderBy(i => i.Rating)
                                             .ToList())
-                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count()));
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
             }
             return Movies;
         }
@@ -211,7 +211,7 @@ namespace FilmFlow.Models
                                         .ToList()
                                         .Where(i => i.Id == id)
                                         .FirstOrDefault();
-                return new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count());
+                return new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id));
             }
         }
 
@@ -238,6 +238,44 @@ namespace FilmFlow.Models
             {
                 return db.movies.Count();
             }
+        }
+
+        public bool IsInFavourite(int movie)
+        {
+            using (var db = new RepositoryBase())
+            {
+                return db.favourite.Where(i => i.MovieId == movie && i.UserId == db.users.Where(i => i.Username.Equals(FilmFlow.Properties.Settings.Default.CurrentUser)).Select(i => i.Id).First()).Any();
+            }
+        }
+
+        public void ChangeFavouriteState(int movie, int user)
+        {
+            using var db = new RepositoryBase();
+            if (!IsInFavourite(movie))
+                db.favourite.Add(new Favourite() { UserId = user, MovieId = movie });
+            else
+                db.favourite.Remove(db.favourite.Where(i => i.MovieId == movie && i.UserId == user).First());
+            db.SaveChanges();
+        }
+
+        public ObservableCollection<MovieModel> GetFavouriteList(int user)
+        {
+            ObservableCollection<MovieModel> Movies = new ObservableCollection<MovieModel>();
+            using (var db = new RepositoryBase())
+            {
+                foreach (Movie movie in db.movies
+                                            .Include(e => e.Country)
+                                                .ThenInclude(e => e.Country)
+                                            .Include(e => e.Genre)
+                                                .ThenInclude(i => i.Genre)
+                                            .Select(i => i)
+                                            .ToList()
+                                            .Where(i => db.favourite.Where(x => x.UserId == user && x.MovieId == i.Id).Any())
+                                            .OrderBy(i => i.Rating)
+                                            .ToList())
+                    Movies.Add(new MovieModel(movie, db.reviews.Where(e => e.MovieId == movie.Id).Count(), IsInFavourite(movie.Id)));
+            }
+            return Movies;
         }
     }
 }
