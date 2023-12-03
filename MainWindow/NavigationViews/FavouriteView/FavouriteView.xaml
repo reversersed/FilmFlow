@@ -28,18 +28,22 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock      Grid.Row="0"
-                            Text="{StaticResource Favourites}"
-                            Foreground="{StaticResource TextColor}"
-                            TextAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontWeight="Regular"
-                            FontSize="{StaticResource Large}"
-                            FontFamily="{StaticResource DefaultFont}"/>
+            <Border Grid.Row="0"
+                    BorderBrush="{StaticResource LightAccentColor}"
+                    BorderThickness="0,0,0,5">
+                <TextBlock      Text="{StaticResource Favourites}"
+                                Foreground="{StaticResource TextColor}"
+                                TextAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontWeight="Regular"
+                                FontSize="{StaticResource Large}"
+                                FontFamily="{StaticResource DefaultFont}"/>
+            </Border>
             <StackPanel x:Name="ListViewPanel"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Width="Auto" Height="Auto">
                 <ListView   ItemsSource="{Binding MovieList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 Background="Transparent" 
@@ -145,8 +149,7 @@
                                                            Foreground="{StaticResource LightTextColor}"/>
                                                 </StackPanel>
                                             </Grid>
-                                            <ListView ItemsSource="{Binding Path=Genres}"
-                                                  Margin="5">
+                                            <ListView   ItemsSource="{Binding Path=Genres}">
                                                 <ListView.Template>
                                                     <ControlTemplate>
                                                         <ItemsPresenter/>
@@ -155,7 +158,8 @@
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border CornerRadius="10"
-                                                            Background="{StaticResource LightAccentColor}">
+                                                            Background="{StaticResource LightAccentColor}"
+                                                                Margin="5,5,5,0">
                                                             <TextBlock Text="{Binding Name}"
                                                                    FontSize="{StaticResource Small}"
                                                                    FontFamily="{StaticResource DefaultFont}"
