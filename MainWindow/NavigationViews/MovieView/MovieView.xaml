@@ -1009,6 +1009,7 @@
                             BorderBrush="{StaticResource LightAccentColor}"
                             CornerRadius="15"
                             MaxWidth="600"
+                            Width="Auto"
                             Padding="10,5,10,5"
                             HorizontalAlignment="Left">
                     <TextBlock  Text="{Binding Movie.Desription}"

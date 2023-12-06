@@ -17,6 +17,8 @@ namespace FilmFlow.Models.BaseTables
         public string Email { get; set; }
         [Column("adminrole")]
         public int Admin { get; set; }
+        [Column("balance")]
+        public int Balance { get; set; }
         [Column("banned")]
         public bool Banned {  get; set; }
         [Column("sessionkey")]

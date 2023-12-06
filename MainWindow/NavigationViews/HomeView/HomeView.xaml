@@ -255,6 +255,7 @@
 
                                     <TextBlock FontSize="{StaticResource Small}"
                                                    Foreground="{StaticResource TextColor}"
+                                               FontFamily="{StaticResource DefaultFont}"
                                                    Grid.Row="1"
                                                    Margin="5,5,0,0"
                                                    TextWrapping="Wrap"
@@ -472,6 +473,7 @@
 
                                     <TextBlock FontSize="{StaticResource Small}"
                                                    Foreground="{StaticResource TextColor}"
+                                               FontFamily="{StaticResource DefaultFont}"
                                                    Grid.Row="1"
                                                    Margin="5,5,0,0"
                                                    TextWrapping="Wrap"
@@ -689,6 +691,7 @@
 
                                     <TextBlock FontSize="{StaticResource Small}"
                                                    Foreground="{StaticResource TextColor}"
+                                               FontFamily="{StaticResource DefaultFont}"
                                                    Grid.Row="1"
                                                    Margin="5,5,0,0"
                                                    TextWrapping="Wrap"
@@ -885,6 +888,7 @@
 
                                     <TextBlock FontSize="{StaticResource Small}"
                                                    Foreground="{StaticResource TextColor}"
+                                               FontFamily="{StaticResource DefaultFont}"
                                                    Grid.Row="1"
                                                    Margin="5,5,0,0"
                                                    TextWrapping="Wrap"
@@ -1083,6 +1087,7 @@
 
                                     <TextBlock FontSize="{StaticResource Small}"
                                                    Foreground="{StaticResource TextColor}"
+                                               FontFamily="{StaticResource DefaultFont}"
                                                    Grid.Row="1"
                                                    Margin="5,5,0,0"
                                                    TextWrapping="Wrap"
@@ -1637,6 +1642,7 @@
 
                                 <TextBlock FontSize="{StaticResource Small}"
                                                Foreground="{StaticResource TextColor}"
+                                               FontFamily="{StaticResource DefaultFont}"
                                                Grid.Row="1"
                                                Margin="5,5,0,30"
                                                TextWrapping="Wrap"

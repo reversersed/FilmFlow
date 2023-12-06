@@ -41,4 +41,5 @@
     <SolidColorBrush x:Key="navColorFavourites">#bc00f5</SolidColorBrush>
     <SolidColorBrush x:Key="navColorSettings">#1d0540</SolidColorBrush>
     <SolidColorBrush x:Key="navColorAdmin">#0a1f40</SolidColorBrush>
+    <SolidColorBrush x:Key="navColorProfile">#000561</SolidColorBrush>
 </ResourceDictionary> 

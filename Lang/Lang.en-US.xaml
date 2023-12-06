@@ -50,6 +50,7 @@
     <sys:String x:Key="navMenuFavourites">Favourites</sys:String>
     <sys:String x:Key="navMenuSettings">Settings</sys:String>
     <sys:String x:Key="navMenuAdmin">Moderation</sys:String>
+    <sys:String x:Key="navMenuProfile">Profile</sys:String>
     <sys:String x:Key="LogoutTitle">Logout</sys:String>
     <sys:String x:Key="LogoutConfirmation">Are you sure you want to log out?</sys:String>
     <!--Settings Window-->
@@ -150,4 +151,7 @@
     <sys:String x:Key="VideoLoadingError">An error occured while loading the movie</sys:String>
     <!--Favourites-->
     <sys:String x:Key="Favourites">F A V O U R I T E S</sys:String>
+    <!--Profile-->
+    <sys:String x:Key="Balance">Balance:</sys:String>
+    <sys:String x:Key="Replenish">Replenish</sys:String>
 </ResourceDictionary> 

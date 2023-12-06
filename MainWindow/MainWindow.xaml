@@ -11,6 +11,7 @@
         xmlns:moderationView="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView"
         xmlns:movieView="clr-namespace:FilmFlow.MainWindow.NavigationViews.MovieView"
         xmlns:favouriteView="clr-namespace:FilmFlow.MainWindow.NavigationViews.FavouriteView"
+        xmlns:profileView="clr-namespace:FilmFlow.MainWindow.NavigationViews.ProfileView"
         xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="FilmFlow" Height="700" Width="1050"
@@ -37,6 +38,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type favouriteView:FavouriteViewModel}">
                 <favouriteView:FavouriteView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type profileView:ProfileViewModel}">
+                <profileView:ProfileView/>
             </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/CustomControls/CustomScroll.xaml"/>
@@ -204,6 +208,7 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <RadioButton Style="{StaticResource navButton}"
                                      Tag="{StaticResource navColorHome}"
@@ -234,8 +239,17 @@
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource navButton}"
-                                     Tag="{StaticResource navColorAdmin}"
+                                     Tag="{StaticResource navColorProfile}"
                                      Grid.Row="3"
+                                     Command="{Binding ShowProfileSection}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Style="{StaticResource menuButtonIcon}" Icon="User" IconFont="Solid"/>
+                                <TextBlock Style="{StaticResource menuButtonText}" Text="{StaticResource navMenuProfile}"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource navButton}"
+                                     Tag="{StaticResource navColorAdmin}"
+                                     Grid.Row="4"
                                      Visibility="{Binding UserAccessVisibility}"
                                      Command="{Binding ShowAdminSection}">
                             <StackPanel Orientation="Horizontal">

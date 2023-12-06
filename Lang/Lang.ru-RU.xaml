@@ -50,6 +50,7 @@
     <sys:String x:Key="navMenuFavourites">Избранное</sys:String> 
     <sys:String x:Key="navMenuSettings">Настройки</sys:String>
     <sys:String x:Key="navMenuAdmin">Модерирование</sys:String>
+    <sys:String x:Key="navMenuProfile">Личный кабинет</sys:String>
     <sys:String x:Key="LogoutTitle">Выход из аккаунта</sys:String>
     <sys:String x:Key="LogoutConfirmation">Вы уверены, что хотите выйти из аккаунта?</sys:String>
     <!--Settings Window-->
@@ -149,4 +150,7 @@
     <sys:String x:Key="VideoLoadingError">Во время загрузки видеофайла произошла ошибка</sys:String>
     <!--Favourites-->
     <sys:String x:Key="Favourites">И З Б Р А Н Н О Е</sys:String>
+    <!--Profile-->
+    <sys:String x:Key="Balance">Ваш баланс:</sys:String>
+    <sys:String x:Key="Replenish">Пополнить</sys:String>
 </ResourceDictionary>

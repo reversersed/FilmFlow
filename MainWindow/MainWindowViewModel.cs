@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using FilmFlow.MainWindow.NavigationViews.MovieView;
 using FilmFlow.MainWindow.NavigationViews.FavouriteView;
+using FilmFlow.MainWindow.NavigationViews.ProfileView;
 
 namespace FilmFlow.MainWindow
 {
@@ -23,6 +24,7 @@ namespace FilmFlow.MainWindow
         //Child Views
         private ViewModelBase settingsView;
         private ViewModelBase moderationView;
+        private ViewModelBase profileView;
 
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
@@ -35,6 +37,7 @@ namespace FilmFlow.MainWindow
         public ICommand ShowSettingsSection { get; }
         public ICommand ShowAdminSection { get; }
         public ICommand ShowFavouriteSection { get; }
+        public ICommand ShowProfileSection { get; }
 
         //Models
         IUserRepository UserRepository { get; set; }
@@ -51,6 +54,7 @@ namespace FilmFlow.MainWindow
             ShowSettingsSection = new ViewModelCommand(ShowSettingsSectionCommand);
             ShowAdminSection = new ViewModelCommand(ShowAdminSectionCommand);
             ShowFavouriteSection = new ViewModelCommand(ShowFavouriteSectionCommand);
+            ShowProfileSection = new ViewModelCommand(ShowProfileSectionCommand);
 
             UserRepository = new UserRepository();
             User = UserRepository.LoadUserData(FilmFlow.Properties.Settings.Default.CurrentUser);
@@ -59,6 +63,7 @@ namespace FilmFlow.MainWindow
 
             settingsView = new SettingsViewModel();
             moderationView = new ModerationViewModel();
+            profileView = new ProfileViewModel();
 
             ChildContentView = new HomeViewModel(new ViewModelCommand(ShowMovieSection));
         }
@@ -67,6 +72,7 @@ namespace FilmFlow.MainWindow
         private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel(new ViewModelCommand(ShowMovieSection));
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
         private void ShowAdminSectionCommand(object obj) => ChildContentView = moderationView;
+        private void ShowProfileSectionCommand(object obj) => ChildContentView = profileView;
         private void ShowFavouriteSectionCommand(object obj) => ChildContentView = new FavouriteViewModel(User, new ViewModelCommand(ShowMovieSection));
         private void ShowMovieSection(object movieId) => ChildContentView = new MovieViewModel((int)movieId, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(ShowMovieSection));
         //
