@@ -154,4 +154,9 @@
     <!--Profile-->
     <sys:String x:Key="Balance">Balance:</sys:String>
     <sys:String x:Key="Replenish">Replenish</sys:String>
+    <sys:String x:Key="Payment">Payment</sys:String>
+    <sys:String x:Key="PaymentInfo">Type the value you want to pay to your account and press "Pay" to proceed to payment page</sys:String>
+    <sys:String x:Key="Pay">Pay</sys:String>
+    <sys:String x:Key="ResponseWaiting">Waiting for response from payment server...</sys:String>
+    <sys:String x:Key="PaymentSucceed">The payment was successfully completed. This window will close in 5 seconds.</sys:String>
 </ResourceDictionary> 

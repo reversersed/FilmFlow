@@ -153,4 +153,9 @@
     <!--Profile-->
     <sys:String x:Key="Balance">Ваш баланс:</sys:String>
     <sys:String x:Key="Replenish">Пополнить</sys:String>
+    <sys:String x:Key="Payment">Оплата</sys:String>
+    <sys:String x:Key="PaymentInfo">Укажите желаемую сумму пополнения и нажмите "Оплатить" для перехода на страницу пополнения баланса</sys:String>
+    <sys:String x:Key="Pay">Оплатить</sys:String>
+    <sys:String x:Key="ResponseWaiting">Ожидание ответа от сервера оплаты...</sys:String>
+    <sys:String x:Key="PaymentSucceed">Оплата проведена успешно. Данное окно будет закрыто автоматически через 5 секунд.</sys:String>
 </ResourceDictionary>

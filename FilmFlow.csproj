@@ -28,6 +28,7 @@
     <None Remove="Images\Email.png" />
     <None Remove="Images\hoverCheckbox.png" />
     <None Remove="Images\idleCheckbox.png" />
+    <None Remove="Images\Loading.gif" />
     <None Remove="Images\Logo.ico" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Logout.png" />
@@ -48,6 +49,7 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
     <PackageReference Include="SimpleModal.WPF" Version="1.0.0" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +58,7 @@
     <Resource Include="Images\Email.png" />
     <Resource Include="Images\hoverCheckbox.png" />
     <Resource Include="Images\idleCheckbox.png" />
+    <Resource Include="Images\Loading.gif" />
     <Resource Include="Images\Logo.ico" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Logout.png" />

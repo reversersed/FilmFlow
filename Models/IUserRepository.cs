@@ -14,5 +14,6 @@ namespace FilmFlow.Models
         User GetByEmailOrUsername(string value);
         void ChangePassword(string username, string password);
         void BanUser(int userId);
+        void CreatePayment(int userId, int value);
     }
 }

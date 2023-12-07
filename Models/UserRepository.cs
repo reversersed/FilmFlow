@@ -140,5 +140,17 @@ namespace FilmFlow.Models
                 db.SaveChanges();
             }
         }
+
+        public void CreatePayment(int userId, int value)
+        {
+            using(RepositoryBase db=new())
+            {
+                db.replenishments.Add(new Replenishment() { UserId = userId, Value = value, Date = DateTime.UtcNow.ToUniversalTime() });
+                User user = db.users.Find(userId);
+                user.Balance += value;
+                db.users.Update(user);
+                db.SaveChanges();
+            }
+        }
     }
 }

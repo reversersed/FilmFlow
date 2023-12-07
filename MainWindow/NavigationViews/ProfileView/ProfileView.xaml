@@ -9,6 +9,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:popupConfirm="clr-namespace:ModalControl;assembly=ModalControl" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
+             xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
              d:DataContext="{d:DesignInstance Type=local:ProfileViewModel}"
              d:DesignHeight="800" d:DesignWidth="1400">
     <UserControl.Resources>
@@ -39,113 +40,151 @@
                             IsOpen="{Binding ReplenishModalVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Grid.ColumnSpan="3">
             <StackPanel Width="300"
-                        Height="200"
+                        Height="250"
                         Orientation="Vertical"
                         Background="{StaticResource NavigationColor}">
-                <TextBlock Text="{StaticResource Confirmation}"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Center"
-                               Margin="0,10,0,0"
+                <Grid   VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        Width="300"
+                        Height="26"
+                        Margin="0,10,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource Payment}"
+                               Grid.ColumnSpan="3"
                                Foreground="{StaticResource TextColor}"
                                FontSize="{StaticResource Regular}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
                                FontFamily="{StaticResource DefaultFont}"
                                FontWeight="DemiBold"/>
-                <TextBlock Text="{Binding ConfirmationText}"
+                    <Button VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Grid.Column="1"
+                            Visibility="{Binding ReplenishmentSumVisibility}"
+                            Command="{Binding ReplenishModalMode}"
+                            CommandParameter="False"
+                            Padding="4,2,4,2"
+                            FontFamily="{StaticResource DefaultFont}"
+                            FontWeight="Normal"
+                            FontSize="{StaticResource Small}"
+                            Cursor="Hand">
+                        <Button.Content>
+                            <fa:IconImage Icon="Close"
+                                          Width="14"
+                                          Height="14"
+                                          Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                        </Button.Content>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    CornerRadius="4">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="Black" Opacity="0.2"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource LightTextColor}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+                <Grid Visibility="{Binding ReplenishmentPaymentVisibility}"
+                      Height="180"
+                      Width="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0"
+                           gif:AnimationBehavior.SourceUri="\Images\Loading.gif"
+                           Width="120"
+                           Height="120">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.PaymentSucceed}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Grid.Row="1"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                TextAlignment="Center"
-                               Margin="0,25,0,0"
                                Width="280"
                                TextWrapping="Wrap"
-                               Height="100"
-                               Foreground="{StaticResource TextColor}"
+                               Foreground="{StaticResource LightTextColor}"
                                FontSize="{StaticResource Small}"
                                FontFamily="{StaticResource DefaultFont}"
-                               FontWeight="Normal"/>
-                <StackPanel Margin="0,10,0,0"
-                            Height="Auto"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Width="Auto">
-                    <Button BorderThickness="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{StaticResource Yes}"
-                            Command="{Binding ConfirmationCommand}"
-                            CommandParameter="yes"
-                            Foreground="{StaticResource TextColor}"
-                            FontSize="{StaticResource Regular}"
-                            FontFamily="{StaticResource DefaultFont}"
-                            Cursor="Hand"
-                            Margin="0,0,10,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                               FontWeight="Light">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
-                                    </Trigger>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.PaymentSucceed}" Value="True">
+                                        <Setter Property="Text" Value="{StaticResource PaymentSucceed}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.PaymentSucceed}" Value="False">
+                                        <Setter Property="Text" Value="{StaticResource ResponseWaiting}"/>
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="5" Padding="10,5,10,5" Background="{TemplateBinding Background}" BorderThickness="0">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <Button BorderThickness="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{StaticResource No}"
-                            Command="{Binding ConfirmationCommand}"
-                            CommandParameter="no"
-                            Foreground="{StaticResource TextColor}"
-                            FontSize="{StaticResource Regular}"
-                            FontFamily="{StaticResource DefaultFont}"
-                            Cursor="Hand"
-                            Margin="10,0,0,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="5" Padding="10,5,10,5" Background="{TemplateBinding Background}" BorderThickness="0">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button BorderThickness="0"
+                            Grid.Row="2"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Content="{StaticResource Cancel}"
-                            Command="{Binding ConfirmationCommand}"
-                            CommandParameter="cancel"
-                            Foreground="{StaticResource TextColor}"
+                            Command="{Binding AbordPayment}"
                             FontSize="{StaticResource Regular}"
                             FontFamily="{StaticResource DefaultFont}"
                             Cursor="Hand"
-                            Margin="20,0,0,0">
+                            Margin="0,10,10,0">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
                                     </Trigger>
-                                    <DataTrigger Binding="{Binding IsBanConfirmationOpened}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.PaymentSucceed}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -158,7 +197,104 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                </StackPanel>
+                </Grid>
+                <Grid Visibility="{Binding ReplenishmentSumVisibility}"
+                      Height="180"
+                      Width="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{StaticResource PaymentInfo}"
+                               Grid.Row="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Width="280"
+                               TextWrapping="Wrap"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="Normal"/>
+                    <TextBox Grid.Row="1"
+                             Text="{Binding PaymentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="10"
+                             Background="Transparent"
+                             BorderThickness="0,0,0,2"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             TextAlignment="Left"
+                             FontFamily="{StaticResource DefaultFont}"
+                             FontSize="{StaticResource Regular}"
+                             FontWeight="DemiBold"
+                             Foreground="{StaticResource TextColor}"
+                             CaretBrush="{StaticResource TextColor}"
+                             Padding="5,2,5,2"
+                             Width="150">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Width="{TemplateBinding Width}"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ScrollViewer x:Name="PART_ContentHost"
+                                                              Focusable="False"
+                                                              HorizontalScrollBarVisibility="Disabled"
+                                                              VerticalScrollBarVisibility="Disabled"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button BorderThickness="0"
+                            Grid.Row="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{StaticResource Pay}"
+                            Command="{Binding ProceedPayment}"
+                            FontSize="{StaticResource Regular}"
+                            FontFamily="{StaticResource DefaultFont}"
+                            Cursor="Hand"
+                            Margin="0,10,10,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" Padding="10,5,10,5" Background="{TemplateBinding Background}" BorderThickness="0">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
             </StackPanel>
         </popupConfirm:Modal>
 
@@ -174,33 +310,33 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            Margin="20,0,0,0"
-                            Orientation="Horizontal"
-                            Grid.Row="1">
-                    <fa:IconImage Foreground="{StaticResource TextColor}"
-                            Icon="User"
-                            Width="24"
-                            Height="24"
-                            HorizontalAlignment="Left"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+                    <fa:IconImage   Foreground="{StaticResource TextColor}"
+                                    Grid.Column="1"
+                                    Icon="User"
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Left"/>
                     <TextBlock Margin="10,0,0,0"
-                           FontFamily="{StaticResource DefaultFont}"
-                           FontSize="{StaticResource Regular}"
-                            VerticalAlignment="Center"
-                           Foreground="{StaticResource TextColor}"
-                           TextTrimming="CharacterEllipsis"
-                           FontWeight="Normal"
-                           TextWrapping="WrapWithOverflow"
-                           Text="{Binding User.Username}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Right"
-                            Margin="0,0,20,0"
-                            Width="Auto"
-                            Orientation="Horizontal">
+                               Grid.Column="2"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontSize="{StaticResource Regular}"
+                               VerticalAlignment="Center"
+                               Foreground="{StaticResource TextColor}"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="Normal"
+                               TextWrapping="WrapWithOverflow"
+                               Text="{Binding User.Username}"/>
                     <TextBlock  Margin="10,0,0,0"
+                                Grid.Column="3"
                                 FontFamily="{StaticResource DefaultFont}"
                                 FontSize="{StaticResource Regular}"
                                 VerticalAlignment="Center"
@@ -210,13 +346,15 @@
                                 TextWrapping="WrapWithOverflow">
                         <Run Text="{StaticResource Balance}"/>
                         <Run Text=" "/>
-                        <Run Text="{Binding User.Balance}"/>
+                        <Run Text="{Binding User.Balance, UpdateSourceTrigger=PropertyChanged}"/>
                         <Run Text="₽"/>
                     </TextBlock>
                     <Button Content="{StaticResource Replenish}"
+                            Grid.Column="4"
                             Margin="20,0,0,0"
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center"
+                            HorizontalAlignment="Center"
                             Command="{Binding ReplenishModalMode}"
                             CommandParameter="True"
                             Padding="6,4,6,4"
@@ -257,7 +395,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                </StackPanel>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>
