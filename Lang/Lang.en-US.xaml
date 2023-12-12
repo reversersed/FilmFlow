@@ -159,4 +159,12 @@
     <sys:String x:Key="Pay">Pay</sys:String>
     <sys:String x:Key="ResponseWaiting">Waiting for response from payment server...</sys:String>
     <sys:String x:Key="PaymentSucceed">The payment was successfully completed. This window will close in 5 seconds.</sys:String>
+    <sys:String x:Key="YourSubscriptions">Your subscriptions</sys:String>
+    <sys:String x:Key="BuildSubscription">Build a subscription</sys:String>
+    <sys:String x:Key="1month">1 Month</sys:String>
+    <sys:String x:Key="6months">6 Months</sys:String>
+    <sys:String x:Key="aYear">1 Year</sys:String>
+    <sys:String x:Key="EconomyTo10">Save up to 10%</sys:String>
+    <sys:String x:Key="EconomyTo30">Save up to 30%</sys:String>
+    <sys:String x:Key="Subscribe">Subscribe</sys:String>
 </ResourceDictionary> 

@@ -158,4 +158,12 @@
     <sys:String x:Key="Pay">Оплатить</sys:String>
     <sys:String x:Key="ResponseWaiting">Ожидание ответа от сервера оплаты...</sys:String>
     <sys:String x:Key="PaymentSucceed">Оплата проведена успешно. Данное окно будет закрыто автоматически через 5 секунд.</sys:String>
+    <sys:String x:Key="YourSubscriptions">Ваши подписки</sys:String>
+    <sys:String x:Key="BuildSubscription">Соберите подписку</sys:String>
+    <sys:String x:Key="1month">Месяц</sys:String>
+    <sys:String x:Key="6months">6 Месяцев</sys:String>
+    <sys:String x:Key="aYear">Год</sys:String>
+    <sys:String x:Key="EconomyTo10">Сохраните до 10%</sys:String>
+    <sys:String x:Key="EconomyTo30">Сохраните до 30%</sys:String>
+    <sys:String x:Key="Subscribe">Оформить подписку</sys:String>
 </ResourceDictionary>

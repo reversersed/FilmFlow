@@ -4,6 +4,7 @@ using System;
 using FilmFlow.Models.BaseTables;
 using Microsoft.EntityFrameworkCore;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Collections.ObjectModel;
 
 namespace FilmFlow.Models
 {
@@ -18,6 +19,7 @@ namespace FilmFlow.Models
                     user = db.users
                     .Include(e => e.Subscription)
                         .ThenInclude(e => e.SubGenre)
+                            .ThenInclude(e => e.Genre)
                     .SingleOrDefault(u => (u.Username.Equals(username) || u.Email.Equals(username)) && u.Password.Equals(MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))));
                 if (user != default(User) && createSession)
                 {
@@ -95,11 +97,12 @@ namespace FilmFlow.Models
                             .Where(i => i.Username.Equals(username))
                             .Include(e => e.Subscription)
                                 .ThenInclude(e => e.SubGenre)
+                                    .ThenInclude(e => e.Genre)
                             .Select(i => i).Single();
             }
         }
 
-        public User GetByEmailOrUsername(string value)
+        public User? GetByEmailOrUsername(string value)
         {
             using(RepositoryBase db = new RepositoryBase())
             {
@@ -107,12 +110,15 @@ namespace FilmFlow.Models
                                 .Where(i => i.Username.Equals(value) || i.Email.Equals(value))
                                 .Select(i => i)
                                 .SingleOrDefault();
+                if(user == null)
+                    return null;
                 if (user.SubscriptionId == null)
                     return user;
                 return (User)db.users
                                 .Where(i => i.Username.Equals(value) || i.Email.Equals(value))
                                 .Include(e => e.Subscription)
                                     .ThenInclude(e => e.SubGenre)
+                                        .ThenInclude(e => e.Genre)
                                 .Select(i => i)
                                 .SingleOrDefault();
             }
@@ -149,6 +155,26 @@ namespace FilmFlow.Models
                 User user = db.users.Find(userId);
                 user.Balance += value;
                 db.users.Update(user);
+                db.SaveChanges();
+            }
+        }
+        public ObservableCollection<Subscription> GetSubscriptions(int userid)
+        {
+            ObservableCollection<Subscription> subscriptions = new ObservableCollection<Subscription>();
+            using(RepositoryBase db=new())
+                db.subscriptions.Where(x => x.UserId == userid).Include(i => i.SubGenre).ThenInclude(e => e.Genre).ToList().ForEach(x => subscriptions.Add(x));
+            return subscriptions;
+        }
+
+        public void CreateSubscription(Subscription subscription, User user)
+        {
+            using (RepositoryBase db = new())
+            {
+                user.Balance -= subscription.Price;
+                user.Subscription = subscription;
+                db.Update(user);
+
+                db.subscriptions.Add(subscription);
                 db.SaveChanges();
             }
         }

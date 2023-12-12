@@ -115,13 +115,13 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
 
             Account = userRepository.LoadUserData(FilmFlow.Properties.Settings.Default.CurrentUser);
             Movie = MovieRepository.LoadMovieById(movieId);
-            if(Account.Subscription == null)
+            if(Account.Subscription == null || Account.Subscription.EndDate < DateTime.UtcNow.ToUniversalTime())
                 IsSubscribed = false;
             else
             {
                 foreach(SubscriptionGenre i in Account.Subscription.SubGenre)
                 {
-                    if(Movie.Genres.Where(x=>x.Id == i.Id).Any())
+                    if(Movie.Genres.Where(x=>x.Id == i.Genre.Id).Any())
                     {
                         IsSubscribed = true;
                         break;

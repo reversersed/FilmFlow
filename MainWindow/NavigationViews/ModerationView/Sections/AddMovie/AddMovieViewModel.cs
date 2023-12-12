@@ -165,7 +165,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie
         public ObservableCollection<CountryModel> SelectedCountries { get { return _selectedCountries; } set { _selectedCountries = value; OnPropertyChanged(nameof(SelectedCountries)); } }
 
         //Models
-        private MovieRepository movieRepository;
+        private IMovieRepository movieRepository;
 
         //Commands
         public ICommand InsertMovie { get; }

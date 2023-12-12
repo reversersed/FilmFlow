@@ -1,4 +1,6 @@
 ﻿using FilmFlow.Models.BaseTables;
+using System.Collections.ObjectModel;
+using System.Windows.Forms;
 
 namespace FilmFlow.Models
 {
@@ -15,5 +17,7 @@ namespace FilmFlow.Models
         void ChangePassword(string username, string password);
         void BanUser(int userId);
         void CreatePayment(int userId, int value);
+        void CreateSubscription(Subscription subscription, User user);
+        ObservableCollection<Subscription> GetSubscriptions(int userid);
     }
 }

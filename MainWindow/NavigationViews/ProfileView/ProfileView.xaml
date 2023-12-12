@@ -25,12 +25,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="0"
                               Width="0.01*"
-                              MaxWidth="198"/>
-            <ColumnDefinition MaxWidth="1280"
+                              MaxWidth="478"/>
+            <ColumnDefinition MaxWidth="720"
                               MinWidth="350"/>
             <ColumnDefinition MinWidth="0"
                               Width="0.01*"
-                              MaxWidth="198"/>
+                              MaxWidth="478"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Background="{StaticResource MainBackgroundColor}"/>
         <Border Grid.Column="2" Background="{StaticResource MainBackgroundColor}"/>
@@ -297,7 +297,130 @@
                 </Grid>
             </StackPanel>
         </popupConfirm:Modal>
-
+        <!--Modal to buy subscription-->
+        <popupConfirm:Modal Panel.ZIndex="1"
+                            IsOpen="{Binding ConfirmationModalVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Grid.ColumnSpan="3">
+            <StackPanel Width="400"
+                        Height="300"
+                        Orientation="Vertical"
+                        Background="{StaticResource NavigationColor}">
+                <Grid Height="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{StaticResource Confirmation}"
+                               Grid.Row="0"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding SubConfirmationText}"
+                               Grid.Row="1"
+                               TextWrapping="Wrap"
+                               Padding="10,0,10,0"
+                               TextAlignment="Center"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Small}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="Regular"/>
+                    <Grid Grid.Row="2" Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Grid.Column="0"
+                            Command="{Binding CreateSubscription}"
+                            Padding="4,2,4,2"
+                            FontFamily="{StaticResource DefaultFont}"
+                            FontWeight="Normal"
+                            FontSize="{StaticResource Regular}"
+                            Content="{StaticResource Yes}"
+                            Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    CornerRadius="4">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource LightTextColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Grid.Column="1"
+                            Command="{Binding ConfirmationModalMode}"
+                            CommandParameter="False"
+                            Padding="4,2,4,2"
+                            FontFamily="{StaticResource DefaultFont}"
+                            FontWeight="Normal"
+                            FontSize="{StaticResource Regular}"
+                            Content="{StaticResource No}"
+                            Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    CornerRadius="4">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource LightTextColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </popupConfirm:Modal>
         <!--Main section-->
         <ScrollViewer   Grid.Column="1"
                         Focusable="False"
@@ -308,6 +431,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="1">
@@ -396,6 +523,527 @@
                         </Button.Style>
                     </Button>
                 </Grid>
+                <Border Grid.Row="3"
+                        BorderThickness="5,0,0,0"
+                        BorderBrush="{StaticResource LightAccentColor}"
+                        Padding="5,0,0,0">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.User.Subscription}" Value="{x:Null}"/>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.Subscriptions.Count}" Value="0"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <MultiDataTrigger.Setters>
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </MultiDataTrigger.Setters>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                               Text="{StaticResource YourSubscriptions}"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               FontSize="{StaticResource Big}"
+                               Foreground="{StaticResource TextColor}"/>
+                        <ListView   Grid.Row="1"
+                                    ItemsSource="{Binding Path=Subscriptions}"
+                                    Margin="10">
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ItemsPresenter/>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10"
+                                            Background="{StaticResource LightAccentColor}">
+                                        <Grid MaxWidth="200" MaxHeight="400">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="10"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <ListView ItemsSource="{Binding Path=SubGenre}"
+                                                      Grid.Row="0">
+                                                <ListView.Template>
+                                                    <ControlTemplate>
+                                                        <ItemsPresenter/>
+                                                    </ControlTemplate>
+                                                </ListView.Template>
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Margin="5"
+                                                                BorderBrush="{StaticResource AccentColor}"
+                                                                BorderThickness="2">
+                                                            <TextBlock Foreground="{StaticResource TextColor}">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="{x:Type TextBlock}">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.CurrentLanguage}" Value="ru-RU">
+                                                                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameRu}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.CurrentLanguage}" Value="en-US">
+                                                                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameEn}"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel IsItemsHost="True"
+                                                                   Orientation="Horizontal"
+                                                                   MaxWidth="300"/>
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                            </ListView>
+                                            <!--Other data-->
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True" 
+                                                Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="5"
+                        BorderBrush="{StaticResource LightAccentColor}"
+                        BorderThickness="5,0,0,0"
+                        MaxWidth="600"
+                        HorizontalAlignment="Left"
+                        Padding="5,0,0,0">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.IsSubscriptionActive}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                               Text="{StaticResource BuildSubscription}"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               FontSize="{StaticResource Big}"
+                               Foreground="{StaticResource TextColor}"/>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto" MaxHeight="40"/>
+                            </Grid.RowDefinitions>
+                            <ListView   Grid.Row="0"
+                                        ItemsSource="{Binding Genres}"
+                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Content="{Binding Name}"
+                                                  IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.GenreChecked, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.GenreUnchecked, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <CheckBox.Style>
+                                                <Style TargetType="{x:Type CheckBox}">
+                                                    <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                                                    <Setter Property="Margin" Value="5,0,0,2"/>
+                                                    <Setter Property="TextElement.Foreground" Value="{StaticResource TextColor}"/>
+                                                    <Setter Property="TextElement.FontFamily" Value="{StaticResource DefaultFont}"/>
+                                                    <Setter Property="TextElement.FontSize" Value="{StaticResource Small}"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type CheckBox}">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="Auto"/>
+                                                                        <ColumnDefinition Width="5"/>
+                                                                        <ColumnDefinition/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <Border Background="{TemplateBinding Background}"
+                                                                            Grid.Column="0"
+                                                                            VerticalAlignment="Center"
+                                                                            Height="15"
+                                                                            Width="15"
+                                                                            CornerRadius="15"
+                                                                            Padding="2">
+                                                                        <fa:IconImage   Name="CheckMark"
+                                                                                        Icon="Check"
+                                                                                        Visibility="Hidden"
+                                                                                        Foreground="{StaticResource LightTextColor}"/>
+                                                                    </Border>
+                                                                    <ContentPresenter VerticalAlignment="Center"
+                                                                                        Grid.Column="2"/>
+                                                                </Grid>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsChecked" Value="True">
+                                                                        <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                                                                        <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                                                    </Trigger>
+                                                                    <MultiTrigger>
+                                                                        <MultiTrigger.Conditions>
+                                                                            <Condition Property="IsMouseOver" Value="True"/>
+                                                                            <Condition Property="IsChecked" Value="False"/>
+                                                                        </MultiTrigger.Conditions>
+                                                                        <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                                                                        <Setter Property="Opacity" TargetName="CheckMark" Value="0.5"/>
+                                                                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                                                    </MultiTrigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </CheckBox.Style>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Background="Transparent"
+                                                    IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.Template>
+                                    <ControlTemplate>
+                                        <ItemsPresenter/>
+                                    </ControlTemplate>
+                                </ListView.Template>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Grid Grid.Row="1"
+                                  Margin="10,10,0,0">
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SelectedGenres.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <RadioButton    Grid.Column="0"
+                                                GroupName="Period"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                IsChecked="True">
+                                    <RadioButton.Content>
+                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=BorderBrush}"
+                                                BorderThickness="2"
+                                                Padding="10,5,10,5"
+                                                CornerRadius="8">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock  Grid.Row="0"
+                                                            Text="{StaticResource 1month}"
+                                                            Foreground="{StaticResource TextColor}"
+                                                            FontSize="{StaticResource Regular}"
+                                                            FontWeight="Light"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            HorizontalAlignment="Center"/>
+                                                <TextBlock  Grid.Row="1"
+                                                            Foreground="{StaticResource LightTextColor}"
+                                                            FontSize="{StaticResource Small}"
+                                                            FontWeight="Light"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            HorizontalAlignment="Center">
+                                                    <Run Text="{Binding Prices[0]}"/>
+                                                    <Run Text="₽"/>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                    </RadioButton.Content>
+                                    <RadioButton.Style>
+                                        <Style TargetType="{x:Type RadioButton}">
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                                                        <BulletDecorator Background="Transparent"
+                                                                         Height="Auto"
+                                                                         Width="Auto">
+                                                            <ContentPresenter/>
+                                                        </BulletDecorator>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </RadioButton.Style>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding PeriodChecked}" CommandParameter="0"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </RadioButton>
+                                <RadioButton    Grid.Column="1"
+                                                GroupName="Period"
+                                                Margin="15,0,0,0"
+                                                HorizontalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=BorderBrush}"
+                                                BorderThickness="2"
+                                                Padding="10,5,10,5"
+                                                CornerRadius="8">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock  Grid.Row="0"
+                                                            Text="{StaticResource 6months}"
+                                                            Foreground="{StaticResource TextColor}"
+                                                            FontSize="{StaticResource Regular}"
+                                                            FontWeight="Light"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            HorizontalAlignment="Center"/>
+                                                <StackPanel Orientation="Horizontal"
+                                                            Grid.Row="1"
+                                                            HorizontalAlignment="Center">
+                                                    <TextBlock  Foreground="{StaticResource LightTextColor}"
+                                                                FontSize="{StaticResource Small}"
+                                                                FontWeight="Light"
+                                                                FontFamily="{StaticResource DefaultFont}">
+                                                        <Run Text="{Binding Prices[1]}"/>
+                                                        <Run Text="₽"/>
+                                                    </TextBlock>
+                                                    <TextBlock  Foreground="{StaticResource DarkTextColor}"
+                                                                FontSize="{StaticResource Small}"
+                                                                FontWeight="Light"
+                                                                Margin="10,0,0,0"
+                                                                TextDecorations="Strikethrough"
+                                                                FontFamily="{StaticResource DefaultFont}">
+                                                        <Run Text="{Binding OldPrices[1]}"/>
+                                                        <Run Text="₽"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <TextBlock  Grid.Row="2"
+                                                            Text="{StaticResource EconomyTo10}"
+                                                            Foreground="{StaticResource LightTextColor}"
+                                                            FontSize="{StaticResource Small}"
+                                                            FontWeight="Light"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </RadioButton.Content>
+                                    <RadioButton.Style>
+                                        <Style TargetType="{x:Type RadioButton}">
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                                                        <BulletDecorator Background="Transparent"
+                                                                         Height="Auto"
+                                                                         Width="Auto">
+                                                            <ContentPresenter/>
+                                                        </BulletDecorator>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </RadioButton.Style>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding PeriodChecked}" CommandParameter="1"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </RadioButton>
+                                <RadioButton    Grid.Column="2"
+                                                GroupName="Period"
+                                                Margin="15,0,0,0"
+                                                HorizontalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=BorderBrush}"
+                                                BorderThickness="2"
+                                                Padding="10,5,10,5"
+                                                CornerRadius="8">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock  Grid.Row="0"
+                                                            Text="{StaticResource aYear}"
+                                                            Foreground="{StaticResource TextColor}"
+                                                            FontSize="{StaticResource Regular}"
+                                                            FontWeight="Light"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            HorizontalAlignment="Center"/>
+                                                <StackPanel Orientation="Horizontal"
+                                                            Grid.Row="1"
+                                                            HorizontalAlignment="Center">
+                                                    <TextBlock  Foreground="{StaticResource LightTextColor}"
+                                                                FontSize="{StaticResource Small}"
+                                                                FontWeight="Light"
+                                                                FontFamily="{StaticResource DefaultFont}">
+                                                        <Run Text="{Binding Prices[2]}"/>
+                                                        <Run Text="₽"/>
+                                                    </TextBlock>
+                                                    <TextBlock  Foreground="{StaticResource DarkTextColor}"
+                                                                FontSize="{StaticResource Small}"
+                                                                FontWeight="Light"
+                                                                Margin="10,0,0,0"
+                                                                TextDecorations="Strikethrough"
+                                                                FontFamily="{StaticResource DefaultFont}">
+                                                        <Run Text="{Binding OldPrices[2]}"/>
+                                                        <Run Text="₽"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <TextBlock  Grid.Row="2"
+                                                            Text="{StaticResource EconomyTo30}"
+                                                            Foreground="{StaticResource LightTextColor}"
+                                                            FontSize="{StaticResource Small}"
+                                                            FontWeight="Light"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </RadioButton.Content>
+                                    <RadioButton.Style>
+                                        <Style TargetType="{x:Type RadioButton}">
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                                                        <BulletDecorator Background="Transparent"
+                                                                         Height="Auto"
+                                                                         Width="Auto">
+                                                            <ContentPresenter/>
+                                                        </BulletDecorator>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </RadioButton.Style>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding PeriodChecked}" CommandParameter="2"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </RadioButton>
+                            </Grid>
+                            <Button Grid.Row="3"
+                                    Content="{StaticResource Subscribe}"
+                                    Width="Auto"
+                                    Height="Auto"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Padding="5,2,5,2"
+                                    Margin="0,15,10,0"
+                                    Command="{Binding SubscribeCommand}">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Foreground" Value="{StaticResource LightTextColor}"/>
+                                        <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                        <Setter Property="BorderThickness" Value="2"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Width="{TemplateBinding Width}"
+                                                            Height="{TemplateBinding Height}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            CornerRadius="5">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                                <Setter Property="BorderBrush" Value="{StaticResource DarkAccentColor}"/>
+                                                <Setter Property="Cursor" Value="Arrow"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                                <Setter Property="BorderBrush" Value="{StaticResource LightAccentColor}"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SelectedGenres.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Border>
             </Grid>
         </ScrollViewer>
     </Grid>

@@ -73,7 +73,7 @@ namespace FilmFlow.PasswordReset
         public Action<object?> BackToLoginAction;
 
         //Models
-        private UserRepository user {  get; set; }
+        private IUserRepository user {  get; set; }
 
         //Methods
         public ResetViewModel()
@@ -114,7 +114,7 @@ namespace FilmFlow.PasswordReset
             else if (EmailCodeVisibility == Visibility.Collapsed)
             {
                 var loadedUser = user.GetByEmailOrUsername(Username);
-                if(loadedUser == default(User))
+                if(loadedUser == default(User) || loadedUser == null)
                 {
                     ErrorMessage = Application.Current.FindResource("rpUserNotFound") as string;
                     return;

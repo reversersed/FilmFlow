@@ -20,6 +20,8 @@ namespace FilmFlow.Models
         public DbSet<MovieCountry> movie_countries { get; set; }
         public DbSet<Favourite> favourite { get; set; }
         public DbSet<Replenishment> replenishments { get; set; }
+        public DbSet<Subscription> subscriptions { get; set; }
+        public DbSet<SubscriptionGenre> sub_genres { get; set; }
         public RepositoryBase()
         {
             Database.EnsureCreated();

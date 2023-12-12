@@ -23,7 +23,7 @@ namespace FilmFlow.MainWindow.NavigationViews.FavouriteView
         public int SelectedMovie { get { return _selectedMovie; } set { _selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); } }
 
         //Repository
-        MovieRepository movieRepository;
+        IMovieRepository movieRepository;
 
         //Commands
         private ICommand ShowMovie { get; }

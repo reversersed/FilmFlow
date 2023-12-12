@@ -69,7 +69,7 @@ namespace FilmFlow.Registration
         public Action<object?> backToLoginWindow;
 
         //Models
-        UserRepository userRepository;
+        IUserRepository userRepository;
 
         //Methods
         public RegistrationViewModel()

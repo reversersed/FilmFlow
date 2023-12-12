@@ -57,7 +57,7 @@ namespace FilmFlow.MainWindow.NavigationViews.HomeView
         public Visibility GenreFilterVisibility { get { return _genreFilterVisibility; } set { _genreFilterVisibility = value; OnPropertyChanged(nameof(GenreFilterVisibility)); } }
 
         //Models
-        MovieRepository MovieRepository { get; set; }
+        IMovieRepository MovieRepository { get; set; }
 
         //Commands
         public ICommand MovieListSelected { get; }
