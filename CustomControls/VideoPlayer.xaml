@@ -227,7 +227,7 @@
         </Button>
         <Grid Grid.Row="1" x:Name="RootGrid">
             <Grid.Background>
-                <SolidColorBrush Color="Red" Opacity="0.0"/>
+                <SolidColorBrush Color="Black" Opacity="0.0"/>
             </Grid.Background>
             <Grid>
                 <Grid.Background>
@@ -356,7 +356,7 @@
                             DataContext="{Binding ElementName=VideoPlayerElement}"
                             Template="{StaticResource HorizontalSlider}"
                             MouseLeftButtonDown="VolumeSlider_ValueChanged"
-                            Thumb.DragCompleted="VolumeSlider_DragCompleted"
+                            Thumb.DragDelta="VolumeSlider_Drag"
                             MouseWheel="VolumeSlider_MouseWheel"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Stretch"/>
@@ -369,6 +369,11 @@
                         Template="{StaticResource HorizontalSlider}"
                         Cursor="Hand"
                         MouseLeftButtonUp="TimeSlider_ValueChanged"
+                        Thumb.DragCompleted="TimeSlider_Drag"
+                        Thumb.DragDelta="TimeSlider_DragDelta"
+                        Thumb.DragStarted="TimeSlider_DragStarted"
+                        PreviewMouseLeftButtonDown="TimeSlider_MouseLeftButtonDown"
+                        PreviewMouseLeftButtonUp="TimeSlider_MouseLeftButtonUp"
                         MouseWheel="TimeSlider_MouseWheel"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"/>

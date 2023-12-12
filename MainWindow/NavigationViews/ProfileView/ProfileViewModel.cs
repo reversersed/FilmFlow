@@ -83,10 +83,10 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
 
         //Actions
         Action ResponseFeedback;
-        Action<object> UpdateView;
+        Action UpdateView;
 
         //Methods
-        public ProfileViewModel(Action<object> UpdateView)
+        public ProfileViewModel(Action UpdateView)
         {
             userRepository = new UserRepository();
             movieRepository = new MovieRepository();
@@ -142,7 +142,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
             subscription.SubGenre = subscriptionGenres;
 
             userRepository.CreateSubscription(subscription, User);
-            UpdateView?.Invoke(null);
+            UpdateView?.Invoke();
         }
 
         private void AbordPaymentCommand(object obj)

@@ -24,10 +24,11 @@ namespace FilmFlow.MainWindow
         //Child Views
         private ViewModelBase settingsView;
         private ViewModelBase moderationView;
+        private ViewModelBase profileView;
 
         //Public properties
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
-        public bool LogoutConfirmVisibility { get { return _logoutConfirmVisibility;  }  set { _logoutConfirmVisibility = value; OnPropertyChanged(nameof(LogoutConfirmVisibility)); } }
+        public bool LogoutConfirmVisibility { get { return _logoutConfirmVisibility; } set { _logoutConfirmVisibility = value; OnPropertyChanged(nameof(LogoutConfirmVisibility)); } }
         public Visibility UserAccessVisibility { get { return _userAccessVisibility; } set { _userAccessVisibility = value; OnPropertyChanged(nameof(UserAccessVisibility)); } }
 
         //Commands
@@ -40,7 +41,7 @@ namespace FilmFlow.MainWindow
 
         //Models
         IUserRepository UserRepository { get; set; }
-        public User User {  get; set; }
+        public User User { get; set; }
 
         //Actions
         public Action showStartWindow { get; set; }
@@ -62,6 +63,7 @@ namespace FilmFlow.MainWindow
 
             settingsView = new SettingsViewModel();
             moderationView = new ModerationViewModel();
+            profileView = new ProfileViewModel(UpdateProfileSection);
 
             ChildContentView = new HomeViewModel(new ViewModelCommand(ShowMovieSection));
         }
@@ -70,9 +72,14 @@ namespace FilmFlow.MainWindow
         private void ShowHomeSectionCommand(object obj) => ChildContentView = new HomeViewModel(new ViewModelCommand(ShowMovieSection));
         private void ShowSettingsSectionCommand(object obj) => ChildContentView = settingsView;
         private void ShowAdminSectionCommand(object obj) => ChildContentView = moderationView;
-        private void ShowProfileSectionCommand(object obj) => ChildContentView = new ProfileViewModel(ShowProfileSectionCommand);
+        private void ShowProfileSectionCommand(object obj) => ChildContentView = profileView;
         private void ShowFavouriteSectionCommand(object obj) => ChildContentView = new FavouriteViewModel(User, new ViewModelCommand(ShowMovieSection));
         private void ShowMovieSection(object movieId) => ChildContentView = new MovieViewModel((int)movieId, new ViewModelCommand(ShowHomeSectionCommand), new ViewModelCommand(ShowMovieSection));
+        private void UpdateProfileSection() 
+        { 
+            profileView = new ProfileViewModel(UpdateProfileSection); 
+            ShowProfileSectionCommand(null); 
+        }
         //
         private void LogoutButtonCommand(object obj)
         {

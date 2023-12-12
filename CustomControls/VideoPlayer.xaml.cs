@@ -32,6 +32,7 @@ namespace FilmFlow.CustomControls
         private Uri fullscreen_source = new Uri("https://www.google.com");
         private Grid fullscreen_grid;
         private Size originalPlayerSize;
+        private bool isTimeDragging = false;
 
         private System.Windows.Forms.Timer mouseIdling = new System.Windows.Forms.Timer();
         public VideoPlayer()
@@ -117,10 +118,10 @@ namespace FilmFlow.CustomControls
                 videoTimer.Stop();
                 return;
             }
-            if (VideoPlayerElement.NaturalDuration.TimeSpan.TotalSeconds > 0 && VideoPlayerElement.Position.TotalSeconds > 0)
+            if (VideoPlayerElement.NaturalDuration.TimeSpan.TotalSeconds > 0 && VideoPlayerElement.Position.TotalSeconds > 0 && !isTimeDragging)
                 TimeSlider.Value = VideoPlayerElement.Position.TotalSeconds;
             VideoPlayerElement.Volume = VolumeSlider.Value;
-            ElapsedTime = string.Format("{0}/{1}", VideoPlayerElement.Position.ToString(@"hh\:mm\:ss"), VideoPlayerElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+            ElapsedTime = string.Format("{0}/{1}", TimeSpan.FromSeconds(TimeSlider.Value).ToString(@"hh\:mm\:ss"), VideoPlayerElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
         }
 
         private void SetEnabledStateToControls(bool enabled)
@@ -177,7 +178,7 @@ namespace FilmFlow.CustomControls
 
                 fullscreen.Show();
                 fullscreen.Deactivated += DeactivateFullscreen;
-                fullscreen.LostFocus += DeactivateFullscreen;
+                //fullscreen.LostFocus += DeactivateFullscreen;
                 fullscreen.KeyDown += FullScreen_KeyDown;
 
                 FullscreenIcon.Icon = FontAwesome.Sharp.IconChar.Minimize;
@@ -288,6 +289,24 @@ namespace FilmFlow.CustomControls
                 volumeButton_Click(sender, e);
         }
 
-        private void VolumeSlider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) => VolumeChange(((Slider)sender).Value);
+        private void VolumeSlider_Drag(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e) => VolumeChange(((Slider)sender).Value);
+        private void TimeSlider_Drag(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            if(PlayButton.Visibility == Visibility.Collapsed)
+                VideoPlayerElement.Play();
+        }
+
+        private void TimeSlider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => isTimeDragging = true;
+
+        private void TimeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) => isTimeDragging = false;
+
+        private void TimeSlider_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            if (VideoPlayerElement.NaturalDuration.TimeSpan.TotalSeconds > 0)
+                VideoPlayerElement.Position = TimeSpan.FromSeconds(((Slider)sender).Value);
+            ElapsedTime = string.Format("{0}/{1}", TimeSpan.FromSeconds(TimeSlider.Value).ToString(@"hh\:mm\:ss"), VideoPlayerElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+        }
+
+        private void TimeSlider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) => VideoPlayerElement.Pause();
     }
 }
