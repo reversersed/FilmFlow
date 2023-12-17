@@ -32,6 +32,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
         private int[] _oldPrices = new int[3];
         private int PeriodType = 0;
         private string _confirmText {  get; set; }
+        private Subscription? currentSubscription;
 
         //Public properties
         public User User { get { return _user; } set { _user = value; OnPropertyChanged(nameof(User)); } }
@@ -62,6 +63,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
         public int[] Prices { get { return _prices; } set { _prices = value; OnPropertyChanged(nameof(Prices)); } }
         public int[] OldPrices { get { return _oldPrices; } set { _oldPrices = value; OnPropertyChanged(nameof(OldPrices)); } }
         public string SubConfirmationText { get { return _confirmText; } set { _confirmText = value; OnPropertyChanged(nameof(SubConfirmationText)); } }
+        public Subscription? CurrentSubscription { get { return currentSubscription; } set { currentSubscription = value; OnPropertyChanged(nameof(CurrentSubscription)); } }
 
         //Repositories
         IUserRepository userRepository;
@@ -121,6 +123,11 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
 
             ResponseFeedback = new Action(PaymentCompleted);
             Subscriptions = userRepository.GetSubscriptions(User.Id);
+            if(Subscriptions.Any())
+            {
+                CurrentSubscription = Subscriptions.Where(i => i.Id == User.SubscriptionId).First();
+                Subscriptions.Remove(CurrentSubscription);
+            }
             IsSubscriptionActive = User.Subscription == null ? false : User.Subscription.EndDate > DateTime.UtcNow.ToUniversalTime();
 
             Genres = movieRepository.LoadGenreCollection();

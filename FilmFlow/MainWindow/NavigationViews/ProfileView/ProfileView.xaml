@@ -557,97 +557,170 @@
                                FontWeight="DemiBold"
                                FontSize="{StaticResource Big}"
                                Foreground="{StaticResource TextColor}"/>
-                        <ListView   Grid.Row="1"
-                                    ItemsSource="{Binding Path=Subscriptions}"
-                                    Margin="10">
-                            <ListView.Template>
-                                <ControlTemplate TargetType="{x:Type ListView}">
-                                    <ItemsPresenter/>
-                                </ControlTemplate>
-                            </ListView.Template>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                <ContentPresenter />
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0"
+                                    CornerRadius="10"
+                                    Padding="4,2,4,2"
+                                    Background="{StaticResource LightAccentColor}">
+                                <Grid MaxWidth="200" MaxHeight="400" DataContext="{Binding CurrentSubscription}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <ListView   ItemsSource="{Binding Path=SubGenre}"
+                                                Grid.Row="0">
+                                        <ListView.Template>
+                                            <ControlTemplate TargetType="{x:Type ListView}">
+                                                <ItemsPresenter/>
                                             </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Border CornerRadius="10"
+                                        </ListView.Template>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Margin="2"
+                                                        BorderBrush="{StaticResource AccentColor}"
+                                                        BorderThickness="2"
+                                                        CornerRadius="2">
+                                                    <TextBlock Foreground="{StaticResource TextColor}"
+                                                               FontSize="{StaticResource Small}"
+                                                               FontWeight="ExtraLight"
+                                                               FontFamily="{StaticResource DefaultFont}"
+                                                               Margin="1">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.CurrentLanguage}" Value="ru-RU">
+                                                                        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameRu}"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.CurrentLanguage}" Value="en-US">
+                                                                        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameEn}"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel IsItemsHost="True"
+                                                            Orientation="Horizontal"
+                                                            MaxWidth="300"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <ContentPresenter />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                    </ListView>
+                                    <!--Other data-->
+                                </Grid>
+                            </Border>
+                            <ListView   Grid.Column="1"
+                                        ItemsSource="{Binding Path=Subscriptions}"
+                                        Margin="10">
+                                <ListView.Template>
+                                    <ControlTemplate TargetType="{x:Type ListView}">
+                                        <ItemsPresenter/>
+                                    </ControlTemplate>
+                                </ListView.Template>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="10"
                                             Background="{StaticResource LightAccentColor}">
-                                        <Grid MaxWidth="200" MaxHeight="400">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="10"/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <ListView ItemsSource="{Binding Path=SubGenre}"
+                                            <Grid MaxWidth="200" MaxHeight="400">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="10"/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <ListView ItemsSource="{Binding Path=SubGenre}"
                                                       Grid.Row="0">
-                                                <ListView.Template>
-                                                    <ControlTemplate TargetType="{x:Type ListView}">
-                                                        <ItemsPresenter/>
-                                                    </ControlTemplate>
-                                                </ListView.Template>
-                                                <ListView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border Margin="5"
+                                                    <ListView.Template>
+                                                        <ControlTemplate TargetType="{x:Type ListView}">
+                                                            <ItemsPresenter/>
+                                                        </ControlTemplate>
+                                                    </ListView.Template>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border Margin="5"
                                                                 BorderBrush="{StaticResource AccentColor}"
                                                                 BorderThickness="2">
-                                                            <TextBlock Foreground="{StaticResource TextColor}">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="{x:Type TextBlock}">
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.CurrentLanguage}" Value="ru-RU">
-                                                                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameRu}"/>
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.CurrentLanguage}" Value="en-US">
-                                                                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameEn}"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                                <ListView.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <WrapPanel IsItemsHost="True"
+                                                                <TextBlock Foreground="{StaticResource TextColor}">
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="{x:Type TextBlock}">
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.CurrentLanguage}" Value="ru-RU">
+                                                                                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameRu}"/>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.CurrentLanguage}" Value="en-US">
+                                                                                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=DataContext.Genre.NameEn}"/>
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                    <ListView.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel IsItemsHost="True"
                                                                    Orientation="Horizontal"
                                                                    MaxWidth="300"/>
-                                                    </ItemsPanelTemplate>
-                                                </ListView.ItemsPanel>
-                                                <ListView.ItemContainerStyle>
-                                                    <Style TargetType="{x:Type ListViewItem}">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                                    <ContentPresenter />
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Style>
-                                                </ListView.ItemContainerStyle>
-                                            </ListView>
-                                            <!--Other data-->
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel IsItemsHost="True" 
+                                                        </ItemsPanelTemplate>
+                                                    </ListView.ItemsPanel>
+                                                    <ListView.ItemContainerStyle>
+                                                        <Style TargetType="{x:Type ListViewItem}">
+                                                            <Setter Property="Background" Value="Transparent" />
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                                        <ContentPresenter />
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ListView.ItemContainerStyle>
+                                                </ListView>
+                                                <!--Other data-->
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel IsItemsHost="True" 
                                                 Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                        </ListView>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                        </Grid>
                     </Grid>
                 </Border>
                 <Border Grid.Row="5"
