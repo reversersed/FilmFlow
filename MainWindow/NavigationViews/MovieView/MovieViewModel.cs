@@ -139,7 +139,7 @@ namespace FilmFlow.MainWindow.NavigationViews.MovieView
             }
             MouseRatingMoved = new ViewModelCommand(RatingMouse);
             RatingChanged = new ViewModelCommand(RatingChangedHandler);
-            FavouriteState = new ViewModelCommand(x => { MovieRepository.ChangeFavouriteState(Movie.Id, Account.Id); Movie.IsInFavourite = MovieRepository.IsInFavourite(Movie.Id); } );
+            FavouriteState = new ViewModelCommand(x => { MovieRepository.ChangeFavouriteState(Movie.Id, Account.Id); Movie.IsInFavourite = MovieRepository.IsInFavourite(Movie.Id)??false; } );
 
             Reviews = ReviewRepository.LoadReviews(movieId, (CurrentPage-1)*_reviewPerPage, _reviewPerPage);
             int totalReviews = ReviewRepository.CountReviews(movieId);

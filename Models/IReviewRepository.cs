@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmFlow.Models
 {
-    interface IReviewRepository
+    public interface IReviewRepository
     {
         void AddReview(float rating, string text, int movieid, int userid);
         int CountReviews(int movieid);

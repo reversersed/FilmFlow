@@ -5,7 +5,7 @@ using System.Drawing.Printing;
 
 namespace FilmFlow.Models
 {
-    interface IMovieRepository
+    public interface IMovieRepository
     {
         ObservableCollection<MovieModel> LoadMovies(int limit);
         ObservableCollection<MovieModel> LoadNewMovies();
@@ -17,7 +17,7 @@ namespace FilmFlow.Models
         ObservableCollection<MovieModel> GetMostRated();
         ObservableCollection<CountryModel> GetCountries();
         ObservableCollection<MovieModel> GetFavouriteList(int user);
-        bool IsInFavourite(int movie);
+        bool? IsInFavourite(int movie);
         void ChangeFavouriteState(int movie, int user);
         int GetCount();
         MovieModel LoadMovieById(int id);

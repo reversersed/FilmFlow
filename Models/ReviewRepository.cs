@@ -42,6 +42,8 @@ namespace FilmFlow.Models
 
         public ObservableCollection<Review> LoadReviews(int movie, int offset = 0, int limit = 10, ReviewFilter filter = ReviewFilter.Default)
         {
+            if (movie < 1)
+                return default;
             using(RepositoryBase db = new())
             {
                 switch(filter)

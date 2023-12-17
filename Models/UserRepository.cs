@@ -12,6 +12,8 @@ namespace FilmFlow.Models
     {
         public User AuthenticateUser(string username, string password, bool createSession)
         {
+            if(username.Length < 1 || password.Length < 1)
+                throw new ArgumentException();
             using (var db = new RepositoryBase())
             {
                 var user = db.users.SingleOrDefault(u => (u.Username.Equals(username) || u.Email.Equals(username)) && u.Password.Equals(MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))));
@@ -69,6 +71,8 @@ namespace FilmFlow.Models
 
         public void createUser(User user)
         {
+            if(user == null || user == default(User) || user.Username.Length < 1)
+                throw new ArgumentNullException(nameof(user));
             using(RepositoryBase db = new RepositoryBase())
             {
                 db.users.Add(user);
@@ -104,6 +108,8 @@ namespace FilmFlow.Models
 
         public User? GetByEmailOrUsername(string value)
         {
+            if (value == null || value.Length < 1)
+                return null;
             using(RepositoryBase db = new RepositoryBase())
             {
                 var user = (User)db.users
