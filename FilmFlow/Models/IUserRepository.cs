@@ -18,6 +18,9 @@ namespace FilmFlow.Models
         void BanUser(int userId);
         void CreatePayment(int userId, int value);
         void CreateSubscription(Subscription subscription, User user);
-        ObservableCollection<Subscription> GetSubscriptions(int userid);
+        ObservableCollection<Subscription> GetSubscriptions(int userid, int limit);
+        void DisableSubscription(User user);
+        void RenewSubscription(User user, Subscription newSubscription);
+        void AddSubscriptionGenres(ObservableCollection<SubscriptionGenre> genres, int price, User user);
     }
 }

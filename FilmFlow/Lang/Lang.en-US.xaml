@@ -159,7 +159,7 @@
     <sys:String x:Key="Pay">Pay</sys:String>
     <sys:String x:Key="ResponseWaiting">Waiting for response from payment server...</sys:String>
     <sys:String x:Key="PaymentSucceed">The payment was successfully completed. This window will close in 5 seconds.</sys:String>
-    <sys:String x:Key="YourSubscriptions">Your subscriptions</sys:String>
+    <sys:String x:Key="YourSubscription">Your subscription</sys:String>
     <sys:String x:Key="BuildSubscription">Build a subscription</sys:String>
     <sys:String x:Key="1month">1 Month</sys:String>
     <sys:String x:Key="6months">6 Months</sys:String>
@@ -167,4 +167,18 @@
     <sys:String x:Key="EconomyTo10">Save up to 10%</sys:String>
     <sys:String x:Key="EconomyTo30">Save up to 30%</sys:String>
     <sys:String x:Key="Subscribe">Subscribe</sys:String>
+    <sys:String x:Key="CurrentSub">Current subscription</sys:String>
+    <sys:String x:Key="ExpiredSub">Expired</sys:String>
+    <sys:String x:Key="ValidUntil">Valid until</sys:String>
+    <sys:String x:Key="IssuedFor">Issued for</sys:String>
+    <sys:String x:Key="RenewSubscription">Renew</sys:String>
+    <sys:String x:Key="CancelSubscription">Cancel</sys:String>
+    <sys:String x:Key="EditSubscription">Edit</sys:String>
+    <sys:String x:Key="CreateSubConfirmation">Are you sure you want to subscribe for {0} at a cost of {1}₽?$n$You will be able to watch films of the following genres:</sys:String>
+    <sys:String x:Key="DisableSubConfirmation">Are you sure you want to cancel your subscription? You won't be able to watch movies anymore until you'll get another subscription. There also won't be a refund.$n$$n$Subscription price: {0}₽$n$Subscription is still valid until {1}</sys:String>
+    <sys:String x:Key="Renewal">Renewal</sys:String>
+    <sys:String x:Key="RenewWarning">The renewal period is calculated starting from the current date. If your current subscription is still active, it will be considered canceled and the remaining time will not be refunded</sys:String>
+    <sys:String x:Key="Editing">Subscription editing</sys:String>
+    <sys:String x:Key="EditSubText">Select genres you want to add to your subscription</sys:String>
+    <sys:String x:Key="TotalCost">Price:</sys:String>
 </ResourceDictionary> 

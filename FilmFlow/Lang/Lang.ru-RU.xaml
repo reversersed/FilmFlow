@@ -158,7 +158,7 @@
     <sys:String x:Key="Pay">Оплатить</sys:String>
     <sys:String x:Key="ResponseWaiting">Ожидание ответа от сервера оплаты...</sys:String>
     <sys:String x:Key="PaymentSucceed">Оплата проведена успешно. Данное окно будет закрыто автоматически через 5 секунд.</sys:String>
-    <sys:String x:Key="YourSubscriptions">Ваши подписки</sys:String>
+    <sys:String x:Key="YourSubscription">Ваша подписка</sys:String>
     <sys:String x:Key="BuildSubscription">Соберите подписку</sys:String>
     <sys:String x:Key="1month">Месяц</sys:String>
     <sys:String x:Key="6months">6 Месяцев</sys:String>
@@ -166,4 +166,18 @@
     <sys:String x:Key="EconomyTo10">Сохраните до 10%</sys:String>
     <sys:String x:Key="EconomyTo30">Сохраните до 30%</sys:String>
     <sys:String x:Key="Subscribe">Оформить подписку</sys:String>
+    <sys:String x:Key="CurrentSub">Текущая подписка</sys:String>
+    <sys:String x:Key="ExpiredSub">Просрочена</sys:String>
+    <sys:String x:Key="ValidUntil">Действительна до</sys:String>
+    <sys:String x:Key="IssuedFor">Оформлена за</sys:String>
+    <sys:String x:Key="RenewSubscription">Продлить</sys:String>
+    <sys:String x:Key="CancelSubscription">Отменить</sys:String>
+    <sys:String x:Key="EditSubscription">Изменить</sys:String>
+    <sys:String x:Key="CreateSubConfirmation">Вы уверены, что хотите оформить подписку на {0} стоимостью {1}₽?$n$Вы сможете просматривать фильмы следуюших жанров:</sys:String>
+    <sys:String x:Key="DisableSubConfirmation">Вы уверены, что хотите отменить текущую подписку? Вы больше не сможете просматривать фильмы действующих жанров, а также средства, потраченные на подписку, возвращены не будут.$n$$n$Стоимость подписки: {0}₽$n$Подписка действительна до: {1}</sys:String>
+    <sys:String x:Key="Renewal">Продление</sys:String>
+    <sys:String x:Key="RenewWarning">Срок продления считается начиная с текущей даты. Если Ваша текущая подписка все еще действует, она будет считаться отмененной, а оставшееся время не будет компенсировано</sys:String>
+    <sys:String x:Key="Editing">Обновить подписку</sys:String>
+    <sys:String x:Key="EditSubText">Выберите жанры, которые Вы хотите включить в свою подписку</sys:String>
+    <sys:String x:Key="TotalCost">Итоговая стоимость:</sys:String>
 </ResourceDictionary>

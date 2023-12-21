@@ -149,7 +149,9 @@
                                                            Foreground="{StaticResource LightTextColor}"/>
                                                 </StackPanel>
                                             </Grid>
-                                            <ListView   ItemsSource="{Binding Path=Genres}">
+                                            <ListView   ItemsSource="{Binding Path=Genres}"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center">
                                                 <ListView.Template>
                                                     <ControlTemplate>
                                                         <ItemsPresenter/>

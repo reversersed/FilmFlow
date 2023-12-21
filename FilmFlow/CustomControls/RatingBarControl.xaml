@@ -43,7 +43,7 @@
                         <Condition Binding="{Binding IsEnabled, ElementName=BarGrid}" Value="True"/>
                     </MultiDataTrigger.Conditions>
                     <MultiDataTrigger.Setters>
-                        <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                        <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
                     </MultiDataTrigger.Setters>
                 </MultiDataTrigger>
             </Style.Triggers>
