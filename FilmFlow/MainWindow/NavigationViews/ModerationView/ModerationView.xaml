@@ -64,8 +64,12 @@
             <RadioButton Content="{StaticResource AddMovie}"
                          Style="{DynamicResource RadioButtonStyle}"
                          IsChecked="{Binding Path=AddMoviePanel, Mode=TwoWay}"/>
-            <RadioButton Content="{StaticResource EditMovie}"
-                         Style="{DynamicResource RadioButtonStyle}"/>
+            <RadioButton Content="{StaticResource Finance}"
+                         Style="{DynamicResource RadioButtonStyle}"
+                         IsChecked="{Binding Path=FinancePanel, Mode=TwoWay}"/>
+            <RadioButton Content="{StaticResource MovieReport}"
+                         Style="{DynamicResource RadioButtonStyle}"
+                         IsChecked="{Binding Path=ReportPanel, Mode=TwoWay}"/>
         </WrapPanel>
         <!--Controls-->
         <ContentControl Grid.Row="1" Content="{Binding ChildContentView}"/>

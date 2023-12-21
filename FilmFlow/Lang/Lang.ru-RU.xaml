@@ -71,7 +71,8 @@
     <sys:String x:Key="Search">Поиск</sys:String>
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Добавить фильм</sys:String>
-    <sys:String x:Key="EditMovie">Редактировать фильм</sys:String>
+    <sys:String x:Key="Finance">Финансы</sys:String>
+    <sys:String x:Key="MovieReport">Отчет по фильмам</sys:String>
     <sys:String x:Key="MovieNameRu">Название фильма (Рус)</sys:String>
     <sys:String x:Key="MovieNameEn">Название фильма (Англ)</sys:String>
     <sys:String x:Key="MovieDescRu">Описание фильма (Рус)</sys:String>
