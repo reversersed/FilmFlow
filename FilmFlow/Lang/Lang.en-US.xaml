@@ -72,7 +72,6 @@
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Add movie</sys:String>
     <sys:String x:Key="Finance">Finance</sys:String>
-    <sys:String x:Key="MovieReport">Movie report</sys:String>
     <sys:String x:Key="MovieNameRu">Movie name (Rus)</sys:String>
     <sys:String x:Key="MovieNameEn">Movie name (Eng)</sys:String>
     <sys:String x:Key="MovieDescRu">Movie description (Rus)</sys:String>
@@ -110,6 +109,10 @@
     <sys:String x:Key="SelectGenre">* You have to select at least one genre</sys:String>
     <sys:String x:Key="WrongPremierDate">* Specify premier date correctly or disable it</sys:String>
     <sys:String x:Key="MovieAdded">Movie added successfully</sys:String>
+
+    <sys:String x:Key="AllDate">All time</sys:String>
+    <sys:String x:Key="From">From</sys:String>
+    <sys:String x:Key="To">to</sys:String>
     <!--Movie window-->
     <sys:String x:Key="Description">Description</sys:String>
     <sys:String x:Key="ReleaseYear">Release year</sys:String>

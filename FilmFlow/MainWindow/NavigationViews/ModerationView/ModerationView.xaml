@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView" 
              xmlns:addMovie="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.AddMovie" 
+             xmlns:finance="clr-namespace:FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.Finance"
              d:DataContext="{d:DesignInstance Type=local:ModerationViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1600" d:DesignWidth="1800">
@@ -15,6 +16,9 @@
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type addMovie:AddMovieViewModel}">
                         <addMovie:AddMovie/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type finance:FinanceViewModel}">
+                        <finance:FinanceView/>
                     </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
@@ -67,9 +71,6 @@
             <RadioButton Content="{StaticResource Finance}"
                          Style="{DynamicResource RadioButtonStyle}"
                          IsChecked="{Binding Path=FinancePanel, Mode=TwoWay}"/>
-            <RadioButton Content="{StaticResource MovieReport}"
-                         Style="{DynamicResource RadioButtonStyle}"
-                         IsChecked="{Binding Path=ReportPanel, Mode=TwoWay}"/>
         </WrapPanel>
         <!--Controls-->
         <ContentControl Grid.Row="1" Content="{Binding ChildContentView}"/>

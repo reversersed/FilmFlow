@@ -1432,6 +1432,9 @@
                                                     <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.IsSubscriptionActive}" Value="False">
                                                         <Setter Property="Grid.Column" Value="1"/>
                                                     </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=ProfileControl, Path=DataContext.IsSubscriptionLastWeek}" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
                                                     <Trigger Property="IsMouseOver" Value="True">
                                                         <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
                                                     </Trigger>

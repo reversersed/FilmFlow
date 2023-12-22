@@ -31,6 +31,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
         private ObservableCollection<GenreModel> _genres;
         private ObservableCollection<GenreModel> _addGenres;
         private bool _isSubscriptionActive = false;
+        private bool _isSubscriptionLastWeek = false;
         private ObservableCollection<int> _selectedGenres = new ObservableCollection<int>();
         private int[] _prices = new int[3];
         private int[] _oldPrices = new int[3];
@@ -67,6 +68,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
         public ObservableCollection<GenreModel> AddGenres { get { return _addGenres; } set { _addGenres = value; OnPropertyChanged(nameof(AddGenres)); } }
         public ObservableCollection<int> SelectedGenres { get { return _selectedGenres; } set { _selectedGenres = value; OnPropertyChanged(nameof(SelectedGenres)); } }
         public bool IsSubscriptionActive { get { return _isSubscriptionActive; } set { _isSubscriptionActive = value; OnPropertyChanged(nameof(IsSubscriptionActive)); } }
+        public bool IsSubscriptionLastWeek { get { return _isSubscriptionLastWeek; } set { _isSubscriptionLastWeek = value; OnPropertyChanged(nameof(IsSubscriptionLastWeek)); } }
         public bool ModalRenewSubscription { get { return _renewSubscription; } set { _renewSubscription = value; OnPropertyChanged(nameof(ModalRenewSubscription)); } }
         public bool EditSubscription { get { return _editSubscription; } set { _editSubscription = value; OnPropertyChanged(nameof(EditSubscription)); } }
         public string CurrentLanguage { get { return FilmFlow.Properties.Settings.Default.Language; } }
@@ -172,6 +174,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
             if(User.Subscription != null)
             {
                 IsSubscriptionActive = User.Subscription.EndDate > DateTime.UtcNow.ToUniversalTime();
+                IsSubscriptionLastWeek = (User.Subscription.EndDate - DateTime.UtcNow.ToUniversalTime()).TotalDays <= 7;
                 AddGenres = new ObservableCollection<GenreModel>(movieRepository.LoadGenreCollection().Where(x => !User.Subscription.SubGenre.Where(i => i.Genre.Id == x.Id).Any()).Select(i => i));
             }
 
@@ -192,7 +195,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
             Subscription newSub = new Subscription()
             {
                 StartDate = DateTime.UtcNow.ToUniversalTime(),
-                EndDate = DateTime.UtcNow.AddMonths(1 + RenewType * 6).ToUniversalTime(),
+                EndDate = DateTime.UtcNow.AddMonths(RenewType == 0 ? 1 : RenewType * 6).ToUniversalTime(),
                 Price = RenewPrices[RenewType],
                 user = User,
                 UserId = User.Id,
@@ -220,7 +223,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ProfileView
             Subscription subscription = new Subscription()
             {
                 StartDate = DateTime.UtcNow.ToUniversalTime(),
-                EndDate = DateTime.UtcNow.AddMonths(1 + PeriodType * 6).ToUniversalTime(),
+                EndDate = DateTime.UtcNow.AddMonths(PeriodType == 0 ? 1 : PeriodType * 6).ToUniversalTime(),
                 Price = Prices[PeriodType],
                 user = User,
                 UserId = User.Id

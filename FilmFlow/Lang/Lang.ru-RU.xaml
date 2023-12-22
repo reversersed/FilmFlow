@@ -72,7 +72,6 @@
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Добавить фильм</sys:String>
     <sys:String x:Key="Finance">Финансы</sys:String>
-    <sys:String x:Key="MovieReport">Отчет по фильмам</sys:String>
     <sys:String x:Key="MovieNameRu">Название фильма (Рус)</sys:String>
     <sys:String x:Key="MovieNameEn">Название фильма (Англ)</sys:String>
     <sys:String x:Key="MovieDescRu">Описание фильма (Рус)</sys:String>
@@ -109,6 +108,10 @@
     <sys:String x:Key="SelectGenre">* Выберите хотя бы один жанр</sys:String>
     <sys:String x:Key="WrongPremierDate">* Укажите дату премьеры или отключите её</sys:String>
     <sys:String x:Key="MovieAdded">Фильм успешно добавлен</sys:String>
+
+    <sys:String x:Key="AllDate">За все время</sys:String>
+    <sys:String x:Key="From">С</sys:String>
+    <sys:String x:Key="To">по</sys:String>
     <!--Movie window-->
     <sys:String x:Key="Description">Описание</sys:String>
     <sys:String x:Key="ReleaseYear">Год производства</sys:String>
