@@ -15,658 +15,949 @@
              d:DesignHeight="1080" d:DesignWidth="1620">
     <UserControl.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\CustomControls\CustomScroll.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             <local:LessConverter x:Key="LessThan"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <!--Controls-->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="0,0,0,5"
-                        Orientation="Horizontal">
-                <TextBlock Text="{StaticResource From}"
-                           VerticalAlignment="Center"
-                           FontSize="{StaticResource Regular}"
-                           FontWeight="DemiBold"
-                           FontFamily="{StaticResource DefaultFont}"
-                           Margin="0,0,5,0">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <TextBox Height="30"
-                             CaretBrush="{StaticResource LightTextColor}"
-                             FontFamily="{StaticResource DefaultFont}"
-                             FontSize="{StaticResource Regular}"
-                             Text="{Binding StartDateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             MaxLength="7"
-                             TextAlignment="Left"
-                             Width="70"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             Padding="5,0,5,0">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type TextBox}">
-                                        <Border x:Name="border"
-                                                    BorderBrush="{StaticResource LightAccentColor}"
-                                                    BorderThickness="0,0,0,1">
-                                            <Grid DataContext="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                                                <ScrollViewer x:Name="PART_ContentHost"
-                                                                  Focusable="False"
-                                                                  HorizontalScrollBarVisibility="Disabled"
-                                                                  VerticalScrollBarVisibility="Disabled"/>
-                                                <StackPanel Orientation="Horizontal"
-                                                                    Margin="7,-1,0,0"
-                                                                    Panel.ZIndex="-1">
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>1</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>2</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="."
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>3</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>4</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>5</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>6</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.StartDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>7</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                            </Trigger>
-                                            <Trigger Property="IsFocused" Value="True">
-                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-                <TextBlock Text="{StaticResource To}"
-                           VerticalAlignment="Center"
-                           FontSize="{StaticResource Regular}"
-                           FontWeight="DemiBold"
-                           FontFamily="{StaticResource DefaultFont}"
-                           Margin="5,0,5,0">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <TextBox Height="30"
-                             CaretBrush="{StaticResource LightTextColor}"
-                             FontFamily="{StaticResource DefaultFont}"
-                             FontSize="{StaticResource Regular}"
-                             Text="{Binding EndDateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             MaxLength="7"
-                             TextAlignment="Left"
-                             Width="70"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             Padding="5,0,5,0">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type TextBox}">
-                                        <Border x:Name="border"
-                                                    BorderBrush="{StaticResource LightAccentColor}"
-                                                    BorderThickness="0,0,0,1">
-                                            <Grid DataContext="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                                                <ScrollViewer x:Name="PART_ContentHost"
-                                                                  Focusable="False"
-                                                                  HorizontalScrollBarVisibility="Disabled"
-                                                                  VerticalScrollBarVisibility="Disabled"/>
-                                                <StackPanel Orientation="Horizontal"
-                                                                    Margin="7,-1,0,0"
-                                                                    Panel.ZIndex="-1">
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>1</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>2</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="."
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>3</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>4</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>5</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>6</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                    <TextBlock Text="_"
-                                                                        IsEnabled="False"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        FontSize="{StaticResource Big}"
-                                                                        FontFamily="{StaticResource DefaultFont}"
-                                                                        VerticalAlignment="Center">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Value="True">
-                                                                        <DataTrigger.Binding>
-                                                                            <MultiBinding Converter="{StaticResource LessThan}">
-                                                                                <Binding RelativeSource="{RelativeSource AncestorType=Grid}" Path="DataContext.EndDateString.Length"/>
-                                                                                <Binding>
-                                                                                    <Binding.Source>
-                                                                                        <sys:Int32>7</sys:Int32>
-                                                                                    </Binding.Source>
-                                                                                </Binding>
-                                                                            </MultiBinding>
-                                                                        </DataTrigger.Binding>
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                            </Trigger>
-                                            <Trigger Property="IsFocused" Value="True">
-                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-            </StackPanel>
-            <CheckBox Content="{StaticResource AllDate}"
-                      Grid.Row="1"
-                      Grid.Column="0"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"
-                      IsChecked="{Binding AllTimeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <CheckBox.Style>
-                    <Style TargetType="{x:Type CheckBox}">
-                        <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
-                        <Setter Property="Margin" Value="5,0,0,2"/>
-                        <Setter Property="TextElement.Foreground" Value="{StaticResource TextColor}"/>
-                        <Setter Property="TextElement.FontFamily" Value="{StaticResource DefaultFont}"/>
-                        <Setter Property="TextElement.FontSize" Value="{StaticResource Small}"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type CheckBox}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="5"/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Border Background="{TemplateBinding Background}"
-                                                                                Grid.Column="0"
-                                                                                VerticalAlignment="Center"
-                                                                                Height="15"
-                                                                                Width="15"
-                                                                                CornerRadius="15"
-                                                                                Padding="2">
-                                            <fa:IconImage   Name="CheckMark"
-                                                            Icon="Check"
-                                                            Visibility="Hidden"
-                                                            Foreground="{TemplateBinding Foreground}"/>
-                                        </Border>
-                                        <ContentPresenter VerticalAlignment="Center"
-                                                            Grid.Column="2"/>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
-                                            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
-                                        </Trigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True"/>
-                                                <Condition Property="IsChecked" Value="False"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
-                                            <Setter Property="Opacity" TargetName="CheckMark" Value="0.5"/>
-                                            <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
-                                        </MultiTrigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </CheckBox.Style>
-            </CheckBox>
-            <Button Command="{Binding GetReport}"
-                    Margin="10,0,0,0"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center">
-                <Button.Content>
-                    <fa:IconImage Icon="Search"
-                                  Height="28"
-                                  Width="28"
-                                  Foreground="{StaticResource LightTextColor}"/>
-                </Button.Content>
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
-                        <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
-                        <Setter Property="BorderThickness" Value="2"/>
-                        <Setter Property="Padding" Value="2"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="5"
-                                            Padding="{TemplateBinding Padding}">
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                                          VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background">
+            <!--Controls-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,0,0,5"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{StaticResource From}"
+                               VerticalAlignment="Center"
+                               FontSize="{StaticResource Regular}"
+                               FontWeight="DemiBold"
+                               FontFamily="{StaticResource DefaultFont}"
+                               Margin="0,0,5,0">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox Height="30"
+                                 CaretBrush="{StaticResource LightTextColor}"
+                                 FontFamily="{StaticResource DefaultFont}"
+                                 FontSize="{StaticResource Regular}"
+                                 Text="{Binding StartDateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 MaxLength="7"
+                                 TextAlignment="Left"
+                                 Width="70"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                <Setter Property="Template">
                                     <Setter.Value>
-                                        <SolidColorBrush Color="Black" Opacity="0.4"/>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                      Focusable="False"
+                                                                      HorizontalScrollBarVisibility="Disabled"
+                                                                      VerticalScrollBarVisibility="Disabled"/>
+                                                    <StackPanel Orientation="Horizontal"
+                                                                        Margin="7,-1,0,0"
+                                                                        Panel.ZIndex="-1">
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>1</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>2</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="."
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>3</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>4</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>5</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>6</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.StartDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>7</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
-                                <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <TextBlock Text="{StaticResource To}"
+                               VerticalAlignment="Center"
+                               FontSize="{StaticResource Regular}"
+                               FontWeight="DemiBold"
+                               FontFamily="{StaticResource DefaultFont}"
+                               Margin="5,0,5,0">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox Height="30"
+                                 CaretBrush="{StaticResource LightTextColor}"
+                                 FontFamily="{StaticResource DefaultFont}"
+                                 FontSize="{StaticResource Regular}"
+                                 Text="{Binding EndDateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 MaxLength="7"
+                                 TextAlignment="Left"
+                                 Width="70"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Padding="5,0,5,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border x:Name="border"
+                                                        BorderBrush="{StaticResource LightAccentColor}"
+                                                        BorderThickness="0,0,0,1">
+                                                <Grid DataContext="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                                      Focusable="False"
+                                                                      HorizontalScrollBarVisibility="Disabled"
+                                                                      VerticalScrollBarVisibility="Disabled"/>
+                                                    <StackPanel Orientation="Horizontal"
+                                                                        Margin="7,-1,0,0"
+                                                                        Panel.ZIndex="-1">
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>1</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>2</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="."
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>3</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>4</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>5</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>6</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="_"
+                                                                            IsEnabled="False"
+                                                                            Foreground="{TemplateBinding Foreground}"
+                                                                            FontSize="{StaticResource Big}"
+                                                                            FontFamily="{StaticResource DefaultFont}"
+                                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource LessThan}">
+                                                                                    <Binding ElementName="FinanceControl" Path="DataContext.EndDateString.Length"/>
+                                                                                    <Binding>
+                                                                                        <Binding.Source>
+                                                                                            <sys:Int32>7</sys:Int32>
+                                                                                        </Binding.Source>
+                                                                                    </Binding>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentColor}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.AllTimeMode}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <CheckBox Content="{StaticResource AllDate}"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Top"
+                          IsChecked="{Binding AllTimeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <CheckBox.Style>
+                        <Style TargetType="{x:Type CheckBox}">
+                            <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                            <Setter Property="Margin" Value="5,0,0,2"/>
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource TextColor}"/>
+                            <Setter Property="TextElement.FontFamily" Value="{StaticResource DefaultFont}"/>
+                            <Setter Property="TextElement.FontSize" Value="{StaticResource Small}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="5"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Background="{TemplateBinding Background}"
+                                                                                    Grid.Column="0"
+                                                                                    VerticalAlignment="Center"
+                                                                                    Height="15"
+                                                                                    Width="15"
+                                                                                    CornerRadius="15"
+                                                                                    Padding="2">
+                                                <fa:IconImage   Name="CheckMark"
+                                                                Icon="Check"
+                                                                Visibility="Hidden"
+                                                                Foreground="{TemplateBinding Foreground}"/>
+                                            </Border>
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                                Grid.Column="2"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                                                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                            </Trigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="True"/>
+                                                    <Condition Property="IsChecked" Value="False"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Visibility" TargetName="CheckMark" Value="Visible"/>
+                                                <Setter Property="Opacity" TargetName="CheckMark" Value="0.5"/>
+                                                <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </CheckBox.Style>
+                </CheckBox>
+                <Button Command="{Binding GetReport}"
+                        Margin="10,0,0,0"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                    <Button.Content>
+                        <fa:IconImage Icon="Search"
+                                      Height="28"
+                                      Width="28"
+                                      Foreground="{StaticResource LightTextColor}"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Padding" Value="2"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="Black" Opacity="0.4"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Command="{Binding DownloadReport}"
+                        Margin="10,0,0,0"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                    <Button.Content>
+                        <fa:IconImage Icon="Download"
+                                      Height="28"
+                                      Width="28"
+                                      Foreground="{StaticResource LightTextColor}"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Padding" Value="2"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="Black" Opacity="0.4"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="{StaticResource DarkTextColor}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <!--Report-->
+            <Grid Grid.Row="2"
+                  Visibility="{Binding ReportVisibility}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--Text-->
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource TotalRepl}"/>
+                    <TextBlock Grid.Row="1"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource SumRepl}"/>
+                    <TextBlock Grid.Row="2"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource AverageRepl}"/>
+                    <TextBlock Grid.Row="4"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource TotalSubs}"/>
+                    <TextBlock Grid.Row="5"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource SumSubs}"/>
+                    <TextBlock Grid.Row="6"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource AverageSubs}"/>
+                    <TextBlock Grid.Row="7"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource TopGenre}"/>
+                </Grid>
+                <!--Data-->
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{Binding TotalReplenishments}"/>
+                    <TextBlock Grid.Row="1"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold">
+                        <Run Text="{Binding TotalReplValue}"/>
+                        <Run Text="₽"/>
+                    </TextBlock>
+                    <TextBlock Grid.Row="2"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold">
+                        <Run Text="{Binding AverageReplenishment, Mode=OneWay}"/>
+                        <Run Text="₽"/>
+                    </TextBlock>
+                    <TextBlock Grid.Row="4"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{Binding TotalSubscriptions}"/>
+                    <TextBlock Grid.Row="5"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold">
+                        <Run Text="{Binding TotalSubCost}"/>
+                        <Run Text="₽"/>
+                    </TextBlock>
+                    <TextBlock Grid.Row="6"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold">
+                        <Run Text="{Binding AverageSubCost, Mode=OneWay}"/>
+                        <Run Text="₽"/>
+                    </TextBlock>
+                    <TextBlock Grid.Row="7"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{Binding PopularGenre.Name}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.TotalSubscriptions}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+                <!--Diagram-->
+                <Grid Grid.Column="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="{StaticResource GenreRateTitle}"
+                                   Foreground="{StaticResource TextColor}"
+                                   FontSize="{StaticResource Big}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"/>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource GenreReport}"/>
+                            <TextBlock Grid.Column="1"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource DefaultFont}"
+                               FontWeight="DemiBold"
+                               Text="{StaticResource RateGenre}"/>
+                        </Grid>
+                        <ListView Grid.Row="2"
+                                  ItemsSource="{Binding GenreReport}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   Foreground="{StaticResource TextColor}"
+                                                   FontSize="{StaticResource Regular}"
+                                                   FontFamily="{StaticResource DefaultFont}"
+                                                   FontWeight="DemiBold"
+                                                   Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Foreground="{StaticResource TextColor}"
+                                                   FontSize="{StaticResource Regular}"
+                                                   FontFamily="{StaticResource DefaultFont}"
+                                                   FontWeight="DemiBold">
+                                            <Run Text="{Binding Id}"/>
+                                            <Run Text="%"/>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Background="Transparent"
+                                                        IsItemsHost="True"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ItemsPresenter/>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
+                    <diagram:PieChart   Grid.Column="1"
+                                        Margin="30,0,0,0"
+                                        MaxHeight="400"
+                                        Series="{Binding ReportSeries}"/>
+                </Grid>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

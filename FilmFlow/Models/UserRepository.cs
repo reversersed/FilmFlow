@@ -3,15 +3,15 @@ using System.Security.Cryptography;
 using System;
 using FilmFlow.Models.BaseTables;
 using Microsoft.EntityFrameworkCore;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace FilmFlow.Models
 {
     public class UserRepository : IUserRepository
     {
         private RepositoryBase db;
-        public UserRepository() 
+        public UserRepository()
         {
             db = new RepositoryBase();
         }
@@ -22,7 +22,7 @@ namespace FilmFlow.Models
 
         public User AuthenticateUser(string username, string password, bool createSession)
         {
-            if(username.Length < 1 || password.Length < 1)
+            if (username.Length < 1 || password.Length < 1)
                 throw new ArgumentException();
             var user = db.users.SingleOrDefault(u => (u.Username.Equals(username) || u.Email.Equals(username)) && u.Password.Equals(MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))));
             if (user.SubscriptionId != null)
@@ -44,7 +44,7 @@ namespace FilmFlow.Models
         private string GenerateToken()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, new Random().Next(16,25))
+            return new string(Enumerable.Repeat(chars, new Random().Next(16, 25))
                 .Select(s => s[new Random().Next(s.Length)]).ToArray());
         }
         public string? AuthenticateUser()
@@ -69,7 +69,7 @@ namespace FilmFlow.Models
 
         public void createUser(User user)
         {
-            if(user == null || user == default(User) || user.Username.Length < 1)
+            if (user == null || user == default(User) || user.Username.Length < 1)
                 throw new ArgumentNullException(nameof(user));
             db.users.Add(user);
             db.SaveChanges();
@@ -188,6 +188,53 @@ namespace FilmFlow.Models
             db.subscriptions.Update(subscription);
 
             db.SaveChanges();
+        }
+
+        public int GetTotalSubscriptions(DateOnly startDate, DateOnly endDate)
+        {
+            return db.subscriptions.Where(i => DateOnly.FromDateTime(i.StartDate) >= startDate && DateOnly.FromDateTime(i.StartDate) <= endDate).Count();
+        }
+
+        public int GetTotalSubscriptionCost(DateOnly startDate, DateOnly endDate)
+        {
+            return db.subscriptions.Where(i => DateOnly.FromDateTime(i.StartDate) >= startDate && DateOnly.FromDateTime(i.StartDate) <= endDate).Sum(i => i.Price);
+        }
+
+        public GenreModel GetPopularSubscriptionGenre(DateOnly startDate, DateOnly endDate)
+        {
+            List<int> totalCount = new List<int>();
+            totalCount.AddRange(Enumerable.Repeat(0, db.genrecollection.OrderByDescending(i => i.Id).First().Id));
+            db.subscriptions.Where(i => DateOnly.FromDateTime(i.StartDate) >= startDate && DateOnly.FromDateTime(i.StartDate) <= endDate).Include(i => i.SubGenre).ThenInclude(i => i.Genre).ToList()
+                .ForEach(x => x.SubGenre.ToList().ForEach(i => totalCount[i.Genre.Id - 1]++));
+            var genre = db.genrecollection.Where(i => i.Id == totalCount.IndexOf(totalCount.Max()) + 1).First();
+            return new GenreModel() {
+                Id = genre.Id,
+                Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? genre.NameRu : genre.NameEn };
+        }
+
+        public int GetTotalReplenishments(DateOnly startDate, DateOnly endDate)
+        {
+            return db.replenishments.Where(i => DateOnly.FromDateTime(i.Date) >= startDate && DateOnly.FromDateTime(i.Date) <= endDate).Count();
+        }
+
+        public int GetTotalReplenishmentValue(DateOnly startDate, DateOnly endDate)
+        {
+            return db.replenishments.Where(i => DateOnly.FromDateTime(i.Date) >= startDate && DateOnly.FromDateTime(i.Date) <= endDate).Sum(i => i.Value);
+        }
+        public ObservableCollection<GenreModel> GetReportList(DateOnly startDate, DateOnly endDate)
+        {
+            ObservableCollection<GenreModel> list = new();
+            db.genrecollection.ToList().ForEach(i => list.Add(new GenreModel() { Id = 0, Name = FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? i.NameRu : i.NameEn }));
+            int totalGenres = 0;
+
+            db.subscriptions.Where(i => DateOnly.FromDateTime(i.StartDate) >= startDate && DateOnly.FromDateTime(i.StartDate) <= endDate).Include(i => i.SubGenre).ThenInclude(i => i.Genre).ToList()
+                .ForEach(x => x.SubGenre.ToList().ForEach(i => {
+                    list.Where(g => g.Name.Equals(FilmFlow.Properties.Settings.Default.Language.Equals("ru-RU") ? i.Genre.NameRu : i.Genre.NameEn)).First().Id++;
+                    totalGenres++;
+                }));
+            for(int i = 0; i < list.Count; i++)
+                list[i].Id = totalGenres == 0 ? 0 : (int)Math.Round(((double)list[i].Id/ (double)totalGenres)*100);
+            return list;
         }
     }
 }

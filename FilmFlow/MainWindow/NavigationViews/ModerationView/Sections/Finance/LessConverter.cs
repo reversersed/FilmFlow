@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.Finance
@@ -12,7 +13,7 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView.Sections.Finance
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values == null)
+            if (values == null || values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
                 return false;
             return (int)values[0] < (int)values[1];
         }

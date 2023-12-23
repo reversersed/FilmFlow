@@ -172,13 +172,6 @@ namespace FilmFlow.Models
         {
             if (id < 1)
                 return default;
-            /*
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            for(int i = 0; i < 100; i ++)
-                db.reviews.Add(new Review() { MovieId = id, Rating = (float)(Random.Shared.NextDouble()), UserId = 1, WriteDate = new DateTime(2023,03,16).ToUniversalTime(), ReviewText = new string(Enumerable.Repeat(chars, Random.Shared.Next(20, 80))
-                .Select(s => s[Random.Shared.Next(s.Length)]).ToArray()) });
-            db.SaveChanges();
-            */
 
             Movie movie = db.movies
                                     .Include(e => e.Country)

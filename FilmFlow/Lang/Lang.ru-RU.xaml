@@ -71,7 +71,7 @@
     <sys:String x:Key="Search">Поиск</sys:String>
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Добавить фильм</sys:String>
-    <sys:String x:Key="Finance">Финансы</sys:String>
+    <sys:String x:Key="Finance">Отчет</sys:String>
     <sys:String x:Key="MovieNameRu">Название фильма (Рус)</sys:String>
     <sys:String x:Key="MovieNameEn">Название фильма (Англ)</sys:String>
     <sys:String x:Key="MovieDescRu">Описание фильма (Рус)</sys:String>
@@ -112,6 +112,16 @@
     <sys:String x:Key="AllDate">За все время</sys:String>
     <sys:String x:Key="From">С</sys:String>
     <sys:String x:Key="To">по</sys:String>
+    <sys:String x:Key="TotalRepl">Всего пополнений</sys:String>
+    <sys:String x:Key="SumRepl">На сумму</sys:String>
+    <sys:String x:Key="AverageRepl">Средний чек</sys:String>
+    <sys:String x:Key="TotalSubs">Всего подписок</sys:String>
+    <sys:String x:Key="SumSubs">На общую сумму</sys:String>
+    <sys:String x:Key="AverageSubs">Средняя стоимость</sys:String>
+    <sys:String x:Key="TopGenre">Самый частый жанр</sys:String>
+    <sys:String x:Key="GenreRateTitle">Доля жанров</sys:String>
+    <sys:String x:Key="GenreReport">Жанр</sys:String>
+    <sys:String x:Key="RateGenre">Доля</sys:String>
     <!--Movie window-->
     <sys:String x:Key="Description">Описание</sys:String>
     <sys:String x:Key="ReleaseYear">Год производства</sys:String>

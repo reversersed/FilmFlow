@@ -1,6 +1,6 @@
 ﻿using FilmFlow.Models.BaseTables;
+using System;
 using System.Collections.ObjectModel;
-using System.Windows.Forms;
 
 namespace FilmFlow.Models
 {
@@ -22,5 +22,11 @@ namespace FilmFlow.Models
         void DisableSubscription(User user);
         void RenewSubscription(User user, Subscription newSubscription);
         void AddSubscriptionGenres(ObservableCollection<SubscriptionGenre> genres, int price, User user);
+        int GetTotalSubscriptions(DateOnly startDate, DateOnly endDate);
+        int GetTotalSubscriptionCost(DateOnly startDate, DateOnly endDate);
+        int GetTotalReplenishments(DateOnly startDate, DateOnly endDate);
+        int GetTotalReplenishmentValue(DateOnly startDate, DateOnly endDate);
+        GenreModel GetPopularSubscriptionGenre(DateOnly startDate, DateOnly endDate);
+        ObservableCollection<GenreModel> GetReportList(DateOnly startDate, DateOnly endDate);
     }
 }

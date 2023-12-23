@@ -19,22 +19,21 @@ namespace FilmFlow.MainWindow.NavigationViews.ModerationView
         public ViewModelBase ChildContentView { get { return _childContentView; } set { _childContentView = value; OnPropertyChanged(nameof(ChildContentView)); } }
 
         //Models
-
-
-        //Commands
-
+        ViewModelBase AddMovie;
+        ViewModelBase Finance;
 
         //Methods
         public ModerationViewModel()
         {
-
+            AddMovie = new AddMovieViewModel(); 
+            Finance = new FinanceViewModel();
         }
         private void ChangePanel()
         {
             if (AddMoviePanel)
-                ChildContentView = new AddMovieViewModel();
+                ChildContentView = AddMovie;
             else if (FinancePanel)
-                ChildContentView = new FinanceViewModel();
+                ChildContentView = Finance;
             else
                 ChildContentView = null;
         }

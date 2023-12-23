@@ -71,7 +71,7 @@
     <sys:String x:Key="Search">Search</sys:String>
     <!--Moderation window-->
     <sys:String x:Key="AddMovie">Add movie</sys:String>
-    <sys:String x:Key="Finance">Finance</sys:String>
+    <sys:String x:Key="Finance">Report</sys:String>
     <sys:String x:Key="MovieNameRu">Movie name (Rus)</sys:String>
     <sys:String x:Key="MovieNameEn">Movie name (Eng)</sys:String>
     <sys:String x:Key="MovieDescRu">Movie description (Rus)</sys:String>
@@ -113,6 +113,16 @@
     <sys:String x:Key="AllDate">All time</sys:String>
     <sys:String x:Key="From">From</sys:String>
     <sys:String x:Key="To">to</sys:String>
+    <sys:String x:Key="TotalRepl">Total deposits</sys:String>
+    <sys:String x:Key="SumRepl">Total amount</sys:String>
+    <sys:String x:Key="AverageRepl">Average bill</sys:String>
+    <sys:String x:Key="TotalSubs">Total subscriptions</sys:String>
+    <sys:String x:Key="SumSubs">For total cost</sys:String>
+    <sys:String x:Key="AverageSubs">Average cost</sys:String>
+    <sys:String x:Key="TopGenre">Common genre</sys:String>
+    <sys:String x:Key="GenreRateTitle">Genre's rate</sys:String>
+    <sys:String x:Key="GenreReport">Genre</sys:String>
+    <sys:String x:Key="RateGenre">Rate</sys:String>
     <!--Movie window-->
     <sys:String x:Key="Description">Description</sys:String>
     <sys:String x:Key="ReleaseYear">Release year</sys:String>
