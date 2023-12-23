@@ -164,6 +164,7 @@
     <sys:String x:Key="VideoLoadingError">Во время загрузки видеофайла произошла ошибка</sys:String>
     <!--Favourites-->
     <sys:String x:Key="Favourites">И З Б Р А Н Н О Е</sys:String>
+    <sys:String x:Key="EmptyYet">Здесь пока ничего нет...</sys:String>
     <!--Profile-->
     <sys:String x:Key="Balance">Ваш баланс:</sys:String>
     <sys:String x:Key="Replenish">Пополнить</sys:String>

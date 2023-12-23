@@ -42,6 +42,27 @@
                                 FontSize="{StaticResource Large}"
                                 FontFamily="{StaticResource DefaultFont}"/>
             </Border>
+            <TextBlock Grid.Row="2"
+                       Text="{StaticResource EmptyYet}"
+                       Foreground="{StaticResource DarkTextColor}"
+                       FontSize="{StaticResource Large}"
+                       FontWeight="DemiBold"
+                       FontFamily="{StaticResource DefaultFont}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0,40,0,0"
+                       TextWrapping="Wrap">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.MovieList.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <StackPanel x:Name="ListViewPanel"
                             Grid.Row="2"
                             Width="Auto" Height="Auto">

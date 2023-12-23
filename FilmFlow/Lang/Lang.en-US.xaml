@@ -165,6 +165,7 @@
     <sys:String x:Key="VideoLoadingError">An error occured while loading the movie</sys:String>
     <!--Favourites-->
     <sys:String x:Key="Favourites">F A V O U R I T E S</sys:String>
+    <sys:String x:Key="EmptyYet">There's nothing yet...</sys:String>
     <!--Profile-->
     <sys:String x:Key="Balance">Balance:</sys:String>
     <sys:String x:Key="Replenish">Replenish</sys:String>
